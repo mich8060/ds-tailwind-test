@@ -16,7 +16,9 @@
   },
   "style": "dist/css/tokens.css",
   "scripts": {
-    "pull:figma": "node scripts/pull-variables.js",
+    "pull:figma": "node scripts/fetch-figma.js",
+    "build:tokens": "node scripts/build-build-variables.js",
+    "tokens": "npm run pull:figma && npm run build:tokens",
     "prebuild": "node -e \"require('fs').rmSync('dist', {recursive:true, force:true}); require('fs').mkdirSync('dist/scss', {recursive:true}); require('fs').mkdirSync('dist/css', {recursive:true});\"",
     "build:scss": "node -e \"require('fs').cpSync('src/scss', 'dist/scss', {recursive:true});\"",
     "build:css": "sass src/scss/css-vars.scss:dist/css/tokens.css --no-source-map --style=expanded || node -e \"require('fs').writeFileSync('dist/css/tokens.css','/* empty */')\"",
@@ -24,7 +26,11 @@
     "publish:dry": "npm publish --dry-run"
   },
   "devDependencies": {
+    "dotenv": "^17.2.3",
     "dotenv-cli": "^10.0.0",
     "sass": "^1.93.2"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10"
   }
 }
