@@ -20,17 +20,17 @@ npm install @chghealthcare/chg-design-system
 
 .my-button {
   background: $uds-color-primary-500;
-  border-radius: $uds-radius-md;
+  border-radius: $uds-radius-8;
 }
 ```
 
 ### 2. Import CSS Custom Properties
 ```scss
-@import "@chghealthcare/chg-design-system/scss/css-vars";
+@import "@chghealthcare/chg-design-system/css/tokens.css";
 
 .my-button {
   background: var(--uds-color-primary-500);
-  border-radius: var(--uds-radius-md);
+  border-radius: var(--uds-radius-8);
 }
 ```
 
@@ -56,9 +56,10 @@ This package stays in sync with Figma design tokens.
 ```
 chg-design-system/
 ├── src/
+│   └── css/
+│       └── tokens.scss     # Generated CSS variables
 │   └── scss/
-│       ├── _variables.scss   # Generated SCSS tokens
-│       └── css-vars.scss     # Generated CSS variables
+│       └── _variables.scss   # Generated SCSS tokens
 ├── scripts/
 │   ├── fetch-figma.js        # Pull raw tokens from Figma
 │   └── build-scss.js         # Transform JSON → SCSS + CSS
