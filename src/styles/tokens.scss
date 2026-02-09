@@ -39,6 +39,7 @@
     /* Elevation */
     --uds-elevation-base: #{vars.$uds-elevation-base};
     --uds-elevation-dropdown: #{vars.$uds-elevation-dropdown};
+    --uds-elevation-menu: #{vars.$uds-elevation-menu};
     --uds-elevation-modal: #{vars.$uds-elevation-modal};
     --uds-elevation-overlay: #{vars.$uds-elevation-overlay};
     --uds-elevation-sticky: #{vars.$uds-elevation-sticky};
@@ -101,18 +102,6 @@
     --uds-aspect-ratio-portrait: #{vars.$uds-aspect-ratio-portrait};
     --uds-aspect-ratio-square: #{vars.$uds-aspect-ratio-square};
     --uds-aspect-ratio-video: #{vars.$uds-aspect-ratio-video};
-
-    /* Code Colors */
-    --uds-code-bg: #{vars.$uds-code-bg};
-    --uds-code-class: #{vars.$uds-code-class};
-    --uds-code-comment: #{vars.$uds-code-comment};
-    --uds-code-fg: #{vars.$uds-code-fg};
-    --uds-code-function: #{vars.$uds-code-function};
-    --uds-code-keyword: #{vars.$uds-code-keyword};
-    --uds-code-number: #{vars.$uds-code-number};
-    --uds-code-operator: #{vars.$uds-code-operator};
-    --uds-code-punctuation: #{vars.$uds-code-punctuation};
-    --uds-code-string: #{vars.$uds-code-string};
 }
 
 :root {
@@ -911,7 +900,8 @@
 
     /* Input Colors */
     --uds-input-surface: var(--uds-color-neutrals-50);
-    --uds-input-border: var(--uds-color-neutrals-300);
+    --uds-input-border: var(--uds-color-neutrals-100);
+
 
     /* Text Colors */
     --uds-text-primary: var(--uds-color-neutrals-800);
@@ -946,8 +936,8 @@
     --uds-brands-locumsmart-orange: #{vars.$uds-brands-locumsmart-orange};
     --uds-brands-modio-black: #{vars.$uds-brands-modio-black};
     --uds-brands-modio-blue: #{vars.$uds-brands-modio-blue};
-    --uds-brands-unified-black: #{vars.$uds-brands-unified-black};
-    --uds-brands-unified-gray: #{vars.$uds-brands-unified-gray};
+    --uds-brands-ds-black: #{vars.$uds-brands-ds-black};
+    --uds-brands-ds-purple: #{vars.$uds-brands-ds-gray};
     --uds-brands-weatherby-red: #{vars.$uds-brands-weatherby-red};
     --uds-brands-weatherby-teal: #{vars.$uds-brands-weatherby-teal};
     --uds-brands-wireframe-black: #{vars.$uds-brands-wireframe-black};
@@ -987,6 +977,18 @@
     --uds-user-name: #{vars.$uds-user-name};
     --uds-user-url: #{vars.$uds-user-url};
     --uds-user-year: #{vars.$uds-user-year};
+
+    /* Code Colors */
+    --uds-code-bg:var(--uds-color-neutrals-900);
+    --uds-code-class: var(--uds-color-accent-fuchsia-400);
+    --uds-code-comment: var(--uds-color-neutrals-500);
+    --uds-code-fg: var(--uds-color-neutrals-100);
+    --uds-code-function: var(--uds-color-accent-violet-400);
+    --uds-code-keyword: var(--uds-color-accent-sky-400);
+    --uds-code-number: var(--uds-color-accent-amber-400);
+    --uds-code-operator: var(--uds-color-accent-rose-400);
+    --uds-code-punctuation: var(--uds-color-neutrals-400);
+    --uds-code-string: var(--uds-color-accent-emerald-400);
 }
 
 
@@ -1366,8 +1368,8 @@
     --uds-icon-link-secondary-active: var(--uds-color-white);
     --uds-icon-link-secondary-visited: var(--uds-color-neutrals-300);
 
-    --uds-input-surface: #{vars.$uds-input-surface};
-    --uds-input-border: #{vars.$uds-input-border};
+    --uds-input-surface: rgba(0,0,0,0.2);
+    --uds-input-border: var(--uds-color-white);
 
     --uds-text-primary: var(--uds-color-white);
     --uds-text-secondary: var(--uds-color-neutrals-50);
@@ -1402,6 +1404,18 @@
     --uds-shadow-15: rgba(249, 250, 252, 0.15);
     --uds-shadow-18: rgba(249, 250, 252, 0.18);
     --uds-shadow-25: rgba(249, 250, 252, 0.25);
+
+    /* Code Colors */
+    --uds-code-bg:var(--uds-color-neutrals-900);
+    --uds-code-class: var(--uds-color-accent-fuchsia-400);
+    --uds-code-comment: var(--uds-color-neutrals-500);
+    --uds-code-fg: var(--uds-color-neutrals-100);
+    --uds-code-function: var(--uds-color-accent-violet-400);
+    --uds-code-keyword: var(--uds-color-accent-sky-400);
+    --uds-code-number: var(--uds-color-accent-amber-400);
+    --uds-code-operator: var(--uds-color-accent-rose-400);
+    --uds-code-punctuation: var(--uds-color-neutrals-400);
+    --uds-code-string: var(--uds-color-accent-emerald-400);
 
 }
 

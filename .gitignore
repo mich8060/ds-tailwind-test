@@ -38,3 +38,6 @@ coverage/
 
 # Misc
 *.local
+
+# NPM Config
+.npmrc

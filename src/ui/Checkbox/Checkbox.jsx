@@ -32,9 +32,12 @@ export default function Checkbox({
     }
   };
 
+  // Only show indeterminate state when some (but not all) items are selected
+  const showIndeterminate = indeterminate && !checked;
+
   return (
     <label
-      className={`checkbox ${disabled ? "checkbox--disabled" : ""} ${className}`}
+      className={`checkbox ${disabled ? "checkbox--disabled" : ""} ${showIndeterminate ? "checkbox--indeterminate" : ""} ${className}`}
       htmlFor={checkboxId}
     >
       <input

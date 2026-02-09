@@ -3129,7 +3129,8 @@
   --uds-cursor-interactive: pointer;
   /* Elevation */
   --uds-elevation-base: 0px;
-  --uds-elevation-dropdown: 1000px;
+  --uds-elevation-dropdown: 500px;
+  --uds-elevation-menu: 1000px;
   --uds-elevation-modal: 1300px;
   --uds-elevation-overlay: 1100px;
   --uds-elevation-sticky: 100px;
@@ -3187,17 +3188,6 @@
   --uds-aspect-ratio-portrait: 3/4;
   --uds-aspect-ratio-square: 1/1;
   --uds-aspect-ratio-video: 16/9;
-  /* Code Colors */
-  --uds-code-bg: #111828;
-  --uds-code-class: #e879f9;
-  --uds-code-comment: #6b7380;
-  --uds-code-fg: #f3f4f6;
-  --uds-code-function: #a78bfa;
-  --uds-code-keyword: #38bdf8;
-  --uds-code-number: #fbbf24;
-  --uds-code-operator: #fb7286;
-  --uds-code-punctuation: #9ca2ae;
-  --uds-code-string: #34d399;
 }
 
 :root {
@@ -3603,7 +3593,7 @@
   --uds-color-quaternary-800: var(--brand-color-quaternary-800);
   --uds-color-quaternary-900: var(--brand-color-quaternary-900);
   /* Accent Colors - Amber */
-  --uds-color-accent-amber-25: #ff0000;
+  --uds-color-accent-amber-25: #fffbeb;
   --uds-color-accent-amber-50: #fef3c7;
   --uds-color-accent-amber-100: #fde68a;
   --uds-color-accent-amber-200: #fcd34d;
@@ -3873,7 +3863,7 @@
   --uds-border-quaternary: var(--uds-color-neutrals-300);
   --uds-border-disabled: var(--uds-color-neutrals-300);
   --uds-border-transparent: var(--uds-color-transparent);
-  --uds-border-inverse: var(--uds-color-neutrals-300);
+  --uds-border-inverse: var(--uds-color-white);
   --uds-border-brand-primary: var(--uds-color-primary-500);
   --uds-border-brand-secondary: var(--uds-color-primary-100);
   --uds-border-brand-tertiary: var(--uds-color-primary-700);
@@ -3924,7 +3914,7 @@
   --uds-icon-link-secondary-visited: var(--uds-color-neutrals-500);
   /* Input Colors */
   --uds-input-surface: var(--uds-color-neutrals-50);
-  --uds-input-border: var(--uds-color-neutrals-300);
+  --uds-input-border: var(--uds-color-neutrals-100);
   /* Text Colors */
   --uds-text-primary: var(--uds-color-neutrals-800);
   --uds-text-secondary: var(--uds-color-neutrals-600);
@@ -3954,8 +3944,8 @@
   --uds-brands-locumsmart-orange: #f58220;
   --uds-brands-modio-black: #202938;
   --uds-brands-modio-blue: #36a5ce;
-  --uds-brands-unified-black: #111111;
-  --uds-brands-unified-gray: #4c5564;
+  --uds-brands-ds-black: #111111;
+  --uds-brands-ds-purple: #738ac6;
   --uds-brands-weatherby-red: #db0032;
   --uds-brands-weatherby-teal: #74c9ba;
   --uds-brands-wireframe-black: #3d3935;
@@ -3991,6 +3981,17 @@
   --uds-user-name: Design System;
   --uds-user-url: chghealthcare.com;
   --uds-user-year: 2026;
+  /* Code Colors */
+  --uds-code-bg:var(--uds-color-neutrals-900);
+  --uds-code-class: var(--uds-color-accent-fuchsia-400);
+  --uds-code-comment: var(--uds-color-neutrals-500);
+  --uds-code-fg: var(--uds-color-neutrals-100);
+  --uds-code-function: var(--uds-color-accent-violet-400);
+  --uds-code-keyword: var(--uds-color-accent-sky-400);
+  --uds-code-number: var(--uds-color-accent-amber-400);
+  --uds-code-operator: var(--uds-color-accent-rose-400);
+  --uds-code-punctuation: var(--uds-color-neutrals-400);
+  --uds-code-string: var(--uds-color-accent-emerald-400);
 }
 
 [data-mode=dark] {
@@ -4049,7 +4050,7 @@
   --uds-color-accent-amber-700: #fcd34d;
   --uds-color-accent-amber-800: #fde68a;
   --uds-color-accent-amber-900: #fef3c7;
-  --uds-color-accent-amber-1000: #ff0000;
+  --uds-color-accent-amber-1000: #fffbeb;
   --uds-color-accent-aqua-25: #0a2e2c;
   --uds-color-accent-aqua-50: #0f3a37;
   --uds-color-accent-aqua-100: #134e4a;
@@ -4336,8 +4337,8 @@
   --uds-icon-link-secondary-hover: var(--uds-color-neutrals-100);
   --uds-icon-link-secondary-active: var(--uds-color-white);
   --uds-icon-link-secondary-visited: var(--uds-color-neutrals-300);
-  --uds-input-surface: #f9fafc;
-  --uds-input-border: #d2d5dc;
+  --uds-input-surface: rgba(0,0,0,0.2);
+  --uds-input-border: var(--uds-color-white);
   --uds-text-primary: var(--uds-color-white);
   --uds-text-secondary: var(--uds-color-neutrals-50);
   --uds-text-tertiary: var(--uds-color-neutrals-100);
@@ -4369,6 +4370,17 @@
   --uds-shadow-15: rgba(249, 250, 252, 0.15);
   --uds-shadow-18: rgba(249, 250, 252, 0.18);
   --uds-shadow-25: rgba(249, 250, 252, 0.25);
+  /* Code Colors */
+  --uds-code-bg:var(--uds-color-neutrals-900);
+  --uds-code-class: var(--uds-color-accent-fuchsia-400);
+  --uds-code-comment: var(--uds-color-neutrals-500);
+  --uds-code-fg: var(--uds-color-neutrals-100);
+  --uds-code-function: var(--uds-color-accent-violet-400);
+  --uds-code-keyword: var(--uds-color-accent-sky-400);
+  --uds-code-number: var(--uds-color-accent-amber-400);
+  --uds-code-operator: var(--uds-color-accent-rose-400);
+  --uds-code-punctuation: var(--uds-color-neutrals-400);
+  --uds-code-string: var(--uds-color-accent-emerald-400);
 }
 
 [data-brand=comphealth] {

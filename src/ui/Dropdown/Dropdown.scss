@@ -1,17 +1,18 @@
 @use "../../styles/typography" as *;
 
-.uds-dropdown-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--uds-gap-8);
-  width: 100%;
-}
-
 .uds-dropdown {
-  position: relative;
-  display: inline-block;
+  // ActionMenu default is inline-block; we override to full width
   width: 100%;
 
+  // ── Outer wrapper (label + dropdown) ────────────────
+  &-outer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--uds-gap-8);
+    width: 100%;
+  }
+
+  // ── Element: label ──────────────────────────────────
   &__label {
     @include uds-body-14-medium;
     color: var(--uds-text-primary);
@@ -19,6 +20,7 @@
     margin-bottom: var(--uds-gap-8);
   }
 
+  // ── Element: trigger button (default = 44px) ────────
   &__trigger {
     @include uds-body-16;
     all: unset;
@@ -26,8 +28,9 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    height: 44px;
     padding: var(--uds-spacing-10) var(--uds-spacing-12);
-    background-color: var(--uds-surface-primary);
+    background-color: var(--uds-input-surface);
     border: var(--uds-border-width-1) solid var(--uds-border-primary);
     border-radius: var(--uds-radius-4);
     color: var(--uds-text-primary);
@@ -42,6 +45,7 @@
     }
   }
 
+  // ── Element: displayed value ────────────────────────
   &__value {
     flex: 1;
     overflow: hidden;
@@ -53,6 +57,7 @@
     }
   }
 
+  // ── Element: caret icon ─────────────────────────────
   &__icon {
     flex-shrink: 0;
     margin-left: var(--uds-gap-8);
@@ -64,28 +69,34 @@
     }
   }
 
-  // State variants
-  &--default {
+  // ── Element: options panel (via ActionMenu menuClassName)
+  &__menu {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  // ── Size: compact ───────────────────────────────────
+  &--compact {
     .uds-dropdown__trigger {
-      background-color: var(--uds-surface-primary);
-      border-color: var(--uds-border-primary);
-      color: var(--uds-text-primary);
+      padding: var(--uds-spacing-8) var(--uds-spacing-10);
+      @include uds-body-14;
+      height: 36px;
     }
   }
 
+  // ── State: focused ──────────────────────────────────
   &--focused {
     .uds-dropdown__trigger {
-      background-color: var(--uds-surface-primary);
       border-color: var(--uds-border-brand-primary);
-      color: var(--uds-text-primary);
     }
   }
 
+  // ── State: error ────────────────────────────────────
   &--error {
     .uds-dropdown__trigger {
+      border-color: var(--uds-text-error, #ef4444);
       background-color: var(--uds-surface-primary);
-      border-color: #ef4444; // Red border
-      color: #ef4444; // Red text
+      color: #ef4444;
     }
 
     .uds-dropdown__value {
@@ -97,6 +108,7 @@
     }
   }
 
+  // ── State: disabled ─────────────────────────────────
   &--disabled {
     .uds-dropdown__trigger {
       background-color: var(--uds-surface-tertiary);
@@ -112,45 +124,6 @@
 
     .uds-dropdown__icon {
       color: var(--uds-text-secondary);
-    }
-  }
-
-  &__list {
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    margin: 0;
-    padding: var(--uds-spacing-4) 0;
-    background-color: var(--uds-surface-primary);
-    border: var(--uds-border-width-1) solid var(--uds-border-primary);
-    border-radius: var(--uds-radius-4);
-    box-shadow: var(--uds-shadow-lg);
-    list-style: none;
-    max-height: 300px;
-    overflow-y: auto;
-    box-sizing: border-box;
-  }
-
-  &__option {
-    @include uds-body-16;
-    padding: var(--uds-spacing-10) var(--uds-spacing-12);
-    color: var(--uds-text-primary);
-    cursor: pointer;
-    transition: background-color var(--uds-animation-duration-200)
-      var(--uds-animation-ease-standard);
-    outline: none;
-
-    &:hover,
-    &:focus {
-      background-color: var(--uds-surface-tertiary);
-    }
-
-    &--selected {
-      background-color: var(--uds-surface-brand-secondary);
-      color: var(--uds-text-brand-primary);
-      font-weight: 600;
     }
   }
 }

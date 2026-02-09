@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Icon from "../Icon/Icon";
 import Divider from "../Divider/Divider";
 import Key from "../Key/Key";
+import Toggle from "../Toggle/Toggle";
 import "./ActionMenu.scss";
 
 const BASE_CLASS = "uds-action-menu";
@@ -138,26 +139,38 @@ function Submenu({ item, onItemClick, parentRef }) {
  * @param {React.ReactNode} trigger - Required trigger element (use Button component)
  * @param {array} items - Array of menu items: { label, icon, onClick, disabled, destructive, divider, items (for submenus) }
  * @param {string} placement - Menu placement: 'bottom-start', 'bottom-end', 'top-start', 'top-end'
+ * @param {boolean} fullWidth - When true, the menu matches the trigger width
  * @param {boolean} disabled - Whether the menu is disabled
+ * @param {function} onOpenChange - Callback when open state changes: (isOpen: boolean) => void
  * @param {string} className - Additional CSS classes
+ * @param {string} menuClassName - Additional CSS classes for the menu panel
  * @param {object} props - Additional props
  */
 export default function ActionMenu({
   trigger,
   items = [],
   placement = "bottom-end",
+  fullWidth = false,
   disabled = false,
+  onOpenChange,
   className = "",
+  menuClassName = "",
   ...props
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const triggerRef = useRef(null);
+
+  // Wrapper that also fires the onOpenChange callback
+  const updateOpen = (nextOpen) => {
+    setIsOpen(nextOpen);
+    if (onOpenChange) onOpenChange(nextOpen);
+  };
   
   // Expose toggle function for external use
   const toggleMenu = () => {
     if (!disabled) {
-      setIsOpen(!isOpen);
+      updateOpen(!isOpen);
     }
   };
 
@@ -170,7 +183,7 @@ export default function ActionMenu({
         !menuRef.current.contains(event.target) &&
         !triggerRef.current.contains(event.target)
       ) {
-        setIsOpen(false);
+        updateOpen(false);
       }
     };
 
@@ -240,14 +253,14 @@ export default function ActionMenu({
 
   const handleEscape = (event) => {
     if (event.key === "Escape") {
-      setIsOpen(false);
+      updateOpen(false);
       triggerRef.current?.focus();
     }
   };
 
   const handleToggle = (e) => {
     if (!disabled) {
-      setIsOpen((prev) => !prev);
+      updateOpen(!isOpen);
     }
   };
 
@@ -259,7 +272,7 @@ export default function ActionMenu({
     if (item.onClick) {
       item.onClick(item, event);
     }
-    setIsOpen(false);
+    updateOpen(false);
   };
 
   const renderTrigger = () => {
@@ -313,8 +326,18 @@ export default function ActionMenu({
   const classNames = [
     BASE_CLASS,
     isOpen && `${BASE_CLASS}--open`,
+    fullWidth && `${BASE_CLASS}--full-width`,
     disabled && `${BASE_CLASS}--disabled`,
     className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const menuClassNames = [
+    `${BASE_CLASS}__menu`,
+    `${BASE_CLASS}__menu--${getPlacementClass()}`,
+    fullWidth && `${BASE_CLASS}__menu--full-width`,
+    menuClassName,
   ]
     .filter(Boolean)
     .join(" ");
@@ -325,7 +348,7 @@ export default function ActionMenu({
       {isOpen && !disabled && (
         <div
           ref={menuRef}
-          className={`${BASE_CLASS}__menu ${BASE_CLASS}__menu--${getPlacementClass()}`}
+          className={menuClassNames}
           role="menu"
           aria-orientation="vertical"
         >
@@ -347,6 +370,40 @@ export default function ActionMenu({
                   onItemClick={handleItemClick}
                   parentRef={menuRef}
                 />
+              );
+            }
+
+            // Toggle item type
+            if (item.type === "toggle") {
+              return (
+                <div
+                  key={item.id || index}
+                  className={`${BASE_CLASS}__item ${BASE_CLASS}__item--toggle ${item.disabled ? `${BASE_CLASS}__item--disabled` : ""}`}
+                  role="menuitemcheckbox"
+                  aria-checked={!!item.checked}
+                  aria-label={item.label}
+                >
+                  {item.icon && (
+                    <Icon
+                      name={item.icon}
+                      size={16}
+                      appearance="regular"
+                      className={`${BASE_CLASS}__item-icon`}
+                    />
+                  )}
+                  <span className={`${BASE_CLASS}__item-label`}>
+                    {item.label}
+                  </span>
+                  <Toggle
+                    checked={!!item.checked}
+                    size="small"
+                    disabled={item.disabled}
+                    onChange={(checked) => {
+                      if (item.onChange) item.onChange(checked);
+                    }}
+                    className={`${BASE_CLASS}__item-toggle`}
+                  />
+                </div>
               );
             }
 

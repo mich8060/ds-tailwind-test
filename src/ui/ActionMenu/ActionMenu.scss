@@ -4,6 +4,10 @@
   position: relative;
   display: inline-block;
 
+  &--full-width {
+    width: 100%;
+  }
+
   &--disabled {
     opacity: 0.5;
     pointer-events: none;
@@ -11,7 +15,7 @@
 
   &__menu {
     position: absolute;
-    z-index: 1000;
+    z-index: 500; /* --uds-elevation-dropdown */
     min-width: 280px;
     background: var(--uds-surface-primary);
     border: var(--uds-border-width-1) solid var(--uds-border-primary);
@@ -48,10 +52,15 @@
       margin-bottom: var(--uds-gap-4);
       margin-top: 0;
     }
+
+    &--full-width {
+      width: 100%;
+      min-width: unset;
+    }
   }
 
   &__item {
-    @include uds-body-14;
+    @include uds-body-14-medium;
     display: flex;
     align-items: center;
     gap: var(--uds-gap-8);
@@ -93,6 +102,10 @@
 
       .uds-action-menu__item-label {
         color: var(--uds-text-inverse);
+      }
+
+      &:hover:not(.uds-action-menu__item--disabled) {
+        background-color: var(--uds-surface-brand-tertiary);
       }
     }
 
@@ -136,6 +149,19 @@
     color: var(--uds-text-primary);
   }
 
+  &__item--toggle {
+    cursor: default;
+
+    &:hover:not(.uds-action-menu__item--disabled) {
+      background-color: var(--uds-surface-tertiary);
+    }
+  }
+
+  &__item-toggle {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
   &__item-shortcut {
     margin-left: auto;
     padding-left: var(--uds-spacing-16);
@@ -173,7 +199,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--uds-gap-0);
-    z-index: 1001;
+    z-index: 500; /* --uds-elevation-dropdown */
     animation: submenu-fade-in 0.15s ease-out;
 
     // If submenu would overflow right edge, position to left instead

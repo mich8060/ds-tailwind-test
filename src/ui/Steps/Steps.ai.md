@@ -1,0 +1,56 @@
+# Steps
+
+Step indicator for multi-step workflows and wizards.
+
+## When to Use
+- Multi-step forms (registration, checkout, onboarding)
+- Wizards and guided processes
+- Progress indicators for sequential tasks
+
+## Props
+
+### Steps (container)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `currentStep` | `number` | `0` | Zero-based index of current step |
+| `children` | `ReactNode` | — | `Step` components |
+| `className` | `string` | `""` | Additional CSS classes |
+
+### Step
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Step label |
+| `description` | `string` | — | Optional sub-description |
+
+## Examples
+
+```jsx
+<Steps currentStep={1}>
+  <Step label="Account" description="Create your account" />
+  <Step label="Profile" description="Set up your profile" />
+  <Step label="Preferences" description="Choose your settings" />
+  <Step label="Review" description="Confirm details" />
+</Steps>
+```
+
+### With form wizard
+```jsx
+const [step, setStep] = useState(0);
+
+<Steps currentStep={step}>
+  <Step label="Info" />
+  <Step label="Address" />
+  <Step label="Payment" />
+</Steps>
+
+{step === 0 && <InfoForm onNext={() => setStep(1)} />}
+{step === 1 && <AddressForm onBack={() => setStep(0)} onNext={() => setStep(2)} />}
+{step === 2 && <PaymentForm onBack={() => setStep(1)} onSubmit={handleSubmit} />}
+```
+
+## Import
+```jsx
+import { Steps, Step } from "@mich8060/chg-design-system";
+```

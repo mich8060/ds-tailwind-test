@@ -76,6 +76,14 @@ export default function Datepicker({
       days.push(date);
     }
 
+    // Add trailing empty cells to complete the last row
+    const remainder = days.length % 7;
+    if (remainder > 0) {
+      for (let i = 0; i < 7 - remainder; i++) {
+        days.push("trailing");
+      }
+    }
+
     return days;
   }, [year, monthIndex, startingDayOfWeek, daysInMonth]);
 
@@ -213,6 +221,17 @@ export default function Datepicker({
       {/* Calendar Grid */}
       <div className={`${BASE_CLASS}__grid`}>
         {calendarDays.map((date, index) => {
+          // Trailing empty cells (pad last row to 7)
+          if (date === "trailing") {
+            return (
+              <div
+                key={`trailing-${index}`}
+                className={`${BASE_CLASS}__day ${BASE_CLASS}__day--trailing-empty`}
+              />
+            );
+          }
+
+          // Leading empty cells (before first day of month)
           if (!date) {
             return (
               <div

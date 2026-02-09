@@ -10,6 +10,8 @@
 
 // Layout & Structure
 export { default as Accordion, AccordionItem } from "./Accordion";
+export { default as Calendar } from "./Calendar";
+export { UDS, UDSProvider, useUDS } from "./UDS";
 export { default as Card } from "./Card";
 export { default as Divider } from "./Divider";
 export { default as Flex } from "./Flex";
@@ -40,6 +42,7 @@ export { default as Textarea } from "./Textarea";
 export { default as Toggle } from "./Toggle";
 
 // Data Display
+export { default as EventCard } from "./EventCard";
 export { default as Avatar } from "./Avatar";
 export { default as Badge } from "./Badge";
 export { default as DotStatus } from "./DotStatus";
@@ -51,6 +54,7 @@ export { default as Status } from "./Status";
 export { default as Tag } from "./Tag";
 
 // Feedback
+export { default as Modal } from "./Modal";
 export { default as Toast } from "./Toast";
 export { default as Tooltip } from "./Tooltip";
 

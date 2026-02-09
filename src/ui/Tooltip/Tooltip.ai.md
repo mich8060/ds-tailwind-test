@@ -1,0 +1,33 @@
+# Tooltip
+
+Hover/focus tooltip for additional context on any element.
+
+## When to Use
+- Providing extra information on icon-only buttons
+- Explaining truncated text or status indicators
+- Adding context without cluttering the UI
+
+## Props
+
+| Prop | Type | Default | Values | Description |
+|------|------|---------|--------|-------------|
+| `content` | `string\|ReactNode` | — | — | Tooltip content |
+| `position` | `string` | `"top"` | `"top"`, `"bottom"`, `"left"`, `"right"` | Tooltip position |
+| `children` | `ReactNode` | — | — | Element to attach tooltip to |
+| `delay` | `number` | `200` | ms | Hover delay before showing |
+| `className` | `string` | `""` | — | Additional CSS classes |
+
+## Examples
+
+```jsx
+<Tooltip content="Delete this item">
+  <Button layout="icon-only" icon="Trash" appearance="ghost" />
+</Tooltip>
+```
+
+### With rich content
+```jsx
+<Tooltip content={<span>Created on <strong>Jan 15, 2024</strong></span>} position="bottom">
+  <span>2 weeks ago</span>
+</Tooltip>
+```

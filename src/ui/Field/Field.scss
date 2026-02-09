@@ -55,49 +55,6 @@
     display: flex;
     align-items: flex-start;
     width: 100%;
-
-    // Style the input element
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: var(--uds-spacing-10) var(--uds-spacing-12);
-      border: var(--uds-border-width-1) solid var(--uds-border-primary);
-      border-radius: var(--uds-radius-4);
-      background-color: var(--uds-surface-primary);
-      color: var(--uds-text-primary);
-      @include uds-body-16;
-      transition: all var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
-      box-sizing: border-box;
-
-      &::placeholder {
-        color: var(--uds-text-secondary);
-      }
-
-      &:focus {
-        outline: none;
-        border-color: var(--uds-border-brand-primary);
-      }
-
-      &:disabled {
-        background-color: var(--uds-surface-tertiary);
-        color: var(--uds-text-secondary);
-        cursor: not-allowed;
-        opacity: 0.6;
-      }
-    }
-
-    input,
-    select {
-      // For single-line inputs, center align vertically
-      align-self: center;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-      align-self: stretch;
-    }
   }
 
   &__character-count {

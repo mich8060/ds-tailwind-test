@@ -1,0 +1,148 @@
+# CHG Design System (UDS) — AI Rules
+
+You are working within the CHG Design System, a React component library published as `@mich8060/chg-design-system`.
+
+## Architecture
+
+- **Component location**: `src/ui/<ComponentName>/`
+- **Each component folder** contains: `ComponentName.jsx`, `ComponentName.scss`, `index.js`, and optionally `ComponentName.ai.md` (AI context)
+- **Design tokens**: CSS custom properties prefixed with `--uds-` (defined in `src/styles/tokens.css`)
+- **Icons**: Use the `Icon` component with Phosphor icon names (e.g., `<Icon name="House" size={20} />`)
+- **Styling**: BEM-like class naming with `uds-` prefix (e.g., `uds-button`, `uds-button__label`, `uds-button--primary`)
+
+## Import Patterns
+
+```jsx
+// Named imports from the library index
+import { Button, Card, Avatar, Tag, UDS } from "@mich8060/chg-design-system";
+
+// Or direct component imports
+import Button from "@mich8060/chg-design-system/Button";
+
+// Styles (required)
+import "@mich8060/chg-design-system/styles.css";
+
+// Design tokens (optional, for custom components)
+import "@mich8060/chg-design-system/tokens.css";
+```
+
+## Component Conventions
+
+1. **All components** accept `className` prop for custom styling and spread `...rest` props onto the root element
+2. **Form components** (Input, Textarea, Dropdown, Checkbox, Radio, Toggle) support `state` prop: `"default"` | `"focused"` | `"error"` | `"disabled"`
+3. **Interactive components** render as `<button>` when `onClick` is provided, otherwise `<span>` or `<div>`
+4. **Size variants** when available: `"xsmall"` | `"small"` | `"default"` | `"large"`
+5. **Icons** are referenced by Phosphor icon name strings (e.g., `icon="ArrowRight"`), not imported icon components
+
+## UDS Application Wrapper
+
+The `UDS` component is a comprehensive application shell. When building full applications, always wrap with `<UDS>`:
+
+```jsx
+<UDS>
+  <UDS.Sidebar brand={<Logo />} brandTitle="App Name" navItems={navItems} />
+  <UDS.ContentArea>
+    <UDS.PageHeader title="Page Title" breadcrumbs={["Home", "Page"]} />
+    <UDS.Main>{/* Page content */}</UDS.Main>
+  </UDS.ContentArea>
+  <UDS.ListView>{/* Optional left list */}</UDS.ListView>
+  <UDS.SidePanel>{/* Optional right panel */}</UDS.SidePanel>
+  <UDS.Modal>{/* Optional modal */}</UDS.Modal>
+</UDS>
+```
+
+Use the `useUDS()` hook to programmatically control panels: `openSidePanel()`, `closeModal()`, `toggleListView()`, etc.
+
+## Design Token Usage
+
+When writing custom CSS that should match the design system:
+- **Colors**: `var(--uds-color-*)` (e.g., `--uds-color-blue-500`, `--uds-color-neutral-100`)
+- **Typography**: `var(--uds-font-size-*)`, `var(--uds-font-weight-*)`, `var(--uds-line-*)`
+- **Spacing**: `var(--uds-space-*)` (e.g., `--uds-space-8`, `--uds-space-16`)
+- **Radius**: `var(--uds-radius-*)` (e.g., `--uds-radius-4`, `--uds-radius-8`)
+- **Shadows**: `var(--uds-shadow-*)`
+
+## Component Composition Patterns
+
+### Form fields
+Always wrap form inputs with `<Field>` for labels, validation, and helper text:
+```jsx
+<Field label="Email" required helperMessage="Enter your work email">
+  <Input type="email" placeholder="you@company.com" />
+</Field>
+```
+
+### Data display
+Combine `Avatar`, `Tag`, `Badge`, `Status`, `DotStatus` inside `Table` cells, `Card` components, or list items.
+
+### Layout
+Use `Flex` for quick layouts. Use `Divider` to separate content sections. Use `Card` for contained content blocks.
+
+## AI Context Files
+
+Each component folder may contain a `ComponentName.ai.md` file with:
+- Purpose and when to use the component
+- Complete props reference with types, defaults, and valid values
+- Code examples from basic to advanced
+- Composition patterns with other components
+- Do's and Don'ts
+- Accessibility notes
+
+**Always check the `.ai.md` file** for a component before generating code that uses it.
+
+## Available Components
+
+### Layout & Structure
+- `Accordion` / `AccordionItem` — Expandable content sections
+- `UDS` — Full application wrapper with sidebar, panels, modals
+- `Card` — Contained content block with optional header/footer
+- `Divider` — Visual separator line
+- `Flex` — Flexbox layout utility
+- `ImageAspect` — Image with aspect ratio constraint
+- `Steps` — Step indicator / wizard progress
+- `Table` — Data table with sortable/filterable columns
+- `Tabs` / `TabItem` — Tabbed navigation
+
+### Navigation
+- `ActionMenu` — Contextual action dropdown menu
+- `Breadcrumb` — Page hierarchy breadcrumb trail
+- `Dropdown` — Select-style dropdown input
+- `Menu` — Full sidebar navigation with brand, search, sections
+- `Pagination` — Page navigation controls
+
+### Form Controls
+- `Button` — Primary action trigger (multiple appearances, sizes, layouts)
+- `Checkbox` — Binary toggle with label
+- `Chip` — Filter/selection chip with optional icon and badge
+- `Datepicker` — Date selection input
+- `Field` — Form field wrapper (label, validation, helper text)
+- `FileUpload` — File upload with drag-and-drop
+- `Input` — Single-line text input
+- `PillToggle` — Segmented control / pill toggle
+- `Radio` — Radio button selection
+- `Slider` — Range slider input
+- `Textarea` — Multi-line text input
+- `Toggle` — On/off switch
+
+### Data Display
+- `Avatar` — User photo or initials circle
+- `Badge` — Numeric badge indicator
+- `DotStatus` — Colored status dot
+- `Icon` — Phosphor icon wrapper (1000+ icons available)
+- `Key` — Keyboard shortcut indicator
+- `ProgressCircle` — Circular progress indicator
+- `ProgressIndicator` — Linear progress bar
+- `Status` — Status label with colored dot
+- `Tag` — Colored label tag
+
+### Feedback
+- `Toast` — Notification message (success, error, warning, info)
+- `Tooltip` — Hover tooltip
+
+### Branding
+- `Branding` — Brand logo and identity display
+
+### Utilities
+- `CopyButton` — Copy-to-clipboard button
+- `MicroCalendar` — Compact calendar widget
+- `Playground` — Interactive component playground

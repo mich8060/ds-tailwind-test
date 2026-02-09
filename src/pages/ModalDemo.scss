@@ -1,0 +1,30 @@
+@use "../styles/typography" as *;
+
+.modal-demo {
+  &__code-block-wrapper {
+    position: relative;
+    margin: var(--uds-spacing-16) 0;
+
+    &:hover .copy-button {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &__code-block {
+    @include uds-body-14;
+    background: var(--uds-surface-secondary);
+    border: var(--uds-border-width-1) solid var(--uds-border-primary);
+    border-radius: var(--uds-radius-8);
+    padding: var(--uds-spacing-16) var(--uds-spacing-20);
+    overflow-x: auto;
+    margin: 0;
+
+    code {
+      font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+      font-size: var(--uds-font-size-13, 13px);
+      line-height: 1.6;
+      color: var(--uds-text-primary);
+    }
+  }
+}

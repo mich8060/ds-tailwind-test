@@ -30,6 +30,7 @@
     display: flex;
     flex-direction: row;
     padding: var(--uds-spacing-8) 0;
+    border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
   }
 
   &__weekday {
@@ -45,7 +46,7 @@
   &__grid-wrapper {
     overflow: hidden;
     position: relative;
-    height: 64px; // Default collapsed height (one row)
+    height: 63px; // Default collapsed height (one row)
     transition: height 0.3s ease;
   }
 
@@ -54,7 +55,7 @@
   }
 
   &__grid-wrapper--collapsed {
-    height: 64px; // One row height
+    height: 63px; // One row height
   }
 
   &__grid {
@@ -76,8 +77,8 @@
     flex: 1 1 calc(100% / 7);
     aspect-ratio: 1;
     min-width: 0;
-    border-top: var(--uds-border-width-1) solid var(--uds-border-primary);
-    border-left: var(--uds-border-width-1) solid var(--uds-border-primary);
+    border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
+    border-right: var(--uds-border-width-1) solid var(--uds-border-primary);
     background: var(--uds-surface-primary);
     color: var(--uds-text-primary);
     cursor: pointer;
@@ -86,9 +87,14 @@
     max-width: calc(100% / 7);
     gap: var(--uds-gap-8);
     
-    &:nth-child(7n + 1) {
-      border-left: none;
-    }
+    &:nth-child(7n) {
+        border-right: none;
+      }
+  
+      // Remove border-bottom from the last row (grid is always padded to full rows of 7)
+      &:nth-last-child(-n+7) {
+        border-bottom: none;
+      }
 
     &:hover:not(:disabled):not(&--selected):not(&--on-assignment) {
       background: var(--uds-surface-secondary);
@@ -103,8 +109,8 @@
       cursor: default;
       pointer-events: none;
       background: transparent;
-      border-top: var(--uds-border-width-1) solid var(--uds-border-primary);
-      border-left: var(--uds-border-width-1) solid var(--uds-border-primary);
+      border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
+      border-right: var(--uds-border-width-1) solid var(--uds-border-primary);
     }
 
     &--selected {
@@ -115,6 +121,12 @@
 
     &--today {
         background: var(--uds-system-action-quaternary);
+
+
+      &.uds-micro-calendar__day--selected {
+        background: var(--uds-system-action-primary);
+        color: var(--uds-text-inverse);
+      }
     }
 
     &--unavailable {

@@ -6,14 +6,13 @@
   border-right: solid var(--uds-border-width-1) var(--uds-border-secondary);
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  left: 0;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
+  height: 100%;
+  overflow: visible;
   transition: width var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
   width: 300px;
-  z-index: 10;
+  position: relative;
+  z-index: 1000; /* --uds-elevation-menu */
+  flex-shrink: 0;
 
   /* Ensure footer stays at bottom */
   & > *:last-child {
@@ -64,6 +63,11 @@
 
     &-menu {
       flex-shrink: 0;
+    }
+
+    /* Push the ActionMenu dropdown to the right of the sidebar */
+    .uds-action-menu__menu {
+      right: -232px;
     }
   }
 
@@ -184,7 +188,7 @@
 
   &__brand-switcher {
     border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
-    padding: var(--uds-spacing-12);
+    padding: var(--uds-spacing-8);
 
     &-dropdown {
       width: 100%;
@@ -302,7 +306,6 @@
 
   &__search {
     border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
-    padding: var(--uds-spacing-10);
 
     &-field {
       @include uds-body-14;
@@ -330,13 +333,10 @@
 
     &-input {
       align-items: center;
-      background: var(--uds-input-surface, #f9fafc);
-      border: var(--uds-border-width-1) solid var(--uds-input-border, #d2d5dc);
       border-radius: var(--uds-radius-6);
       display: flex;
       gap: var(--uds-gap-4);
-      padding: var(--uds-spacing-8) var(--uds-spacing-10) var(--uds-spacing-8)
-        var(--uds-spacing-8);
+      padding: var(--uds-spacing-8);
       transition: border-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
 
       &:focus-within {

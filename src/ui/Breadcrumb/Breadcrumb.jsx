@@ -4,14 +4,17 @@ import "./Breadcrumb.scss";
 
 // Foundations items
 const FOUNDATIONS_ITEMS = [
+  { path: "/app-shell", label: "Application" },
   { path: "/border-radius", label: "Border Radius" },
   { path: "/colors", label: "Colors" },
   { path: "/flex", label: "Flex Layout" },
   { path: "/icons", label: "Icons" },
   { path: "/shadows", label: "Shadows" },
   { path: "/spacing", label: "Spacing" },
-  { path: "/tokens", label: "Tokens" },
+  { path: "/figma-variables", label: "Design Tokens" },
   { path: "/typography", label: "Typography" },
+  { path: "/utilities", label: "Utility Classes" },
+  { path: "/vertical-rhythm", label: "Vertical Rhythm" },
 ];
 
 // Components items
@@ -23,12 +26,14 @@ const COMPONENTS_ITEMS = [
   { path: "/branding", label: "Branding" },
   { path: "/breadcrumb", label: "Breadcrumb" },
   { path: "/buttons", label: "Buttons" },
-  { path: "/calendar", label: "Datepicker" },
+  { path: "/calendar", label: "Calendar" },
+  { path: "/datepicker", label: "Datepicker" },
   { path: "/checkbox", label: "Checkbox" },
   { path: "/chip", label: "Chip" },
   { path: "/divider", label: "Divider" },
   { path: "/dot-status", label: "Dot Status" },
   { path: "/dropdown", label: "Dropdown" },
+  { path: "/event-card", label: "Event Card" },
   { path: "/field", label: "Field" },
   { path: "/file-upload", label: "File Upload" },
   { path: "/image-aspect", label: "Image Aspect" },

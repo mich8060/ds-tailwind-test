@@ -47,10 +47,3 @@
     pointer-events: auto;
   }
 }
-
-// Show copy button on hover of code block container
-.button-demo__code-block-wrapper:hover .copy-button,
-.action-menu-demo__code-block-wrapper:hover .copy-button {
-  opacity: 1;
-  pointer-events: auto;
-}

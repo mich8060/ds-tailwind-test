@@ -1,0 +1,38 @@
+# FileUpload
+
+Drag-and-drop file upload component with preview and validation.
+
+## When to Use
+- File attachment fields in forms
+- Document/image upload interfaces
+- Any file input that needs drag-and-drop support
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `onUpload` | `function` | — | Callback `(files: File[]) => void` |
+| `accept` | `string` | — | Accepted file types (e.g., `.jpg,.png,.pdf`) |
+| `multiple` | `boolean` | `false` | Allow multiple files |
+| `maxSize` | `number` | — | Max file size in bytes |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `label` | `string` | `"Drop files here or click to upload"` | Upload area text |
+| `className` | `string` | `""` | Additional CSS classes |
+
+## Examples
+
+```jsx
+<FileUpload onUpload={handleFiles} accept=".jpg,.png,.gif" multiple />
+```
+
+### Single document upload
+```jsx
+<Field label="Resume">
+  <FileUpload
+    onUpload={([file]) => setResume(file)}
+    accept=".pdf,.doc,.docx"
+    maxSize={5 * 1024 * 1024}
+    label="Drop your resume here"
+  />
+</Field>
+```

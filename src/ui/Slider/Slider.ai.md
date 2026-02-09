@@ -1,0 +1,33 @@
+# Slider
+
+Range slider input for numeric value selection within a min/max range.
+
+## When to Use
+- Volume, brightness, or zoom controls
+- Price range filters
+- Any numeric value selection within a bounded range
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `min` | `number` | `0` | Minimum value |
+| `max` | `number` | `100` | Maximum value |
+| `value` | `number` | `0` | Current value (controlled) |
+| `step` | `number` | `1` | Step increment |
+| `onChange` | `function` | — | Callback `(value: number) => void` |
+| `label` | `string` | — | Label text |
+| `showValue` | `boolean` | `false` | Display current value |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `className` | `string` | `""` | Additional CSS classes |
+
+## Examples
+
+```jsx
+<Slider min={0} max={100} value={volume} onChange={setVolume} label="Volume" showValue />
+```
+
+### Price filter
+```jsx
+<Slider min={0} max={1000} step={50} value={maxPrice} onChange={setMaxPrice} label="Max Price" showValue />
+```
