@@ -1,6 +1,6 @@
 {
   "name": "@mich8060/chg-design-system",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "license": "UNLICENSED",
   "main": "./dist/uds-components.umd.js",
   "module": "./dist/uds-components.es.js",
