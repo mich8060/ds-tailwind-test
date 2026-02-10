@@ -53,6 +53,34 @@
       margin-top: 0;
     }
 
+    &--right-start {
+      left: 100%;
+      top: 0;
+      margin-left: var(--uds-gap-4);
+      margin-top: 0;
+    }
+
+    &--right-end {
+      left: 100%;
+      bottom: 0;
+      margin-left: var(--uds-gap-4);
+      margin-top: 0;
+    }
+
+    &--left-start {
+      right: 100%;
+      top: 0;
+      margin-right: var(--uds-gap-4);
+      margin-top: 0;
+    }
+
+    &--left-end {
+      right: 100%;
+      bottom: 0;
+      margin-right: var(--uds-gap-4);
+      margin-top: 0;
+    }
+
     &--full-width {
       width: 100%;
       min-width: unset;

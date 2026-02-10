@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Installation from "./pages/Installation";
 import FontInstallation from "./pages/FontInstallation";
@@ -50,6 +50,7 @@ import TabsDemo from "./pages/TabsDemo";
 import FigmaVariablesDemo from "./pages/FigmaVariablesDemo";
 import PaginationDemo from "./pages/PaginationDemo";
 import UtilitiesDemo from "./pages/UtilitiesDemo";
+import TagDemo from "./pages/TagDemo";
 import TextareaDemo from "./pages/TextareaDemo";
 import UDSDemo from "./pages/UDSDemo";
 import Menu from "./ui/Menu/Menu";
@@ -142,6 +143,14 @@ const NAVIGATION = [
   },
 ];
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   const [activeBrand, setActiveBrand] = useState(() => {
     const savedBrand = localStorage.getItem("activeBrand");
@@ -157,12 +166,24 @@ function App() {
 
   useEffect(() => {
     const root = document.documentElement;
+
+    // Disable transitions during theme/brand swap to prevent color flickering
+    root.classList.add("no-transitions");
     root.setAttribute("data-brand", activeBrand);
     root.setAttribute("data-mode", activeMode);
     localStorage.setItem("activeBrand", activeBrand);
     localStorage.setItem("activeMode", activeMode);
 
+    // Re-enable transitions on the next frame once new values have painted
+    const raf = requestAnimationFrame(() => {
+      // Double-rAF ensures the browser has fully applied the new styles
+      requestAnimationFrame(() => {
+        root.classList.remove("no-transitions");
+      });
+    });
+
     return () => {
+      cancelAnimationFrame(raf);
       root.setAttribute("data-brand", "design-system");
       root.setAttribute("data-mode", "light");
     };
@@ -170,6 +191,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="app">
         <Menu
             navigation={NAVIGATION}
@@ -190,7 +212,6 @@ function App() {
             <Route path="/getting-started" element={<Installation />} />
             <Route path="/getting-started/installation" element={<Installation />} />
             <Route path="/getting-started/font" element={<FontInstallation />} />
-
             <Route path="/getting-started/components" element={<ComponentsUsage />} />
             <Route path="/buttons" element={<ButtonDemo />} />
             <Route path="/icons" element={<IconDemo />} />
@@ -221,16 +242,14 @@ function App() {
             <Route path="/image-aspect" element={<ImageAspectDemo />} />
             <Route path="/key" element={<KeyDemo />} />
             <Route path="/pill-toggle" element={<PillToggleDemo />} />
-            <Route
-              path="/progress-indicator"
-              element={<ProgressIndicatorDemo />}
-            />
+            <Route path="/progress-indicator" element={<ProgressIndicatorDemo />} />
             <Route path="/progress-circle" element={<ProgressCircleDemo />} />
             <Route path="/radio" element={<RadioDemo />} />
             <Route path="/slider" element={<SliderDemo />} />
             <Route path="/status" element={<StatusDemo />} />
             <Route path="/steps" element={<StepsDemo />} />
             <Route path="/table" element={<TableDemo />} />
+            <Route path="/tag" element={<TagDemo />} />
             <Route path="/textarea" element={<TextareaDemo />} />
             <Route path="/toast" element={<ToastDemo />} />
             <Route path="/toggle" element={<ToggleDemo />} />

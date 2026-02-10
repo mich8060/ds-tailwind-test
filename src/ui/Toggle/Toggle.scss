@@ -42,14 +42,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--uds-surface-tertiary, #f3f4f6);
+    background-color: var(--uds-color-neutrals-400);
     border-radius: 14px;
     transition: background-color var(--uds-animation-duration-200)
       var(--uds-animation-ease-standard);
     border: none;
 
     &:hover:not(.uds-toggle--disabled) {
-      background-color: var(--uds-surface-quaternary, #e5e7eb);
+      background-color:  var(--uds-color-neutrals-400);
     }
   }
 
@@ -112,7 +112,7 @@
 
   // Off state (default)
   &__input:not(:checked) + &__slider {
-    background-color: var(--uds-surface-tertiary, #f3f4f6);
+    background-color:  var(--uds-color-neutrals-400);
   }
 
   &--bordered &__input:not(:checked) + &__slider {
@@ -121,7 +121,7 @@
 
   // On state
   &__input:checked + &__slider {
-    background-color: var(--uds-surface-brand-primary, #3b82f6);
+    background-color: var(--uds-surface-brand-tertiary);
 
     .uds-toggle__thumb {
       transform: translateY(-50%) translateX(20px);

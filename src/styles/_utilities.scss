@@ -31,8 +31,106 @@
   display: none;
 }
 
+/* ── Container classes ──────────────────────────────────────────────
+   Centered, max-width constrained wrappers.
+   Usage: <div class="container container-lg px-16">…</div>
+   ------------------------------------------------------------------ */
+
 .container {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
+}
+
+// ── Fixed max-width sizes ──────────────────────────────────────
+.container-xs {
+  max-width: 480px;
+}
+
+.container-sm {
+  max-width: 640px;
+}
+
+.container-md {
+  max-width: 768px;
+}
+
+.container-lg {
+  max-width: 1024px;
+}
+
+.container-xl {
+  max-width: 1280px;
+}
+
+.container-2xl {
+  max-width: 1536px;
+}
+
+// ── Semantic sizes ─────────────────────────────────────────────
+.container-narrow {
+  max-width: 640px;   // Good for forms, settings panels
+}
+
+.container-prose {
+  max-width: 65ch;    // Optimal reading width for body text
+}
+
+.container-wide {
+  max-width: 1440px;  // Full-width dashboard / data-heavy layouts
+}
+
+.container-full {
+  max-width: 100%;    // No constraint, still centered
+}
+
+// ── Responsive container ───────────────────────────────────────
+// Automatically scales max-width at each breakpoint (like Tailwind)
+.container-responsive {
+  max-width: 100%;
+
+  @media (min-width: 640px) {
+    max-width: 640px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 1024px;
+  }
+
+  @media (min-width: 1280px) {
+    max-width: 1280px;
+  }
+
+  @media (min-width: 1536px) {
+    max-width: 1536px;
+  }
+}
+
+// ── Container with built-in padding ────────────────────────────
+// Shorthand that adds horizontal padding so content never touches edges
+.container-padded {
+  padding-left: var(--uds-spacing-16);
+  padding-right: var(--uds-spacing-16);
+
+  @media (min-width: 768px) {
+    padding-left: var(--uds-spacing-24);
+    padding-right: var(--uds-spacing-24);
+  }
+
+  @media (min-width: 1024px) {
+    padding-left: var(--uds-spacing-32);
+    padding-right: var(--uds-spacing-32);
+  }
+
+  @media (min-width: 1280px) {
+    padding-left: var(--uds-spacing-48);
+    padding-right: var(--uds-spacing-48);
+  }
 }
 
 .box-border {

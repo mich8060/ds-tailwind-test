@@ -18,6 +18,85 @@ export default function Home() {
       </header>
 
       <main className="page__content">
+        {/* ── Principles ──────────────────────────────────────── */}
+        <div className="page__principles-section">
+          <h2 className="page__section-title">Principles</h2>
+          <div className="page__principles">
+            <div className="page__principle">
+              <div className="page__principle-icon">
+                <Icon name="Columns" size={24} />
+              </div>
+              <div className="page__principle-content">
+                <h4>Composable Layout</h4>
+                <p>
+                  Build application layouts by composing discrete panels — Menu, Listview, Main, Panel — rather than
+                  configuring a monolithic shell. Show only the panels you need; hide the rest.
+                </p>
+              </div>
+            </div>
+            <div className="page__principle">
+              <div className="page__principle-icon">
+                <Icon name="Palette" size={24} />
+              </div>
+              <div className="page__principle-content">
+                <h4>Brand Aware</h4>
+                <p>
+                  Every element inherits brand tokens automatically. Switch brands via a single attribute
+                  and the entire UI adapts — colors, logos, and accents.
+                </p>
+              </div>
+            </div>
+            <div className="page__principle">
+              <div className="page__principle-icon">
+                <Icon name="ArrowsOutSimple" size={24} />
+              </div>
+              <div className="page__principle-content">
+                <h4>Progressive Disclosure</h4>
+                <p>
+                  Start with a simple menu and content area. Layer in a Listview for master-detail flows, a
+                  Panel for contextual info, or a Modal for focused tasks — as the experience demands.
+                </p>
+              </div>
+            </div>
+            <div className="page__principle">
+              <div className="page__principle-icon">
+                <Icon name="NavigationArrow" size={24} />
+              </div>
+              <div className="page__principle-content">
+                <h4>Navigation First</h4>
+                <p>
+                  The collapsible sidebar is the primary wayfinding mechanism. It supports accordion groups,
+                  active-state tracking, tooltips in collapsed mode, and keyboard navigation out of the box.
+                </p>
+              </div>
+            </div>
+            <div className="page__principle">
+              <div className="page__principle-icon">
+                <Icon name="Stack" size={24} />
+              </div>
+              <div className="page__principle-content">
+                <h4>Layered Interactions</h4>
+                <p>
+                  Modals and fullscreen dialogs render above the shell via portals, with proper focus trapping and
+                  backdrop management. They work independently of the layout beneath them.
+                </p>
+              </div>
+            </div>
+            <div className="page__principle">
+              <div className="page__principle-icon">
+                <Icon name="GitBranch" size={24} />
+              </div>
+              <div className="page__principle-content">
+                <h4>Consistent Structure</h4>
+                <p>
+                  Every CHG application — CompHealth, Weatherby, LocumSmart, Modio — uses the same shell
+                  structure. Users build muscle memory once and carry it across products.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="page__examples-section">
           <Flex direction="row" gap="24" wrap={true} className="page__grid">
           <Card

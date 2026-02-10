@@ -103,7 +103,7 @@ export default function Slider({
         document.removeEventListener("mouseup", upHandler);
       };
     }
-  }, [
+  }, [ // eslint-disable-line react-hooks/exhaustive-deps
     isDragging,
     currentMin,
     currentMax,

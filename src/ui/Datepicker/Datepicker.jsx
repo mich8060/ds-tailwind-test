@@ -146,20 +146,6 @@ export default function Datepicker({
     return dateData[dateKey] || null;
   };
 
-  // Check if a date is the first day of a string of on-assignment days
-  const isFirstOnAssignmentDay = (date, dateIndex) => {
-    if (!date || !getDateData(date)?.onAssignment) return false;
-    
-    // Check previous day in calendar
-    if (dateIndex > 0) {
-      const prevDate = calendarDays[dateIndex - 1];
-      if (prevDate && getDateData(prevDate)?.onAssignment) {
-        return false; // Previous day also has onAssignment
-      }
-    }
-    return true; // This is the first day
-  };
-
   // Check if a date is the last day of a string of on-assignment days
   const isLastOnAssignmentDay = (date, dateIndex) => {
     if (!date || !getDateData(date)?.onAssignment) return false;
@@ -252,7 +238,6 @@ export default function Datepicker({
           const rangeEnd = isRangeEnd(date);
 
           // Determine if this is first or last day of on-assignment string
-          const firstOnAssignment = isFirstOnAssignmentDay(date, index);
           const lastOnAssignment = isLastOnAssignmentDay(date, index);
 
           // Determine icon order based on rules:

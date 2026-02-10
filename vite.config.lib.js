@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import svgr from "vite-plugin-svgr";
 import { resolve } from "path";
 
 /**
@@ -13,7 +14,13 @@ import { resolve } from "path";
  *   - dist/style.css (all component styles bundled)
  */
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    svgr({
+      svgrOptions: { exportType: "named", ref: true },
+      include: "**/*.svg",
+    }),
+  ],
   build: {
     outDir: "dist",
     lib: {

@@ -64,8 +64,6 @@ export default function Chip({
 
   const hasLeftIcon = iconPlacement === "both" || iconPlacement === "left";
   const hasRightIcon = iconPlacement === "both" || iconPlacement === "right";
-  const hasAnyIcon = iconPlacement !== "none";
-
   const Element = onClick ? "button" : "span";
 
   return (

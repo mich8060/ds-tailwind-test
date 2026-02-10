@@ -1,11 +1,12 @@
 # Flex
 
-Flexbox layout utility component for quick row/column layouts.
+Flexbox layout utility component for quick row/column layouts with optional container constraints.
 
 ## When to Use
 - Any layout that needs flexbox (row/column, alignment, spacing)
 - Button groups, form rows, card layouts, toolbar arrangements
 - Quick spacing between child elements
+- Centered, max-width constrained page sections (via `container` prop)
 
 ## Props
 
@@ -16,7 +17,49 @@ Flexbox layout utility component for quick row/column layouts.
 | `alignItems` | `string` | — | `"flex-start"`, `"flex-end"`, `"center"`, `"stretch"`, `"baseline"` | Cross-axis alignment |
 | `justifyContent` | `string` | — | `"flex-start"`, `"flex-end"`, `"center"`, `"space-between"`, `"space-around"`, `"space-evenly"` | Main-axis alignment |
 | `wrap` | `boolean` | `false` | — | Allow items to wrap |
+| `container` | `string\|boolean` | — | `true`, `"responsive"`, `"xs"`, `"sm"`, `"md"`, `"lg"`, `"xl"`, `"2xl"`, `"narrow"`, `"prose"`, `"wide"`, `"full"` | Applies container max-width and centering |
+| `padded` | `boolean` | `false` | — | Adds responsive horizontal padding (use with `container`) |
 | `className` | `string` | `""` | — | Additional CSS classes |
+
+## Container Sizes
+
+| Value | Max Width | Best For |
+|-------|-----------|----------|
+| `"xs"` | 480px | Modals, narrow dialogs |
+| `"sm"` / `"narrow"` | 640px | Forms, settings panels |
+| `"md"` | 768px | Content pages |
+| `"lg"` | 1024px | Standard page layouts |
+| `"xl"` | 1280px | Wide layouts |
+| `"2xl"` | 1536px | Extra-wide layouts |
+| `"prose"` | 65ch | Readable body text |
+| `"wide"` | 1440px | Dashboards, data-heavy pages |
+| `"full"` | 100% | No max-width, still centered |
+| `true` / `"responsive"` | Auto | Scales max-width at each breakpoint |
+
+## Container CSS Classes (Standalone)
+
+These classes can be used independently without the `Flex` component:
+
+```html
+<div class="container container-lg">Centered, max 1024px</div>
+<div class="container container-responsive container-padded">Responsive with padding</div>
+```
+
+| Class | Description |
+|-------|-------------|
+| `.container` | Base: `width: 100%; margin: 0 auto` |
+| `.container-xs` | `max-width: 480px` |
+| `.container-sm` | `max-width: 640px` |
+| `.container-md` | `max-width: 768px` |
+| `.container-lg` | `max-width: 1024px` |
+| `.container-xl` | `max-width: 1280px` |
+| `.container-2xl` | `max-width: 1536px` |
+| `.container-narrow` | `max-width: 640px` |
+| `.container-prose` | `max-width: 65ch` |
+| `.container-wide` | `max-width: 1440px` |
+| `.container-full` | `max-width: 100%` |
+| `.container-responsive` | Scales max-width at sm/md/lg/xl/2xl breakpoints |
+| `.container-padded` | Responsive horizontal padding (16→24→32→48px) |
 
 ## Examples
 
@@ -50,5 +93,38 @@ Flexbox layout utility component for quick row/column layouts.
 ```jsx
 <Flex gap="16" wrap>
   {items.map(item => <Card key={item.id} {...item} />)}
+</Flex>
+```
+
+### Centered page content with container
+```jsx
+<Flex direction="column" gap="24" container="lg" padded>
+  <h1>Page Title</h1>
+  <p>Content centered and constrained to 1024px max width.</p>
+</Flex>
+```
+
+### Responsive container
+```jsx
+<Flex direction="column" gap="16" container padded>
+  {/* max-width scales with viewport: 640→768→1024→1280→1536 */}
+  <Card>Auto-scaling container</Card>
+</Flex>
+```
+
+### Narrow form container
+```jsx
+<Flex direction="column" gap="16" container="narrow" padded>
+  <Field label="Email"><Input type="email" /></Field>
+  <Field label="Password"><Input type="password" /></Field>
+  <Button label="Sign In" />
+</Flex>
+```
+
+### Prose container for readable text
+```jsx
+<Flex direction="column" gap="12" container="prose">
+  <h2>Article Title</h2>
+  <p>Body text constrained to 65 characters wide for optimal readability.</p>
 </Flex>
 ```

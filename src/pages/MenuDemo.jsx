@@ -15,10 +15,15 @@ import "./MenuDemo.scss";
 // Sample navigation for the live preview
 const DEMO_NAVIGATION = [
   {
+    label: "Dashboard",
+    icon: "House",
+    path: "/",
+    exact: true,
+  },
+  {
     label: "Getting Started",
     icon: "Layout",
     items: [
-      { path: "/", label: "Overview", exact: true },
       { path: "/getting-started/installation", label: "Installation" },
       { path: "/getting-started/font", label: "Font Installation" },
       { path: "/getting-started/components", label: "Using Components" },
@@ -42,11 +47,6 @@ const DEMO_NAVIGATION = [
       { path: "/input", label: "Text Input" },
       { path: "/menu", label: "Menu" },
     ],
-  },
-  {
-    label: "Patterns",
-    icon: "CirclesThree",
-    items: [{ path: "/menu", label: "Menu" }],
   },
 ];
 
@@ -91,14 +91,14 @@ import '@mich8060/chg-design-system/styles.css';`;
 const BASIC_CODE = `import Menu from '../ui/Menu/Menu';
 
 const navigation = [
+  // Flat item — renders as a direct link, no caret
   {
     label: "Dashboard",
     icon: "House",
-    items: [
-      { path: "/", label: "Overview", exact: true },
-      { path: "/analytics", label: "Analytics" },
-    ],
+    path: "/",
+    exact: true,
   },
+  // Section with sub-items — renders as an accordion with caret
   {
     label: "Settings",
     icon: "Gear",
@@ -129,26 +129,30 @@ function App() {
   );
 }`;
 
-const NAV_STRUCTURE_CODE = `// The navigation prop is an array of section objects.
-// Each section has a label, icon, and items array.
+const NAV_STRUCTURE_CODE = `// The navigation prop accepts two types of entries:
+//
+// 1. FLAT ITEM — Direct link, no caret, no sub-items
+//    { label, icon, path, exact? }
+//
+// 2. SECTION — Accordion with sub-items and caret
+//    { label, icon, items: [{ path, label, exact? }] }
+
 const navigation = [
+  // ── Flat item (direct link, no caret) ──
+  {
+    label: "Dashboard",        // Link text
+    icon: "House",             // Phosphor icon name
+    path: "/",                 // Route path
+    exact: true,               // Exact match only
+  },
+
+  // ── Section with sub-items (accordion with caret) ──
   {
     label: "Getting Started",  // Accordion header text
     icon: "Layout",            // Phosphor icon name
     items: [
-      { path: "/", label: "Overview", exact: true },
       { path: "/getting-started/installation", label: "Installation" },
       { path: "/getting-started/font", label: "Font Installation" },
-    ],
-  },
-  {
-    label: "Foundations",
-    icon: "SquaresFour",
-    items: [
-      { path: "/colors", label: "Colors" },
-      { path: "/typography", label: "Typography" },
-      { path: "/spacing", label: "Spacing" },
-      { path: "/icons", label: "Icons" },
     ],
   },
   {
@@ -163,19 +167,31 @@ const navigation = [
   },
 ];
 
-// Each item in the items array:
+// Flat item shape:
 // {
-//   path: string    — Route path (used for NavLink "to" and active detection)
 //   label: string   — Display text in the sidebar
+//   icon: string    — Phosphor icon name
+//   path: string    — Route path (renders as a direct NavLink)
 //   exact?: boolean — When true, only matches the exact path (use for "/")
+// }
+//
+// Section item shape:
+// {
+//   label: string   — Accordion header text
+//   icon: string    — Phosphor icon name
+//   items: Array    — Sub-items (each: { path, label, exact? })
 // }`;
 
 const AUTO_EXPAND_CODE = `// The Menu automatically expands accordion sections
-// when a child route is active. This is handled internally:
+// when a child route is active. Flat items (no sub-items)
+// are skipped since they have nothing to expand.
 
 useEffect(() => {
   const updates = {};
   navigation.forEach((section, index) => {
+    // Skip flat items (no items array or empty)
+    if (!section.items || section.items.length === 0) return;
+
     const hasActiveChild = section.items.some((item) =>
       item.exact || item.path === "/"
         ? location.pathname === item.path
@@ -202,12 +218,20 @@ const BRANDS = [
 ];
 
 const NAVIGATION = [
+  // Flat item — direct link, no sub-items, no caret
+  {
+    label: "Dashboard",
+    icon: "House",
+    path: "/",
+    exact: true,
+  },
+  // Section — accordion with sub-items and caret
   {
     label: "Getting Started",
     icon: "Layout",
     items: [
-      { path: "/", label: "Overview", exact: true },
       { path: "/docs/install", label: "Installation" },
+      { path: "/docs/usage", label: "Usage" },
     ],
   },
   {
@@ -287,6 +311,7 @@ const BRANDS = [
 ];
 
 export default function MenuDemo() {
+  // eslint-disable-next-line no-unused-vars
   const [demoBrand, setDemoBrand] = useState("design-system");
   const [demoMode, setDemoMode] = useState("light");
 
@@ -391,8 +416,9 @@ export default function MenuDemo() {
             <h2 className="demo-group__heading">Basic Usage</h2>
             <p className="demo-group__description">
               Pass a <code>navigation</code> array to define the sidebar
-              sections and items. Each section becomes a collapsible accordion
-              group.
+              structure. Items with a <code>path</code> render as direct links
+              (no caret). Items with an <code>items</code> array render as
+              collapsible accordion groups with a caret.
             </p>
             <div className="menu-demo__code-block-wrapper">
               <CopyButton codeString={BASIC_CODE} />
@@ -430,11 +456,12 @@ export default function MenuDemo() {
               </div>
 
               <div className="menu-demo__feature-card">
-                <h3 className="menu-demo__feature-title">Accordion Sections</h3>
+                <h3 className="menu-demo__feature-title">Flat Items &amp; Accordion Sections</h3>
                 <p className="menu-demo__feature-description">
-                  Navigation items are organized into collapsible accordion
-                  groups defined by the <code>navigation</code> prop. Sections
-                  auto-expand when their child routes are active.
+                  Navigation entries with a <code>path</code> render as direct
+                  links (no caret, no sub-items). Entries with an{" "}
+                  <code>items</code> array render as collapsible accordion groups
+                  with a caret that auto-expand when child routes are active.
                 </p>
               </div>
 
@@ -473,11 +500,13 @@ export default function MenuDemo() {
           <div className="demo-group">
             <h2 className="demo-group__heading">Navigation Structure</h2>
             <p className="demo-group__description">
-              The <code>navigation</code> prop accepts an array of section
-              objects. Each section has a <code>label</code>, <code>icon</code>{" "}
-              (Phosphor icon name), and <code>items</code> array. Each item has a{" "}
-              <code>path</code>, <code>label</code>, and an optional{" "}
-              <code>exact</code> flag for exact route matching.
+              The <code>navigation</code> prop accepts an array of two entry
+              types: <strong>flat items</strong> and{" "}
+              <strong>sections</strong>. A flat item has a <code>path</code>{" "}
+              and renders as a direct link with no caret. A section has an{" "}
+              <code>items</code> array and renders as a collapsible accordion
+              with a caret. Both types require a <code>label</code> and{" "}
+              <code>icon</code> (Phosphor icon name).
             </p>
             <div className="menu-demo__code-block-wrapper">
               <CopyButton codeString={NAV_STRUCTURE_CODE} />
@@ -576,8 +605,10 @@ export default function MenuDemo() {
                     <td><code>Array</code></td>
                     <td><code>[]</code></td>
                     <td>
-                      Array of section objects defining the sidebar navigation.
-                      Each section: <code>{"{ label, icon, items: [{ path, label, exact? }] }"}</code>
+                      Array of navigation entries. Each entry is either a <strong>flat item</strong>{" "}
+                      <code>{"{ label, icon, path, exact? }"}</code> (direct link, no caret) or a{" "}
+                      <strong>section</strong> <code>{"{ label, icon, items: [{ path, label, exact? }] }"}</code>{" "}
+                      (accordion with caret).
                     </td>
                   </tr>
                   <tr>
@@ -735,17 +766,25 @@ export default function MenuDemo() {
 .menu__search-icon { }       /* Collapsed search icon */
 .menu__brand-switcher { }    /* Brand dropdown section */
 .menu__nav { }               /* Navigation container */
+
+/* Flat items (direct links, no caret) */
+.menu__item--top { }         /* Top-level flat nav item */
+.menu__item--top--active { } /* Active flat nav item */
+.menu__item-icon { }         /* Flat item icon */
+.menu__item-label { }        /* Nav item text */
+
+/* Accordion sections (with caret) */
 .menu__accordion { }         /* Accordion section wrapper */
 .menu__accordion-header { }  /* Accordion toggle button */
 .menu__accordion-header--active { } /* Active section */
-.menu__accordion-icon { }    /* Caret icon */
-.menu__accordion-icon--expanded { } /* Rotated caret */
+.menu__accordion-caret { }   /* Caret icon */
+.menu__accordion-caret--expanded { } /* Rotated caret */
 .menu__accordion-body { }    /* Accordion content */
 .menu__accordion-body--expanded { } /* Visible content */
-.menu__item { }              /* Navigation item */
 .menu__item--sub { }         /* Nested nav item */
 .menu__item--sub--active { } /* Active nested nav item */
-.menu__item-label { }        /* Nav item text */
+
+/* Other */
 .menu__account { }           /* Account section (bottom) */
 .menu__account-name { }      /* User display name */
 .menu__account-menu { }      /* ActionMenu wrapper */`}
@@ -768,17 +807,25 @@ export default function MenuDemo() {
 .menu__search-icon { }       /* Collapsed search icon */
 .menu__brand-switcher { }    /* Brand dropdown section */
 .menu__nav { }               /* Navigation container */
+
+/* Flat items (direct links, no caret) */
+.menu__item--top { }         /* Top-level flat nav item */
+.menu__item--top--active { } /* Active flat nav item */
+.menu__item-icon { }         /* Flat item icon */
+.menu__item-label { }        /* Nav item text */
+
+/* Accordion sections (with caret) */
 .menu__accordion { }         /* Accordion section wrapper */
 .menu__accordion-header { }  /* Accordion toggle button */
 .menu__accordion-header--active { } /* Active section */
-.menu__accordion-icon { }    /* Caret icon */
-.menu__accordion-icon--expanded { } /* Rotated caret */
+.menu__accordion-caret { }   /* Caret icon */
+.menu__accordion-caret--expanded { } /* Rotated caret */
 .menu__accordion-body { }    /* Accordion content */
 .menu__accordion-body--expanded { } /* Visible content */
-.menu__item { }              /* Navigation item */
 .menu__item--sub { }         /* Nested nav item */
 .menu__item--sub--active { } /* Active nested nav item */
-.menu__item-label { }        /* Nav item text */
+
+/* Other */
 .menu__account { }           /* Account section (bottom) */
 .menu__account-name { }      /* User display name */
 .menu__account-menu { }      /* ActionMenu wrapper */`}</code>
@@ -809,6 +856,8 @@ export default function MenuDemo() {
                 <h3 className="menu-demo__practice-title">✓ Do</h3>
                 <ul className="menu-demo__practice-list">
                   <li>Define your navigation structure as a JSON array and pass it via the <code>navigation</code> prop</li>
+                  <li>Use flat items (<code>path</code>) for standalone links like Dashboard or Home</li>
+                  <li>Use sections (<code>items</code>) for groups of related pages</li>
                   <li>Place the Menu in a fixed sidebar alongside your main content area</li>
                   <li>Persist brand and mode selections in <code>localStorage</code></li>
                   <li>Set <code>data-brand</code> and <code>data-mode</code> attributes on the root element for theming</li>

@@ -365,80 +365,83 @@ export default function Calendar({
             })}
           </div>
 
-          {/* Event lanes (spanning / all-day events) */}
-          {Array.from({ length: Math.min(maxLane, maxRows) }, (_, laneIdx) => (
-            <div key={`lane-${laneIdx}`} className={`${BASE_CLASS}__event-lane`}>
-              {(() => {
-                const rendered = [];
-                let col = 0;
-                while (col < 7) {
-                  const seg = laneGrid[laneIdx][col];
-                  if (seg && col === seg.startCol) {
-                    rendered.push(
-                      <div
-                        key={seg.event.id || `seg-${col}`}
-                        className={`${BASE_CLASS}__event-slot`}
-                        style={{ gridColumn: `${col + 1} / ${col + seg.span + 1}` }}
-                      >
-                        <EventBar
-                          title={seg.event.title}
-                          type={seg.event.type || "travel"}
-                          status={seg.event.status || "active"}
-                          startCap={seg.isStart}
-                          endCap={seg.isEnd}
-                          onClick={onEventClick ? (e) => handleEventClick(seg.event, e) : undefined}
+          {/* Events overlay — absolutely positioned over day cells */}
+          <div className={`${BASE_CLASS}__events-overlay`}>
+            {/* Event lanes (spanning / all-day events) */}
+            {Array.from({ length: Math.min(maxLane, maxRows) }, (_, laneIdx) => (
+              <div key={`lane-${laneIdx}`} className={`${BASE_CLASS}__event-lane`}>
+                {(() => {
+                  const rendered = [];
+                  let col = 0;
+                  while (col < 7) {
+                    const seg = laneGrid[laneIdx][col];
+                    if (seg && col === seg.startCol) {
+                      rendered.push(
+                        <div
+                          key={seg.event.id || `seg-${col}`}
+                          className={`${BASE_CLASS}__event-slot`}
+                          style={{ gridColumn: `${col + 1} / ${col + seg.span + 1}` }}
+                        >
+                          <EventBar
+                            title={seg.event.title}
+                            type={seg.event.type || "travel"}
+                            status={seg.event.status || "active"}
+                            startCap={seg.isStart}
+                            endCap={seg.isEnd}
+                            onClick={onEventClick ? (e) => handleEventClick(seg.event, e) : undefined}
+                          />
+                        </div>
+                      );
+                      col += seg.span;
+                    } else if (seg && col !== seg.startCol) {
+                      col++;
+                    } else {
+                      rendered.push(
+                        <div
+                          key={`empty-${col}`}
+                          className={`${BASE_CLASS}__event-slot ${BASE_CLASS}__event-slot--empty`}
+                          style={{ gridColumn: `${col + 1}` }}
                         />
-                      </div>
-                    );
-                    col += seg.span;
-                  } else if (seg && col !== seg.startCol) {
-                    col++;
-                  } else {
-                    rendered.push(
-                      <div
-                        key={`empty-${col}`}
-                        className={`${BASE_CLASS}__event-slot ${BASE_CLASS}__event-slot--empty`}
-                        style={{ gridColumn: `${col + 1}` }}
-                      />
-                    );
-                    col++;
+                      );
+                      col++;
+                    }
                   }
-                }
-                return rendered;
-              })()}
+                  return rendered;
+                })()}
+              </div>
+            ))}
+
+            {/* Timed events row */}
+            <div className={`${BASE_CLASS}__timed-row`}>
+              {dates.map((date, col) => {
+                const usedLanes = Math.min(maxLane, maxRows);
+                const remainingSlots = Math.max(0, maxRows - usedLanes);
+                const visibleTimed = timedByDay[col].slice(0, remainingSlots);
+                const totalEvents = cellEventCounts[col];
+                const overflowCount = totalEvents - maxRows;
+
+                return (
+                  <div key={toDateKey(date)} className={`${BASE_CLASS}__timed-col`}>
+                    {visibleTimed.map((evt) => (
+                      <EventBar
+                        key={evt.id || evt.title}
+                        title={evt.startTime ? `${evt.startTime} ${evt.title}` : evt.title}
+                        type={evt.type || "travel"}
+                        status={evt.status || "active"}
+                        startCap
+                        endCap
+                        onClick={onEventClick ? (e) => handleEventClick(evt, e) : undefined}
+                      />
+                    ))}
+                    {overflowCount > 0 && (
+                      <span className={`${BASE_CLASS}__more`}>
+                        +{overflowCount} more
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-          ))}
-
-          {/* Timed events row */}
-          <div className={`${BASE_CLASS}__timed-row`}>
-            {dates.map((date, col) => {
-              const usedLanes = Math.min(maxLane, maxRows);
-              const remainingSlots = Math.max(0, maxRows - usedLanes);
-              const visibleTimed = timedByDay[col].slice(0, remainingSlots);
-              const totalEvents = cellEventCounts[col];
-              const overflowCount = totalEvents - maxRows;
-
-              return (
-                <div key={toDateKey(date)} className={`${BASE_CLASS}__timed-col`}>
-                  {visibleTimed.map((evt) => (
-                    <EventBar
-                      key={evt.id || evt.title}
-                      title={evt.startTime ? `${evt.startTime} ${evt.title}` : evt.title}
-                      type={evt.type || "travel"}
-                      status={evt.status || "active"}
-                      startCap
-                      endCap
-                      onClick={onEventClick ? (e) => handleEventClick(evt, e) : undefined}
-                    />
-                  ))}
-                  {overflowCount > 0 && (
-                    <span className={`${BASE_CLASS}__more`}>
-                      +{overflowCount} more
-                    </span>
-                  )}
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>

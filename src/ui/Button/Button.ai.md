@@ -18,6 +18,7 @@ Primary action trigger component supporting multiple visual styles, sizes, and i
 | `icon` | `string` or `ReactNode` | — | Phosphor icon name (e.g., `"ArrowRight"`, `"Plus"`, `"Trash"`) or JSX | Icon to display |
 | `iconSize` | `number` | — | Any number | Override icon size in px |
 | `className` | `string` | `""` | Any CSS class | Additional CSS classes |
+| `tracking` | `string` or `object` | — | `"event-name"` or `{ event, category, ... }` | Fires a `uds:track` CustomEvent on click with a structured payload |
 | `onClick` | `function` | — | — | Click handler |
 | `disabled` | `boolean` | `false` | — | Disables the button |
 | `aria-label` | `string` | — | — | Accessible label (auto-generated for icon-only) |
@@ -72,6 +73,28 @@ Primary action trigger component supporting multiple visual styles, sizes, and i
   <Button icon="TextItalic" layout="icon-only" appearance="ghost" aria-label="Italic" />
   <Button icon="TextUnderline" layout="icon-only" appearance="ghost" aria-label="Underline" />
 </Flex>
+```
+
+### Data tracking
+```jsx
+// Simple string event name
+<Button label="Sign Up" tracking="signup-cta" onClick={handleSignUp} />
+
+// Rich payload — all fields are merged into the CustomEvent detail
+<Button
+  label="Add to Cart"
+  icon="ShoppingCart"
+  layout="icon-left"
+  tracking={{ event: "add_to_cart", category: "ecommerce", productId: "widget-123" }}
+  onClick={handleAddToCart}
+/>
+
+// Subscribe in your app root
+useEffect(() => {
+  const handler = (e) => analytics.track(e.detail.event ?? e.detail.action, e.detail);
+  window.addEventListener("uds:track", handler);
+  return () => window.removeEventListener("uds:track", handler);
+}, []);
 ```
 
 ## Composition

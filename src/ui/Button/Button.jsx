@@ -37,8 +37,10 @@ export default function Button({
   iconSize,
   icons,
   children,
+  tracking,
   "aria-label": ariaLabel,
   className,
+  onClick,
   ...rest
 }) {
   const classNames = [
@@ -114,6 +116,22 @@ export default function Button({
 
   const isDisabled = appearance === "disabled" || rest.disabled;
 
+  // ── Tracking handler ──
+  const handleClick = (e) => {
+    if (tracking) {
+      const payload = {
+        component: "Button",
+        action: "click",
+        label,
+        ...(typeof tracking === "object" ? tracking : { event: tracking }),
+      };
+      window.dispatchEvent(
+        new CustomEvent("uds:track", { detail: payload }),
+      );
+    }
+    onClick?.(e);
+  };
+
   // Accessibility: For icon-only buttons, ensure there's an accessible label
   // Priority: explicit aria-label prop > label prop > fallback based on icon name
   const buttonAriaLabel =
@@ -127,6 +145,7 @@ export default function Button({
       className={classNames}
       disabled={isDisabled}
       aria-label={buttonAriaLabel || undefined}
+      onClick={handleClick}
       {...rest}
     >
       {renderContent()}

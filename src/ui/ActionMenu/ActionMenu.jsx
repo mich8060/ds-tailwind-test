@@ -167,13 +167,6 @@ export default function ActionMenu({
     if (onOpenChange) onOpenChange(nextOpen);
   };
   
-  // Expose toggle function for external use
-  const toggleMenu = () => {
-    if (!disabled) {
-      updateOpen(!isOpen);
-    }
-  };
-
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -196,7 +189,7 @@ export default function ActionMenu({
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [isOpen]);
+  }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -319,6 +312,10 @@ export default function ActionMenu({
       "bottom-end": "bottom-end",
       "top-start": "top-start",
       "top-end": "top-end",
+      "right-start": "right-start",
+      "right-end": "right-end",
+      "left-start": "left-start",
+      "left-end": "left-end",
     };
     return placementMap[placement] || "bottom-end";
   };

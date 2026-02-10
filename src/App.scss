@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+// Temporarily disable ALL transitions during theme/brand changes
+// Applied via JS: document.documentElement.classList.add('no-transitions')
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+  transition: none !important;
+}
+
 // Global text hyperlink styles
 a {
   color: var(--uds-text-link-primary-default);
@@ -61,7 +70,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding: 0;
+    padding: var(--uds-spacing-48);
     width: 100%;
     margin: 0;
   }
@@ -71,6 +80,63 @@ a {
     padding: var(--uds-spacing-48);
     display: flex;
     flex-direction: column;
+  }
+
+  // ── Principles ─────────────────────────────────────────────
+  &__principles-section {
+    padding: 0 var(--uds-spacing-48);
+    margin-bottom: var(--uds-spacing-32);
+  }
+
+  &__section-title {
+    @include uds-heading-24-semibold;
+    color: var(--uds-text-primary);
+    margin: 0 0 var(--uds-spacing-16);
+  }
+
+  &__principles {
+    display: grid;
+    gap: var(--uds-gap-16);
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__principle {
+    background: var(--uds-surface-secondary);
+    border-radius: var(--uds-radius-12);
+    display: flex;
+    gap: var(--uds-gap-16);
+    padding: var(--uds-spacing-24);
+  }
+
+  &__principle-icon {
+    align-items: center;
+    background: var(--uds-surface-brand-primary);
+    border-radius: var(--uds-radius-8);
+    color: var(--uds-text-brand-primary);
+    display: flex;
+    flex-shrink: 0;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+  }
+
+  &__principle-content {
+    h4 {
+      @include uds-body-16-semibold;
+      color: var(--uds-text-primary);
+      margin: 0 0 var(--uds-spacing-4);
+    }
+
+    p {
+      @include uds-body-14;
+      color: var(--uds-text-secondary);
+      line-height: var(--uds-line-20);
+      margin: 0;
+    }
   }
 }
 

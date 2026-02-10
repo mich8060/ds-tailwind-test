@@ -11,7 +11,7 @@
 // Layout & Structure
 export { default as Accordion, AccordionItem } from "./Accordion";
 export { default as Calendar } from "./Calendar";
-export { UDS, UDSProvider, useUDS } from "./UDS";
+// export { UDS } from "./UDS"; // UDS component removed — placeholder for rebuild
 export { default as Card } from "./Card";
 export { default as Divider } from "./Divider";
 export { default as Flex } from "./Flex";

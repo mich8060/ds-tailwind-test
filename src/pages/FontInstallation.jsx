@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
 import Divider from "../ui/Divider/Divider";
-import Flex from "../ui/Flex/Flex";
 import { formatLastUpdated } from "../utils/formatDate";
 import CopyButton from "../ui/CopyButton/CopyButton";
 import Prism from "prismjs";

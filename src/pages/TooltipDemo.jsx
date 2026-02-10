@@ -206,7 +206,8 @@ export default function TooltipDemo() {
               <p>
                 This is a paragraph with a{" "}
                 <Tooltip content="This is a helpful tooltip" placement="top">
-                  <a href="#" style={{ color: 'var(--uds-text-link-primary-default)', textDecoration: 'underline' }}>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a href="#" style={{ color: 'var(--uds-text-link-primary-default)', textDecoration: 'underline' }}>
                     tooltip on a link
                   </a>
                 </Tooltip>

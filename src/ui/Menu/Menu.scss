@@ -1,5 +1,11 @@
 @use "../../styles/typography" as *;
 
+// ── Animation tokens ──────────────────────────────────────────────
+$menu-duration: var(--uds-animation-duration-200);
+$menu-duration-slow: var(--uds-animation-duration-300, 300ms);
+$menu-ease: var(--uds-animation-ease-standard);
+$menu-ease-out: cubic-bezier(0.22, 1, 0.36, 1); // Smooth decelerate
+
 .menu {
   background: var(--uds-surface-primary);
   box-shadow: 0 1px 3px 0 var(--uds-shadow-8);
@@ -8,7 +14,7 @@
   flex-direction: column;
   height: 100%;
   overflow: visible;
-  transition: width var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+  transition: width $menu-duration-slow $menu-ease-out;
   width: 300px;
   position: relative;
   z-index: 1000; /* --uds-elevation-menu */
@@ -19,12 +25,48 @@
     margin-top: auto;
   }
 
+  // ── Expandable content helper ────────────────────────────────────
+  // Used on content that should fade in/out when toggling the sidebar.
+  &__expandable {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity $menu-duration $menu-ease,
+      visibility $menu-duration $menu-ease;
+    pointer-events: none;
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+
+  // ── Collapsed state ──────────────────────────────────────────────
   &--collapsed {
     width: var(--uds-spacing-64);
 
+    // Clip individual sections so labels/text hide when collapsed,
+    // but leave the menu root overflow:visible so ActionMenu dropdowns
+    // (e.g. brand-switcher) can extend beyond the sidebar bounds.
+    .menu__branding,
+    .menu__search,
+    .menu__nav,
+    .menu__footer,
+    .menu__account {
+      overflow: hidden;
+    }
+
     .menu__account {
       justify-content: center;
-      padding: var(--uds-spacing-8) var(--uds-spacing-10);
+      padding: var(--uds-spacing-8);
+      padding-left: 20px;
+    }
+
+    .menu__account-details {
+      flex: 0;
+      width: 0;
+      overflow: hidden;
     }
 
     .menu__footer {
@@ -37,15 +79,135 @@
       padding: var(--uds-spacing-10);
     }
 
+    // Flat top-level items: hide the label when collapsed
+    .menu__item-label {
+      opacity: 0;
+      flex: 0;
+      width: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transition:
+        opacity 100ms $menu-ease,
+        flex $menu-duration-slow $menu-ease-out 100ms,
+        width $menu-duration-slow $menu-ease-out 100ms;
+    }
+
     .menu__mode-label {
       display: none;
     }
+
+    .menu__brand-switcher {
+      padding: var(--uds-spacing-8);
+      justify-content: center;
+    }
+
+    .menu__brand {
+      transition:
+        opacity 120ms $menu-ease,
+        visibility 120ms $menu-ease;
+    }
+
+    .menu__account-details {
+      transition:
+        opacity 120ms $menu-ease,
+        visibility 120ms $menu-ease;
+    }
+
+    // Nav padding tightens when collapsed
+    .menu__nav {
+      padding: var(--uds-spacing-24) var(--uds-spacing-8);
+    }
+
+    // Accordion header: center the icon, hide label + caret
+    .menu__accordion-header {
+      justify-content: center;
+      padding: var(--uds-spacing-10);
+      gap: 0;
+    }
+
+    .menu__accordion-label {
+      opacity: 0;
+      flex: 0;
+      width: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transition:
+        opacity 100ms $menu-ease,
+        flex $menu-duration-slow $menu-ease-out 100ms,
+        width $menu-duration-slow $menu-ease-out 100ms;
+    }
+
+    .menu__accordion-caret {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transition:
+        opacity 100ms $menu-ease,
+        width $menu-duration-slow $menu-ease-out 100ms;
+    }
+
+    // Sub-nav: collapse immediately
+    .menu__accordion-body {
+      max-height: 0 !important;
+      opacity: 0;
+      padding-left: 0;
+      transition:
+        max-height $menu-duration $menu-ease-out,
+        opacity 100ms $menu-ease,
+        padding-left $menu-duration-slow $menu-ease-out;
+    }
+
+    // Section icon stays visible
+    .menu__accordion-section-icon {
+      flex-shrink: 0;
+    }
   }
 
+  // ── Expanded state ───────────────────────────────────────────────
   &--expanded {
-    width: 300px; // 300px
+    width: 300px;
+
+    .menu__brand {
+      transition:
+        opacity $menu-duration $menu-ease 60ms,
+        visibility $menu-duration $menu-ease 60ms;
+    }
+
+    .menu__account-details {
+      transition:
+        opacity $menu-duration $menu-ease 80ms,
+        visibility $menu-duration $menu-ease 80ms;
+    }
+
+    .menu__brand-switcher {
+      padding: var(--uds-spacing-8);
+    }
+
+    // Flat item labels fade in after sidebar width opens
+    .menu__item-label {
+      transition:
+        opacity $menu-duration $menu-ease 80ms,
+        flex $menu-duration-slow $menu-ease-out,
+        width $menu-duration-slow $menu-ease-out;
+    }
+
+    // Label and caret fade in after sidebar width opens
+    .menu__accordion-label {
+      transition:
+        opacity $menu-duration $menu-ease 80ms,
+        flex $menu-duration-slow $menu-ease-out,
+        width $menu-duration-slow $menu-ease-out;
+    }
+
+    .menu__accordion-caret {
+      transition:
+        opacity $menu-duration $menu-ease 80ms,
+        width $menu-duration-slow $menu-ease-out;
+    }
   }
 
+  // ── Account section ──────────────────────────────────────────────
   &__account {
     align-items: center;
     border-top: var(--uds-border-width-1) solid var(--uds-border-primary);
@@ -54,11 +216,26 @@
     min-height: calc(var(--uds-spacing-64) + var(--uds-spacing-6)); // 70px
     padding: var(--uds-spacing-8) var(--uds-spacing-10);
 
+    .avatar {
+      flex-shrink: 0;
+    }
+
+    &-details {
+      display: flex;
+      align-items: center;
+      gap: var(--uds-gap-12);
+      flex: 1;
+      min-width: 0;
+    }
+
     &-name {
       @include uds-body-16-semibold;
       color: var(--uds-text-primary);
       flex: 1;
       line-height: var(--uds-line-16);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &-menu {
@@ -71,6 +248,7 @@
     }
   }
 
+  // ── Accordion ────────────────────────────────────────────────────
   &__accordion {
     display: flex;
     flex-direction: column;
@@ -81,18 +259,30 @@
       flex-direction: column;
       gap: var(--uds-gap-0);
       max-height: 0;
-      opacity: 0;
       overflow: hidden;
       padding-left: var(--uds-spacing-24);
       transition:
-        max-height var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
-        opacity var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+        max-height $menu-duration-slow $menu-ease-out;
+
+      // Items inside: staggered fade-in
+      .menu__item--sub {
+        opacity: 0;
+        transform: translateY(-4px);
+        transition:
+          opacity $menu-duration $menu-ease,
+          transform $menu-duration $menu-ease,
+          background-color $menu-duration $menu-ease,
+          color $menu-duration $menu-ease;
+      }
 
       &--expanded {
-        max-height: calc(var(--uds-spacing-80) * 6.25); // 500px
-        opacity: 1;
         overflow-x: hidden;
         overflow-y: auto;
+
+        .menu__item--sub {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     }
 
@@ -105,12 +295,14 @@
       color: var(--uds-text-primary);
       cursor: pointer;
       display: flex;
-      gap: var(--uds-gap-4);
+      gap: var(--uds-gap-8);
       padding: var(--uds-spacing-10) var(--uds-spacing-12);
       text-align: left;
       transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
+        background-color $menu-duration $menu-ease,
+        color $menu-duration $menu-ease,
+        padding $menu-duration-slow $menu-ease-out,
+        gap $menu-duration-slow $menu-ease-out;
       width: 100%;
 
       &:focus-visible {
@@ -123,16 +315,43 @@
       }
 
       &--active {
-        background-color: var(--uds-color-white);
-        color: var(--uds-text-primary);
+        background-color: var(--uds-surface-inverse);
+        color: var(--uds-text-inverse);
+
+        &:hover {
+          background-color: var(--uds-surface-inverse);
+        }
       }
     }
 
-    &-icon {
+    // Section icon — always visible, never fades
+    &-section-icon {
+      flex-shrink: 0;
+    }
+
+    // Section label — fades out when collapsed
+    &-label {
+      flex: 1;
+      line-height: var(--uds-line-16);
+      white-space: nowrap;
+      overflow: hidden;
+      opacity: 1;
+      transition:
+        opacity $menu-duration $menu-ease,
+        flex $menu-duration-slow $menu-ease-out,
+        width $menu-duration-slow $menu-ease-out;
+    }
+
+    // Caret — fades out when collapsed
+    &-caret {
       color: var(--uds-text-primary);
       flex-shrink: 0;
       margin-left: auto;
-      transition: transform var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+      opacity: 1;
+      transition:
+        transform $menu-duration-slow $menu-ease-out,
+        opacity $menu-duration $menu-ease,
+        width $menu-duration-slow $menu-ease-out;
 
       &--expanded {
         transform: rotate(180deg);
@@ -140,6 +359,7 @@
     }
   }
 
+  // ── Brand ────────────────────────────────────────────────────────
   &__brand {
     align-items: center;
     display: flex;
@@ -149,7 +369,7 @@
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 120px; // 104px
+    width: 120px;
 
     &-label {
       @include uds-body-16-bold;
@@ -176,6 +396,7 @@
     }
   }
 
+  // ── Branding bar ─────────────────────────────────────────────────
   &__branding {
     align-items: center;
     border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
@@ -186,15 +407,56 @@
     position: relative;
   }
 
+  // ── Brand switcher ───────────────────────────────────────────────
   &__brand-switcher {
     border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
+    display: flex;
     padding: var(--uds-spacing-8);
 
     &-dropdown {
       width: 100%;
     }
+
+    &-btn {
+      align-items: center;
+      background: var(--uds-input-surface, #f9fafc);
+      border: var(--uds-border-width-1) solid var(--uds-input-border, #d2d5dc);
+      border-radius: var(--uds-radius-6);
+      color: var(--uds-text-secondary);
+      cursor: pointer;
+      display: flex;
+      gap: var(--uds-gap-4);
+      justify-content: center;
+      padding: var(--uds-spacing-10);
+      transition:
+        background-color $menu-duration $menu-ease,
+        border-color $menu-duration $menu-ease,
+        color $menu-duration $menu-ease;
+      width: 100%;
+
+      &:hover {
+        background-color: var(--uds-surface-tertiary);
+        border-color: var(--uds-border-brand-primary);
+        color: var(--uds-text-primary);
+      }
+
+      &:focus-visible {
+        outline: solid var(--uds-focus-ring-width) var(--uds-focus-ring-border);
+        outline-offset: var(--uds-focus-ring-offset);
+      }
+    }
+
+    &-caret {
+      flex-shrink: 0;
+    }
+
+    // Ensure the ActionMenu dropdown appears above the content area
+    .uds-action-menu__menu {
+      z-index: 1100;
+    }
   }
 
+  // ── Contact ──────────────────────────────────────────────────────
   &__contact {
     display: flex;
     flex-direction: column;
@@ -202,6 +464,7 @@
     padding: var(--uds-spacing-24) var(--uds-spacing-12);
   }
 
+  // ── Footer ───────────────────────────────────────────────────────
   &__footer {
     align-items: center;
     border-top: var(--uds-border-width-1) solid var(--uds-border-primary);
@@ -210,6 +473,7 @@
     padding: var(--uds-spacing-12) var(--uds-spacing-16);
   }
 
+  // ── Nav items ────────────────────────────────────────────────────
   &__item {
     @include uds-body-16-medium;
     align-items: center;
@@ -217,12 +481,14 @@
     border-radius: var(--uds-radius-4);
     color: var(--uds-text-primary) !important; // Override global link styles
     display: flex;
-    gap: var(--uds-gap-4);
+    gap: var(--uds-gap-8);
     padding: var(--uds-spacing-10) var(--uds-spacing-12);
     text-decoration: none !important; // Override global link styles
     transition:
-      background-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
-      color var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+      background-color $menu-duration $menu-ease,
+      color $menu-duration $menu-ease,
+      opacity $menu-duration $menu-ease,
+      transform $menu-duration $menu-ease;
 
     &:hover {
       background-color: var(--uds-surface-tertiary);
@@ -241,6 +507,20 @@
       margin: 0;
     }
 
+    // Top-level flat item (direct link with icon, no accordion)
+    &--top {
+      padding: var(--uds-spacing-10) var(--uds-spacing-12);
+
+      &--active {
+        background-color: var(--uds-surface-tertiary);
+        font-weight: var(--uds-font-weight-semibold);
+      }
+    }
+
+    &-icon {
+      flex-shrink: 0;
+    }
+
     &--sub {
       @include uds-body-14-medium;
       background: transparent;
@@ -251,7 +531,7 @@
       border-top: none;
       color: var(--uds-text-tertiary) !important; // Override global link styles
       margin-left: 0;
-      padding: var(--uds-spacing-8) var(--uds-spacing-16);
+      padding: var(--uds-spacing-8) var(--uds-spacing-18);
       position: relative;
 
       &:hover {
@@ -269,7 +549,7 @@
 
       &--active {
         background-color: transparent;
-        border-left-color: var(--uds-color-black);
+        border-left-color: var(--uds-color-inverse);
         border-left-width: var(--uds-border-width-2);
         color: var(--uds-text-primary) !important; // Override global link styles
       }
@@ -281,6 +561,7 @@
     }
   }
 
+  // ── Mode label ───────────────────────────────────────────────────
   &__mode-label {
     @include uds-body-14-medium;
     color: var(--uds-text-primary);
@@ -293,6 +574,7 @@
     flex-shrink: 0;
   }
 
+  // ── Nav wrapper ──────────────────────────────────────────────────
   &__nav {
     display: flex;
     flex-direction: column;
@@ -302,8 +584,10 @@
     overflow-y: auto;
     padding: var(--uds-spacing-24) var(--uds-spacing-12);
     padding-bottom: var(--uds-spacing-24);
+    transition: padding $menu-duration-slow $menu-ease-out;
   }
 
+  // ── Search ───────────────────────────────────────────────────────
   &__search {
     border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
 
@@ -337,7 +621,7 @@
       display: flex;
       gap: var(--uds-gap-4);
       padding: var(--uds-spacing-8);
-      transition: border-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+      transition: border-color $menu-duration $menu-ease;
 
       &:focus-within {
         border-color: var(--uds-border-brand-primary);
@@ -345,10 +629,12 @@
     }
   }
 
+  // ── Toggle button ────────────────────────────────────────────────
   &__toggle {
     flex-shrink: 0;
   }
 
+  // ── Responsive ───────────────────────────────────────────────────
   @media (max-width: var(--uds-breakpoint-md)) {
     border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
     border-right: none;

@@ -22,6 +22,7 @@ A standalone, accessible dialog overlay component. Renders via a portal so it al
 | `size` | `string` | `"default"` | `"small"` (480px), `"default"` (640px), `"large"` (800px), `"fullscreen"` | Dialog width |
 | `closeOnBackdrop` | `boolean` | `true` | — | Whether clicking the backdrop calls `onClose` |
 | `closeOnEscape` | `boolean` | `true` | — | Whether pressing Escape calls `onClose` |
+| `container` | `HTMLElement` | `document.body` | — | Portal target element. Pass a ref's `.current` to contain the modal within a specific element. |
 | `className` | `string` | `""` | — | Additional CSS classes on the dialog panel |
 | `children` | `ReactNode` | — | — | Modal body content |
 

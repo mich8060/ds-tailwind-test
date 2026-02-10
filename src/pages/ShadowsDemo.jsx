@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import Divider from "../ui/Divider/Divider";
 import "./ShadowsDemo.scss";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
-import Tabs from "../ui/Tabs/Tabs";
 import { formatLastUpdated } from "../utils/formatDate";
 import Flex from "../ui/Flex/Flex";
 

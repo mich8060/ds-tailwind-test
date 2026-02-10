@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../ui/Button/Button";
 import Icon from "../ui/Icon/Icon";
@@ -24,6 +24,148 @@ const appearances = [
 ];
 const layouts = ["label-only", "icon-left", "icon-right", "icon-only"];
 const sizes = ["large", "default", "small", "xsmall"];
+
+/* ─── Code snippets ─── */
+
+const TRACKING_CODE = `// Simple string — fires { event: "signup-cta", component: "Button", action: "click" }
+<Button
+  label="Sign Up"
+  tracking="signup-cta"
+  onClick={handleSignUp}
+/>
+
+// Object payload — any extra fields are merged into the event detail
+<Button
+  label="Add to Cart"
+  icon="ShoppingCart"
+  layout="icon-left"
+  tracking={{
+    event: "add_to_cart",
+    category: "ecommerce",
+    productId: "widget-123",
+  }}
+  onClick={handleAddToCart}
+/>`;
+
+const TRACKING_LISTENER_CODE = `// app-root.jsx — subscribe once
+import { useEffect } from "react";
+
+function App() {
+  useEffect(() => {
+    const handler = (e) => {
+      const { event, ...rest } = e.detail;
+      // Route to your analytics platform
+      analytics.track(event ?? rest.action, rest);
+    };
+    window.addEventListener("uds:track", handler);
+    return () => window.removeEventListener("uds:track", handler);
+  }, []);
+
+  return <>{/* app content */}</>;
+}`;
+
+const A11Y_ICON_CODE = `// Explicit aria-label (recommended)
+<Button
+  layout="icon-only"
+  icon="Trash"
+  aria-label="Delete item"
+/>
+
+// Auto-generated from label prop
+<Button
+  layout="icon-only"
+  icon="PencilSimple"
+  label="Edit"
+/>
+
+// Fallback: generates "MagnifyingGlass icon" from icon name
+<Button
+  layout="icon-only"
+  icon="MagnifyingGlass"
+/>`;
+
+const A11Y_DISABLED_CODE = `// ✅ Correct — uses native disabled attribute
+<Button label="Submit" disabled />
+
+// ❌ Avoid — appearance-only, button is still interactive
+<Button label="Submit" appearance="disabled" />`;
+
+/* ─── Tracking live-demo component ─── */
+
+function TrackingDemo() {
+  const [log, setLog] = useState([]);
+
+  useEffect(() => {
+    const handler = (e) => {
+      setLog((prev) => [
+        { ts: new Date().toLocaleTimeString(), ...e.detail },
+        ...prev.slice(0, 9), // keep last 10
+      ]);
+    };
+    window.addEventListener("uds:track", handler);
+    return () => window.removeEventListener("uds:track", handler);
+  }, []);
+
+  return (
+    <div className="button-demo__tracking-demo">
+      <Flex direction="row" gap="12" wrap={true} style={{ marginBottom: "var(--uds-spacing-16)" }}>
+        <Button
+          label="Sign Up"
+          appearance="primary"
+          tracking="signup-cta"
+        />
+        <Button
+          label="Add to Cart"
+          appearance="soft"
+          icon="ShoppingCart"
+          layout="icon-left"
+          tracking={{
+            event: "add_to_cart",
+            category: "ecommerce",
+            productId: "widget-123",
+          }}
+        />
+        <Button
+          label="Download"
+          appearance="outline"
+          icon="DownloadSimple"
+          layout="icon-left"
+          tracking={{
+            event: "download",
+            fileType: "pdf",
+          }}
+        />
+      </Flex>
+      <div className="button-demo__tracking-log">
+        <div className="button-demo__tracking-log-header">
+          <span>Event Log</span>
+          {log.length > 0 && (
+            <button
+              className="button-demo__tracking-log-clear"
+              onClick={() => setLog([])}
+            >
+              Clear
+            </button>
+          )}
+        </div>
+        <div className="button-demo__tracking-log-body">
+          {log.length === 0 ? (
+            <p className="button-demo__tracking-log-empty">
+              Click a tracked button to see events here…
+            </p>
+          ) : (
+            log.map((entry, i) => (
+              <pre key={i} className="button-demo__tracking-log-entry">
+                <span className="button-demo__tracking-log-ts">{entry.ts}</span>{" "}
+                {JSON.stringify(entry, null, 2)}
+              </pre>
+            ))
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ButtonDemo() {
   useEffect(() => {
@@ -572,6 +714,154 @@ import Button from '@mich8060/chg-design-system/Button';`}</code>
   icon={<Icon name="Star" size={16} appearance="duotone" />}
 />`}</code>
               </pre>
+            </div>
+          </div>
+
+          <div className="demo-group">
+            <h2 className="demo-group__heading">Data Tracking</h2>
+            <p className="demo-group__description">
+              The <code>tracking</code> prop enables built-in analytics event
+              dispatching. When provided, every click fires a{" "}
+              <code>uds:track</code> CustomEvent on <code>window</code> with a
+              structured payload. Pass a string for a simple event name, or an
+              object for richer metadata. Your analytics layer subscribes once
+              and routes events to any platform (Segment, GA4, Mixpanel, etc.).
+            </p>
+
+            <h3>Live Demo</h3>
+            <p className="demo-group__description" style={{ marginBottom: "var(--uds-spacing-8)" }}>
+              Click the buttons below — tracked events appear in the log.
+            </p>
+            <TrackingDemo />
+
+            <h3>Usage</h3>
+            <div className="button-demo__code-block-wrapper">
+              <CopyButton codeString={TRACKING_CODE} />
+              <pre className="button-demo__code-block">
+                <code className="language-jsx">{TRACKING_CODE}</code>
+              </pre>
+            </div>
+
+            <h3>Subscribing to Events</h3>
+            <p className="demo-group__description">
+              Wire up the listener once at the root of your application. The{" "}
+              <code>detail</code> object always includes <code>component</code>,{" "}
+              <code>action</code>, and <code>label</code>, plus any custom
+              fields you pass.
+            </p>
+            <div className="button-demo__code-block-wrapper">
+              <CopyButton codeString={TRACKING_LISTENER_CODE} />
+              <pre className="button-demo__code-block">
+                <code className="language-jsx">{TRACKING_LISTENER_CODE}</code>
+              </pre>
+            </div>
+          </div>
+
+          <div className="demo-group">
+            <h2 className="demo-group__heading">Accessibility</h2>
+            <p className="demo-group__description">
+              The Button component is built with accessibility in mind.
+              It renders as a native <code>&lt;button type="button"&gt;</code>,
+              supports keyboard interaction out of the box, and handles
+              accessible labeling automatically for icon-only buttons.
+            </p>
+
+            <h3>Icon-Only Buttons</h3>
+            <p className="demo-group__description">
+              When <code>layout</code> is <code>"icon-only"</code>, the
+              component automatically generates an <code>aria-label</code> from
+              the <code>label</code> prop or the icon name. You can always
+              override it with an explicit <code>aria-label</code>.
+            </p>
+            <Flex direction="row" gap="16" wrap={true} className="demo-grid">
+              <Button
+                appearance="outline"
+                layout="icon-only"
+                icon="Trash"
+                aria-label="Delete item"
+              />
+              <Button
+                appearance="outline"
+                layout="icon-only"
+                icon="PencilSimple"
+                label="Edit"
+              />
+              <Button
+                appearance="outline"
+                layout="icon-only"
+                icon="MagnifyingGlass"
+                aria-label="Search"
+              />
+            </Flex>
+            <div className="button-demo__code-block-wrapper">
+              <CopyButton codeString={A11Y_ICON_CODE} />
+              <pre className="button-demo__code-block">
+                <code className="language-jsx">{A11Y_ICON_CODE}</code>
+              </pre>
+            </div>
+
+            <h3>Disabled State</h3>
+            <p className="demo-group__description">
+              Disabled buttons use the native <code>disabled</code> attribute,
+              which removes them from the tab order and announces them as
+              disabled to screen readers. Prefer the <code>disabled</code> prop
+              over <code>appearance="disabled"</code> for conditional
+              disabling.
+            </p>
+            <Flex direction="row" gap="16" wrap={true} className="demo-grid">
+              <Button label="Enabled" appearance="primary" />
+              <Button label="Disabled" appearance="primary" disabled />
+            </Flex>
+            <div className="button-demo__code-block-wrapper">
+              <CopyButton codeString={A11Y_DISABLED_CODE} />
+              <pre className="button-demo__code-block">
+                <code className="language-jsx">{A11Y_DISABLED_CODE}</code>
+              </pre>
+            </div>
+
+            <h3>Keyboard Navigation</h3>
+            <p className="demo-group__description">
+              All buttons are focusable and activated via <strong>Enter</strong>{" "}
+              or <strong>Space</strong>. Tab through the row below to test.
+            </p>
+            <Flex direction="row" gap="16" wrap={true} className="demo-grid">
+              <Button label="First" appearance="primary" onClick={() => alert("First")} />
+              <Button label="Second" appearance="soft" onClick={() => alert("Second")} />
+              <Button label="Third" appearance="outline" onClick={() => alert("Third")} />
+            </Flex>
+
+            <h3>Best Practices</h3>
+            <div className="button-demo__a11y-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Guideline</th>
+                    <th>Implementation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Icon-only labels</td>
+                    <td>Always pass <code>aria-label</code> or <code>label</code> so screen readers can announce the purpose.</td>
+                  </tr>
+                  <tr>
+                    <td>Disabled buttons</td>
+                    <td>Use the <code>disabled</code> prop — it sets <code>disabled</code> on the native element and removes the button from tab order.</td>
+                  </tr>
+                  <tr>
+                    <td>Descriptive labels</td>
+                    <td>Write labels that describe the action: "Save draft" instead of "Click here".</td>
+                  </tr>
+                  <tr>
+                    <td>Icon aria-hidden</td>
+                    <td>When a label is visible, the icon is automatically marked <code>aria-hidden="true"</code> to avoid duplicated announcements.</td>
+                  </tr>
+                  <tr>
+                    <td>Focus visibility</td>
+                    <td>The component inherits the design system's focus ring styles. Do not remove them.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 

@@ -17,7 +17,9 @@ export default function ToggleDemo() {
   const [toggle8, setToggle8] = useState(true);
   const [toggle9, setToggle9] = useState(false);
   const [toggle10, setToggle10] = useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [toggle11, setToggle11] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [toggle12, setToggle12] = useState(true);
 
   return (

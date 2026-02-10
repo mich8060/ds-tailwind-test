@@ -29,6 +29,7 @@ const sizeClassMap = {
  * @param {string}        size             - "small" (480px) | "default" (640px) | "large" (800px) | "fullscreen"
  * @param {boolean}       closeOnBackdrop  - Close when clicking the overlay backdrop (default true)
  * @param {boolean}       closeOnEscape    - Close on Escape key press (default true)
+ * @param {HTMLElement}   container        - Portal target element (default document.body)
  * @param {string}        className        - Additional CSS classes for the dialog panel
  * @param {React.ReactNode} children       - Modal body content
  * @param {object}        props            - Additional props spread onto the dialog element
@@ -44,6 +45,7 @@ export default function Modal({
   size = "default",
   closeOnBackdrop = true,
   closeOnEscape = true,
+  container,
   className = "",
   children,
   ...props
@@ -167,5 +169,5 @@ export default function Modal({
     </div>
   );
 
-  return createPortal(modal, document.body);
+  return createPortal(modal, container || document.body);
 }

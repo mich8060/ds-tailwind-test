@@ -60,6 +60,8 @@ export default function Tooltip({
         top = rect.top + rect.height / 2 - tooltipRect.height / 2;
         left = rect.right + 8;
         break;
+      default:
+        break;
     }
 
     // Keep tooltip within viewport

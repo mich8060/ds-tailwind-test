@@ -4,12 +4,6 @@ import Badge from "../Badge/Badge";
 
 const BASE_CLASS = "uds-tabs-item";
 
-const appearanceClassMap = {
-  underline: "underline",
-  block: "block",
-  "block-inverted": "block-inverted",
-};
-
 /**
  * TabItem component - A single tab item building block
  * Can be used standalone or assembled into a Tabs component

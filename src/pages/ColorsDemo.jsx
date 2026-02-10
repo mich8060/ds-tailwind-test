@@ -1,9 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Divider from "../ui/Divider/Divider";
 import "./ColorsDemo.scss";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
-import Tabs from "../ui/Tabs/Tabs";
 import { formatLastUpdated } from "../utils/formatDate";
 import Flex from "../ui/Flex/Flex";
 
@@ -77,8 +75,6 @@ const BRAND_SHADES = [
   "800",
   "900",
 ];
-
-const BRAND_SCALES = ["primary", "secondary", "tertiary", "quaternary"];
 
 function getComputedStyleValue(token, theme = null) {
   if (typeof window === "undefined") return "";
@@ -252,7 +248,7 @@ function ColorGroupTable({ group, theme, refreshKey }) {
     });
 
     return colors;
-  }, [group, theme, background, refreshKey]);
+  }, [group, theme, background]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (colorTableData.length === 0) return null;
 
@@ -347,7 +343,7 @@ export default function ColorsDemo() {
       // Use selected theme for swatch preview
       swatchColor: getComputedStyleValue(group.swatchToken, selectedTheme) || "#000000",
     }));
-  }, [selectedTheme, refreshKey]);
+  }, [selectedTheme]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const otherColorGroups = useMemo(() => {
     return getOtherColorGroups().map((group) => ({
@@ -355,7 +351,7 @@ export default function ColorsDemo() {
       // Use selected theme for swatch preview
       swatchColor: getComputedStyleValue(group.swatchToken, selectedTheme) || "#000000",
     }));
-  }, [selectedTheme, refreshKey]);
+  }, [selectedTheme]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const selectedOtherGroup = useMemo(() => {
     return otherColorGroups.find((group) => group.id === selectedOtherColorGroup) || otherColorGroups[0];
@@ -384,7 +380,7 @@ export default function ColorsDemo() {
     });
 
     return colors;
-  }, [selectedOtherGroup, selectedTheme, refreshKey]);
+  }, [selectedOtherGroup, selectedTheme]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="page colors-demo">

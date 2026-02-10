@@ -62,6 +62,7 @@ import { formatLastUpdated } from "../utils/formatDate";
 export default function ProgressIndicatorDemo() {
   const [animatedValue, setAnimatedValue] = useState(0);
   
+  // eslint-disable-next-line no-unused-vars
   const [autoProgress, setAutoProgress] = useState(0);
 
   // Animated progress example

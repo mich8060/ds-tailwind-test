@@ -1,10 +1,8 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Icon from "../ui/Icon/Icon";
 import Flex from "../ui/Flex/Flex";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
 import Divider from "../ui/Divider/Divider";
-import Tabs from "../ui/Tabs/Tabs";
 import CopyButton from "../ui/CopyButton/CopyButton";
 import { formatLastUpdated } from "../utils/formatDate";
 import Prism from "prismjs";
@@ -1530,14 +1528,6 @@ const allIconNames = [
 ];
 
 const appearances = ["thin", "light", "regular", "bold", "fill", "duotone"];
-
-// Helper function to convert kebab-case to PascalCase (matching Phosphor icon export names)
-function toPascalCase(str) {
-  return str
-    .split(/(?=[A-Z])|[-_\s]/)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-    .join("");
-}
 
 export default function IconDemo() {
   const [searchTerm, setSearchTerm] = useState("");

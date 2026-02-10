@@ -94,10 +94,10 @@ export default function Installation() {
           </div>
 
           <div className="demo-group">
-            <h2 className="demo-group__heading">Step 2: Import Styles</h2>
+            <h2 className="demo-group__heading">Step 2: Import Tokens</h2>
             <p className="demo-group__description">
-              Import <strong>both</strong> CSS files in your application's entry point (e.g., <code>index.js</code> or <code>App.js</code>).
-              The tokens file must be imported first as it contains CSS variable definitions used by the component styles.
+              Import the tokens CSS file in your application's entry point (e.g., <code>index.js</code> or <code>App.js</code>).
+              This file contains all the CSS variable definitions used by the design system.
             </p>
             <div style={{ 
               marginTop: "16px", 
@@ -110,26 +110,10 @@ export default function Installation() {
                 Import in JavaScript/React (Recommended)
               </h3>
               <div className="installation__code-block-wrapper">
-                <CopyButton codeString={`// ⚠️ Import BOTH files - tokens FIRST, then styles
-import '@mich8060/chg-design-system/tokens.css';   // CSS variable definitions (colors, spacing, etc.)
-import '@mich8060/chg-design-system/styles.css';   // Component styles`} />
+                <CopyButton codeString={`import '@mich8060/chg-design-system/tokens.css';   // CSS variable definitions (colors, spacing, etc.)`} />
                 <pre className="installation__code-block">
-                  <code className="language-javascript">{`// ⚠️ Import BOTH files - tokens FIRST, then styles
-import '@mich8060/chg-design-system/tokens.css';   // CSS variable definitions (colors, spacing, etc.)
-import '@mich8060/chg-design-system/styles.css';   // Component styles`}</code>
+                  <code className="language-javascript">{`import '@mich8060/chg-design-system/tokens.css';   // CSS variable definitions (colors, spacing, etc.)`}</code>
                 </pre>
-              </div>
-              <div style={{ 
-                marginTop: "16px", 
-                padding: "12px 16px", 
-                background: "var(--uds-surface-warning, rgba(245, 158, 11, 0.1))", 
-                borderRadius: "6px",
-                border: "1px solid var(--uds-border-warning, rgba(245, 158, 11, 0.3))"
-              }}>
-                <p className="uds-body-14" style={{ margin: 0 }}>
-                  <strong>Important:</strong> If you only import <code>styles.css</code> without <code>tokens.css</code>, 
-                  components will render but lose all colors, backgrounds, and spacing because the CSS variables won't be defined.
-                </p>
               </div>
             </div>
 
@@ -144,11 +128,9 @@ import '@mich8060/chg-design-system/styles.css';   // Component styles`}</code>
                 Import in CSS/SCSS
               </h3>
               <div className="installation__code-block-wrapper">
-                <CopyButton codeString={`@import '@mich8060/chg-design-system/tokens.css';
-@import '@mich8060/chg-design-system/styles.css';`} />
+                <CopyButton codeString={`@import '@mich8060/chg-design-system/tokens.css';`} />
                 <pre className="installation__code-block">
-                  <code className="language-css">{`@import '@mich8060/chg-design-system/tokens.css';
-@import '@mich8060/chg-design-system/styles.css';`}</code>
+                  <code className="language-css">{`@import '@mich8060/chg-design-system/tokens.css';`}</code>
                 </pre>
               </div>
             </div>

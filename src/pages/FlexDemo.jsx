@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import Flex from "../ui/Flex/Flex";
 import Divider from "../ui/Divider/Divider";
 import "./FlexDemo.scss";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
-import Tabs from "../ui/Tabs/Tabs";
 import { formatLastUpdated } from "../utils/formatDate";
 
 export default function FlexDemo() {

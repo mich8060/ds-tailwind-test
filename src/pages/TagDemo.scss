@@ -1,4 +1,4 @@
-.action-menu-demo {
+.tag-demo {
   &__code-block-wrapper {
     position: relative;
     margin: var(--uds-spacing-16) 0;
@@ -17,14 +17,14 @@
     overflow-x: auto;
     max-width: 100%;
     word-break: break-word;
-    
+
     // Override Prism base styles to use our custom variables
     pre[class*="language-"] {
       background: transparent;
       margin: 0;
       padding: 0;
     }
-    
+
     code[class*="language-"] {
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
       font-size: var(--uds-font-size-14);

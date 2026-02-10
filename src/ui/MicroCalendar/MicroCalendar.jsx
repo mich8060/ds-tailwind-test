@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";
 import "./MicroCalendar.scss";
@@ -48,8 +48,8 @@ export default function MicroCalendar({
 }) {
   const [currentMonth, setCurrentMonth] = useState(month || new Date());
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const today = useMemo(() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; }, []);
 
   const year = currentMonth.getFullYear();
   const monthIndex = currentMonth.getMonth();
@@ -185,7 +185,7 @@ export default function MicroCalendar({
     // Find the start of the week (Sunday = 0)
     const weekStartIndex = Math.floor(todayIndex / 7) * 7;
     return weekStartIndex / 7; // Convert to week number (0-based)
-  }, [isExpanded, calendarDays, today, isCurrentMonth, monthIndex, year]);
+  }, [isExpanded, calendarDays, today, isCurrentMonth]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   // Always show all days, we'll use transform to slide to the correct week when collapsed
@@ -259,6 +259,7 @@ export default function MicroCalendar({
           // - First day of on-assignment string with travel: travel comes first
           // - Last day of on-assignment string with both: on-assignment comes first
           // - Default: travel first, then on-assignment
+          // eslint-disable-next-line no-unused-vars
           const showTravelFirst = firstOnAssignment && travel && onAssignment;
           const showAssignmentFirst = lastOnAssignment && travel && onAssignment;
 

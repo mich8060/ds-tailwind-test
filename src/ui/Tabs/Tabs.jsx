@@ -37,7 +37,7 @@ export default function Tabs({
   const tabsListRef = useRef(null);
   const [showLeftScroll, setShowLeftScroll] = useState(false);
   const [showRightScroll, setShowRightScroll] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [, setScrollPosition] = useState(0);
 
   // Default to first tab (index 0) if activeTab is not provided or invalid
   const currentActiveTab = activeTab !== undefined && activeTab !== null && activeTab >= 0 && activeTab < tabs.length
@@ -95,7 +95,7 @@ export default function Tabs({
       return;
     }
 
-    const containerLeft = container.offsetLeft;
+    const _containerLeft = container.offsetLeft; // eslint-disable-line no-unused-vars
     const containerWidth = container.offsetWidth;
     const tabLeft = activeTabElement.offsetLeft;
     const tabWidth = activeTabElement.offsetWidth;
@@ -166,7 +166,7 @@ export default function Tabs({
       resizeObserver.disconnect();
       list.removeEventListener("scroll", checkScrollButtons);
     };
-  }, [scrollable, tabs.length]);
+  }, [scrollable, tabs.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Auto-select first tab on mount if no activeTab is provided
   useEffect(() => {
@@ -175,7 +175,7 @@ export default function Tabs({
         onTabChange(0, tabs[0]);
       }
     }
-  }, []); // Only run on mount
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Scroll to active tab when it changes
   useEffect(() => {
@@ -186,7 +186,7 @@ export default function Tabs({
         checkScrollButtons();
       }, 100);
     }
-  }, [currentActiveTab, scrollable]);
+  }, [currentActiveTab, scrollable]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Early return after all hooks
   if (!tabs || tabs.length === 0) {

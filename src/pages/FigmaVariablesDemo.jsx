@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
 import Divider from "../ui/Divider/Divider";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
 import { formatLastUpdated } from "../utils/formatDate";
-import Flex from "../ui/Flex/Flex";
 import CopyButton from "../ui/CopyButton/CopyButton";
 import Prism from "prismjs";
 import "../styles/prism-custom.css";

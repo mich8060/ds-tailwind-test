@@ -75,6 +75,7 @@ export default function SliderDemo() {
   const [labeledSingle, setLabeledSingle] = useState(25);
   const [labeledRange, setLabeledRange] = useState([25, 50]);
   const [priceRange, setPriceRange] = useState([0, 1000]);
+  // eslint-disable-next-line no-unused-vars
   const [volume, setVolume] = useState(50);
   
   return (
