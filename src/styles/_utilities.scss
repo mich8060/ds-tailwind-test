@@ -38,47 +38,49 @@
 
 .container {
   box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
 }
 
 // ── Fixed max-width sizes ──────────────────────────────────────
 .container-xs {
-  max-width: 480px;
+  max-width: var(--uds-container-xs);
 }
 
 .container-sm {
-  max-width: 640px;
+  max-width: var(--uds-container-sm);
 }
 
 .container-md {
-  max-width: 768px;
+  max-width: var(--uds-container-md);
 }
 
 .container-lg {
-  max-width: 1024px;
+  max-width: var(--uds-container-lg);
 }
 
 .container-xl {
-  max-width: 1280px;
+  max-width: var(--uds-container-xl);
 }
 
 .container-2xl {
-  max-width: 1536px;
+  max-width: var(--uds-container-2xl);
 }
 
 // ── Semantic sizes ─────────────────────────────────────────────
 .container-narrow {
-  max-width: 640px;   // Good for forms, settings panels
+  max-width: var(--uds-container-narrow);  // Good for forms, settings panels
 }
 
 .container-prose {
-  max-width: 65ch;    // Optimal reading width for body text
+  max-width: var(--uds-container-prose);   // Optimal reading width for body text
+}
+
+.container-content {
+  max-width: var(--uds-container-content); // Standard page content width
 }
 
 .container-wide {
-  max-width: 1440px;  // Full-width dashboard / data-heavy layouts
+  max-width: var(--uds-container-wide);    // Full-width dashboard / data-heavy layouts
 }
 
 .container-full {
@@ -91,23 +93,23 @@
   max-width: 100%;
 
   @media (min-width: 640px) {
-    max-width: 640px;
+    max-width: var(--uds-container-sm);
   }
 
   @media (min-width: 768px) {
-    max-width: 768px;
+    max-width: var(--uds-container-md);
   }
 
   @media (min-width: 1024px) {
-    max-width: 1024px;
+    max-width: var(--uds-container-lg);
   }
 
   @media (min-width: 1280px) {
-    max-width: 1280px;
+    max-width: var(--uds-container-xl);
   }
 
   @media (min-width: 1536px) {
-    max-width: 1536px;
+    max-width: var(--uds-container-2xl);
   }
 }
 

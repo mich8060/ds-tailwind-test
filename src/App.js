@@ -66,87 +66,88 @@ const BRANDS = [
   "weatherby",
 ];
 
-const NAVIGATION = [
+const NAV_ITEMS = [
   {
     label: "Getting Started",
     icon: "Layout",
-    items: [
-      { path: "/", label: "Overview", exact: true },
-      { path: "/getting-started/installation", label: "Installation" },
-      { path: "/getting-started/font", label: "Font Installation" },
-      { path: "/getting-started/components", label: "Using Components" },
+    children: [
+      { label: "Overview", path: "/" },
+      { label: "Installation", path: "/getting-started/installation" },
+      { label: "Font Installation", path: "/getting-started/font" },
+      { label: "Using Components", path: "/getting-started/components" },
     ],
   },
   {
     label: "Foundations",
     icon: "SquaresFour",
-    items: [
-      { path: "/app-shell", label: "Application" },
-      { path: "/border-radius", label: "Border Radius" },
-      { path: "/colors", label: "Colors" },
-      { path: "/figma-variables", label: "Design Tokens" },
-      { path: "/flex", label: "Flex Layout" },
-      { path: "/icons", label: "Icons" },
-      { path: "/shadows", label: "Shadows" },
-      { path: "/spacing", label: "Spacing" },
-      { path: "/typography", label: "Typography" },
-      { path: "/utilities", label: "Utility Classes" },
+    children: [
+      { label: "Application", path: "/app-shell" },
+      { label: "Border Radius", path: "/border-radius" },
+      { label: "Colors", path: "/colors" },
+      { label: "Design Tokens", path: "/figma-variables" },
+      { label: "Flex Layout", path: "/flex" },
+      { label: "Icons", path: "/icons" },
+      { label: "Shadows", path: "/shadows" },
+      { label: "Spacing", path: "/spacing" },
+      { label: "Typography", path: "/typography" },
+      { label: "Utility Classes", path: "/utilities" },
     ],
   },
   {
     label: "Components",
     icon: "DiamondsFour",
-    items: [
-      { path: "/accordion", label: "Accordion" },
-      { path: "/action-menu", label: "Action Menu" },
-      { path: "/avatar", label: "Avatar" },
-      { path: "/badge", label: "Badge" },
-      { path: "/branding", label: "Branding" },
-      { path: "/breadcrumb", label: "Breadcrumb" },
-      { path: "/buttons", label: "Buttons" },
-      { path: "/calendar", label: "Calendar" },
-      { path: "/datepicker", label: "Datepicker" },
-      { path: "/checkbox", label: "Checkbox" },
-      { path: "/chip", label: "Chip" },
-      { path: "/divider", label: "Divider" },
-      { path: "/dot-status", label: "Dot Status" },
-      { path: "/dropdown", label: "Dropdown" },
-      { path: "/event-card", label: "Event Card" },
-      { path: "/field", label: "Field" },
-      { path: "/file-upload", label: "File Upload" },
-      { path: "/image-aspect", label: "Image Aspect" },
-      { path: "/input", label: "Text Input" },
-      { path: "/key", label: "Key" },
-      { path: "/micro-calendar", label: "Micro Calendar" },
-      { path: "/modal", label: "Modal" },
-      { path: "/pagination", label: "Pagination" },
-      { path: "/pill-toggle", label: "Pill Toggle" },
-      { path: "/progress-indicator", label: "Progress Indicator" },
-      { path: "/progress-circle", label: "Progress Circle" },
-      { path: "/radio", label: "Radio" },
-      { path: "/slider", label: "Slider" },
-      { path: "/status", label: "Status" },
-      { path: "/steps", label: "Steps" },
-      { path: "/table", label: "Table" },
-      { path: "/tabs", label: "Tabs" },
-      { path: "/tag", label: "Tag" },
-      { path: "/textarea", label: "Textarea" },
-      { path: "/toast", label: "Toast" },
-      { path: "/toggle", label: "Toggle" },
-      { path: "/tooltip", label: "Tooltip" },
+    children: [
+      { label: "Accordion", path: "/accordion" },
+      { label: "Action Menu", path: "/action-menu" },
+      { label: "Avatar", path: "/avatar" },
+      { label: "Badge", path: "/badge" },
+      { label: "Branding", path: "/branding" },
+      { label: "Breadcrumb", path: "/breadcrumb" },
+      { label: "Buttons", path: "/buttons" },
+      { label: "Calendar", path: "/calendar" },
+      { label: "Datepicker", path: "/datepicker" },
+      { label: "Checkbox", path: "/checkbox" },
+      { label: "Chip", path: "/chip" },
+      { label: "Divider", path: "/divider" },
+      { label: "Dot Status", path: "/dot-status" },
+      { label: "Dropdown", path: "/dropdown" },
+      { label: "Event Card", path: "/event-card" },
+      { label: "Field", path: "/field" },
+      { label: "File Upload", path: "/file-upload" },
+      { label: "Image Aspect", path: "/image-aspect" },
+      { label: "Text Input", path: "/input" },
+      { label: "Key", path: "/key" },
+      { label: "Micro Calendar", path: "/micro-calendar" },
+      { label: "Modal", path: "/modal" },
+      { label: "Pagination", path: "/pagination" },
+      { label: "Pill Toggle", path: "/pill-toggle" },
+      { label: "Progress Indicator", path: "/progress-indicator" },
+      { label: "Progress Circle", path: "/progress-circle" },
+      { label: "Radio", path: "/radio" },
+      { label: "Slider", path: "/slider" },
+      { label: "Status", path: "/status" },
+      { label: "Steps", path: "/steps" },
+      { label: "Table", path: "/table" },
+      { label: "Tabs", path: "/tabs" },
+      { label: "Tag", path: "/tag" },
+      { label: "Textarea", path: "/textarea" },
+      { label: "Toast", path: "/toast" },
+      { label: "Toggle", path: "/toggle" },
+      { label: "Tooltip", path: "/tooltip" },
     ].sort((a, b) => a.label.localeCompare(b.label)),
   },
   {
     label: "Patterns",
     icon: "CirclesThree",
-    items: [{ path: "/menu", label: "Menu" }],
+    children: [{ label: "Menu", path: "/menu" }],
   },
 ];
 
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const el = document.querySelector(".app__content");
+    if (el) el.scrollTo(0, 0);
   }, [pathname]);
   return null;
 }
@@ -194,17 +195,12 @@ function App() {
       <ScrollToTop />
       <div className="app">
         <Menu
-            navigation={NAVIGATION}
-            activeBrand={activeBrand}
-            activeMode={activeMode}
-            onBrandChange={setActiveBrand}
-            onModeChange={setActiveMode}
-            showBrandSwitcher={true}
-            showSearch={false}
-            showModeToggle={true}
-            user={{ name: "Jane Doe", initials: "JD" }}
-            showAccount={false}
-            showModeSwitch={true}
+          navItems={NAV_ITEMS}
+          brands={BRANDS}
+          activeBrand={activeBrand}
+          onBrandChange={setActiveBrand}
+          activeMode={activeMode}
+          onModeChange={setActiveMode}
         />
         <div className="app__content">
           <Routes>

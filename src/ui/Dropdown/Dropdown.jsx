@@ -42,6 +42,7 @@ export default function Dropdown({
   placeholder = "Select an option",
   size = "default",
   state = "default",
+  placement = "bottom-start",
   id,
   label,
   className = "",
@@ -135,7 +136,7 @@ export default function Dropdown({
       <ActionMenu
         trigger={triggerButton}
         items={menuItems}
-        placement="bottom-start"
+        placement={placement}
         fullWidth
         disabled={disabled}
         onOpenChange={setIsOpen}

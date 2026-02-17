@@ -80,7 +80,7 @@ Use `Flex` for quick layouts. Use `Divider` to separate content sections. Use `C
 
 ## AI Context Files
 
-Each component folder may contain a `ComponentName.ai.md` file with:
+Each component folder contains a `ComponentName.ai.md` file with detailed AI-friendly documentation including:
 - Purpose and when to use the component
 - Complete props reference with types, defaults, and valid values
 - Code examples from basic to advanced
@@ -88,7 +88,72 @@ Each component folder may contain a `ComponentName.ai.md` file with:
 - Do's and Don'ts
 - Accessibility notes
 
-**Always check the `.ai.md` file** for a component before generating code that uses it.
+### How to Find and Read AI Context Files
+
+**Before generating code that uses any component, always read its `.ai.md` file first.**
+
+All AI context files follow the pattern:
+
+```
+src/ui/<ComponentName>/<ComponentName>.ai.md
+```
+
+To discover all available files, search for the glob pattern `src/ui/**/*.ai.md`.
+
+### Complete Component AI File Manifest
+
+| Component | AI Context File Path |
+|-----------|---------------------|
+| Accordion | `src/ui/Accordion/Accordion.ai.md` |
+| ActionMenu | `src/ui/ActionMenu/ActionMenu.ai.md` |
+| Avatar | `src/ui/Avatar/Avatar.ai.md` |
+| Badge | `src/ui/Badge/Badge.ai.md` |
+| Branding | `src/ui/Branding/Branding.ai.md` |
+| Breadcrumb | `src/ui/Breadcrumb/Breadcrumb.ai.md` |
+| Button | `src/ui/Button/Button.ai.md` |
+| Calendar | `src/ui/Calendar/Calendar.ai.md` |
+| Card | `src/ui/Card/Card.ai.md` |
+| Checkbox | `src/ui/Checkbox/Checkbox.ai.md` |
+| Chip | `src/ui/Chip/Chip.ai.md` |
+| CopyButton | `src/ui/CopyButton/CopyButton.ai.md` |
+| Datepicker | `src/ui/Datepicker/Datepicker.ai.md` |
+| Divider | `src/ui/Divider/Divider.ai.md` |
+| DotStatus | `src/ui/DotStatus/DotStatus.ai.md` |
+| Dropdown | `src/ui/Dropdown/Dropdown.ai.md` |
+| EventCard | `src/ui/EventCard/EventCard.ai.md` |
+| Field | `src/ui/Field/Field.ai.md` |
+| FileUpload | `src/ui/FileUpload/FileUpload.ai.md` |
+| Flex | `src/ui/Flex/Flex.ai.md` |
+| Icon | `src/ui/Icon/Icon.ai.md` |
+| ImageAspect | `src/ui/ImageAspect/ImageAspect.ai.md` |
+| Input | `src/ui/Input/Input.ai.md` |
+| Key | `src/ui/Key/Key.ai.md` |
+| Menu | `src/ui/Menu/Menu.ai.md` |
+| MicroCalendar | `src/ui/MicroCalendar/MicroCalendar.ai.md` |
+| Modal | `src/ui/Modal/Modal.ai.md` |
+| Pagination | `src/ui/Pagination/Pagination.ai.md` |
+| PillToggle | `src/ui/PillToggle/PillToggle.ai.md` |
+| Playground | `src/ui/Playground/Playground.ai.md` |
+| ProgressCircle | `src/ui/ProgressCircle/ProgressCircle.ai.md` |
+| ProgressIndicator | `src/ui/ProgressIndicator/ProgressIndicator.ai.md` |
+| Radio | `src/ui/Radio/Radio.ai.md` |
+| Slider | `src/ui/Slider/Slider.ai.md` |
+| Status | `src/ui/Status/Status.ai.md` |
+| Steps | `src/ui/Steps/Steps.ai.md` |
+| Table | `src/ui/Table/Table.ai.md` |
+| Tabs | `src/ui/Tabs/Tabs.ai.md` |
+| Tag | `src/ui/Tag/Tag.ai.md` |
+| Textarea | `src/ui/Textarea/Textarea.ai.md` |
+| Toast | `src/ui/Toast/Toast.ai.md` |
+| Toggle | `src/ui/Toggle/Toggle.ai.md` |
+| Tooltip | `src/ui/Tooltip/Tooltip.ai.md` |
+
+### Lookup Instructions for AI Agents
+
+1. **When asked to use a specific component**: Read `src/ui/<ComponentName>/<ComponentName>.ai.md` to understand its props, patterns, and constraints before writing any code.
+2. **When building a feature that combines multiple components**: Read the `.ai.md` file for each component you plan to use. Pay special attention to the "Composition" sections which describe how components work together.
+3. **When unsure which component to use**: Refer to the "Available Components" section below, then read the `.ai.md` files of candidate components to compare their intended use cases.
+4. **When customizing styles**: Read the component's `.ai.md` file for CSS class references and design token usage, then consult `src/styles/tokens.css` for available token values.
 
 ## Available Components
 

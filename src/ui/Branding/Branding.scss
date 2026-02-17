@@ -31,4 +31,27 @@
     width: 160px;
     height: 64px;
   }
+
+  // Symbol-only variant — square aspect ratio
+  &--symbol {
+    &.uds-branding--small .uds-branding__logo {
+      width: 24px;
+      height: 24px;
+    }
+
+    &.uds-branding--default .uds-branding__logo {
+      width: 32px;
+      height: 32px;
+    }
+
+    &.uds-branding--large .uds-branding__logo {
+      width: 48px;
+      height: 48px;
+    }
+
+    .uds-branding__logo {
+      width: 32px;
+      height: 32px;
+    }
+  }
 }

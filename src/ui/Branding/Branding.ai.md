@@ -12,29 +12,38 @@ Displays a single brand logo. Works like `<Icon name="House" />` — pass a `bra
 | Prop | Type | Default | Values | Description |
 |------|------|---------|--------|-------------|
 | `brand` | `string` | — | `"design-system"`, `"connect"`, `"comphealth"`, `"weatherby"`, `"modio"`, `"locumsmart"`, `"wireframe"` | Brand key |
+| `symbol` | `boolean` | `false` | `true`, `false` | When true, renders the brand symbol/icon only instead of the full wordmark logo |
 | `inherit` | `boolean` | `false` | — | When true, ignores `brand` and auto-reads from `data-brand` on `<html>` |
-| `size` | `string` | `"default"` | `"small"` (32px), `"default"` (40px), `"large"` (48px) | Logo height |
+| `size` | `string` | `"default"` | `"small"` (24px symbol / 100×40 logo), `"default"` (32px symbol / 160×64 logo), `"large"` (48px symbol / 200×80 logo) | Size variant |
 | `className` | `string` | `""` | — | Additional CSS classes |
 
 ## Examples
 
-### Basic usage
+### Basic usage — full logo
 ```jsx
 <Branding brand="connect" />
 <Branding brand="comphealth" size="large" />
 ```
 
+### Symbol only
+```jsx
+<Branding brand="connect" symbol />
+<Branding brand="design-system" symbol size="small" />
+<Branding brand="modio" symbol size="large" />
+```
+
 ### Inherit active brand
 ```jsx
 <Branding inherit />
+<Branding inherit symbol />
 <Branding inherit size="small" />
 ```
 
-### In app header
+### In app sidebar — collapsed symbol, expanded wordmark
 ```jsx
 <UDS.Sidebar>
-  <Branding inherit />
-  {/* navigation items */}
+  <Branding inherit symbol />             {/* collapsed: icon */}
+  <Branding inherit symbol={false} />     {/* expanded: full logo */}
 </UDS.Sidebar>
 ```
 

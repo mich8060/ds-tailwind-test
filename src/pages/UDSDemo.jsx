@@ -20,45 +20,20 @@ import UDS from "../ui/UDS/UDS";
 import Menu from "../ui/Menu/Menu";
 
 // ── Navigation for the embedded demo menu ──────────────────────────
-const DEMO_NAVIGATION = [
-        {
-            label: "Dashboard",
-            icon: "Layout",
-            path: "/dashboard",
-            exact: true,
-        },
-        {
-            label: "Schedule",
-            icon: "Calendar",
-            path: "/schedule",
-            exact: true,
-        },
-        {
-            label: "Job Board",
-            icon: "Briefcase",
-            path: "/job-board",
-            exact: true,
-        },
-        {
-            label: "Application",
-            icon: "NotePencil",
-            path: "/application",
-            exact: true,
-        },
+const DEMO_NAV_ITEMS = [
+        { label: "Dashboard", icon: "Layout", path: "/dashboard" },
+        { label: "Schedule", icon: "Calendar", path: "/schedule" },
+        { label: "Job Board", icon: "Briefcase", path: "/job-board" },
+        { label: "Application", icon: "NotePencil", path: "/application" },
         {
             label: "Documents",
             icon: "Folder",
-            items: [
-                { path: "/credentialing", label: "Credentialing" },
-                { path: "/financials", label: "Financials" },
+            children: [
+                { label: "Credentialing", path: "/credentialing" },
+                { label: "Financials", path: "/financials" },
             ],
         },
-        {
-            label: "Time Entry",
-            icon: "Clock",
-            path: "/time-entries",
-            exact: true,
-        }
+        { label: "Time Entry", icon: "Clock", path: "/time-entries" },
     ];
 
 // ── Code examples ──────────────────────────────────────────────────
@@ -298,20 +273,7 @@ export default function UDSDemo() {
         <div className="uds-demo__main" data-brand="comphealth" ref={previewRef}>
           <UDS>
             <UDS.Menu>
-              <Menu
-                navigation={DEMO_NAVIGATION}
-                activeBrand="comphealth"
-                activeMode="light"
-                showSearch={false}
-                showBrandSwitcher={false}
-                showModeSwitch={false}
-                user={{ name: "Jane Doe", initials: "JD" }}
-                onSignOut={() => console.log("Sign out")}
-                accountMenuItems={[
-                  { label: "Profile", icon: "User", onClick: () => {} },
-                  { label: "Settings", icon: "Gear", onClick: () => {} },
-                ]}
-              />
+              <Menu navItems={DEMO_NAV_ITEMS} />
             </UDS.Menu>
             <UDS.Content>
               {showListview && (

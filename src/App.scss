@@ -56,6 +56,7 @@ a {
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-left: 64px;
   }
 }
 
@@ -70,14 +71,15 @@ a {
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding: var(--uds-spacing-48);
+    padding: 0;
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
+    max-width: var(--uds-container-xl);
   }
 
   &__examples-section {
     width: 100%;
-    padding: var(--uds-spacing-48);
+    padding: 0;
     display: flex;
     flex-direction: column;
   }
@@ -195,9 +197,26 @@ a {
 
   &__tabs-container {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: var(--uds-container-xl);
     width: 100%;
-    padding: var(--uds-spacing-48) var(--uds-spacing-48) 0;
+    padding-top: var(--uds-spacing-48);
+    padding-left: var(--uds-spacing-16);
+    padding-right: var(--uds-spacing-16);
+
+    @media (min-width: 768px) {
+      padding-left: var(--uds-spacing-24);
+      padding-right: var(--uds-spacing-24);
+    }
+
+    @media (min-width: 1024px) {
+      padding-left: var(--uds-spacing-32);
+      padding-right: var(--uds-spacing-32);
+    }
+
+    @media (min-width: 1280px) {
+      padding-left: var(--uds-spacing-48);
+      padding-right: var(--uds-spacing-48);
+    }
   }
 
   &__tabs-content {
@@ -211,7 +230,8 @@ a {
 
   &__tabs-content-container {
     margin: 0 auto;
-    width: 960px;
+    width: 100%;
+    max-width: var(--uds-container-xl);
   }
 
   &__link {
@@ -339,14 +359,29 @@ a {
   }
 
   &__header-container {
-    max-width: calc(
-      1280px - 96px
-    ); // Account for header padding: 48px left + 48px right = 96px
+    max-width: var(--uds-container-xl);
     width: 100%;
-    margin: 0; // Left-aligned to match content
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: var(--uds-gap-16); // 16px between breadcrumb and headline
+    gap: var(--uds-gap-16);
+    padding-left: var(--uds-spacing-16);
+    padding-right: var(--uds-spacing-16);
+
+    @media (min-width: 768px) {
+      padding-left: var(--uds-spacing-24);
+      padding-right: var(--uds-spacing-24);
+    }
+
+    @media (min-width: 1024px) {
+      padding-left: var(--uds-spacing-32);
+      padding-right: var(--uds-spacing-32);
+    }
+
+    @media (min-width: 1280px) {
+      padding-left: var(--uds-spacing-48);
+      padding-right: var(--uds-spacing-48);
+    }
   }
 
   &__header-title {
@@ -448,10 +483,25 @@ a {
     display: flex;
     flex-direction: column;
     gap: var(--uds-gap-16);
-    margin: 0 auto;
-    max-width: 960px;
+    margin: 0;
+    max-width: var(--uds-container-xl);
     width: 100%;
-    padding: var(--uds-spacing-24) var(--uds-spacing-48);
+    padding: var(--uds-spacing-24) var(--uds-spacing-16);
+
+    @media (min-width: 768px) {
+      padding-left: var(--uds-spacing-24);
+      padding-right: var(--uds-spacing-24);
+    }
+
+    @media (min-width: 1024px) {
+      padding-left: var(--uds-spacing-32);
+      padding-right: var(--uds-spacing-32);
+    }
+
+    @media (min-width: 1280px) {
+      padding-left: var(--uds-spacing-48);
+      padding-right: var(--uds-spacing-48);
+    }
 
     &:last-child {
       margin-bottom: 0;

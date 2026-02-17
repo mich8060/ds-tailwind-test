@@ -1,369 +1,206 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import Button from "../Button/Button";
+import PropTypes from "prop-types";
+import './Menu.scss';
+import { Link, useLocation } from "react-router-dom";
 import Icon from "../Icon/Icon";
-import Dropdown from "../Dropdown/Dropdown";
-import Branding from "../Branding/Branding";
 import Avatar from "../Avatar/Avatar";
-import ActionMenu from "../ActionMenu/ActionMenu";
+import Button from "../Button/Button";
+import Input from "../Input/Input";
+import Branding from "../Branding/Branding";
+import Dropdown from "../Dropdown/Dropdown";
 import Toggle from "../Toggle/Toggle";
-import Tooltip from "../Tooltip/Tooltip";
-import Input from "@mich8060/chg-design-system/Input";
-import "./Menu.scss";
 
-// Brand options with display labels
-const BRAND_OPTIONS = [
-  { value: "design-system", label: "Design System" },
-  { value: "locumsmart", label: "LocumSmart" },
-  { value: "wireframe", label: "Wireframe" },
-  { value: "connect", label: "Connect" },
-  { value: "comphealth", label: "CompHealth" },
-  { value: "modio", label: "Modio" },
-  { value: "weatherby", label: "Weatherby" },
-];
-
-/**
- * Menu component with data-driven navigation.
- *
- * @param {Array} navigation - Array of section objects that define the sidebar nav.
- *   Each section: { label: string, icon: string, items: Array<{ path, label, exact? }> }
- * @param {string} activeBrand - Currently selected brand key
- * @param {string} activeMode - "light" or "dark"
- * @param {function} onBrandChange - Callback when brand changes
- * @param {function} onModeChange - Callback when mode changes
- * @param {boolean} showSearch - Whether to show the search section (default: true)
- * @param {boolean} showBrandSwitcher - Whether to show the brand switcher dropdown (default: false)
- * @param {boolean} showAccount - Whether to show the account section (default: true)
- * @param {boolean} showModeToggle - Whether to show the dark/light mode toggle in the account menu (default: false)
- * @param {boolean} showModeSwitch - Whether to show a standalone dark/light mode switch in the menu footer (default: false)
- * @param {object} user - User object for account section: { name, initials, avatar }
- * @param {function} onSignOut - Callback when sign out is clicked
- * @param {Array} accountMenuItems - Additional items for the account action menu
- * @param {boolean} expanded - Controlled expanded state
- * @param {function} onExpandedChange - Callback when expanded state changes
- * @param {string} className - Additional CSS classes
- */
 export default function Menu({
-  navigation = [],
-  activeBrand,
-  activeMode,
-  onBrandChange,
-  onModeChange,
-  showSearch = true,
-  showBrandSwitcher = false,
-  showAccount = true,
-  showModeToggle = false,
-  showModeSwitch = false,
-  user,
-  onSignOut,
-  accountMenuItems = [],
-  expanded: controlledExpanded,
-  onExpandedChange,
-  className = "",
-  ...rest
+    title,
+    className = "",
+    navItems = [],
+    brands = [],
+    activeBrand,
+    onBrandChange,
+    activeMode,
+    onModeChange,
 }) {
-  const [internalExpanded, setInternalExpanded] = useState(true);
-  const [expandedSections, setExpandedSections] = useState({});
-  const location = useLocation();
-  const navigate = useNavigate();
-  const accordionRefs = useRef({});
+    const location = useLocation();
+    const [openAccordions, setOpenAccordions] = useState({});
+    const [isHovered, setIsHovered] = useState(false);
+    const hoverTimer = useRef(null);
 
-  // Controlled vs uncontrolled expanded state
-  const expanded =
-    controlledExpanded !== undefined ? controlledExpanded : internalExpanded;
-  const setExpanded = (nextVal) => {
-    const next = typeof nextVal === "function" ? nextVal(expanded) : nextVal;
-    if (onExpandedChange) onExpandedChange(next);
-    if (controlledExpanded === undefined) setInternalExpanded(next);
-  };
+    const handleMouseEnter = () => {
+        hoverTimer.current = setTimeout(() => setIsHovered(true), 300);
+    };
 
-  const isActive = (path, exact) => {
-    if (exact || path === "/") {
-      return location.pathname === path;
-    }
-    return location.pathname.startsWith(path);
-  };
+    const handleMouseLeave = () => {
+        clearTimeout(hoverTimer.current);
+        setIsHovered(false);
+    };
 
-  const isAnyChildActive = (items) => {
-    return items.some((item) => isActive(item.path, item.exact));
-  };
-
-  const toggleSection = (index) => {
-    setExpandedSections((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
-  };
-
-  // Auto-expand sections when a child route is active
-  useEffect(() => {
-    const updates = {};
-    navigation.forEach((section, index) => {
-      // Skip flat items (no items array or empty = direct link, not a section)
-      if (!section.items || section.items.length === 0) return;
-      const hasActiveChild = section.items.some((item) =>
-        item.exact || item.path === "/"
-          ? location.pathname === item.path
-          : location.pathname.startsWith(item.path),
-      );
-      if (hasActiveChild) {
-        updates[index] = true;
-      }
-    });
-    if (Object.keys(updates).length > 0) {
-      setExpandedSections((prev) => ({ ...prev, ...updates }));
-    }
-  }, [location.pathname, navigation]);
-
-  return (
-    <aside
-      className={`menu ${expanded ? "menu--expanded" : "menu--collapsed"} ${className}`.trim()}
-      {...rest}
-    >
-      {/* Branding Section */}
-      <div className="menu__branding">
-        <Button
-          appearance="text"
-          layout="icon-only"
-          size="default"
-          icon="List"
-          iconSize={20}
-          aria-label="Toggle menu"
-          onClick={() => setExpanded(!expanded)}
-          className="menu__toggle"
-        />
-        <div className={`menu__brand menu__expandable ${expanded ? "menu__expandable--visible" : ""}`}>
-          <Branding brand={activeBrand || "design-system"} />
-        </div>
-      </div>
-
-      {/* Brand Switcher Section */}
-      {showBrandSwitcher && (
-        <div className="menu__brand-switcher">
-          {expanded ? (
-            <Dropdown
-              options={BRAND_OPTIONS}
-              value={activeBrand}
-              onChange={onBrandChange}
-              id="brand-select"
-              size="compact"
-              className="menu__brand-dropdown"
-            />
-          ) : (
-            <ActionMenu
-              placement="right-start"
-              trigger={
-                <button
-                  className="menu__brand-switcher-btn"
-                  aria-label="Switch brand"
-                >
-                  <Icon name="CaretDown" size={12} appearance="bold" />
-                </button>
-              }
-              items={BRAND_OPTIONS.map((opt) => ({
-                label: opt.label,
-                onClick: () => onBrandChange(opt.value),
-                active: opt.value === activeBrand,
-              }))}
-              className="menu__brand-switcher-menu"
-            />
-          )}
-        </div>
-      )}
-
-      {/* Search Section */}
-      {showSearch && (
-        <div className="menu__search">
-          {expanded ? (
-            <div className="menu__search-input">
-              <Input
-                placeholder="Search..."
-                icon="MagnifyingGlass"
-                size="compact"
-              />
-            </div>
-          ) : (
-            <div className="menu__search-icon">
-              <Icon name="MagnifyingGlass" size={16} appearance="regular" />
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Navigation Section */}
-      <nav className="menu__nav">
-        {navigation.map((section, index) => {
-          // ── Flat nav item (direct link, no accordion, no caret) ──
-          if ((!section.items || section.items.length === 0) && section.path) {
-            const active = isActive(section.path, section.exact);
-            return (
-              <Tooltip
-                key={section.label}
-                content={section.label}
-                placement="right"
-                disabled={expanded}
-              >
-                <NavLink
-                  className={`menu__item menu__item--top ${active ? "menu__item--top--active" : ""}`}
-                  to={section.path}
-                  end={section.exact || undefined}
-                >
-                  <Icon
-                    name={section.icon || "SquaresFour"}
-                    size={24}
-                    appearance="duotone"
-                    className="menu__item-icon"
-                  />
-                  <span className="menu__item-label">{section.label}</span>
-                </NavLink>
-              </Tooltip>
-            );
-          }
-
-          // ── Section with accordion children ──
-          const items = section.items || [];
-          const isSectionExpanded = !!expandedSections[index];
-          const hasActiveChild = items.length > 0 && isAnyChildActive(items);
-
-          return (
-            <div key={section.label} className="menu__accordion">
-              <Tooltip
-                content={section.label}
-                placement="right"
-                disabled={expanded}
-              >
-                <button
-                  className={`menu__accordion-header ${hasActiveChild ? "menu__accordion-header--active" : ""}`}
-                  onClick={() => {
-                    if (expanded) {
-                      toggleSection(index);
-                    } else {
-                      // Expand the menu, open this section, and navigate to first page
-                      setExpanded(true);
-                      setExpandedSections((prev) => ({ ...prev, [index]: true }));
-                      if (items.length > 0) {
-                        navigate(items[0].path);
-                      }
-                    }
-                  }}
-                  aria-expanded={isSectionExpanded}
-                >
-                  <Icon
-                    name={section.icon || "SquaresFour"}
-                    size={24}
-                    appearance="duotone"
-                    className="menu__accordion-section-icon"
-                  />
-                  <span className="menu__accordion-label">{section.label}</span>
-                  <Icon
-                    name="CaretDown"
-                    size={16}
-                    appearance="bold"
-                    className={`menu__accordion-caret ${isSectionExpanded ? "menu__accordion-caret--expanded" : ""}`}
-                  />
-                </button>
-              </Tooltip>
-              <div
-                ref={(el) => (accordionRefs.current[index] = el)}
-                className={`menu__accordion-body ${isSectionExpanded && expanded ? "menu__accordion-body--expanded" : ""}`}
-                style={
-                  isSectionExpanded && expanded
-                    ? { maxHeight: accordionRefs.current[index]?.scrollHeight + "px" }
-                    : { maxHeight: 0 }
+    // Auto-expand accordion whose child matches the current route
+    useEffect(() => {
+        navItems.forEach((item) => {
+            if (item.children) {
+                const hasActiveChild = item.children.some(
+                    (child) => location.pathname === child.path
+                );
+                if (hasActiveChild) {
+                    setOpenAccordions((prev) => ({ ...prev, [item.label]: true }));
                 }
-              >
-                {items.map((item, itemIndex) => {
-                  const active = isActive(item.path, item.exact);
-                  return (
-                    <NavLink
-                      key={item.path}
-                      className={`menu__item menu__item--sub ${active ? "menu__item--sub--active" : ""}`}
-                      to={item.path}
-                      end={item.exact || undefined}
-                      style={{ transitionDelay: isSectionExpanded && expanded ? `${itemIndex * 20}ms` : "0ms" }}
-                    >
-                      <span className="menu__item-label">{item.label}</span>
-                    </NavLink>
-                  );
-                })}
-              </div>
+            }
+        });
+    }, [location.pathname, navItems]);
+
+    const toggleAccordion = (label) => {
+        setOpenAccordions((prev) => ({ ...prev, [label]: !prev[label] }));
+    };
+
+  return(
+    <aside
+        className={`uds-menu${isHovered ? " uds-menu--expanded" : ""} ${className}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+    >
+        <div className="uds-menu_brand">
+            <div className="uds-menu_brand__symbol">
+                <Branding inherit symbol />
             </div>
-          );
-        })}
-      </nav>
-
-      {/* Mode Switch (standalone footer) */}
-      {showModeSwitch && (
-        <div className="menu__footer">
-          <Icon
-            name={activeMode === "light" ? "Sun" : "Moon"}
-            size={20}
-            appearance="duotone"
-          />
-          <span className={`menu__mode-label menu__expandable ${expanded ? "menu__expandable--visible" : ""}`}>
-            {activeMode === "light" ? "Light Mode" : "Dark Mode"}
-          </span>
-          <Toggle
-            checked={activeMode === "dark"}
-            size="small"
-            onChange={(checked) => onModeChange(checked ? "dark" : "light")}
-            className="menu__mode-toggle"
-          />
+            <div className="uds-menu_brand__full">
+                <Branding inherit symbol={false} />
+            </div>
         </div>
-      )}
-
-      {/* Account Section */}
-      {showAccount && (
-        <div className="menu__account">
-          <Avatar
-            initials={user?.initials}
-            src={user?.avatar}
-            name={user?.name}
-            size="default"
-          />
-          <div className={`menu__account-details menu__expandable ${expanded ? "menu__expandable--visible" : ""}`}>
-            <span className="menu__account-name">{user?.name || "User"}</span>
-            <ActionMenu
-              placement="top-end"
-              trigger={
-                <Button
-                  appearance="text"
-                  layout="icon-only"
-                  size="default"
-                  icon={<Icon name="DotsThreeVertical" size={24} appearance="bold" />}
-                  aria-label="Account menu"
-                />
-              }
-              items={[
-                ...accountMenuItems,
-                ...(accountMenuItems.length > 0 && showModeToggle
-                  ? [{ divider: true }]
-                  : []),
-                ...(showModeToggle
-                  ? [
-                      {
-                        type: "toggle",
-                        label: "Dark Mode",
-                        icon: activeMode === "light" ? "Moon" : "Sun",
-                        checked: activeMode === "dark",
-                        onChange: (checked) =>
-                          onModeChange(checked ? "dark" : "light"),
-                      },
-                    ]
-                  : []),
-                { divider: true },
-                {
-                  label: "Sign Out",
-                  icon: "SignOut",
-                  destructive: true,
-                  onClick: onSignOut,
-                },
-              ]}
-              className="menu__account-menu"
+        <div className="uds-menu_search">
+            <Button 
+                appearance="text"
+                icon="MagnifyingGlass"
+                label="Search"
+                layout="icon-only" 
+                aria-label="Search"
+                className="uds-menu_search__button"
+                onClick={() => console.log("Search")}
             />
-          </div>
+            <Input type="text" placeholder="Search" icon="MagnifyingGlass" iconPosition="right" className="uds-menu_search__input" />
         </div>
-      )}
+        {brands.length > 0 && onBrandChange && (
+            <div className="uds-menu_brands">
+                <Button
+                    appearance="text"
+                    icon="PlusCircle"
+                    label="Brand"
+                    layout="icon-only"
+                    aria-label="Switch brand"
+                    className="uds-menu_brands__button"
+                />
+                <div className="uds-menu_brands__dropdown">
+                    <Dropdown
+                        options={brands.map((b) => ({ value: b, label: b }))}
+                        value={activeBrand}
+                        onChange={onBrandChange}
+                        placeholder="Select brand"
+                        placement="bottom-start"
+                    />
+                </div>
+            </div>
+        )}
+        <nav className="uds-menu_nav">
+            {navItems.map((item) => {
+                const hasChildren = item.children && item.children.length > 0;
+                const isOpen = openAccordions[item.label];
+                const isExpanded = isHovered && isOpen;
+
+                if (hasChildren) {
+                    return (
+                        <div className={`uds-menu_nav__item uds-menu_nav__item--accordion${isOpen ? " uds-menu_nav__item--open" : ""}`} key={item.label}>
+                            <button
+                                type="button"
+                                className="uds-menu_nav__item-link"
+                                onClick={() => toggleAccordion(item.label)}
+                                title={item.label}
+                            >
+                                <span className="uds-menu_nav__item-icon">
+                                    <Icon name={item.icon} size={24} appearance="duotone" />
+                                </span>
+                                <div className="uds-menu_nav__item-label">{item.label}</div>
+                                <span className={`uds-menu_nav__item-caret${isOpen ? " uds-menu_nav__item-caret--open" : ""}`}>
+                                    <Icon name="CaretDown" size={16} />
+                                </span>
+                            </button>
+                            <div className={`uds-menu_nav__children${isExpanded ? " uds-menu_nav__children--open" : ""}`}>
+                                {item.children.map((child) => (
+                                    <Link
+                                        key={child.path}
+                                        className={`uds-menu_nav__child-link${location.pathname === child.path ? " uds-menu_nav__child-link--active" : ""}`}
+                                        to={child.path}
+                                        title={child.label}
+                                    >
+                                        {child.label}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    );
+                }
+
+                return (
+                    <div className={`uds-menu_nav__item${location.pathname === item.path ? " uds-menu_nav__item--active" : ""}`} key={item.path}>
+                        <Link className="uds-menu_nav__item-link" to={item.path} title={item.label}>
+                            <span className="uds-menu_nav__item-icon">
+                                <Icon name={item.icon} size={24} appearance="duotone" />
+                            </span>
+                            <div className="uds-menu_nav__item-label">{item.label}</div>
+                        </Link>
+                    </div>
+                );
+            })}
+        </nav>
+        <div className="uds-menu_footer">
+            {onModeChange && (
+                <div className="uds-menu_mode">
+                    <Button
+                        appearance="text"
+                        icon={activeMode === "light" ? "Sun" : "Moon"}
+                        label={activeMode === "light" ? "Light mode" : "Dark mode"}
+                        layout="icon-only"
+                        aria-label="Toggle light/dark mode"
+                        className="uds-menu_mode__button"
+                        onClick={() => onModeChange(activeMode === "light" ? "dark" : "light")}
+                    />
+                    <div className="uds-menu_mode__controls">
+                        <Icon name={activeMode === "light" ? "Sun" : "Moon"} size={20} appearance="duotone" />
+                        <span className="uds-menu_mode__label">
+                            {activeMode === "light" ? "Light" : "Dark"}
+                        </span>
+                        <Toggle
+                            checked={activeMode === "dark"}
+                            onChange={(checked) => onModeChange(checked ? "dark" : "light")}
+                            className="uds-menu_mode__toggle"
+                        />
+                    </div>
+                </div>
+            )}
+        </div>
+        <div className="uds-menu_user">
+            <Avatar initials="EB" size="default" />
+        </div>
     </aside>
   );
 }
+
+Menu.propTypes = {
+  title: PropTypes.string,
+  className: PropTypes.string,
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+      path: PropTypes.string,
+      children: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          path: PropTypes.string.isRequired,
+        })
+      ),
+    })
+  ),
+};
+
+Menu.defaultProps = {
+  title: "Menu",
+};

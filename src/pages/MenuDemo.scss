@@ -59,13 +59,14 @@
     border-radius: var(--uds-radius-8);
     overflow: hidden;
     background: var(--uds-surface-secondary);
+    display: flex;
 
     /* Creates a new containing block so position:fixed children
        behave like position:absolute relative to this container */
     transform: translateZ(0);
 
     /* Override Menu's fixed positioning when inside preview */
-    .menu {
+    .uds-menu {
       position: absolute;
       height: 100%;
     }
@@ -104,51 +105,6 @@
       border-radius: var(--uds-radius-4);
       font-size: var(--uds-font-size-13);
       font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
-    }
-  }
-
-  &__props-table-wrapper {
-    margin-top: var(--uds-spacing-16);
-    overflow-x: auto;
-    border: 1px solid var(--uds-border-primary);
-    border-radius: var(--uds-radius-8);
-  }
-
-  &__props-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: var(--uds-font-size-14);
-
-    th,
-    td {
-      padding: var(--uds-spacing-12) var(--uds-spacing-16);
-      text-align: left;
-      border-bottom: 1px solid var(--uds-border-primary);
-    }
-
-    th {
-      background: var(--uds-surface-secondary);
-      font-weight: var(--uds-font-weight-semibold);
-      color: var(--uds-text-primary);
-      white-space: nowrap;
-    }
-
-    td {
-      color: var(--uds-text-secondary);
-      vertical-align: top;
-    }
-
-    td code {
-      background: var(--uds-surface-tertiary);
-      padding: 2px 6px;
-      border-radius: var(--uds-radius-4);
-      font-size: var(--uds-font-size-13);
-      font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
-      white-space: nowrap;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
     }
   }
 

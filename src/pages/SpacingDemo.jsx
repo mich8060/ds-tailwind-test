@@ -145,6 +145,21 @@ const GAP_TOKENS = [
   { token: "--uds-gap-32", px: 32 },
 ];
 
+const CONTAINER_TOKENS = [
+  { token: "--uds-container-xs", value: "480px", className: "container-xs", usage: "Small modals, tooltips, compact widgets" },
+  { token: "--uds-container-sm", value: "640px", className: "container-sm", usage: "Forms, settings panels, narrow dialogs" },
+  { token: "--uds-container-md", value: "768px", className: "container-md", usage: "Medium dialogs, tablet-optimized layouts" },
+  { token: "--uds-container-lg", value: "1024px", className: "container-lg", usage: "Standard page content, dashboards" },
+  { token: "--uds-container-xl", value: "1280px", className: "container-xl", usage: "Wide layouts, data tables, admin panels" },
+  { token: "--uds-container-2xl", value: "1536px", className: "container-2xl", usage: "Full-width desktop layouts" },
+];
+
+const SEMANTIC_CONTAINERS = [
+  { token: "--uds-container-narrow", value: "640px", className: "container-narrow", usage: "Forms, settings pages, focused task flows" },
+  { token: "--uds-container-prose", value: "65ch", className: "container-prose", usage: "Long-form text, documentation, articles" },
+  { token: "--uds-container-content", value: "960px", className: "container-content", usage: "Standard page content sections, demo pages" },
+  { token: "--uds-container-wide", value: "1440px", className: "container-wide", usage: "Full-width dashboards, data-heavy layouts" },
+];
 
 export default function SpacingDemo() {
   useEffect(() => {
@@ -536,6 +551,159 @@ export default function SpacingDemo() {
 
         <Divider variant="solid" />
 
+        {/* ── Container Standards ── */}
+        <section className="spacing__section">
+          <h2 className="spacing__section-title">Container Standards</h2>
+          <p className="spacing__text">
+            Containers constrain content width and center it horizontally. Use container tokens
+            instead of hardcoded <code>max-width</code> values to keep layouts consistent and
+            maintainable across the entire application.
+          </p>
+
+          <h3 className="spacing__subsection-title">Container Tokens</h3>
+          <p className="spacing__text">
+            Fixed-width container tokens follow a progressive scale. Each maps to a CSS custom
+            property and a utility class.
+          </p>
+
+          <div className="spacing__container-table-wrapper">
+            <table className="spacing__table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Value</th>
+                  <th>Class</th>
+                  <th>Use For</th>
+                </tr>
+              </thead>
+              <tbody>
+                {CONTAINER_TOKENS.map((c) => (
+                  <tr key={c.token}>
+                    <td><code>{c.token}</code></td>
+                    <td>{c.value}</td>
+                    <td><code>.container .{c.className}</code></td>
+                    <td>{c.usage}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="spacing__subsection-title">Semantic Containers</h3>
+          <p className="spacing__text">
+            Semantic containers map to common layout patterns. Choose by intent rather
+            than pixel value.
+          </p>
+
+          <div className="spacing__container-table-wrapper">
+            <table className="spacing__table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Value</th>
+                  <th>Class</th>
+                  <th>Use For</th>
+                </tr>
+              </thead>
+              <tbody>
+                {SEMANTIC_CONTAINERS.map((c) => (
+                  <tr key={c.token} className={c.token === "--uds-container-content" ? "spacing__table-row--highlight" : ""}>
+                    <td><code>{c.token}</code></td>
+                    <td>{c.value}</td>
+                    <td><code>.container .{c.className}</code></td>
+                    <td>{c.usage}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="spacing__callout spacing__callout--info">
+            <strong>Default content width:</strong> <code>container-content</code> (960px) is the
+            standard width for page sections across the design system. Use it for page headers,
+            demo groups, and documentation content.
+          </div>
+
+          <h3 className="spacing__subsection-title">Visual Scale</h3>
+          <div className="spacing__container-visual">
+            {[...CONTAINER_TOKENS, ...SEMANTIC_CONTAINERS.filter(c => c.value !== "65ch" && c.value !== "640px")].sort((a, b) => parseInt(a.value) - parseInt(b.value)).map((c) => (
+              <div key={c.token} className="spacing__container-bar-row">
+                <div className="spacing__container-bar-label">
+                  <code>{c.token.replace("--uds-container-", "")}</code>
+                  <span className="spacing__container-bar-value">{c.value}</span>
+                </div>
+                <div
+                  className="spacing__container-bar"
+                  style={{ width: `${(parseInt(c.value) / 1536) * 100}%` }}
+                />
+              </div>
+            ))}
+          </div>
+
+          <h3 className="spacing__subsection-title">Usage</h3>
+          <CodeBlock
+            code={`/* ✅ Do: Use container tokens for max-width */
+.my-section {
+  max-width: var(--uds-container-content);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Or use the utility classes */
+<div class="container container-content">
+  <!-- Content constrained to 960px, centered -->
+</div>
+
+/* ✅ Do: Use semantic containers for intent */
+<div class="container container-prose">
+  <!-- Optimal reading width for articles -->
+</div>
+
+<div class="container container-narrow">
+  <!-- Focused layout for forms and settings -->
+</div>
+
+/* ❌ Don't: Hardcode max-width values */
+.my-section {
+  max-width: 960px;    /* Use var(--uds-container-content) */
+  max-width: 1280px;   /* Use var(--uds-container-xl) */
+}`}
+          />
+
+          <h3 className="spacing__subsection-title">Responsive Container</h3>
+          <p className="spacing__text">
+            The <code>container-responsive</code> class automatically adapts its max-width at
+            each breakpoint, growing with the viewport.
+          </p>
+          <CodeBlock
+            code={`/* Responsive container — scales at each breakpoint */
+<div class="container container-responsive">
+  <!-- 100% → 640px → 768px → 1024px → 1280px → 1536px -->
+</div>`}
+          />
+
+          <h3 className="spacing__subsection-title">Container with Padding</h3>
+          <p className="spacing__text">
+            Add <code>container-padded</code> for built-in responsive horizontal padding that
+            prevents content from touching viewport edges on smaller screens.
+          </p>
+          <CodeBlock
+            code={`/* Padded container — responsive horizontal padding */
+<div class="container container-content container-padded">
+  <!-- 16px → 24px → 32px → 48px padding at breakpoints -->
+</div>
+
+/* Breakpoint padding scale:
+   Mobile:          16px  (--uds-spacing-16)
+   Tablet (768+):   24px  (--uds-spacing-24)
+   Desktop (1024+): 32px  (--uds-spacing-32)
+   Large (1280+):   48px  (--uds-spacing-48)
+*/`}
+          />
+        </section>
+
+        <Divider variant="solid" />
+
         {/* ── Using Spacing Tokens ── */}
         <section className="spacing__section">
           <h2 className="spacing__section-title">Using Spacing Tokens</h2>
@@ -716,6 +884,10 @@ body::before {
             <div className="spacing__summary-item">
               <span className="spacing__summary-check">✓</span>
               <span>Always use spacing tokens — never hardcoded pixel values</span>
+            </div>
+            <div className="spacing__summary-item">
+              <span className="spacing__summary-check">✓</span>
+              <span>Use <strong>container tokens</strong> (<code>--uds-container-*</code>) for all max-width constraints</span>
             </div>
             <div className="spacing__summary-item">
               <span className="spacing__summary-check">✓</span>

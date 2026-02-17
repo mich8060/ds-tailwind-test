@@ -3,6 +3,7 @@ import Branding from "../ui/Branding/Branding";
 import Flex from "../ui/Flex/Flex";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
 import Divider from "../ui/Divider/Divider";
+import Table from "../ui/Table/Table";
 import { formatLastUpdated } from "../utils/formatDate";
 import CopyButton from "../ui/CopyButton/CopyButton";
 import Prism from "prismjs";
@@ -34,8 +35,9 @@ export default function BrandingDemo() {
             <div className="page__header-content">
               <h1 className="page__header-title">Branding</h1>
               <p className="page__header-description">
-                The Branding component displays a single brand logo. Pass a{" "}
-                <code>brand</code> prop to pick which logo to show, or use{" "}
+                The Branding component displays a brand logo or symbol. Pass a{" "}
+                <code>brand</code> prop to pick which brand to show, add{" "}
+                <code>symbol</code> to render just the icon mark, or use{" "}
                 <code>inherit</code> to automatically match the active brand.
               </p>
             </div>
@@ -190,60 +192,187 @@ export default function BrandingDemo() {
 
           <Divider />
 
+          {/* Symbol Only */}
+          <div className="demo-group">
+            <h2 className="demo-group__heading">Symbol Only</h2>
+            <p className="demo-group__description">
+              Set <code>symbol</code> to render only the brand icon mark instead
+              of the full wordmark logo. Useful for collapsed sidebars, favicons,
+              and compact UI areas.
+            </p>
+            <Flex direction="row" gap="32" wrap={true} alignItems="center" className="demo-grid">
+              {BRAND_KEYS.map((key) => (
+                <Flex key={key} direction="column" gap="8" alignItems="center">
+                  <Branding brand={key} symbol />
+                  <code style={{ fontSize: 12 }}>"{key}"</code>
+                </Flex>
+              ))}
+            </Flex>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={`<Branding brand="design-system" symbol />
+<Branding brand="connect" symbol />
+<Branding brand="comphealth" symbol />
+<Branding brand="weatherby" symbol />
+<Branding brand="modio" symbol />
+<Branding brand="locumsmart" symbol />
+<Branding brand="wireframe" symbol />`} />
+              <pre className="code-block">
+                <code className="language-jsx">{`<Branding brand="design-system" symbol />
+<Branding brand="connect" symbol />
+<Branding brand="comphealth" symbol />
+<Branding brand="weatherby" symbol />
+<Branding brand="modio" symbol />
+<Branding brand="locumsmart" symbol />
+<Branding brand="wireframe" symbol />`}</code>
+              </pre>
+            </div>
+          </div>
+
+          <Divider />
+
+          {/* Symbol Sizes */}
+          <div className="demo-group">
+            <h2 className="demo-group__heading">Symbol Sizes</h2>
+            <p className="demo-group__description">
+              Symbols use a square aspect ratio. Three sizes are available:{" "}
+              <code>small</code> (24px), <code>default</code> (32px), and{" "}
+              <code>large</code> (48px).
+            </p>
+            <Flex direction="row" gap="32" wrap={true} alignItems="center" className="demo-grid">
+              <Flex direction="column" gap="8" alignItems="center">
+                <Branding brand="connect" symbol size="small" />
+                <span className="demo-label">Small (24px)</span>
+              </Flex>
+              <Flex direction="column" gap="8" alignItems="center">
+                <Branding brand="connect" symbol size="default" />
+                <span className="demo-label">Default (32px)</span>
+              </Flex>
+              <Flex direction="column" gap="8" alignItems="center">
+                <Branding brand="connect" symbol size="large" />
+                <span className="demo-label">Large (48px)</span>
+              </Flex>
+            </Flex>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={`<Branding brand="connect" symbol size="small" />
+<Branding brand="connect" symbol size="default" />
+<Branding brand="connect" symbol size="large" />`} />
+              <pre className="code-block">
+                <code className="language-jsx">{`<Branding brand="connect" symbol size="small" />
+<Branding brand="connect" symbol size="default" />
+<Branding brand="connect" symbol size="large" />`}</code>
+              </pre>
+            </div>
+          </div>
+
+          <Divider />
+
+          {/* Logo vs Symbol comparison */}
+          <div className="demo-group">
+            <h2 className="demo-group__heading">Logo vs Symbol</h2>
+            <p className="demo-group__description">
+              Side-by-side comparison of the full wordmark logo and the symbol
+              variant for each brand.
+            </p>
+            <Flex direction="column" gap="24" className="demo-grid">
+              {BRAND_KEYS.map((key) => (
+                <Flex key={key} direction="row" gap="24" alignItems="center">
+                  <Branding brand={key} symbol />
+                  <Branding brand={key} />
+                  <code style={{ fontSize: 12 }}>"{key}"</code>
+                </Flex>
+              ))}
+            </Flex>
+          </div>
+
+          <Divider />
+
           {/* Props Reference Table */}
           <div className="demo-group">
             <h2 className="demo-group__heading">Props Reference</h2>
-            <div className="props-table-wrapper">
-              <table className="props-table">
-                <thead>
-                  <tr>
-                    <th>Prop</th>
-                    <th>Type</th>
-                    <th>Default</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><code>brand</code></td>
-                    <td><code>string</code></td>
-                    <td>—</td>
-                    <td>
+            <Table
+              columns={[
+                {
+                  key: "prop",
+                  label: "Prop",
+                  render: (row) => <code>{row.prop}</code>,
+                },
+                {
+                  key: "type",
+                  label: "Type",
+                  render: (row) => <code>{row.type}</code>,
+                },
+                {
+                  key: "default",
+                  label: "Default",
+                  render: (row) =>
+                    row.default === "—" ? "—" : <code>{row.default}</code>,
+                },
+                {
+                  key: "description",
+                  label: "Description",
+                  render: (row) => row.description,
+                },
+              ]}
+              data={[
+                {
+                  prop: "brand",
+                  type: "string",
+                  default: "—",
+                  description: (
+                    <>
                       Brand key: <code>"design-system"</code>,{" "}
                       <code>"connect"</code>, <code>"comphealth"</code>,{" "}
                       <code>"weatherby"</code>, <code>"modio"</code>,{" "}
                       <code>"locumsmart"</code>, <code>"wireframe"</code>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><code>inherit</code></td>
-                    <td><code>boolean</code></td>
-                    <td><code>false</code></td>
-                    <td>
+                    </>
+                  ),
+                },
+                {
+                  prop: "symbol",
+                  type: "boolean",
+                  default: "false",
+                  description: (
+                    <>
+                      When <code>true</code>, renders only the brand
+                      symbol/icon mark instead of the full wordmark logo
+                    </>
+                  ),
+                },
+                {
+                  prop: "inherit",
+                  type: "boolean",
+                  default: "false",
+                  description: (
+                    <>
                       When <code>true</code>, ignores <code>brand</code> and
                       automatically uses the active brand from{" "}
                       <code>data-brand</code> on <code>&lt;html&gt;</code>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><code>size</code></td>
-                    <td><code>string</code></td>
-                    <td><code>"default"</code></td>
-                    <td>
-                      <code>"small"</code> (32px) |{" "}
-                      <code>"default"</code> (40px) |{" "}
+                    </>
+                  ),
+                },
+                {
+                  prop: "size",
+                  type: "string",
+                  default: '"default"',
+                  description: (
+                    <>
+                      Logo: <code>"small"</code> (100×40) |{" "}
+                      <code>"default"</code> (160×64) |{" "}
+                      <code>"large"</code> (200×80)<br />
+                      Symbol: <code>"small"</code> (24px) |{" "}
+                      <code>"default"</code> (32px) |{" "}
                       <code>"large"</code> (48px)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><code>className</code></td>
-                    <td><code>string</code></td>
-                    <td><code>""</code></td>
-                    <td>Additional CSS classes</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    </>
+                  ),
+                },
+                {
+                  prop: "className",
+                  type: "string",
+                  default: '""',
+                  description: "Additional CSS classes",
+                },
+              ]}
+            />
           </div>
 
         </div>

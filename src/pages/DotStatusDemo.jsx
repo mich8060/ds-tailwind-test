@@ -1,49 +1,59 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import DotStatus from "../ui/DotStatus/DotStatus";
 import Flex from "../ui/Flex/Flex";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
 import Divider from "../ui/Divider/Divider";
+import Table from "../ui/Table/Table";
 import { formatLastUpdated } from "../utils/formatDate";
+import CopyButton from "../ui/CopyButton/CopyButton";
+import Prism from "prismjs";
+import "../styles/prism-custom.css";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-javascript";
 
-/**
- * Dot Status Component Demo & Documentation
- *
- * This page demonstrates the Dot Status component and its various configurations.
- *
- * ## Dot Status Component Props:
- *
- * ### Optional Props:
- * - `variant` (string): Color variant
- *   - Options: 'light-gray', 'red', 'orange', 'yellow', 'light-green', 'green', 'blue', 'dark-blue', 'teal', 'purple', 'pink', 'magenta', 'dark-red', 'dark-gray'
- *   - Default: 'blue'
- *
- * - `size` (string): Size variant
- *   - Options: 'small', 'medium', 'large'
- *   - Default: 'medium'
- *
- * - `outline` (boolean): Whether to show an outline/border around the dot
- *   - Default: false
- *
- * ## Usage Examples:
- *
- * Basic dot status:
- * ```jsx
- * <DotStatus variant="green" />
- * ```
- *
- * Dot status with outline:
- * ```jsx
- * <DotStatus variant="red" outline={true} />
- * ```
- *
- * Different sizes:
- * ```jsx
- * <DotStatus variant="blue" size="small" />
- * <DotStatus variant="blue" size="medium" />
- * <DotStatus variant="blue" size="large" />
- * ```
- */
+const BASIC_CODE = `import { DotStatus } from "@mich8060/chg-design-system";
+
+<DotStatus variant="green" />`;
+
+const VARIANTS_CODE = `<DotStatus variant="light-gray" />
+<DotStatus variant="red" />
+<DotStatus variant="orange" />
+<DotStatus variant="yellow" />
+<DotStatus variant="light-green" />
+<DotStatus variant="green" />
+<DotStatus variant="blue" />
+<DotStatus variant="dark-blue" />
+<DotStatus variant="teal" />
+<DotStatus variant="purple" />
+<DotStatus variant="pink" />
+<DotStatus variant="magenta" />
+<DotStatus variant="dark-red" />
+<DotStatus variant="dark-gray" />`;
+
+const SIZES_CODE = `<DotStatus variant="blue" size="small" />
+<DotStatus variant="blue" size="medium" />
+<DotStatus variant="blue" size="large" />`;
+
+const OUTLINE_CODE = `<DotStatus variant="green" outline />
+<DotStatus variant="red" outline />
+<DotStatus variant="blue" outline />
+<DotStatus variant="yellow" outline />`;
+
+const USAGE_CODE = `<Flex direction="row" gap="12" alignItems="center">
+  <DotStatus variant="green" />
+  <span>Online</span>
+</Flex>
+
+<Flex direction="row" gap="12" alignItems="center">
+  <DotStatus variant="red" />
+  <span>Offline</span>
+</Flex>
+
+<Flex direction="row" gap="12" alignItems="center">
+  <DotStatus variant="yellow" />
+  <span>Away</span>
+</Flex>`;
 
 const variants = [
   "light-gray",
@@ -64,7 +74,50 @@ const variants = [
 
 const sizes = ["small", "medium", "large"];
 
+const PROPS_COLUMNS = [
+  { key: "prop", label: "Prop", render: (row) => <code>{row.prop}</code> },
+  { key: "type", label: "Type", render: (row) => <code>{row.type}</code> },
+  { key: "default", label: "Default", render: (row) => row.default ? <code>{row.default}</code> : "—" },
+  { key: "description", label: "Description" },
+];
+
+const PROPS_DATA = [
+  {
+    prop: "variant",
+    type: "string",
+    default: '"blue"',
+    description: "Color variant. Options: 'light-gray', 'red', 'orange', 'yellow', 'light-green', 'green', 'blue', 'dark-blue', 'teal', 'purple', 'pink', 'magenta', 'dark-red', 'dark-gray'.",
+  },
+  {
+    prop: "size",
+    type: "string",
+    default: '"medium"',
+    description: "Size of the dot. Options: 'small', 'medium', 'large'.",
+  },
+  {
+    prop: "outline",
+    type: "boolean",
+    default: "false",
+    description: "Adds a border/outline around the dot for additional visual definition.",
+  },
+  {
+    prop: "aria-label",
+    type: "string",
+    default: null,
+    description: "Accessible label for screen readers. Defaults to '{variant} status' if not provided.",
+  },
+  {
+    prop: "className",
+    type: "string",
+    default: '""',
+    description: "Additional CSS classes to apply to the dot element.",
+  },
+];
+
 export default function DotStatusDemo() {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
 
   return (
     <section className="page">
@@ -76,9 +129,9 @@ export default function DotStatusDemo() {
               <h1 className="page__header-title">Dot Status</h1>
               <p className="page__header-description">
                 The Dot Status component provides visual status indicators using
-          colored circular dots. Perfect for showing online/offline status, task
-          states, or any categorical information. Supports multiple color
-          variants, sizes, and optional outline styling.
+                colored circular dots. Perfect for showing online/offline status, task
+                states, or any categorical information. Supports multiple color
+                variants, sizes, and optional outline styling.
               </p>
             </div>
             <div className="page__header-metadata">
@@ -108,8 +161,11 @@ export default function DotStatusDemo() {
           </div>
         </div>
       </header>
+
       <main className="page__content">
         <div className="page__examples-section">
+
+          {/* Color Variants */}
           <div className="demo-group">
             <h2 className="demo-group__heading">Color Variants</h2>
             <p className="demo-group__description">
@@ -123,8 +179,17 @@ export default function DotStatusDemo() {
                 </Flex>
               ))}
             </Flex>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={VARIANTS_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{VARIANTS_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* Sizes */}
           <div className="demo-group">
             <h2 className="demo-group__heading">Sizes</h2>
             <p className="demo-group__description">
@@ -138,8 +203,17 @@ export default function DotStatusDemo() {
                 </Flex>
               ))}
             </Flex>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={SIZES_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{SIZES_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* With Outline */}
           <div className="demo-group">
             <h2 className="demo-group__heading">With Outline</h2>
             <p className="demo-group__description">
@@ -163,8 +237,17 @@ export default function DotStatusDemo() {
                 <span>Yellow with outline</span>
               </Flex>
             </Flex>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={OUTLINE_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{OUTLINE_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* Usage Examples */}
           <div className="demo-group">
             <h2 className="demo-group__heading">Usage Examples</h2>
             <p className="demo-group__description">
@@ -192,7 +275,21 @@ export default function DotStatusDemo() {
                 <span>Pending</span>
               </Flex>
             </Flex>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={USAGE_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{USAGE_CODE}</code>
+              </pre>
+            </div>
           </div>
+        </div>
+
+        <Divider variant="solid" />
+
+        {/* Props Reference */}
+        <div className="demo-group">
+          <h2 className="demo-group__heading">Props Reference</h2>
+          <Table columns={PROPS_COLUMNS} data={PROPS_DATA} />
         </div>
 
         <Divider variant="solid" />

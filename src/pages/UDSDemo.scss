@@ -4,7 +4,7 @@
     flex-direction: column;
     gap: 0;
     width: 100%;
-    max-width: 1280px;
+    max-width: var(--uds-container-xl);
     margin: 0 auto !important;
     border: solid var(--uds-border-width-1) var(--uds-border-primary);
     border-radius: var(--uds-radius-8);
@@ -333,13 +333,24 @@
 
   // ── Section layout ────────────────────────────────────────
   &__section {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: var(--uds-spacing-48);
+    margin: 0;
+    max-width: var(--uds-container-xl);
     width: 100%;
+    padding: var(--uds-spacing-48) var(--uds-spacing-16);
 
-    @media (max-width: 768px) {
-      padding: var(--uds-spacing-32) var(--uds-spacing-24);
+    @media (min-width: 768px) {
+      padding-left: var(--uds-spacing-24);
+      padding-right: var(--uds-spacing-24);
+    }
+
+    @media (min-width: 1024px) {
+      padding-left: var(--uds-spacing-32);
+      padding-right: var(--uds-spacing-32);
+    }
+
+    @media (min-width: 1280px) {
+      padding-left: var(--uds-spacing-48);
+      padding-right: var(--uds-spacing-48);
     }
   }
 

@@ -1,47 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Key from "../ui/Key/Key";
 import Flex from "../ui/Flex/Flex";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
 import Divider from "../ui/Divider/Divider";
+import Table from "../ui/Table/Table";
 import { formatLastUpdated } from "../utils/formatDate";
+import CopyButton from "../ui/CopyButton/CopyButton";
+import Prism from "prismjs";
+import "../styles/prism-custom.css";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-javascript";
 
-/**
- * Key Component Demo & Documentation
- *
- * This page demonstrates the Key component and its various configurations.
- *
- * ## Key Component Props:
- *
- * ### Required Props:
- * - `label` (string): The text or symbol to display on the key (e.g., "Esc", "⌘", "Ctrl")
- *
- * ### Optional Props:
- * - `appearance` (string): Visual style variant
- *   - Options: 'light', 'dark'
- *   - Default: 'light'
- *
- * ## Usage Examples:
- *
- * Basic key:
- * ```jsx
- * <Key label="Esc" />
- * ```
- *
- * Dark key:
- * ```jsx
- * <Key label="⌘" appearance="dark" />
- * ```
- *
- * Keyboard shortcut display:
- * ```jsx
- * <div>
- *   <Key label="Ctrl" /> + <Key label="K" />
- * </div>
- * ```
- */
+const BASIC_CODE = `import { Key } from "@mich8060/chg-design-system";
 
-// Common keyboard keys and symbols
+<Key label="Esc" />
+<Key label="⌘" />
+<Key label="Ctrl" />`;
+
+const APPEARANCE_CODE = `<Key label="Esc" appearance="light" />
+<Key label="Esc" appearance="dark" />`;
+
+const SHORTCUT_CODE = `<Flex direction="row" gap="8" alignItems="center">
+  <Key label="Ctrl" /> + <Key label="K" />
+</Flex>
+
+<Flex direction="row" gap="8" alignItems="center">
+  <Key label="⌘" /> + <Key label="C" />
+</Flex>
+
+<Flex direction="row" gap="8" alignItems="center">
+  <Key label="Shift" /> + <Key label="Enter" />
+</Flex>`;
+
 const commonKeys = [
   "Esc",
   "⌘",
@@ -59,7 +50,38 @@ const commonKeys = [
   "→",
 ];
 
+const PROPS_COLUMNS = [
+  { key: "prop", label: "Prop", render: (row) => <code>{row.prop}</code> },
+  { key: "type", label: "Type", render: (row) => <code>{row.type}</code> },
+  { key: "default", label: "Default", render: (row) => row.default ? <code>{row.default}</code> : "—" },
+  { key: "description", label: "Description" },
+];
+
+const PROPS_DATA = [
+  {
+    prop: "label",
+    type: "string",
+    default: null,
+    description: "The text or symbol to display on the key (e.g. 'Esc', '⌘', 'Ctrl').",
+  },
+  {
+    prop: "appearance",
+    type: "string",
+    default: '"light"',
+    description: "Visual style variant. Options: 'light', 'dark'.",
+  },
+  {
+    prop: "className",
+    type: "string",
+    default: '""',
+    description: "Additional CSS classes to apply to the kbd element.",
+  },
+];
+
 export default function KeyDemo() {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
 
   return (
     <section className="page">
@@ -71,9 +93,9 @@ export default function KeyDemo() {
               <h1 className="page__header-title">Key</h1>
               <p className="page__header-description">
                 The Key component displays keyboard key representations, perfect for
-          showing keyboard shortcuts, hotkeys, or keyboard instructions.
-          Supports both light and dark appearance styles to match your design
-          theme.
+                showing keyboard shortcuts, hotkeys, or keyboard instructions.
+                Supports both light and dark appearance styles to match your design
+                theme.
               </p>
             </div>
             <div className="page__header-metadata">
@@ -103,8 +125,11 @@ export default function KeyDemo() {
           </div>
         </div>
       </header>
+
       <main className="page__content">
         <div className="page__examples-section">
+
+          {/* Common Keys */}
           <div className="demo-group">
             <h2 className="demo-group__heading">Common Keys</h2>
             <p className="demo-group__description">
@@ -115,8 +140,17 @@ export default function KeyDemo() {
                 <Key key={key} label={key} />
               ))}
             </Flex>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={BASIC_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{BASIC_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* Appearances */}
           <div className="demo-group">
             <h2 className="demo-group__heading">Appearances</h2>
             <p className="demo-group__description">
@@ -125,15 +159,24 @@ export default function KeyDemo() {
             <Flex direction="row" gap="16" wrap={true} alignItems="center" className="demo-content">
               <Flex direction="column" gap="8" alignItems="center">
                 <Key label="Esc" appearance="light" />
-                <span style={{ fontSize: '12px', color: 'var(--uds-text-secondary)' }}>Light</span>
+                <span style={{ fontSize: "12px", color: "var(--uds-text-secondary)" }}>Light</span>
               </Flex>
               <Flex direction="column" gap="8" alignItems="center">
                 <Key label="Esc" appearance="dark" />
-                <span style={{ fontSize: '12px', color: 'var(--uds-text-secondary)' }}>Dark</span>
+                <span style={{ fontSize: "12px", color: "var(--uds-text-secondary)" }}>Dark</span>
               </Flex>
             </Flex>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={APPEARANCE_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{APPEARANCE_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* Keyboard Shortcuts */}
           <div className="demo-group">
             <h2 className="demo-group__heading">Keyboard Shortcuts</h2>
             <p className="demo-group__description">
@@ -153,7 +196,21 @@ export default function KeyDemo() {
                 <Key label="Shift" /> + <Key label="Enter" />
               </Flex>
             </Flex>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={SHORTCUT_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{SHORTCUT_CODE}</code>
+              </pre>
+            </div>
           </div>
+        </div>
+
+        <Divider variant="solid" />
+
+        {/* Props Reference */}
+        <div className="demo-group">
+          <h2 className="demo-group__heading">Props Reference</h2>
+          <Table columns={PROPS_COLUMNS} data={PROPS_DATA} />
         </div>
 
         <Divider variant="solid" />

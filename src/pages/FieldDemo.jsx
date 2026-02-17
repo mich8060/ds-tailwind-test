@@ -1,52 +1,98 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Field from "../ui/Field/Field";
+import Input from "../ui/Input/Input";
+import Textarea from "../ui/Textarea/Textarea";
 import Flex from "../ui/Flex/Flex";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
 import Divider from "../ui/Divider/Divider";
+import Table from "../ui/Table/Table";
 import { formatLastUpdated } from "../utils/formatDate";
+import CopyButton from "../ui/CopyButton/CopyButton";
+import Prism from "prismjs";
+import "../styles/prism-custom.css";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-javascript";
 
-/**
- * Field Component Demo & Documentation
- *
- * This page demonstrates the Field component and its various configurations.
- *
- * ## Field Component Props:
- *
- * ### Optional Props:
- * - `label` (string): Label text for the field
- * - `required` (boolean): Whether the field is required (adds asterisk to label)
- * - `helperMessage` (string): Helper text displayed below the input
- * - `infoIcon` (string): Icon name for info icon (e.g., "Info")
- * - `onInfoClick` (function): Callback when info icon is clicked
- * - `maxLength` (number): Maximum character length (enables character count)
- * - `value` (number|string): Current value (for character count calculation)
- * - `id` (string): Unique identifier for the field
- * - `children` (React.ReactNode): The input element to wrap
- *
- * ## Usage Examples:
- *
- * Basic field:
- * ```jsx
- * <Field label="Name">
- *   <input type="text" />
- * </Field>
- * ```
- *
- * Field with helper message:
- * ```jsx
- * <Field label="Email" helperMessage="We'll never share your email">
- *   <input type="email" />
- * </Field>
- * ```
- *
- * Field with character count:
- * ```jsx
- * <Field label="Description" maxLength={100} value={description}>
- *   <textarea />
- * </Field>
- * ```
- */
+const BASIC_CODE = `import { Field, Input } from "@mich8060/chg-design-system";
+
+<Field label="Name">
+  <Input placeholder="Enter your name" />
+</Field>`;
+
+const REQUIRED_CODE = `<Field label="Email" required>
+  <Input type="email" placeholder="Enter your email" />
+</Field>`;
+
+const HELPER_CODE = `<Field
+  label="Password"
+  required
+  helperMessage="Must be at least 8 characters long"
+>
+  <Input type="password" placeholder="Enter your password" />
+</Field>`;
+
+const COUNT_CODE = `const [value, setValue] = useState("");
+
+<Field
+  label="Description"
+  maxLength={100}
+  value={value}
+  helperMessage="Brief description of your item"
+>
+  <Textarea
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    placeholder="Enter a description"
+    rows={4}
+  />
+</Field>`;
+
+const INFO_CODE = `<Field
+  label="Account Number"
+  infoIcon="Info"
+  onInfoClick={() => alert("Account numbers are 8-12 digits long")}
+  helperMessage="Your unique account identifier"
+>
+  <Input placeholder="Enter account number" />
+</Field>`;
+
+const ALL_CODE = `<Field
+  label="Product Description"
+  required
+  helperMessage="Provide a detailed description of your product"
+  infoIcon="Info"
+  onInfoClick={() => alert("Include key features and benefits")}
+  maxLength={200}
+  value={value}
+>
+  <Textarea
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    placeholder="Enter product description"
+    rows={5}
+  />
+</Field>`;
+
+const PROPS_COLUMNS = [
+  { key: "prop", label: "Prop", render: (row) => <code>{row.prop}</code> },
+  { key: "type", label: "Type", render: (row) => <code>{row.type}</code> },
+  { key: "default", label: "Default", render: (row) => row.default ? <code>{row.default}</code> : "—" },
+  { key: "description", label: "Description" },
+];
+
+const PROPS_DATA = [
+  { prop: "label", type: "string", default: null, description: "Label text displayed above the input." },
+  { prop: "required", type: "boolean", default: "false", description: "Adds an asterisk (*) to the label indicating the field is required." },
+  { prop: "helperMessage", type: "string", default: null, description: "Helper text displayed below the input." },
+  { prop: "infoIcon", type: "string", default: null, description: "Phosphor icon name for an info button next to the label." },
+  { prop: "onInfoClick", type: "function", default: null, description: "Callback fired when the info icon is clicked." },
+  { prop: "maxLength", type: "number", default: null, description: "Maximum character length. Enables a character counter below the input." },
+  { prop: "value", type: "string | number", default: null, description: "Current input value, used for calculating the character count." },
+  { prop: "id", type: "string", default: "auto-generated", description: "Unique identifier for the field and its label association." },
+  { prop: "children", type: "ReactNode", default: null, description: "The input element to wrap (Input, Textarea, Dropdown, etc.)." },
+  { prop: "className", type: "string", default: '""', description: "Additional CSS classes to apply." },
+];
 
 export default function FieldDemo() {
   const [basicValue, setBasicValue] = useState("");
@@ -54,8 +100,12 @@ export default function FieldDemo() {
   const [helperValue, setHelperValue] = useState("");
   const [countValue, setCountValue] = useState("");
   const [allFeaturesValue, setAllFeaturesValue] = useState("");
-  const [requiredAllValue, setRequiredAllValue] = useState("");
-  
+  const [infoValue, setInfoValue] = useState("");
+
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
   return (
     <section className="page">
       <header className="page__header">
@@ -66,9 +116,8 @@ export default function FieldDemo() {
               <h1 className="page__header-title">Field</h1>
               <p className="page__header-description">
                 The Field component provides a consistent wrapper for form inputs with
-          labels, helper messages, character counts, and optional info icons. It
-          can wrap any input type (text, email, textarea, etc.) and provides a
-          unified styling and behavior pattern.
+                labels, helper messages, character counts, and optional info icons. It
+                can wrap any input type and provides a unified styling and behavior pattern.
               </p>
             </div>
             <div className="page__header-metadata">
@@ -98,8 +147,11 @@ export default function FieldDemo() {
           </div>
         </div>
       </header>
+
       <main className="page__content">
         <div className="page__examples-section">
+
+          {/* Basic Usage */}
           <div className="demo-group">
             <h2 className="demo-group__heading">Basic Usage</h2>
             <p className="demo-group__description">
@@ -107,16 +159,24 @@ export default function FieldDemo() {
             </p>
             <div className="demo-content">
               <Field label="Name">
-                <input
-                  type="text"
+                <Input
                   value={basicValue}
                   onChange={(e) => setBasicValue(e.target.value)}
                   placeholder="Enter your name"
                 />
               </Field>
             </div>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={BASIC_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{BASIC_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* Required Field */}
           <div className="demo-group">
             <h2 className="demo-group__heading">Required Field</h2>
             <p className="demo-group__description">
@@ -124,7 +184,7 @@ export default function FieldDemo() {
             </p>
             <div className="demo-content">
               <Field label="Email" required>
-                <input
+                <Input
                   type="email"
                   value={requiredValue}
                   onChange={(e) => setRequiredValue(e.target.value)}
@@ -132,8 +192,17 @@ export default function FieldDemo() {
                 />
               </Field>
             </div>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={REQUIRED_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{REQUIRED_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* With Helper Message */}
           <div className="demo-group">
             <h2 className="demo-group__heading">With Helper Message</h2>
             <p className="demo-group__description">
@@ -145,7 +214,7 @@ export default function FieldDemo() {
                 helperMessage="Must be at least 8 characters long"
                 required
               >
-                <input
+                <Input
                   type="password"
                   value={helperValue}
                   onChange={(e) => setHelperValue(e.target.value)}
@@ -153,12 +222,21 @@ export default function FieldDemo() {
                 />
               </Field>
             </div>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={HELPER_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{HELPER_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* With Character Count */}
           <div className="demo-group">
             <h2 className="demo-group__heading">With Character Count</h2>
             <p className="demo-group__description">
-              Fields can display a character count when a maxLength is specified. This is useful for textareas or inputs with character limits.
+              Fields can display a character count when a <code>maxLength</code> is specified. This is useful for textareas or inputs with character limits.
             </p>
             <div className="demo-content">
               <Field
@@ -167,7 +245,7 @@ export default function FieldDemo() {
                 value={countValue}
                 helperMessage="Brief description of your item"
               >
-                <textarea
+                <Textarea
                   value={countValue}
                   onChange={(e) => setCountValue(e.target.value)}
                   placeholder="Enter a description"
@@ -175,12 +253,21 @@ export default function FieldDemo() {
                 />
               </Field>
             </div>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={COUNT_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{COUNT_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* With Info Icon */}
           <div className="demo-group">
             <h2 className="demo-group__heading">With Info Icon</h2>
             <p className="demo-group__description">
-              Fields can include an info icon that can trigger additional information or tooltips when clicked.
+              Fields can include an info icon that triggers additional information or tooltips when clicked.
             </p>
             <div className="demo-content">
               <Field
@@ -189,16 +276,24 @@ export default function FieldDemo() {
                 onInfoClick={() => alert("Account numbers are 8-12 digits long")}
                 helperMessage="Your unique account identifier"
               >
-                <input
-                  type="text"
-                  value={allFeaturesValue}
-                  onChange={(e) => setAllFeaturesValue(e.target.value)}
+                <Input
+                  value={infoValue}
+                  onChange={(e) => setInfoValue(e.target.value)}
                   placeholder="Enter account number"
                 />
               </Field>
             </div>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={INFO_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{INFO_CODE}</code>
+              </pre>
+            </div>
           </div>
 
+          <Divider />
+
+          {/* All Features Combined */}
           <div className="demo-group">
             <h2 className="demo-group__heading">All Features Combined</h2>
             <p className="demo-group__description">
@@ -212,17 +307,31 @@ export default function FieldDemo() {
                 infoIcon="Info"
                 onInfoClick={() => alert("Include key features and benefits")}
                 maxLength={200}
-                value={requiredAllValue}
+                value={allFeaturesValue}
               >
-                <textarea
-                  value={requiredAllValue}
-                  onChange={(e) => setRequiredAllValue(e.target.value)}
+                <Textarea
+                  value={allFeaturesValue}
+                  onChange={(e) => setAllFeaturesValue(e.target.value)}
                   placeholder="Enter product description"
                   rows={5}
                 />
               </Field>
             </div>
+            <div className="code-block-wrapper">
+              <CopyButton codeString={ALL_CODE} />
+              <pre className="code-block">
+                <code className="language-jsx">{ALL_CODE}</code>
+              </pre>
+            </div>
           </div>
+        </div>
+
+        <Divider variant="solid" />
+
+        {/* Props Reference */}
+        <div className="demo-group">
+          <h2 className="demo-group__heading">Props Reference</h2>
+          <Table columns={PROPS_COLUMNS} data={PROPS_DATA} />
         </div>
 
         <Divider variant="solid" />

@@ -56,6 +56,13 @@ export default function Input({
     stateClassMap[effectiveState] &&
       `${BASE_CLASS}--${stateClassMap[effectiveState]}`,
     icon && `${BASE_CLASS}--has-icon-${iconPosition}`,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const wrapperClassNames = [
+    `${BASE_CLASS}-wrapper`,
+    icon && `${BASE_CLASS}-wrapper--icon-${iconPosition}`,
     className,
   ]
     .filter(Boolean)
@@ -75,7 +82,11 @@ export default function Input({
   );
 
   if (!icon) {
-    return inputElement;
+    return (
+      <div className={wrapperClassNames}>
+        {inputElement}
+      </div>
+    );
   }
 
   const iconSize = size === "compact" ? 16 : 20;
@@ -98,7 +109,7 @@ export default function Input({
   );
 
   return (
-    <div className={`${BASE_CLASS}-wrapper ${BASE_CLASS}-wrapper--icon-${iconPosition}`}>
+    <div className={wrapperClassNames}>
       {inputElement}
       {iconElement}
     </div>

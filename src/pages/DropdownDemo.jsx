@@ -4,6 +4,7 @@ import Dropdown from "../ui/Dropdown/Dropdown";
 import Flex from "../ui/Flex/Flex";
 import Breadcrumb from "../ui/Breadcrumb/Breadcrumb";
 import Divider from "../ui/Divider/Divider";
+import Table from "../ui/Table/Table";
 import { formatLastUpdated } from "../utils/formatDate";
 import CopyButton from "../ui/CopyButton/CopyButton";
 import Prism from "prismjs";
@@ -335,95 +336,30 @@ export default function DropdownDemo() {
         <Divider variant="solid" />
 
         {/* Props Reference */}
-        <div className="page__reference-section">
-          <div className="demo-group">
-            <h2 className="demo-group__heading">Props Reference</h2>
-            <div className="table-responsive">
-              <table className="reference-table">
-                <thead>
-                  <tr>
-                    <th>Prop</th>
-                    <th>Type</th>
-                    <th>Default</th>
-                    <th>Values</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><code>options</code></td>
-                    <td><code>array</code></td>
-                    <td><code>[]</code></td>
-                    <td><code>[string]</code> or <code>[{"{ value, label }"}]</code></td>
-                    <td>Array of options (strings or objects).</td>
-                  </tr>
-                  <tr>
-                    <td><code>value</code></td>
-                    <td><code>string | number</code></td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>Currently selected value.</td>
-                  </tr>
-                  <tr>
-                    <td><code>onChange</code></td>
-                    <td><code>function</code></td>
-                    <td>—</td>
-                    <td><code>(value) =&gt; void</code></td>
-                    <td>Callback fired when the selection changes.</td>
-                  </tr>
-                  <tr>
-                    <td><code>placeholder</code></td>
-                    <td><code>string</code></td>
-                    <td><code>"Select an option"</code></td>
-                    <td>—</td>
-                    <td>Placeholder text when nothing is selected.</td>
-                  </tr>
-                  <tr>
-                    <td><code>size</code></td>
-                    <td><code>string</code></td>
-                    <td><code>"default"</code></td>
-                    <td><code>"compact" | "default"</code></td>
-                    <td>Size variant of the dropdown.</td>
-                  </tr>
-                  <tr>
-                    <td><code>state</code></td>
-                    <td><code>string</code></td>
-                    <td><code>"default"</code></td>
-                    <td><code>"default" | "focused" | "error" | "disabled"</code></td>
-                    <td>Visual state of the dropdown.</td>
-                  </tr>
-                  <tr>
-                    <td><code>disabled</code></td>
-                    <td><code>boolean</code></td>
-                    <td><code>false</code></td>
-                    <td>—</td>
-                    <td>Whether the dropdown is disabled.</td>
-                  </tr>
-                  <tr>
-                    <td><code>label</code></td>
-                    <td><code>string</code></td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>Label text displayed above the dropdown.</td>
-                  </tr>
-                  <tr>
-                    <td><code>id</code></td>
-                    <td><code>string</code></td>
-                    <td>auto-generated</td>
-                    <td>—</td>
-                    <td>Unique identifier for the dropdown.</td>
-                  </tr>
-                  <tr>
-                    <td><code>className</code></td>
-                    <td><code>string</code></td>
-                    <td><code>""</code></td>
-                    <td>—</td>
-                    <td>Additional CSS classes to apply.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <div className="demo-group">
+          <h2 className="demo-group__heading">Props Reference</h2>
+          <Table
+            columns={[
+              { key: "prop", label: "Prop", render: (row) => <code>{row.prop}</code> },
+              { key: "type", label: "Type", render: (row) => <code>{row.type}</code> },
+              { key: "default", label: "Default", render: (row) => row.default ? <code>{row.default}</code> : "—" },
+              { key: "values", label: "Values", render: (row) => row.values ? <code>{row.values}</code> : "—" },
+              { key: "description", label: "Description" },
+            ]}
+            data={[
+              { prop: "options", type: "array", default: "[]", values: "[string] | [{ value, label }]", description: "Array of options (strings or objects)." },
+              { prop: "value", type: "string | number", default: null, values: null, description: "Currently selected value." },
+              { prop: "onChange", type: "function", default: null, values: "(value) => void", description: "Callback fired when the selection changes." },
+              { prop: "placeholder", type: "string", default: '"Select an option"', values: null, description: "Placeholder text when nothing is selected." },
+              { prop: "size", type: "string", default: '"default"', values: '"compact" | "default"', description: "Size variant of the dropdown." },
+              { prop: "state", type: "string", default: '"default"', values: '"default" | "focused" | "error" | "disabled"', description: "Visual state of the dropdown." },
+              { prop: "placement", type: "string", default: '"bottom-start"', values: '"bottom-start" | "bottom-end" | "top-start" | "top-end"', description: "Menu placement relative to the trigger." },
+              { prop: "disabled", type: "boolean", default: "false", values: null, description: "Whether the dropdown is disabled." },
+              { prop: "label", type: "string", default: null, values: null, description: "Label text displayed above the dropdown." },
+              { prop: "id", type: "string", default: "auto-generated", values: null, description: "Unique identifier for the dropdown." },
+              { prop: "className", type: "string", default: '""', values: null, description: "Additional CSS classes to apply." },
+            ]}
+          />
         </div>
 
         <Divider variant="solid" />

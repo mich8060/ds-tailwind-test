@@ -9,6 +9,14 @@ import { ReactComponent as ModioLogo } from "../../assets/svg/modio.svg";
 import { ReactComponent as LocumsmartLogo } from "../../assets/svg/locumsmart.svg";
 import { ReactComponent as WireframeLogo } from "../../assets/svg/wireframe.svg";
 
+import { ReactComponent as DesignSystemSymbol } from "../../assets/svg/design-system-symbol.svg";
+import { ReactComponent as ConnectSymbol } from "../../assets/svg/connect-symbol.svg";
+import { ReactComponent as CompHealthSymbol } from "../../assets/svg/comphealth-symbol.svg";
+import { ReactComponent as WeatherbySymbol } from "../../assets/svg/weatherby-symbol.svg";
+import { ReactComponent as ModioSymbol } from "../../assets/svg/modio-symbol.svg";
+import { ReactComponent as LocumsmartSymbol } from "../../assets/svg/locumsmart-symbol.svg";
+import { ReactComponent as WireframeSymbol } from "../../assets/svg/wireframe-symbol.svg";
+
 const BASE_CLASS = "uds-branding";
 
 /** Built-in brand key → inline SVG component mapping */
@@ -22,6 +30,17 @@ const BRAND_LOGOS = {
   wireframe: { Component: WireframeLogo, alt: "Wireframe" },
 };
 
+/** Built-in brand key → symbol/icon SVG component mapping */
+const BRAND_SYMBOLS = {
+  "design-system": { Component: DesignSystemSymbol, alt: "Unified Design System" },
+  connect: { Component: ConnectSymbol, alt: "CHG Connect" },
+  comphealth: { Component: CompHealthSymbol, alt: "CompHealth" },
+  weatherby: { Component: WeatherbySymbol, alt: "Weatherby Healthcare" },
+  modio: { Component: ModioSymbol, alt: "modio" },
+  locumsmart: { Component: LocumsmartSymbol, alt: "Locumsmart" },
+  wireframe: { Component: WireframeSymbol, alt: "Wireframe" },
+};
+
 /**
  * Branding component — displays a single brand logo as inline SVG.
  * Colors are driven by CSS custom properties (--uds-brands-*) so they
@@ -32,6 +51,8 @@ const BRAND_LOGOS = {
  *
  * @param {string}  brand   - Brand key: "design-system" | "connect" | "comphealth" |
  *                            "weatherby" | "modio" | "locumsmart" | "wireframe"
+ * @param {boolean} symbol  - When true, renders only the brand symbol/icon instead
+ *                            of the full logo. Defaults to false (full logo).
  * @param {boolean} inherit - When true, ignores `brand` prop and automatically uses
  *                            the active brand from the `data-brand` attribute on <html>.
  * @param {string}  size    - Size variant: "small" | "default" | "large"
@@ -39,6 +60,7 @@ const BRAND_LOGOS = {
  */
 export default function Branding({
   brand,
+  symbol = false,
   inherit = false,
   size = "default",
   className = "",
@@ -71,7 +93,9 @@ export default function Branding({
   }, [inherit]);
 
   const resolvedBrand = inherit ? activeBrand : brand;
-  const brandData = resolvedBrand && BRAND_LOGOS[resolvedBrand];
+  const isSymbol = symbol;
+  const brandMap = isSymbol ? BRAND_SYMBOLS : BRAND_LOGOS;
+  const brandData = resolvedBrand && brandMap[resolvedBrand];
 
   if (!brandData) {
     if (resolvedBrand) {
@@ -82,7 +106,12 @@ export default function Branding({
 
   const { Component: LogoComponent, alt } = brandData;
 
-  const classNames = [BASE_CLASS, `${BASE_CLASS}--${size}`, className]
+  const classNames = [
+    BASE_CLASS,
+    `${BASE_CLASS}--${size}`,
+    isSymbol ? `${BASE_CLASS}--symbol` : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 

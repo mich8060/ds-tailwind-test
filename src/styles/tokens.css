@@ -421,45 +421,47 @@
    ------------------------------------------------------------------ */
 .container {
   box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
 }
 
 .container-xs {
-  max-width: 480px;
+  max-width: var(--uds-container-xs);
 }
 
 .container-sm {
-  max-width: 640px;
+  max-width: var(--uds-container-sm);
 }
 
 .container-md {
-  max-width: 768px;
+  max-width: var(--uds-container-md);
 }
 
 .container-lg {
-  max-width: 1024px;
+  max-width: var(--uds-container-lg);
 }
 
 .container-xl {
-  max-width: 1280px;
+  max-width: var(--uds-container-xl);
 }
 
 .container-2xl {
-  max-width: 1536px;
+  max-width: var(--uds-container-2xl);
 }
 
 .container-narrow {
-  max-width: 640px;
+  max-width: var(--uds-container-narrow);
 }
 
 .container-prose {
-  max-width: 65ch;
+  max-width: var(--uds-container-prose);
+}
+
+.container-content {
+  max-width: var(--uds-container-content);
 }
 
 .container-wide {
-  max-width: 1440px;
+  max-width: var(--uds-container-wide);
 }
 
 .container-full {
@@ -471,27 +473,27 @@
 }
 @media (min-width: 640px) {
   .container-responsive {
-    max-width: 640px;
+    max-width: var(--uds-container-sm);
   }
 }
 @media (min-width: 768px) {
   .container-responsive {
-    max-width: 768px;
+    max-width: var(--uds-container-md);
   }
 }
 @media (min-width: 1024px) {
   .container-responsive {
-    max-width: 1024px;
+    max-width: var(--uds-container-lg);
   }
 }
 @media (min-width: 1280px) {
   .container-responsive {
-    max-width: 1280px;
+    max-width: var(--uds-container-xl);
   }
 }
 @media (min-width: 1536px) {
   .container-responsive {
-    max-width: 1536px;
+    max-width: var(--uds-container-2xl);
   }
 }
 
@@ -3280,6 +3282,17 @@
   --uds-spacing-48: 48px;
   --uds-spacing-64: 64px;
   --uds-spacing-80: 80px;
+  /* Containers */
+  --uds-container-xs: 480px;
+  --uds-container-sm: 640px;
+  --uds-container-md: 768px;
+  --uds-container-lg: 1024px;
+  --uds-container-xl: 1280px;
+  --uds-container-2xl: 1536px;
+  --uds-container-narrow: 640px;
+  --uds-container-prose: 65ch;
+  --uds-container-content: 960px;
+  --uds-container-wide: 1440px;
   /* Aspect Ratio */
   --uds-aspect-ratio-21-9: 21/9;
   --uds-aspect-ratio-3-2: 3/2;
