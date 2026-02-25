@@ -115,7 +115,6 @@ To discover all available files, search for the glob pattern `src/ui/**/*.ai.md`
 | Card | `src/ui/Card/Card.ai.md` |
 | Checkbox | `src/ui/Checkbox/Checkbox.ai.md` |
 | Chip | `src/ui/Chip/Chip.ai.md` |
-| CopyButton | `src/ui/CopyButton/CopyButton.ai.md` |
 | Datepicker | `src/ui/Datepicker/Datepicker.ai.md` |
 | Divider | `src/ui/Divider/Divider.ai.md` |
 | DotStatus | `src/ui/DotStatus/DotStatus.ai.md` |
@@ -208,6 +207,5 @@ To discover all available files, search for the glob pattern `src/ui/**/*.ai.md`
 - `Branding` — Brand logo and identity display
 
 ### Utilities
-- `CopyButton` — Copy-to-clipboard button
 - `MicroCalendar` — Compact calendar widget
 - `Playground` — Interactive component playground

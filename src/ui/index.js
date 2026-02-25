@@ -62,6 +62,5 @@ export { default as Tooltip } from "./Tooltip";
 export { default as Branding } from "./Branding";
 
 // Utilities
-export { default as CopyButton } from "./CopyButton";
 export { default as MicroCalendar } from "./MicroCalendar";
 export { default as Playground } from "./Playground";

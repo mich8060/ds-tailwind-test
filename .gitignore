@@ -41,3 +41,5 @@ coverage/
 
 # NPM Config
 .npmrc
+*storybook.log
+storybook-static

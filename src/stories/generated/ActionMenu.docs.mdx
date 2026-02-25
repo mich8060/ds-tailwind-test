@@ -1,0 +1,111 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+import ActionMenu from "../../ui/ActionMenu/ActionMenu";
+
+<Meta title="Components/ActionMenu/AI Docs" component={ActionMenu} />
+
+<Markdown>{`# ActionMenu
+
+Contextual dropdown menu triggered by a button, for grouping actions. Also used internally by the \`Dropdown\` component for its options popover.
+
+## When to Use
+- "More actions" menus on cards, table rows, or list items
+- Context menus with multiple actions
+- Overflow menus in toolbars
+- As the internal popup engine inside \`Dropdown\` (automatically — you don't compose it manually)
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| \`trigger\` | \`ReactNode\` | — | Element that opens the menu (usually a Button) |
+| \`items\` | \`array\` | \`[]\` | Menu items (see Item Object) |
+| \`placement\` | \`string\` | \`"bottom-end"\` | Menu placement: \`"bottom-start"\`, \`"bottom-end"\`, \`"top-start"\`, \`"top-end"\` |
+| \`fullWidth\` | \`boolean\` | \`false\` | When \`true\`, menu stretches to match the trigger width |
+| \`disabled\` | \`boolean\` | \`false\` | Whether the menu is disabled |
+| \`onOpenChange\` | \`function\` | — | Callback when open state changes: \`(isOpen: boolean) => void\` |
+| \`className\` | \`string\` | \`""\` | Additional CSS classes on the root wrapper |
+| \`menuClassName\` | \`string\` | \`""\` | Additional CSS classes on the menu panel |
+
+### Item Object
+
+| Property | Type | Description |
+|----------|------|-------------|
+| \`label\` | \`string\` | Item text |
+| \`icon\` | \`string\` | Phosphor icon name |
+| \`onClick\` | \`function\` | Click handler |
+| \`shortcut\` | \`string\` | Keyboard shortcut label (rendered with \`Key\` component) |
+| \`active\` | \`boolean\` | Active/selected state |
+| \`destructive\` | \`boolean\` | Destructive/danger styling |
+| \`disabled\` | \`boolean\` | Disabled state |
+| \`divider\` | \`boolean\` | Render as divider instead of item |
+| \`items\` | \`array\` | Nested submenu items |
+
+## Examples
+
+### Basic action menu
+\`\`\`jsx
+<ActionMenu
+  trigger={<Button layout="icon-only" icon="DotsThree" appearance="ghost" />}
+  items={[
+    { label: "Edit", icon: "PencilSimple", onClick: handleEdit },
+    { label: "Duplicate", icon: "Copy", onClick: handleDuplicate },
+    { divider: true },
+    { label: "Delete", icon: "Trash", destructive: true, onClick: handleDelete },
+  ]}
+/>
+\`\`\`
+
+### Full-width menu
+\`\`\`jsx
+<ActionMenu
+  trigger={<Button>Choose Action</Button>}
+  items={actions}
+  fullWidth
+  placement="bottom-start"
+/>
+\`\`\`
+
+### Listening to open/close
+\`\`\`jsx
+<ActionMenu
+  trigger={<Button icon="Gear">Settings</Button>}
+  items={settingsItems}
+  onOpenChange={(isOpen) => console.log("Menu open:", isOpen)}
+/>
+\`\`\`
+
+### In a table row
+\`\`\`jsx
+const columns = [
+  // ...other columns
+  {
+    key: "actions",
+    label: "",
+    render: (_, row) => (
+      <ActionMenu
+        trigger={<Button layout="icon-only" icon="DotsThree" appearance="ghost" size="small" />}
+        items={[
+          { label: "View", onClick: () => navigate(\`/items/\${row.id}\`) },
+          { label: "Edit", onClick: () => openEdit(row) },
+          { divider: true },
+          { label: "Delete", destructive: true, onClick: () => deleteItem(row.id) },
+        ]}
+        placement="bottom-end"
+      />
+    ),
+  },
+];
+\`\`\`
+
+## Architecture Note
+
+The \`Dropdown\` component composes ActionMenu internally — it maps its \`options\` into ActionMenu \`items\` and passes its select-style trigger button as ActionMenu's \`trigger\`. This means both components share a single popup engine for click-outside, keyboard navigation, and focus management, while remaining fully independent for consumers.
+
+## Do's and Don'ts
+
+✅ **Do**: Use a \`Button\` as the trigger element
+✅ **Do**: Use \`fullWidth\` + \`placement="bottom-start"\` when the menu should match the trigger width
+✅ **Do**: Use \`onOpenChange\` when you need to react to open/close state externally
+
+❌ **Don't**: Use ActionMenu for value selection in forms — use \`Dropdown\` instead
+❌ **Don't**: Add both \`disabled\` prop and disable the trigger — just use ActionMenu's \`disabled\``}</Markdown>

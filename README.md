@@ -40,6 +40,7 @@ The development server runs at [http://localhost:3000](http://localhost:3000).
 | `npm start` | Start the documentation site in development mode |
 | `npm test` | Run tests in watch mode |
 | `npm run sass:watch` | Watch and compile SCSS files |
+| `npm run docs:spec-props` | Generate props reference docs from component specs |
 
 ### Design Tokens
 
@@ -205,7 +206,6 @@ To discover every available file, glob for `src/ui/**/*.ai.md`.
 | Card | `src/ui/Card/Card.ai.md` |
 | Checkbox | `src/ui/Checkbox/Checkbox.ai.md` |
 | Chip | `src/ui/Chip/Chip.ai.md` |
-| CopyButton | `src/ui/CopyButton/CopyButton.ai.md` |
 | Datepicker | `src/ui/Datepicker/Datepicker.ai.md` |
 | Divider | `src/ui/Divider/Divider.ai.md` |
 | DotStatus | `src/ui/DotStatus/DotStatus.ai.md` |

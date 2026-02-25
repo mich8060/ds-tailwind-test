@@ -1,0 +1,52 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+import Toast from "../../ui/Toast/Toast";
+
+<Meta title="Components/Toast/AI Docs" component={Toast} />
+
+<Markdown>{`# Toast
+
+Notification toast for transient feedback messages.
+
+## When to Use
+- Success confirmations ("Item saved successfully")
+- Error messages ("Failed to delete item")
+- Warning alerts and informational notices
+- Any brief, auto-dismissing notification
+
+## Props
+
+| Prop | Type | Default | Values | Description |
+|------|------|---------|--------|-------------|
+| \`message\` | \`string\` | — | — | Toast message text |
+| \`type\` | \`string\` | \`"info"\` | \`"success"\`, \`"error"\`, \`"warning"\`, \`"info"\` | Toast variant |
+| \`duration\` | \`number\` | \`5000\` | ms | Auto-dismiss duration (0 = persistent) |
+| \`onClose\` | \`function\` | — | — | Close callback |
+| \`position\` | \`string\` | \`"top-right"\` | \`"top-right"\`, \`"top-left"\`, \`"bottom-right"\`, \`"bottom-left"\`, \`"top-center"\`, \`"bottom-center"\` | Screen position |
+| \`action\` | \`object\` | — | \`{ label, onClick }\` | Optional action button |
+
+## Usage Pattern
+
+### With toast manager
+\`\`\`jsx
+import { useToast } from "@mich8060/chg-design-system";
+
+function MyComponent() {
+  const { showToast } = useToast();
+
+  const handleSave = async () => {
+    try {
+      await saveData();
+      showToast({ message: "Saved successfully!", type: "success" });
+    } catch (err) {
+      showToast({ message: "Save failed", type: "error", duration: 0 });
+    }
+  };
+}
+\`\`\`
+
+### Direct usage
+\`\`\`jsx
+{showSuccess && (
+  <Toast message="Item created" type="success" onClose={() => setShowSuccess(false)} />
+)}
+\`\`\``}</Markdown>

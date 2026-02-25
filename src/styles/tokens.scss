@@ -117,447 +117,58 @@
 }
 
 :root {
-    --brand-color-primary-25: #f2fafc;
-    --brand-color-primary-50: #e3f5fa;
-    --brand-color-primary-100: #aee0f4;
-    --brand-color-primary-200: #78cbec;
-    --brand-color-primary-300: #41b7e5;
-    --brand-color-primary-400: #00a7e1;
-    --brand-color-primary-500: #009add;
-    --brand-color-primary-600: #008dcf;
-    --brand-color-primary-700: #0c6bb0;
-    --brand-color-primary-800: #006aa8;
-    --brand-color-primary-900: #004b88;
-
-    --brand-color-quaternary-25: #fdfcf5;
-    --brand-color-quaternary-50: #fdfbed;
-    --brand-color-quaternary-100: #f8f3cb;
-    --brand-color-quaternary-200: #f1e796;
-    --brand-color-quaternary-300: #ead55f;
-    --brand-color-quaternary-400: #f8ca10;
-    --brand-color-quaternary-500: #fbb03a;
-    --brand-color-quaternary-600: #c3841c;
-    --brand-color-quaternary-700: #a26e1b;
-    --brand-color-quaternary-800: #845c1c;
-    --brand-color-quaternary-900: #6d4d1a;
-
-    --brand-color-secondary-25: #fefbf5;
-    --brand-color-secondary-50: #fef8ee;
-    --brand-color-secondary-100: #feefd6;
-    --brand-color-secondary-200: #fbdcad;
-    --brand-color-secondary-300: #f9c278;
-    --brand-color-secondary-400: #f59e42;
-    --brand-color-secondary-500: #f2821f;
-    --brand-color-secondary-600: #e36613;
-    --brand-color-secondary-700: #bc4d12;
-    --brand-color-secondary-800: #963e16;
-    --brand-color-secondary-900: #793515;
-
-    --brand-color-tertiary-25: #eff2f5;
-    --brand-color-tertiary-50: #e6ebf0;
-    --brand-color-tertiary-100: #bfcddb;
-    --brand-color-tertiary-200: #97adc3;
-    --brand-color-tertiary-300: #708caa;
-    --brand-color-tertiary-400: #4f7499;
-    --brand-color-tertiary-500: #295d8b;
-    --brand-color-tertiary-600: #215583;
-    --brand-color-tertiary-700: #174b77;
-    --brand-color-tertiary-800: #12416b;
-    --brand-color-tertiary-900: #0f3152;
-}
-
-[data-brand="comphealth"] {
-
-    --brand-color-primary-25: #{vars.$comphealth-primary-25};
-    --brand-color-primary-50: #{vars.$comphealth-primary-50};
-    --brand-color-primary-100: #{vars.$comphealth-primary-100};
-    --brand-color-primary-200: #{vars.$comphealth-primary-200};
-    --brand-color-primary-300: #{vars.$comphealth-primary-300};
-    --brand-color-primary-400: #{vars.$comphealth-primary-400};
-    --brand-color-primary-500: #{vars.$comphealth-primary-500};
-    --brand-color-primary-600: #{vars.$comphealth-primary-600};
-    --brand-color-primary-700: #{vars.$comphealth-primary-700};
-    --brand-color-primary-800: #{vars.$comphealth-primary-800};
-    --brand-color-primary-900: #{vars.$comphealth-primary-900};
-
-    --brand-color-secondary-25: #{vars.$comphealth-secondary-25};
-    --brand-color-secondary-50: #{vars.$comphealth-secondary-50};
-    --brand-color-secondary-100: #{vars.$comphealth-secondary-100};
-    --brand-color-secondary-200: #{vars.$comphealth-secondary-200};
-    --brand-color-secondary-300: #{vars.$comphealth-secondary-300};
-    --brand-color-secondary-400: #{vars.$comphealth-secondary-400};
-    --brand-color-secondary-500: #{vars.$comphealth-secondary-500};
-    --brand-color-secondary-600: #{vars.$comphealth-secondary-600};
-    --brand-color-secondary-700: #{vars.$comphealth-secondary-700};
-    --brand-color-secondary-800: #{vars.$comphealth-secondary-800};
-    --brand-color-secondary-900: #{vars.$comphealth-secondary-900};
-
-    --brand-color-tertiary-25: #{vars.$comphealth-tertiary-25};
-    --brand-color-tertiary-50: #{vars.$comphealth-tertiary-50};
-    --brand-color-tertiary-100: #{vars.$comphealth-tertiary-100};
-    --brand-color-tertiary-200: #{vars.$comphealth-tertiary-200};
-    --brand-color-tertiary-300: #{vars.$comphealth-tertiary-300};
-    --brand-color-tertiary-400: #{vars.$comphealth-tertiary-400};
-    --brand-color-tertiary-500: #{vars.$comphealth-tertiary-500};
-    --brand-color-tertiary-600: #{vars.$comphealth-tertiary-600};
-    --brand-color-tertiary-700: #{vars.$comphealth-tertiary-700};
-    --brand-color-tertiary-800: #{vars.$comphealth-tertiary-800};
-    --brand-color-tertiary-900: #{vars.$comphealth-tertiary-900};
-
-    --brand-color-quaternary-25: #{vars.$comphealth-quaternary-25};
-    --brand-color-quaternary-50: #{vars.$comphealth-quaternary-50};
-    --brand-color-quaternary-100: #{vars.$comphealth-quaternary-100};
-    --brand-color-quaternary-200: #{vars.$comphealth-quaternary-200};
-    --brand-color-quaternary-300: #{vars.$comphealth-quaternary-300};
-    --brand-color-quaternary-400: #{vars.$comphealth-quaternary-400};
-    --brand-color-quaternary-500: #{vars.$comphealth-quaternary-500};
-    --brand-color-quaternary-600: #{vars.$comphealth-quaternary-600};
-    --brand-color-quaternary-700: #{vars.$comphealth-quaternary-700};
-    --brand-color-quaternary-800: #{vars.$comphealth-quaternary-800};
-    --brand-color-quaternary-900: #{vars.$comphealth-quaternary-900};
-
-    --uds-button-border-primary-default: #{vars.$locumsmart-primary-500};
-    --uds-button-color-primary-default: #{vars.$locumsmart-primary-500};
-    --uds-color-brand-primary: #{vars.$comphealth-primary-50};
-    --uds-color-brand-quaternary: #{vars.$comphealth-primary-900};
-    --uds-color-brand-secondary: #{vars.$comphealth-primary-400};
-    --uds-color-brand-tertiary: #{vars.$comphealth-primary-700};
-    --uds-user-designer: #{vars.$uds-user-designer};
-    --uds-user-name: #{vars.$uds-user-name};
-    --uds-user-url: #{vars.$uds-user-url};
-}
-
-
-[data-brand="modio"] {
-
-    --brand-color-primary-25: #{vars.$modio-primary-25};
-    --brand-color-primary-50: #{vars.$modio-primary-50};
-    --brand-color-primary-100: #{vars.$modio-primary-100};
-    --brand-color-primary-200: #{vars.$modio-primary-200};
-    --brand-color-primary-300: #{vars.$modio-primary-300};
-    --brand-color-primary-400: #{vars.$modio-primary-400};
-    --brand-color-primary-500: #{vars.$modio-primary-500};
-    --brand-color-primary-600: #{vars.$modio-primary-600};
-    --brand-color-primary-700: #{vars.$modio-primary-700};
-    --brand-color-primary-800: #{vars.$modio-primary-800};
-    --brand-color-primary-900: #{vars.$modio-primary-900};
-
-    --brand-color-secondary-25: #{vars.$modio-secondary-25};
-    --brand-color-secondary-50: #{vars.$modio-secondary-50};
-    --brand-color-secondary-100: #{vars.$modio-secondary-100};
-    --brand-color-secondary-200: #{vars.$modio-secondary-200};
-    --brand-color-secondary-300: #{vars.$modio-secondary-300};
-    --brand-color-secondary-400: #{vars.$modio-secondary-400};
-    --brand-color-secondary-500: #{vars.$modio-secondary-500};
-    --brand-color-secondary-600: #{vars.$modio-secondary-600};
-    --brand-color-secondary-700: #{vars.$modio-secondary-700};
-    --brand-color-secondary-800: #{vars.$modio-secondary-800};
-    --brand-color-secondary-900: #{vars.$modio-secondary-900};
-
-    --brand-color-tertiary-25: #{vars.$modio-tertiary-25};
-    --brand-color-tertiary-50: #{vars.$modio-tertiary-50};
-    --brand-color-tertiary-100: #{vars.$modio-tertiary-100};
-    --brand-color-tertiary-200: #{vars.$modio-tertiary-200};
-    --brand-color-tertiary-300: #{vars.$modio-tertiary-300};
-    --brand-color-tertiary-400: #{vars.$modio-tertiary-400};
-    --brand-color-tertiary-500: #{vars.$modio-tertiary-500};
-    --brand-color-tertiary-600: #{vars.$modio-tertiary-600};
-    --brand-color-tertiary-700: #{vars.$modio-tertiary-700};
-    --brand-color-tertiary-800: #{vars.$modio-tertiary-800};
-    --brand-color-tertiary-900: #{vars.$modio-tertiary-900};
-
-    --brand-color-quaternary-25: #{vars.$modio-quaternary-25};
-    --brand-color-quaternary-50: #{vars.$modio-quaternary-50};
-    --brand-color-quaternary-100: #{vars.$modio-quaternary-100};
-    --brand-color-quaternary-200: #{vars.$modio-quaternary-200};
-    --brand-color-quaternary-300: #{vars.$modio-quaternary-300};
-    --brand-color-quaternary-400: #{vars.$modio-quaternary-400};
-    --brand-color-quaternary-500: #{vars.$modio-quaternary-500};
-    --brand-color-quaternary-600: #{vars.$modio-quaternary-600};
-    --brand-color-quaternary-700: #{vars.$modio-quaternary-700};
-    --brand-color-quaternary-800: #{vars.$modio-quaternary-800};
-    --brand-color-quaternary-900: #{vars.$modio-quaternary-900};
-
-    --uds-button-border-primary-hover: #{vars.$locumsmart-primary-100};
-    --uds-button-color-primary-hover: #{vars.$locumsmart-primary-100};
-    --uds-brands-wireframe-orange: #{vars.$modio-primary-800};
-    --uds-user-designer: #{vars.$uds-user-designer};
-    --uds-user-name: Modio;
-    --uds-user-url: modio.com;
-}
-
-
-[data-brand="locumsmart"] {
-
-    --brand-color-primary-25: #{vars.$locumsmart-primary-25};
-    --brand-color-primary-50: #{vars.$locumsmart-primary-50};
-    --brand-color-primary-100: #{vars.$locumsmart-primary-100};
-    --brand-color-primary-200: #{vars.$locumsmart-primary-200};
-    --brand-color-primary-300: #{vars.$locumsmart-primary-300};
-    --brand-color-primary-400: #{vars.$locumsmart-primary-400};
-    --brand-color-primary-500: #{vars.$locumsmart-primary-500};
-    --brand-color-primary-600: #{vars.$locumsmart-primary-600};
-    --brand-color-primary-700: #{vars.$locumsmart-primary-700};
-    --brand-color-primary-800: #{vars.$locumsmart-primary-800};
-    --brand-color-primary-900: #{vars.$locumsmart-primary-900};
-
-    --brand-color-secondary-25: #{vars.$locumsmart-secondary-25};
-    --brand-color-secondary-50: #{vars.$locumsmart-secondary-50};
-    --brand-color-secondary-100: #{vars.$locumsmart-secondary-100};
-    --brand-color-secondary-200: #{vars.$locumsmart-secondary-200};
-    --brand-color-secondary-300: #{vars.$locumsmart-secondary-300};
-    --brand-color-secondary-400: #{vars.$locumsmart-secondary-400};
-    --brand-color-secondary-500: #{vars.$locumsmart-secondary-500};
-    --brand-color-secondary-600: #{vars.$locumsmart-secondary-600};
-    --brand-color-secondary-700: #{vars.$locumsmart-secondary-700};
-    --brand-color-secondary-800: #{vars.$locumsmart-secondary-800};
-    --brand-color-secondary-900: #{vars.$locumsmart-secondary-900};
-
-    --brand-color-quaternary-25: #{vars.$locumsmart-quaternary-25};
-    --brand-color-quaternary-50: #{vars.$locumsmart-quaternary-50};
-    --brand-color-quaternary-100: #{vars.$locumsmart-quaternary-100};
-    --brand-color-quaternary-200: #{vars.$locumsmart-quaternary-200};
-    --brand-color-quaternary-300: #{vars.$locumsmart-quaternary-300};
-    --brand-color-quaternary-400: #{vars.$locumsmart-quaternary-400};
-    --brand-color-quaternary-500: #{vars.$locumsmart-quaternary-500};
-    --brand-color-quaternary-600: #{vars.$locumsmart-quaternary-600};
-    --brand-color-quaternary-700: #{vars.$locumsmart-quaternary-700};
-    --brand-color-quaternary-800: #{vars.$locumsmart-quaternary-800};
-    --brand-color-quaternary-900: #{vars.$locumsmart-quaternary-900};
-
-    --uds-brands-wireframe-orange: #{vars.$locumsmart-tertiary-900};
-    --uds-user-designer: #{vars.$uds-user-designer};
-    --uds-user-name: Locumsmart;
-    --uds-user-url: locumsmart.com;
-}
-
-
-[data-brand="wireframe"] {
-
-    --brand-color-primary-25: #{vars.$wireframe-primary-25};
-    --brand-color-primary-50: #{vars.$wireframe-primary-50};
-    --brand-color-primary-100: #{vars.$wireframe-primary-100};
-    --brand-color-primary-200: #{vars.$wireframe-primary-200};
-    --brand-color-primary-300: #{vars.$wireframe-primary-300};
-    --brand-color-primary-400: #{vars.$wireframe-primary-400};
-    --brand-color-primary-500: #{vars.$wireframe-primary-500};
-    --brand-color-primary-600: #{vars.$wireframe-primary-600};
-    --brand-color-primary-700: #{vars.$wireframe-primary-700};
-    --brand-color-primary-800: #{vars.$wireframe-primary-800};
-    --brand-color-primary-900: #{vars.$wireframe-primary-900};
-
-    --brand-color-secondary-25: #{vars.$wireframe-secondary-25};
-    --brand-color-secondary-50: #{vars.$wireframe-secondary-50};
-    --brand-color-secondary-100: #{vars.$wireframe-secondary-100};
-    --brand-color-secondary-200: #{vars.$wireframe-secondary-200};
-    --brand-color-secondary-300: #{vars.$wireframe-secondary-300};
-    --brand-color-secondary-400: #{vars.$wireframe-secondary-400};
-    --brand-color-secondary-500: #{vars.$wireframe-secondary-500};
-    --brand-color-secondary-600: #{vars.$wireframe-secondary-600};
-    --brand-color-secondary-700: #{vars.$wireframe-secondary-700};
-    --brand-color-secondary-800: #{vars.$wireframe-secondary-800};
-    --brand-color-secondary-900: #{vars.$wireframe-secondary-900};
-
-    --brand-color-quaternary-25: #{vars.$wireframe-quaternary-25};
-    --brand-color-quaternary-50: #{vars.$wireframe-quaternary-50};
-    --brand-color-quaternary-100: #{vars.$wireframe-quaternary-100};
-    --brand-color-quaternary-200: #{vars.$wireframe-quaternary-200};
-    --brand-color-quaternary-300: #{vars.$wireframe-quaternary-300};
-    --brand-color-quaternary-400: #{vars.$wireframe-quaternary-400};
-    --brand-color-quaternary-500: #{vars.$wireframe-quaternary-500};
-    --brand-color-quaternary-600: #{vars.$wireframe-quaternary-600};
-    --brand-color-quaternary-700: #{vars.$wireframe-quaternary-700};
-    --brand-color-quaternary-800: #{vars.$wireframe-quaternary-800};
-    --brand-color-quaternary-900: #{vars.$wireframe-quaternary-900};
-
-    --uds-button-color-primary-default: #{vars.$locumsmart-primary-500};
-    --uds-button-color-primary-hover: #{vars.$locumsmart-primary-600};
-    --uds-color-brand-primary: #{vars.$uds-color-neutrals-50};
-    --uds-color-brand-quaternary: #{vars.$uds-color-neutrals-900};
-    --uds-color-brand-secondary: #{vars.$uds-color-neutrals-400};
-    --uds-color-brand-tertiary: #{vars.$uds-color-neutrals-700};
-    --uds-user-designer: #{vars.$uds-user-designer};
-    --uds-user-name: Wireframe;
-    --uds-user-url: #{vars.$uds-user-url};
-}
-
-
-[data-brand="connect"] {
-
-    --brand-color-primary-25: #{vars.$connect-primary-25};
-    --brand-color-primary-50: #{vars.$connect-primary-50};
-    --brand-color-primary-100: #{vars.$connect-primary-100};
-    --brand-color-primary-200: #{vars.$connect-primary-200};
-    --brand-color-primary-300: #{vars.$connect-primary-300};
-    --brand-color-primary-400: #{vars.$connect-primary-400};
-    --brand-color-primary-500: #{vars.$connect-primary-500};
-    --brand-color-primary-600: #{vars.$connect-primary-600};
-    --brand-color-primary-700: #{vars.$connect-primary-700};
-    --brand-color-primary-800: #{vars.$connect-primary-800};
-    --brand-color-primary-900: #{vars.$connect-primary-900};
-
-    --brand-color-secondary-25: #{vars.$connect-secondary-25};
-    --brand-color-secondary-50: #{vars.$connect-secondary-50};
-    --brand-color-secondary-100: #{vars.$connect-secondary-100};
-    --brand-color-secondary-200: #{vars.$connect-secondary-200};
-    --brand-color-secondary-300: #{vars.$connect-secondary-300};
-    --brand-color-secondary-400: #{vars.$connect-secondary-400};
-    --brand-color-secondary-500: #{vars.$connect-secondary-500};
-    --brand-color-secondary-600: #{vars.$connect-secondary-600};
-    --brand-color-secondary-700: #{vars.$connect-secondary-700};
-    --brand-color-secondary-800: #{vars.$connect-secondary-800};
-    --brand-color-secondary-900: #{vars.$connect-secondary-900};
-
-    --brand-color-tertiary-25: #{vars.$connect-tertiary-25};
-    --brand-color-tertiary-50: #{vars.$connect-tertiary-50};
-    --brand-color-tertiary-100: #{vars.$connect-tertiary-100};
-    --brand-color-tertiary-200: #{vars.$connect-tertiary-200};
-    --brand-color-tertiary-300: #{vars.$connect-tertiary-300};
-    --brand-color-tertiary-400: #{vars.$connect-tertiary-400};
-    --brand-color-tertiary-500: #{vars.$connect-tertiary-500};
-    --brand-color-tertiary-600: #{vars.$connect-tertiary-600};
-    --brand-color-tertiary-700: #{vars.$connect-tertiary-700};
-    --brand-color-tertiary-800: #{vars.$connect-tertiary-800};
-    --brand-color-tertiary-900: #{vars.$connect-tertiary-900};
-
-    --brand-color-quaternary-25: #{vars.$connect-quaternary-25};
-    --brand-color-quaternary-50: #{vars.$connect-quaternary-50};
-    --brand-color-quaternary-100: #{vars.$connect-quaternary-100};
-    --brand-color-quaternary-200: #{vars.$connect-quaternary-200};
-    --brand-color-quaternary-300: #{vars.$connect-quaternary-300};
-    --brand-color-quaternary-400: #{vars.$connect-quaternary-400};
-    --brand-color-quaternary-500: #{vars.$connect-quaternary-500};
-    --brand-color-quaternary-600: #{vars.$connect-quaternary-600};
-    --brand-color-quaternary-700: #{vars.$connect-quaternary-700};
-    --brand-color-quaternary-800: #{vars.$connect-quaternary-800};
-    --brand-color-quaternary-900: #{vars.$connect-quaternary-900};
-
-    --uds-button-border-primary-hover: #{vars.$locumsmart-primary-100};
-    --uds-button-icons-quaternary: #{vars.$locumsmart-primary-100};
-    --uds-button-icons-tertiary: #{vars.$locumsmart-primary-200};
-    --uds-button-color-primary-hover: #{vars.$locumsmart-primary-100};
-    --uds-button-text-quaternary: #{vars.$locumsmart-primary-100};
-    --uds-button-text-tertiary: #{vars.$locumsmart-primary-200};
-    --uds-brands-wireframe-orange: #{vars.$uds-color-neutrals-100};
-    --uds-user-designer: #{vars.$uds-user-designer};
-    --uds-user-name: Connect;
-    --uds-user-url: connect.chghealthcare.com;
-}
-
-
-[data-brand="weatherby"] {
-
-    --brand-color-primary-25: #{vars.$weatherby-primary-25};
-    --brand-color-primary-50: #{vars.$weatherby-primary-50};
-    --brand-color-primary-100: #{vars.$weatherby-primary-100};
-    --brand-color-primary-200: #{vars.$weatherby-primary-200};
-    --brand-color-primary-300: #{vars.$weatherby-primary-300};
-    --brand-color-primary-400: #{vars.$weatherby-primary-400};
-    --brand-color-primary-500: #{vars.$weatherby-primary-500};
-    --brand-color-primary-600: #{vars.$weatherby-primary-600};
-    --brand-color-primary-700: #{vars.$weatherby-primary-700};
-    --brand-color-primary-800: #{vars.$weatherby-primary-800};
-    --brand-color-primary-900: #{vars.$weatherby-primary-900};
-
-    --brand-color-secondary-25: #{vars.$weatherby-secondary-25};
-    --brand-color-secondary-50: #{vars.$weatherby-secondary-50};
-    --brand-color-secondary-100: #{vars.$weatherby-secondary-100};
-    --brand-color-secondary-200: #{vars.$weatherby-secondary-200};
-    --brand-color-secondary-300: #{vars.$weatherby-secondary-300};
-    --brand-color-secondary-400: #{vars.$weatherby-secondary-400};
-    --brand-color-secondary-500: #{vars.$weatherby-secondary-500};
-    --brand-color-secondary-600: #{vars.$weatherby-secondary-600};
-    --brand-color-secondary-700: #{vars.$weatherby-secondary-700};
-    --brand-color-secondary-800: #{vars.$weatherby-secondary-800};
-    --brand-color-secondary-900: #{vars.$weatherby-secondary-900};
-
-    --brand-color-tertiary-25: #{vars.$weatherby-tertiary-25};
-    --brand-color-tertiary-50: #{vars.$weatherby-tertiary-50};
-    --brand-color-tertiary-100: #{vars.$weatherby-tertiary-100};
-    --brand-color-tertiary-200: #{vars.$weatherby-tertiary-200};
-    --brand-color-tertiary-300: #{vars.$weatherby-tertiary-300};
-    --brand-color-tertiary-400: #{vars.$weatherby-tertiary-400};
-    --brand-color-tertiary-500: #{vars.$weatherby-tertiary-500};
-    --brand-color-tertiary-600: #{vars.$weatherby-tertiary-600};
-    --brand-color-tertiary-700: #{vars.$weatherby-tertiary-700};
-    --brand-color-tertiary-800: #{vars.$weatherby-tertiary-800};
-    --brand-color-tertiary-900: #{vars.$weatherby-tertiary-900};
-
-    --brand-color-quaternary-25: #{vars.$weatherby-quaternary-25};
-    --brand-color-quaternary-50: #{vars.$weatherby-quaternary-50};
-    --brand-color-quaternary-100: #{vars.$weatherby-quaternary-100};
-    --brand-color-quaternary-200: #{vars.$weatherby-quaternary-200};
-    --brand-color-quaternary-300: #{vars.$weatherby-quaternary-300};
-    --brand-color-quaternary-400: #{vars.$weatherby-quaternary-400};
-    --brand-color-quaternary-500: #{vars.$weatherby-quaternary-500};
-    --brand-color-quaternary-600: #{vars.$weatherby-quaternary-600};
-    --brand-color-quaternary-700: #{vars.$weatherby-quaternary-700};
-    --brand-color-quaternary-800: #{vars.$weatherby-quaternary-800};
-    --brand-color-quaternary-900: #{vars.$weatherby-quaternary-900};
-
-    --uds-button-border-primary-default: #{vars.$locumsmart-primary-700};
-    --uds-button-border-primary-hover: #{vars.$locumsmart-primary-500};
-    --uds-button-color-primary-default: #{vars.$locumsmart-primary-700};
-    --uds-button-color-primary-hover: #{vars.$locumsmart-primary-500};
-    --uds-brands-wireframe-orange: #{vars.$weatherby-primary-700};
-    --uds-user-designer: #{vars.$uds-user-designer};
-    --uds-user-name: Weatherby;
-    --uds-user-url: weatherby.com;
-}
-
-
-:root {
+    /* Figma now provides flattened UDS color tokens; brand indirection removed. */
     /* Brand Colors - Primary */
-    --uds-color-primary-25: var(--brand-color-primary-25);
-    --uds-color-primary-50: var(--brand-color-primary-50);
-    --uds-color-primary-100: var(--brand-color-primary-100);
-    --uds-color-primary-200: var(--brand-color-primary-200);
-    --uds-color-primary-300: var(--brand-color-primary-300);
-    --uds-color-primary-400: var(--brand-color-primary-400);
-    --uds-color-primary-500: var(--brand-color-primary-500);
-    --uds-color-primary-600: var(--brand-color-primary-600);
-    --uds-color-primary-700: var(--brand-color-primary-700);
-    --uds-color-primary-800: var(--brand-color-primary-800);
-    --uds-color-primary-900: var(--brand-color-primary-900);
+    --uds-color-primary-25: #{vars.$uds-color-primary-25};
+    --uds-color-primary-50: #{vars.$uds-color-primary-50};
+    --uds-color-primary-100: #{vars.$uds-color-primary-100};
+    --uds-color-primary-200: #{vars.$uds-color-primary-200};
+    --uds-color-primary-300: #{vars.$uds-color-primary-300};
+    --uds-color-primary-400: #{vars.$uds-color-primary-400};
+    --uds-color-primary-500: #{vars.$uds-color-primary-500};
+    --uds-color-primary-600: #{vars.$uds-color-primary-600};
+    --uds-color-primary-700: #{vars.$uds-color-primary-700};
+    --uds-color-primary-800: #{vars.$uds-color-primary-800};
+    --uds-color-primary-900: #{vars.$uds-color-primary-900};
 
     /* Brand Colors - Secondary */
-    --uds-color-secondary-25: var(--brand-color-secondary-25);
-    --uds-color-secondary-50: var(--brand-color-secondary-50);
-    --uds-color-secondary-100: var(--brand-color-secondary-100);
-    --uds-color-secondary-200: var(--brand-color-secondary-200);
-    --uds-color-secondary-300: var(--brand-color-secondary-300);
-    --uds-color-secondary-400: var(--brand-color-secondary-400);
-    --uds-color-secondary-500: var(--brand-color-secondary-500);
-    --uds-color-secondary-600: var(--brand-color-secondary-600);
-    --uds-color-secondary-700: var(--brand-color-secondary-700);
-    --uds-color-secondary-800: var(--brand-color-secondary-800);
-    --uds-color-secondary-900: var(--brand-color-secondary-900);
+    --uds-color-secondary-25: #{vars.$uds-color-secondary-25};
+    --uds-color-secondary-50: #{vars.$uds-color-secondary-50};
+    --uds-color-secondary-100: #{vars.$uds-color-secondary-100};
+    --uds-color-secondary-200: #{vars.$uds-color-secondary-200};
+    --uds-color-secondary-300: #{vars.$uds-color-secondary-300};
+    --uds-color-secondary-400: #{vars.$uds-color-secondary-400};
+    --uds-color-secondary-500: #{vars.$uds-color-secondary-500};
+    --uds-color-secondary-600: #{vars.$uds-color-secondary-600};
+    --uds-color-secondary-700: #{vars.$uds-color-secondary-700};
+    --uds-color-secondary-800: #{vars.$uds-color-secondary-800};
+    --uds-color-secondary-900: #{vars.$uds-color-secondary-900};
 
     /* Brand Colors - Tertiary */
-    --uds-color-tertiary-25: var(--brand-color-tertiary-25);
-    --uds-color-tertiary-50: var(--brand-color-tertiary-50);
-    --uds-color-tertiary-100: var(--brand-color-tertiary-100);
-    --uds-color-tertiary-200: var(--brand-color-tertiary-200);
-    --uds-color-tertiary-300: var(--brand-color-tertiary-300);
-    --uds-color-tertiary-400: var(--brand-color-tertiary-400);
-    --uds-color-tertiary-500: var(--brand-color-tertiary-500);
-    --uds-color-tertiary-600: var(--brand-color-tertiary-600);
-    --uds-color-tertiary-700: var(--brand-color-tertiary-700);
-    --uds-color-tertiary-800: var(--brand-color-tertiary-800);
-    --uds-color-tertiary-900: var(--brand-color-tertiary-900);
+    --uds-color-tertiary-25: #{vars.$uds-color-tertiary-25};
+    --uds-color-tertiary-50: #{vars.$uds-color-tertiary-50};
+    --uds-color-tertiary-100: #{vars.$uds-color-tertiary-100};
+    --uds-color-tertiary-200: #{vars.$uds-color-tertiary-200};
+    --uds-color-tertiary-300: #{vars.$uds-color-tertiary-300};
+    --uds-color-tertiary-400: #{vars.$uds-color-tertiary-400};
+    --uds-color-tertiary-500: #{vars.$uds-color-tertiary-500};
+    --uds-color-tertiary-600: #{vars.$uds-color-tertiary-600};
+    --uds-color-tertiary-700: #{vars.$uds-color-tertiary-700};
+    --uds-color-tertiary-800: #{vars.$uds-color-tertiary-800};
+    --uds-color-tertiary-900: #{vars.$uds-color-tertiary-900};
 
     /* Brand Colors - Quaternary */
-    --uds-color-quaternary-25: var(--brand-color-quaternary-25);
-    --uds-color-quaternary-50: var(--brand-color-quaternary-50);
-    --uds-color-quaternary-100: var(--brand-color-quaternary-100);
-    --uds-color-quaternary-200: var(--brand-color-quaternary-200);
-    --uds-color-quaternary-300: var(--brand-color-quaternary-300);
-    --uds-color-quaternary-400: var(--brand-color-quaternary-400);
-    --uds-color-quaternary-500: var(--brand-color-quaternary-500);
-    --uds-color-quaternary-600: var(--brand-color-quaternary-600);
-    --uds-color-quaternary-700: var(--brand-color-quaternary-700);
-    --uds-color-quaternary-800: var(--brand-color-quaternary-800);
-    --uds-color-quaternary-900: var(--brand-color-quaternary-900);
+    --uds-color-quaternary-25: #{vars.$uds-color-quaternary-25};
+    --uds-color-quaternary-50: #{vars.$uds-color-quaternary-50};
+    --uds-color-quaternary-100: #{vars.$uds-color-quaternary-100};
+    --uds-color-quaternary-200: #{vars.$uds-color-quaternary-200};
+    --uds-color-quaternary-300: #{vars.$uds-color-quaternary-300};
+    --uds-color-quaternary-400: #{vars.$uds-color-quaternary-400};
+    --uds-color-quaternary-500: #{vars.$uds-color-quaternary-500};
+    --uds-color-quaternary-600: #{vars.$uds-color-quaternary-600};
+    --uds-color-quaternary-700: #{vars.$uds-color-quaternary-700};
+    --uds-color-quaternary-800: #{vars.$uds-color-quaternary-800};
+    --uds-color-quaternary-900: #{vars.$uds-color-quaternary-900};
 
     /* Accent Colors - Amber */
     --uds-color-accent-amber-25: #{vars.$uds-color-accent-amber-25};
@@ -950,7 +561,7 @@
     --uds-brands-modio-black: #{vars.$uds-brands-modio-black};
     --uds-brands-modio-blue: #{vars.$uds-brands-modio-blue};
     --uds-brands-ds-black: #{vars.$uds-brands-ds-black};
-    --uds-brands-ds-purple: #{vars.$uds-brands-ds-gray};
+    --uds-brands-ds-purple: #{vars.$uds-brands-ds-white};
     --uds-brands-weatherby-red: #{vars.$uds-brands-weatherby-red};
     --uds-brands-weatherby-teal: #{vars.$uds-brands-weatherby-teal};
     --uds-brands-weatherby-white: #{vars.$uds-brands-weatherby-white};
@@ -1007,53 +618,53 @@
 
 
 [data-mode="dark"] {
-    --uds-color-primary-25: var(--brand-color-primary-900);
-    --uds-color-primary-50: var(--brand-color-primary-800);
-    --uds-color-primary-100: var(--brand-color-primary-700);
-    --uds-color-primary-200: var(--brand-color-primary-600);
-    --uds-color-primary-300: var(--brand-color-primary-500);
-    --uds-color-primary-400: var(--brand-color-primary-400);
-    --uds-color-primary-500: var(--brand-color-primary-300);
-    --uds-color-primary-600: var(--brand-color-primary-200);
-    --uds-color-primary-700: var(--brand-color-primary-100);
-    --uds-color-primary-800: var(--brand-color-primary-50);
-    --uds-color-primary-900: var(--brand-color-primary-25);
+    --uds-color-primary-25: #{vars.$uds-color-primary-900};
+    --uds-color-primary-50: #{vars.$uds-color-primary-800};
+    --uds-color-primary-100: #{vars.$uds-color-primary-700};
+    --uds-color-primary-200: #{vars.$uds-color-primary-600};
+    --uds-color-primary-300: #{vars.$uds-color-primary-500};
+    --uds-color-primary-400: #{vars.$uds-color-primary-400};
+    --uds-color-primary-500: #{vars.$uds-color-primary-300};
+    --uds-color-primary-600: #{vars.$uds-color-primary-200};
+    --uds-color-primary-700: #{vars.$uds-color-primary-100};
+    --uds-color-primary-800: #{vars.$uds-color-primary-50};
+    --uds-color-primary-900: #{vars.$uds-color-primary-25};
 
-    --uds-color-secondary-25: var(--brand-color-secondary-900);
-    --uds-color-secondary-50: var(--brand-color-secondary-800);
-    --uds-color-secondary-100: var(--brand-color-secondary-700);
-    --uds-color-secondary-200: var(--brand-color-secondary-600);
-    --uds-color-secondary-300: var(--brand-color-secondary-500);
-    --uds-color-secondary-400: var(--brand-color-secondary-400);
-    --uds-color-secondary-500: var(--brand-color-secondary-300);
-    --uds-color-secondary-600: var(--brand-color-secondary-200);
-    --uds-color-secondary-700: var(--brand-color-secondary-100);
-    --uds-color-secondary-800: var(--brand-color-secondary-50);
-    --uds-color-secondary-900: var(--brand-color-secondary-25);
+    --uds-color-secondary-25: #{vars.$uds-color-secondary-900};
+    --uds-color-secondary-50: #{vars.$uds-color-secondary-800};
+    --uds-color-secondary-100: #{vars.$uds-color-secondary-700};
+    --uds-color-secondary-200: #{vars.$uds-color-secondary-600};
+    --uds-color-secondary-300: #{vars.$uds-color-secondary-500};
+    --uds-color-secondary-400: #{vars.$uds-color-secondary-400};
+    --uds-color-secondary-500: #{vars.$uds-color-secondary-300};
+    --uds-color-secondary-600: #{vars.$uds-color-secondary-200};
+    --uds-color-secondary-700: #{vars.$uds-color-secondary-100};
+    --uds-color-secondary-800: #{vars.$uds-color-secondary-50};
+    --uds-color-secondary-900: #{vars.$uds-color-secondary-25};
 
-    --uds-color-tertiary-25: var(--brand-color-tertiary-900);
-    --uds-color-tertiary-50: var(--brand-color-tertiary-800);
-    --uds-color-tertiary-100: var(--brand-color-tertiary-700);
-    --uds-color-tertiary-200: var(--brand-color-tertiary-600);
-    --uds-color-tertiary-300: var(--brand-color-tertiary-500);
-    --uds-color-tertiary-400: var(--brand-color-tertiary-400);
-    --uds-color-tertiary-500: var(--brand-color-tertiary-300);
-    --uds-color-tertiary-600: var(--brand-color-tertiary-200);
-    --uds-color-tertiary-700: var(--brand-color-tertiary-100);
-    --uds-color-tertiary-800: var(--brand-color-tertiary-50);
-    --uds-color-tertiary-900: var(--brand-color-tertiary-25);
+    --uds-color-tertiary-25: #{vars.$uds-color-tertiary-900};
+    --uds-color-tertiary-50: #{vars.$uds-color-tertiary-800};
+    --uds-color-tertiary-100: #{vars.$uds-color-tertiary-700};
+    --uds-color-tertiary-200: #{vars.$uds-color-tertiary-600};
+    --uds-color-tertiary-300: #{vars.$uds-color-tertiary-500};
+    --uds-color-tertiary-400: #{vars.$uds-color-tertiary-400};
+    --uds-color-tertiary-500: #{vars.$uds-color-tertiary-300};
+    --uds-color-tertiary-600: #{vars.$uds-color-tertiary-200};
+    --uds-color-tertiary-700: #{vars.$uds-color-tertiary-100};
+    --uds-color-tertiary-800: #{vars.$uds-color-tertiary-50};
+    --uds-color-tertiary-900: #{vars.$uds-color-tertiary-25};
 
-    --uds-color-quaternary-25: var(--brand-color-quaternary-900);
-    --uds-color-quaternary-50: var(--brand-color-quaternary-800);
-    --uds-color-quaternary-100: var(--brand-color-quaternary-700);
-    --uds-color-quaternary-200: var(--brand-color-quaternary-600);
-    --uds-color-quaternary-300: var(--brand-color-quaternary-500);
-    --uds-color-quaternary-400: var(--brand-color-quaternary-400);
-    --uds-color-quaternary-500: var(--brand-color-quaternary-300);
-    --uds-color-quaternary-600: var(--brand-color-quaternary-200);
-    --uds-color-quaternary-700: var(--brand-color-quaternary-100);
-    --uds-color-quaternary-800: var(--brand-color-quaternary-50);
-    --uds-color-quaternary-900: var(--brand-color-quaternary-25);
+    --uds-color-quaternary-25: #{vars.$uds-color-quaternary-900};
+    --uds-color-quaternary-50: #{vars.$uds-color-quaternary-800};
+    --uds-color-quaternary-100: #{vars.$uds-color-quaternary-700};
+    --uds-color-quaternary-200: #{vars.$uds-color-quaternary-600};
+    --uds-color-quaternary-300: #{vars.$uds-color-quaternary-500};
+    --uds-color-quaternary-400: #{vars.$uds-color-quaternary-400};
+    --uds-color-quaternary-500: #{vars.$uds-color-quaternary-300};
+    --uds-color-quaternary-600: #{vars.$uds-color-quaternary-200};
+    --uds-color-quaternary-700: #{vars.$uds-color-quaternary-100};
+    --uds-color-quaternary-800: #{vars.$uds-color-quaternary-50};
+    --uds-color-quaternary-900: #{vars.$uds-color-quaternary-25};
 
     --uds-color-accent-amber-25: #{vars.$uds-color-accent-amber-1000};
     --uds-color-accent-amber-50: #{vars.$uds-color-accent-amber-900};
