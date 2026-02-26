@@ -1,0 +1,145 @@
+@use "../../tokens/index" as *;
+@use "./_text-input.tokens" as *;
+@use "../../tokens/primitives/typography.primitives" as *;
+
+.uds-input {
+  @include uds-body-16;
+  width: 100%;
+  padding: var(--uds-spacing-10) var(--uds-spacing-12);
+  border: var(--uds-border-width-1) solid var(--uds-input-border);
+  border-radius: var(--uds-radius-4);
+  background-color: var(--uds-input-surface);
+  color: var(--uds-text-primary);
+  transition: all var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+  box-sizing: border-box;
+  height: 44px;
+
+  // Default state (border color)
+  border-color: var(--uds-input-border);
+
+  &::placeholder {
+    color: var(--uds-text-placeholder);
+  }
+
+  // ── Size: default ───────────────────────────────────
+  &--default {
+    padding: var(--uds-spacing-10) var(--uds-spacing-12);
+  }
+
+  // ── Size: compact ───────────────────────────────────
+  &--compact {
+    padding: var(--uds-spacing-8) var(--uds-spacing-10);
+    @include uds-body-14;
+    height: 36px;
+  }
+
+  // ── State: focused ──────────────────────────────────
+  &--focused {
+    border-color: var(--uds-border-brand-primary);
+  }
+
+  // ── State: error ────────────────────────────────────
+  &--error {
+    border-color: var(--uds-text-error, #ef4444);
+  }
+
+  // ── State: disabled ─────────────────────────────────
+  &--disabled,
+  &:disabled {
+    background-color: var(--uds-surface-tertiary);
+    color: var(--uds-text-secondary);
+    cursor: not-allowed;
+    opacity: 0.6;
+    border-color: var(--uds-border-primary);
+  }
+
+  // ── Focus ring ──────────────────────────────────────
+  &:focus:not(:disabled) {
+    outline: none;
+    border-color: var(--uds-border-brand-primary);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  // ── Icon padding adjustments ────────────────────────
+  &--has-icon-right {
+    padding-right: var(--uds-spacing-40);
+
+    &.uds-input--compact {
+      padding-right: var(--uds-spacing-36);
+    }
+  }
+
+  &--has-icon-left {
+    padding-left: var(--uds-spacing-40);
+
+    &.uds-input--compact {
+      padding-left: var(--uds-spacing-36);
+    }
+  }
+
+  // ── Wrapper for input + icon ────────────────────────
+  &-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    // Enforce icon spacing from wrapper state so text never overlaps icons.
+    &--icon-right .uds-input {
+      padding-right: var(--uds-spacing-40);
+    }
+
+    &--icon-right .uds-input.uds-input--compact {
+      padding-right: var(--uds-spacing-36);
+    }
+
+    &--icon-left .uds-input {
+      padding-left: var(--uds-spacing-40);
+    }
+
+    &--icon-left .uds-input.uds-input--compact {
+      padding-left: var(--uds-spacing-36);
+    }
+  }
+
+  // ── Element: icon (positioned absolutely inside wrapper)
+  &__icon {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--uds-text-secondary);
+    pointer-events: none;
+
+    &--right {
+      right: var(--uds-spacing-12);
+    }
+
+    &--left {
+      left: var(--uds-spacing-12);
+    }
+
+    // Clickable icon (button)
+    &--clickable {
+      pointer-events: auto;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--uds-text-secondary);
+      transition: color var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+
+      &:hover:not(:disabled) {
+        color: var(--uds-text-primary);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+  }
+}

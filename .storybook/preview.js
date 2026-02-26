@@ -1,15 +1,12 @@
-import "../src/styles/tokens.css";
-import "../src/styles/prism-custom.css";
-import "../src/index.scss";
-import "../src/App.scss";
+import "../src/styles/index.scss";
 
-/** @type { import('@storybook/react-webpack5').Preview } */
+/** @type { import('@storybook/react-vite').Preview } */
 const preview = {
   decorators: [
     (Story) => {
       document.documentElement.setAttribute("data-brand", "design-system");
       document.documentElement.setAttribute("data-mode", "light");
-      return <Story />;
+      return Story();
     },
   ],
   parameters: {

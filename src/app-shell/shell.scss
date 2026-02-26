@@ -1,0 +1,106 @@
+/* App Shell: layout only (consumes tokens, does not define brand values) */
+
+.app-shell {
+    background: var(--uds-surface-primary);
+    color: var(--uds-text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    &.padding-none .app-shell__contentInner {
+        padding: var(--uds-spacing-0);
+    }
+
+    &.padding-standard .app-shell__contentInner {
+        padding: var(--uds-spacing-48);
+    }
+
+    &.container-none .app-shell__contentInner {
+        max-width: none;
+    }
+
+    &.container-fluid .app-shell__contentInner {
+        max-width: none;
+    }
+
+    &.container-max .app-shell__contentInner {
+        max-width: 1100px;
+    }
+
+    &.density-compact {
+        --shell-gap: var(--uds-spacing-2);
+    }
+
+    &.density-comfortable {
+        --shell-gap: var(--uds-spacing-4);
+    }
+}
+
+.app-shell__body {
+    background: var(--uds-surface-primary);
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    width: 100%;
+    min-height: 0;
+}
+
+.app-shell__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--uds-gap-2);
+    padding: var(--uds-spacing-24) 0;
+}
+
+.app-shell__main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 0;
+}
+
+.app-shell__content {
+    min-height: 0;
+    flex: 1;
+    display: flex;
+    width: 100%;
+}
+
+.app-shell__contentInner {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.app-shell__demo-page {
+    flex: 1;
+    width: 100%;
+}
+
+.app-shell__page-header {
+    background: var(--uds-surface-secondary);
+    border-bottom: 1px solid var(--uds-border-secondary);
+    box-sizing: border-box;
+    padding: var(--uds-spacing-80) var(--uds-spacing-48);
+    width: 100%;
+}
+
+.app-shell__listview {
+    width: 320px;
+    border-right: 1px solid var(--uds-border-secondary);
+    background: var(--uds-surface-primary);
+}
+
+.app-shell__main-content {
+    min-width: 0;
+    flex: 1;
+}
+
+.app-shell__footer {
+    padding: var(--uds-spacing-12) var(--uds-spacing-24);
+    border-top: 1px solid var(--uds-border-secondary);
+    background: var(--uds-surface-primary);
+    display: flex;
+    justify-content: space-between;
+    font: var(--uds-typography-body-xs);
+    color: var(--uds-text-secondary);
+}

@@ -1,0 +1,37 @@
+:root {
+    --uds-border-primary: var(--system-color-neutrals-300);
+    --uds-border-secondary: var(--system-color-neutrals-200);
+    --uds-border-tertiary: var(--system-color-neutrals-100);
+    --uds-border-quaternary: var(--system-color-neutrals-300);
+    --uds-border-disabled: var(--system-color-neutrals-300);
+    --uds-border-transparent: var(--system-color-transparent);
+    --uds-border-inverse: var(--system-color-white);
+    --uds-border-brand-primary: var(--system-color-primary-500);
+    --uds-border-brand-secondary: var(--system-color-primary-100);
+    --uds-border-brand-tertiary: var(--system-color-primary-700);
+    --uds-border-brand-quaternary: var(--system-color-primary-900);
+
+    --uds-border-width-1: 1px;
+    --uds-border-width-2: 2px;
+    --uds-border-width-4: 4px;
+    --uds-border-width-6: 6px;
+    --uds-border-width-none: 0px;
+
+    --uds-focus-ring-border: var(--uds-system-action-primary);
+    --uds-focus-ring-offset: var(--uds-border-width-2);
+    --uds-focus-ring-width: var(--uds-border-width-2);
+}
+
+.theme-dark {
+    --uds-border-primary: var(--system-color-neutrals-500);
+    --uds-border-secondary: var(--system-color-neutrals-400);
+    --uds-border-tertiary: var(--system-color-neutrals-300);
+    --uds-border-quaternary: var(--system-color-neutrals-200);
+    --uds-border-disabled: var(--system-color-neutrals-400);
+    --uds-border-transparent: var(--system-color-transparent);
+    --uds-border-inverse: var(--system-color-white);
+    --uds-border-brand-primary: var(--system-color-primary-500);
+    --uds-border-brand-secondary: var(--system-color-primary-100);
+    --uds-border-brand-tertiary: var(--system-color-primary-700);
+    --uds-border-brand-quaternary: var(--system-color-primary-900);
+}

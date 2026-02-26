@@ -1,0 +1,186 @@
+@use "../../tokens/index" as *;
+@use "../../tokens/primitives/typography.primitives" as *;
+.uds-event-card {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--uds-spacing-2) var(--uds-spacing-4);
+  cursor: default;
+  min-width: 0;
+
+  // ── Clickable ───────────────────────────────────────────────────
+  &--clickable {
+    cursor: pointer;
+
+    &:hover .uds-event-card__container {
+      filter: brightness(0.93);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--uds-border-focus);
+      outline-offset: 0;
+      border-radius: var(--uds-radius-4);
+    }
+  }
+
+  // ── Cap Variations ────────────────────────────────────────────
+  &--no-start-cap {
+    padding-left: 0;
+  }
+
+  &--no-end-cap {
+    padding-right: 0;
+  }
+
+  &--no-start-cap.uds-event-card--no-end-cap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // ── Container ─────────────────────────────────────────────────
+  &__container {
+    display: flex;
+    flex: 1 0 0;
+    align-items: center;
+    min-height: 1px;
+    min-width: 1px;
+    padding: var(--uds-spacing-4) var(--uds-spacing-8);
+    border-radius: var(--uds-radius-4);
+    gap: var(--uds-spacing-8);
+    position: relative;
+    overflow: hidden;
+    transition: filter var(--uds-animation-duration-150) var(--uds-animation-ease-standard);
+  }
+
+  // Container cap radius overrides
+  &--no-end-cap &__container {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &--no-start-cap &__container {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  // Bar-only mode (no content, no startCap, no icon/badge)
+  &--bar-only &__container {
+    height: 20px;
+    padding: 0;
+    gap: 0;
+  }
+
+  // ── Content ───────────────────────────────────────────────────
+  &__content {
+    display: flex;
+    flex: 1 0 0;
+    align-items: center;
+    min-height: 1px;
+    min-width: 1px;
+    gap: var(--uds-spacing-8);
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    @include uds-body-12-medium;
+    color: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex-shrink: 0;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    color: inherit;
+  }
+
+  // ── Pending Stripe Pattern ────────────────────────────────────
+  &__pattern {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 5px,
+      var(--_stripe-color) 5px,
+      var(--_stripe-color) 6px
+    );
+  }
+
+  // ════════════════════════════════════════════════════════════════
+  // TYPE × STATUS Color Matrix
+  // ════════════════════════════════════════════════════════════════
+
+  // ── Travel ──────────────────────────────────────────────────────
+  &--travel {
+    &.uds-event-card--active .uds-event-card__container {
+      background-color: var(--uds-color-primary-500);
+      color: var(--uds-text-inverse);
+    }
+
+    &.uds-event-card--past .uds-event-card__container {
+      background-color: var(--uds-color-neutrals-100);
+      color: var(--uds-text-primary);
+    }
+
+    &.uds-event-card--pending .uds-event-card__container {
+      background-color: var(--uds-color-accent-cyan-50);
+      border-left: 4px solid var(--uds-color-accent-cyan-200);
+      color: var(--uds-text-primary);
+      --_stripe-color: var(--uds-color-accent-cyan-200);
+    }
+  }
+
+  // ── Assignment ─────────────────────────────────────────────────
+  &--assignment {
+    &.uds-event-card--active .uds-event-card__container {
+      background-color: var(--uds-color-secondary-500);
+      color: var(--uds-text-inverse);
+    }
+
+    &.uds-event-card--past .uds-event-card__container {
+      background-color: var(--uds-color-neutrals-100);
+      color: var(--uds-text-primary);
+    }
+
+    &.uds-event-card--pending .uds-event-card__container {
+      background-color: var(--uds-color-accent-aqua-50);
+      border-left: 4px solid var(--uds-color-accent-aqua-200);
+      color: var(--uds-text-primary);
+      --_stripe-color: var(--uds-color-accent-aqua-200);
+    }
+  }
+
+  // ── Unassigned ─────────────────────────────────────────────────
+  &--unassigned {
+    &.uds-event-card--active .uds-event-card__container {
+      background-color: var(--uds-color-neutrals-500);
+      color: var(--uds-text-inverse);
+    }
+
+    &.uds-event-card--past .uds-event-card__container {
+      background-color: var(--uds-color-neutrals-100);
+      color: var(--uds-text-primary);
+    }
+
+    &.uds-event-card--pending .uds-event-card__container {
+      background-color: var(--uds-color-neutrals-50);
+      border-left: 4px solid var(--uds-color-neutrals-500);
+      color: var(--uds-text-primary);
+      --_stripe-color: var(--uds-color-neutrals-200);
+    }
+  }
+
+  // ── Pending: Remove left border when no startCap ──────────────
+  &--pending.uds-event-card--no-start-cap .uds-event-card__container {
+    border-left: none;
+  }
+}

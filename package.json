@@ -1,7 +1,12 @@
 {
   "name": "@mich8060/unified-design-system",
-  "version": "0.1.12",
-  "license": "UNLICENSED",
+  "private": false,
+  "version": "0.2.0",
+  "type": "module",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chghealthcare/unified-design-system.git"
@@ -10,116 +15,71 @@
     "url": "https://github.com/chghealthcare/unified-design-system/issues"
   },
   "homepage": "https://github.com/chghealthcare/unified-design-system#readme",
-  "main": "./dist/uds-components.umd.js",
-  "module": "./dist/uds-components.es.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/uds-components.es.js",
-      "require": "./dist/uds-components.umd.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/styles.css",
-    "./tokens.css": "./dist/tokens.css",
-    "./*": {
-      "import": "./dist/entries/*.js",
-      "require": "./dist/entries/*.cjs"
-    }
+    "./styles.css": "./dist/unified-design-system.css"
   },
   "files": [
     "dist",
-    "src/ui",
-    "src/styles"
+    "README.md"
   ],
   "sideEffects": [
     "**/*.css",
     "**/*.scss"
   ],
-  "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  "scripts": {
+    "dev": "vite --configLoader native",
+    "build": "vite build --configLoader native",
+    "preview": "vite preview --configLoader native",
+    "lint": "eslint .",
+    "lint:styles": "stylelint \"src/**/*.scss\"",
+    "format": "prettier . --write",
+    "generate:component": "node scripts/create-component.js",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "sass:watch": "sass --watch src/design-system:src/design-system"
   },
   "dependencies": {
     "@figma/code-connect": "^1.3.9",
     "@phosphor-icons/react": "^2.1.10",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^13.5.0",
     "dotenv": "^16.6.1",
-    "node-fetch": "^3.3.2",
-    "prismjs": "^1.30.0",
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-router-dom": "^6.28.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "prop-types": "^15.8.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "codeConnect": {
     "parser": "react"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "build:lib": "vite build --config vite.config.lib.js",
-    "postbuild:lib": "node scripts/postbuild-lib-artifacts.cjs && node scripts/validate-public-tokens.cjs && node scripts/validate-runtime-exports.cjs",
-    "build:lib:watch": "vite build --config vite.config.lib.js --watch",
-    "publish:lib": "node scripts/publish-lib.js",
-    "test": "react-scripts test",
-    "test:spec-sync": "react-scripts test --watchAll=false --runTestsByPath src/ui/Button/Button.test.tsx src/ui/Accordion/Accordion.test.tsx src/ui/Input/Input.test.tsx src/ui/Dropdown/Dropdown.test.tsx src/ui/_spec/specStorySync.test.ts",
-    "eject": "react-scripts eject",
-    "codeconnect:publish": "code-connect publish",
-    "codeconnect:unpublish": "code-connect unpublish",
-    "sass:watch": "sass --watch src/styles/tokens.scss:src/styles/tokens.css src/styles/prism-custom.scss:src/styles/prism-custom.css",
-    "typecheck": "tsc --noEmit",
-    "validate:tokens": "node scripts/validate-public-tokens.cjs",
-    "validate:runtime-exports": "node scripts/validate-runtime-exports.cjs",
-    "test:consumer-fixture": "node scripts/verify-vite-consumer-fixture.cjs",
-    "docs:spec-props": "node scripts/generate-spec-props-docs.cjs",
-    "docs:storybook-ai": "node scripts/generate-storybook-ai-docs.cjs",
-    "prestorybook": "npm run docs:storybook-ai",
-    "prebuild-storybook": "npm run docs:storybook-ai",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:storybook/recommended"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
-    "@storybook/addon-a11y": "^10.2.12",
-    "@storybook/addon-docs": "^10.2.12",
-    "@storybook/preset-create-react-app": "^10.2.12",
-    "@storybook/react-webpack5": "^10.2.12",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.3.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint-plugin-storybook": "^10.2.12",
-    "prettier": "3.8.1",
-    "prop-types": "^15.8.1",
-    "sass": "^1.97.3",
-    "storybook": "^10.2.12",
-    "typescript": "^4.9.5",
-    "vite": "^5.4.0",
-    "vite-plugin-svgr": "^4.5.0",
-    "webpack": "^5.105.2"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@eslint/js": "^9.9.0",
+    "@storybook/addon-a11y": "^8.6.17",
+    "@storybook/addon-docs": "^8.6.17",
+    "@storybook/addon-links": "^8.6.0",
+    "@storybook/react-vite": "^8.6.0",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^17.3.0",
+    "prettier": "^3.3.3",
+    "sass": "^1.78.0",
+    "storybook": "^8.6.0",
+    "stylelint": "^16.9.0",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "vite": "^6.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

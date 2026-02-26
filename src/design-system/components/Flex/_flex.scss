@@ -1,0 +1,78 @@
+@use "../../tokens/index" as *;
+@use "../../tokens/primitives/typography.primitives" as *;
+
+.ds-flex {
+  display: flex;
+}
+
+.ds-flex--inline {
+  display: inline-flex;
+}
+
+.ds-flex--full-width {
+  width: 100%;
+}
+
+.ds-flex--direction-row {
+  flex-direction: row;
+}
+
+.ds-flex--direction-column {
+  flex-direction: column;
+}
+
+.ds-flex--justify-flex-start {
+  justify-content: flex-start;
+}
+
+.ds-flex--justify-center {
+  justify-content: center;
+}
+
+.ds-flex--justify-flex-end {
+  justify-content: flex-end;
+}
+
+.ds-flex--justify-space-between {
+  justify-content: space-between;
+}
+
+.ds-flex--justify-space-around {
+  justify-content: space-around;
+}
+
+.ds-flex--justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+.ds-flex--align-stretch {
+  align-items: stretch;
+}
+
+.ds-flex--align-flex-start {
+  align-items: flex-start;
+}
+
+.ds-flex--align-center {
+  align-items: center;
+}
+
+.ds-flex--align-flex-end {
+  align-items: flex-end;
+}
+
+.ds-flex--align-baseline {
+  align-items: baseline;
+}
+
+.ds-flex--wrap-nowrap {
+  flex-wrap: nowrap;
+}
+
+.ds-flex--wrap-wrap {
+  flex-wrap: wrap;
+}
+
+.ds-flex--wrap-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}

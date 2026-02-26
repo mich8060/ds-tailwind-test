@@ -1,0 +1,12 @@
+@use "../../tokens/index" as *;
+@use "../../tokens/primitives/typography.primitives" as *;
+
+:root {
+    --uds-input-surface: var(--uds-color-neutrals-50);
+    --uds-input-border: var(--uds-color-neutrals-300);
+}
+
+.theme-dark {
+    --uds-input-surface: rgba(0,0,0,0.2);
+    --uds-input-border: var(--uds-color-white);
+}

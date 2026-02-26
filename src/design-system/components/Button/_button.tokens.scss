@@ -1,0 +1,126 @@
+@use "../../tokens/index" as *;
+@use "../../tokens/primitives/typography.primitives" as *;
+
+:root {
+    --uds-button-surface-primary-default: var(--system-color-primary-600);
+    --uds-button-surface-primary-hover: var(--system-color-primary-700);
+    --uds-button-surface-primary-destructive: var(--system-color-accent-red-600);
+    --uds-button-surface-primary-disabled: var(--system-color-neutrals-200);
+    --uds-button-surface-secondary-default: var(--system-color-primary-50);
+    --uds-button-surface-secondary-hover: var(--system-color-primary-100);
+
+    --uds-button-border-primary-default: var(--system-color-primary-600);
+    --uds-button-border-primary-hover: var(--system-color-primary-700);
+    --uds-button-border-primary-destructive: var(--system-color-accent-red-600);
+    --uds-button-border-primary-disabled: var(--system-color-neutrals-300);
+    --uds-button-border-secondary-default: var(--system-color-primary-50);
+    --uds-button-border-secondary-hover: var(--system-color-primary-100);
+
+    --uds-button-icons-primary: var(--uds-color-white);
+    --uds-button-icons-secondary: var(--uds-color-black);
+    --uds-button-icons-tertiary: var(--system-color-primary-600);
+    --uds-button-icons-quaternary: var(--system-color-primary-700);
+    --uds-button-icons-disabled: var(--system-color-neutrals-400);
+
+    --uds-button-text-default: var(--uds-color-white);
+    --uds-button-text-secondary: var(--uds-color-black);
+    --uds-button-text-tertiary: var(--system-color-primary-600);
+    --uds-button-text-quaternary: var(--system-color-primary-700);
+    --uds-button-text-disabled: var(--system-color-neutrals-400);
+}
+.brand-default,
+.brand-comphealth,
+.brand-connect,
+.brand-locumsmart,
+.brand-modio,
+.brand-gms,
+.brand-weatherby,
+.brand-wireframe {
+
+    --uds-button-surface-primary-default: var(--uds-color-primary-600);
+    --uds-button-surface-primary-hover: var(--uds-color-primary-700);
+    --uds-button-surface-primary-destructive: var(--uds-color-accent-red-600);
+    --uds-button-surface-primary-disabled: var(--uds-color-neutrals-200);
+    --uds-button-surface-secondary-default: var(--uds-color-primary-50);
+    --uds-button-surface-secondary-hover: var(--uds-color-primary-100);
+
+    --uds-button-border-primary-default: var(--uds-color-primary-600);
+    --uds-button-border-primary-hover: var(--uds-color-primary-700);
+    --uds-button-border-primary-destructive: var(--uds-color-accent-red-600);
+    --uds-button-border-primary-disabled: var(--uds-color-neutrals-300);
+    --uds-button-border-secondary-default: var(--uds-color-primary-50);
+    --uds-button-border-secondary-hover: var(--uds-color-primary-100);
+
+    --uds-button-icons-primary: var(--uds-color-white);
+    --uds-button-icons-secondary: var(--uds-color-black);
+    --uds-button-icons-tertiary: var(--uds-color-primary-600);
+    --uds-button-icons-quaternary: var(--uds-color-primary-700);
+    --uds-button-icons-disabled: var(--uds-color-neutrals-400);
+
+    --uds-button-text-default: var(--uds-color-white);
+    --uds-button-text-secondary: var(--uds-color-black);
+    --uds-button-text-tertiary: var(--uds-color-primary-600);
+    --uds-button-text-quaternary: var(--uds-color-primary-700);
+    --uds-button-text-disabled: var(--uds-color-neutrals-400);
+}
+
+.brand-default.theme-dark,
+.brand-comphealth.theme-dark,
+.brand-connect.theme-dark,
+.brand-locumsmart.theme-dark,
+.brand-modio.theme-dark,
+.brand-gms.theme-dark,
+.brand-weatherby.theme-dark,
+.brand-wireframe.theme-dark {
+    --uds-button-surface-primary-default: var(--uds-color-primary-200);
+    --uds-button-surface-primary-hover: var(--uds-color-primary-400);
+    --uds-button-surface-primary-destructive: var(--uds-color-accent-red-300);
+    --uds-button-surface-primary-disabled: var(--uds-color-neutrals-600);
+    --uds-button-surface-secondary-default: var(--uds-color-neutrals-600);
+    --uds-button-surface-secondary-hover: var(--uds-color-neutrals-500);
+
+    --uds-button-border-primary-default: var(--uds-color-primary-200);
+    --uds-button-border-primary-hover: var(--uds-color-primary-400);
+    --uds-button-border-primary-destructive: var(--uds-color-accent-red-300);
+    --uds-button-border-primary-disabled: var(--uds-color-neutrals-500);
+    --uds-button-border-secondary-default: var(--uds-color-neutrals-600);
+    --uds-button-border-secondary-hover: var(--uds-color-neutrals-500);
+
+    --uds-button-text-default: var(--uds-color-white);
+    --uds-button-text-secondary: var(--uds-color-white);
+    --uds-button-text-tertiary: var(--uds-color-primary-600);
+    --uds-button-text-quaternary: var(--uds-color-primary-700);
+    --uds-button-text-disabled: var(--uds-color-neutrals-500);
+
+    --uds-button-icons-primary: var(--uds-color-white);
+    --uds-button-icons-secondary: var(--uds-color-white);
+    --uds-button-icons-tertiary: var(--uds-color-primary-600);
+    --uds-button-icons-quaternary: var(--uds-color-primary-700);
+    --uds-button-icons-disabled: var(--uds-color-neutrals-500);
+}
+
+.brand-wireframe {
+    --uds-button-surface-primary-default: var(--uds-color-primary-500);
+    --uds-button-surface-primary-hover: var(--uds-color-primary-600);
+    --uds-button-border-primary-default: var(--uds-color-primary-500);
+    --uds-button-border-primary-hover: var(--uds-color-primary-600);
+}
+
+.brand-wireframe.theme-dark {
+    --uds-button-surface-primary-default: var(--uds-color-primary-200);
+    --uds-button-surface-primary-hover: var(--uds-color-primary-400);
+}
+
+.brand-weatherby {
+    --uds-button-surface-primary-default: var(--uds-color-primary-700);
+    --uds-button-surface-primary-hover: var(--uds-color-primary-500);
+    --uds-button-border-primary-default: var(--uds-color-primary-700);
+    --uds-button-border-primary-hover: var(--uds-color-primary-500);
+}
+
+.brand-weatherby.theme-dark {
+    --uds-button-surface-primary-default: var(--uds-color-primary-200);
+    --uds-button-surface-primary-hover: var(--uds-color-primary-400);
+    --uds-button-border-primary-default: var(--uds-color-primary-200);
+    --uds-button-border-primary-hover: var(--uds-color-primary-400);
+}

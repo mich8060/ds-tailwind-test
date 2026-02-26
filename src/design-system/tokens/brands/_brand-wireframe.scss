@@ -1,0 +1,64 @@
+.brand-wireframe {
+    --uds-logo-wireframe-black: var(--uds-color-black);
+    --uds-logo-wireframe-blue: var(--uds-color-blue);
+    --uds-logo-wireframe-green: var(--uds-color-green);
+    --uds-logo-wireframe-orange: var(--uds-color-orange);
+
+    --brand-primary-25: #FAFAFA;
+    --brand-primary-50: #F5F5F5;
+    --brand-primary-100: #EBEBEB;
+    --brand-primary-200: #D1D1D1;
+    --brand-primary-300: #BEBEBE;
+    --brand-primary-400: #AAAAAA;
+    --brand-primary-500: #969696;
+    --brand-primary-600: #818181;
+    --brand-primary-700: #6A6A6A;
+    --brand-primary-800: #585858;
+    --brand-primary-900: #333333;
+
+    --brand-secondary-25: #FAFDFF;
+    --brand-secondary-50: #F0F9FF;
+    --brand-secondary-100: #E0F2FE;
+    --brand-secondary-200: #BAE6FD;
+    --brand-secondary-300: #7DD3FC;
+    --brand-secondary-400: #38BDF8;
+    --brand-secondary-500: #0EA5E9;
+    --brand-secondary-600: #0284C7;
+    --brand-secondary-700: #0369A1;
+    --brand-secondary-800: #075985;
+    --brand-secondary-900: #0C4A6E;
+
+    --brand-tertiary-25: #EFF2F5;
+    --brand-tertiary-50: #E6EBF0;
+    --brand-tertiary-100: #BFCDDB;
+    --brand-tertiary-200: #97ADC3;
+    --brand-tertiary-300: #708CAA;
+    --brand-tertiary-400: #4F7499;
+    --brand-tertiary-500: #295D8B;
+    --brand-tertiary-600: #215583;
+    --brand-tertiary-700: #174B77;
+    --brand-tertiary-800: #12416B;
+    --brand-tertiary-900: #0F3152;
+
+    --brand-quaternary-25: #F5FEFF;
+    --brand-quaternary-50: #ECFEFF;
+    --brand-quaternary-100: #CFFAFE;
+    --brand-quaternary-200: #A5F3FC;
+    --brand-quaternary-300: #67E8F9;
+    --brand-quaternary-400: #22D3EE;
+    --brand-quaternary-500: #06B6D4;
+    --brand-quaternary-600: #0891B2;
+    --brand-quaternary-700: #0E7490;
+    --brand-quaternary-800: #155E75;
+    --brand-quaternary-900: #164E63;
+
+    --uds-button-color-primary-default: var(--uds-color-primary-500);
+    --uds-button-color-primary-hover: var(--uds-color-primary-600); 
+}
+
+.brand-wireframe.theme-dark {
+    --uds-logo-wireframe-black: #ffffff;        
+    --uds-logo-wireframe-blue: #ffffff;
+    --uds-logo-wireframe-green: #ffffff;
+    --uds-logo-wireframe-orange: #ffffff;
+}

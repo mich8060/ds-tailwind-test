@@ -1,0 +1,8 @@
+@use "../../tokens/index" as *;
+@use "../../tokens/primitives/typography.primitives" as *;
+$text-family: var(--uds-font-family);
+
+$text-weight-regular: var(--uds-font-weight);
+$text-weight-medium: var(--uds-font-weight-medium);
+$text-weight-semibold: var(--uds-font-weight-semibold);
+$text-weight-bold: var(--uds-font-weight-bold);
