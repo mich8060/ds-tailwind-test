@@ -9,6 +9,7 @@ import TextInput from "../TextInput/TextInput";
 import Branding from "../Branding/Branding";
 import Dropdown from "../Dropdown/Dropdown";
 import Toggle from "../Toggle/Toggle";
+import { Text } from "../Text/Text";
 import type { MenuProps, MenuMode } from "./Menu.types";
 
 interface MenuChildItem {
@@ -58,6 +59,9 @@ export default function Menu({
     showNav = true,
     showModeToggle = true,
     showUser = true,
+    userName = "Jane Doe",
+    userInitials = "JD",
+    userAvatarSrc,
     identity = "design-system",
 }: MenuProps) {
     const location = useLocation();
@@ -243,8 +247,23 @@ export default function Menu({
                 )}
             </div>
             {showUser && (
-                <div className="uds-menu_user">
-                    <Avatar initials="EB" size="default" />
+                <div className="uds-menu_account">
+                    <Avatar
+                        src={userAvatarSrc}
+                        initials={userInitials}
+                        alt={userName ? `${userName} avatar` : "User avatar"}
+                        size="default"
+                    />
+                    <Text as="p" variant="body-16" weight="semibold" leading="regular" className="uds-menu_account__name">
+                        {userName}
+                    </Text>
+                    <Button
+                        appearance="text"
+                        icon={<Icon name="DotsThreeVertical" appearance="bold" />}
+                        label="Account Menu"
+                        layout="icon-only"
+                        aria-label="Account menu"
+                    />
                 </div>
             )}
         </aside>
@@ -278,6 +297,9 @@ Menu.propTypes = {
     showNav: PropTypes.bool,
     showModeToggle: PropTypes.bool,
     showUser: PropTypes.bool,
+    userName: PropTypes.string,
+    userInitials: PropTypes.string,
+    userAvatarSrc: PropTypes.string,
 };
 
 Menu.defaultProps = {

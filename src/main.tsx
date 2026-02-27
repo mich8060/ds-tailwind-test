@@ -11,98 +11,103 @@ import { TextInputDemoPage } from "./pages/components/TextInputDemoPage";
 import { ToggleDemoPage } from "./pages/components/ToggleDemoPage";
 import { IconDemoPage } from "./pages/components/IconDemoPage";
 import { AccordionDemoPage } from "./pages/components/AccordionDemoPage";
+import { BrandingDemoPage } from "./pages/components/BrandingDemoPage";
 
 type Brand =
-  | "default"
-  | "comphealth"
-  | "weatherby"
-  | "connect"
-  | "locumsmart"
-  | "modio"
-  | "gms"
-  | "wireframe";
+    | "default"
+    | "comphealth"
+    | "weatherby"
+    | "connect"
+    | "locumsmart"
+    | "modio"
+    | "gms"
+    | "wireframe";
 type Theme = "light" | "dark";
 
 const BRAND_OPTIONS: Brand[] = [
-  "default",
-  "comphealth",
-  "weatherby",
-  "connect",
-  "locumsmart",
-  "modio",
-  "gms",
-  "wireframe",
+    "default",
+    "comphealth",
+    "weatherby",
+    "connect",
+    "locumsmart",
+    "modio",
+    "gms",
+    "wireframe",
 ];
 
 const NAV_ITEMS = [
-  {
-    label: "Components",
-    icon: "SquaresFour",
-    children: [
-      { label: "Button", path: "/components/button" },
-      { label: "Text", path: "/components/text" },
-      { label: "TextInput", path: "/components/text-input" },
-      { label: "Toggle", path: "/components/toggle" },
-      { label: "Icon", path: "/components/icon" },
-      { label: "Accordion", path: "/components/accordion" },
-    ],
-  },
+    {
+        label: "Components",
+        icon: "SquaresFour",
+        children: [
+            { label: "Button", path: "/components/button" },
+            { label: "Text", path: "/components/text" },
+            { label: "TextInput", path: "/components/text-input" },
+            { label: "Toggle", path: "/components/toggle" },
+            { label: "Icon", path: "/components/icon" },
+            { label: "Accordion", path: "/components/accordion" },
+            { label: "Branding", path: "/components/branding" },
+        ],
+    },
 ];
 
 function App() {
-  const [brand, setBrand] = React.useState<Brand>("default");
-  const [theme, setTheme] = React.useState<Theme>("light");
+    const [brand, setBrand] = React.useState<Brand>("default");
+    const [theme, setTheme] = React.useState<Theme>("light");
 
-  const handleBrandChange = (nextBrand: unknown) => {
-    if (typeof nextBrand === "string" && BRAND_OPTIONS.includes(nextBrand as Brand)) {
-      setBrand(nextBrand as Brand);
-    }
-  };
+    const handleBrandChange = (nextBrand: unknown) => {
+        if (typeof nextBrand === "string" && BRAND_OPTIONS.includes(nextBrand as Brand)) {
+            setBrand(nextBrand as Brand);
+        }
+    };
 
-  const handleModeChange = (nextMode: unknown) => {
-    if (nextMode === "light" || nextMode === "dark") {
-      setTheme(nextMode);
-    }
-  };
+    const handleModeChange = (nextMode: unknown) => {
+        if (nextMode === "light" || nextMode === "dark") {
+            setTheme(nextMode);
+        }
+    };
 
-  const identity = brand === "default" ? "design-system" : brand;
+    const identity = brand === "default" ? "design-system" : brand;
 
-  return (
-    <AppShell brand={brand} theme={theme}>
-      <AppShell.Menu>
-        <Menu
-          navItems={NAV_ITEMS}
-          identity={identity}
-          brands={BRAND_OPTIONS}
-          activeBrand={brand}
-          onBrandChange={handleBrandChange}
-          activeMode={theme}
-          onModeChange={handleModeChange}
-          showBrandSwitcher
-          showModeToggle
-        />
-      </AppShell.Menu>
-      <AppShell.Content>
-        <AppShell.Main>
-          <Routes>
-            <Route path="/" element={<Navigate to="/components/button" replace />} />
-            <Route path="/components/button" element={<ButtonDemoPage />} />
-            <Route path="/components/text" element={<TextDemoPage />} />
-            <Route path="/components/text-input" element={<TextInputDemoPage />} />
-            <Route path="/components/toggle" element={<ToggleDemoPage />} />
-            <Route path="/components/icon" element={<IconDemoPage />} />
-            <Route path="/components/accordion" element={<AccordionDemoPage />} />
-          </Routes>
-        </AppShell.Main>
-      </AppShell.Content>
-    </AppShell>
-  );
+    return (
+        <AppShell brand={brand} theme={theme}>
+            <AppShell.Menu>
+                <Menu
+                    navItems={NAV_ITEMS}
+                    identity={identity}
+                    brands={BRAND_OPTIONS}
+                    activeBrand={brand}
+                    onBrandChange={handleBrandChange}
+                    activeMode={theme}
+                    onModeChange={handleModeChange}
+                    showBrandSwitcher
+                    showModeToggle
+                    userName="Emily Brown"
+                    userInitials="EB"
+                />
+            </AppShell.Menu>
+            <AppShell.Content>
+                <AppShell.Main>
+                    <Routes>
+                        <Route path="/" element={<Navigate to="/components/button" replace />} />
+                        <Route path="/components/button" element={<ButtonDemoPage />} />
+                        <Route path="/components/text" element={<TextDemoPage />} />
+                        <Route path="/components/text-input" element={<TextInputDemoPage />} />
+                        <Route path="/components/toggle" element={<ToggleDemoPage />} />
+                        <Route path="/components/icon" element={<IconDemoPage />} />
+                        <Route path="/components/accordion" element={<AccordionDemoPage />} />
+                        <Route path="/components/branding" element={<BrandingDemoPage />} />
+                    </Routes>
+                </AppShell.Main>
+            </AppShell.Content>
+        </AppShell>
+    );
 }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </React.StrictMode>
 );

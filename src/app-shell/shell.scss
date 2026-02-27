@@ -6,7 +6,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     &.padding-none .app-shell__contentInner {
         padding: var(--uds-spacing-0);
     }
@@ -37,12 +37,27 @@
 }
 
 .app-shell__body {
+    --app-shell-menu-width: 64px;
+    --app-shell-footer-height: 48px;
     background: var(--uds-surface-primary);
     display: flex;
     flex: 1;
     flex-direction: row;
+    align-items: stretch;
     width: 100%;
     min-height: 0;
+}
+
+.app-shell__sidebar {
+    position: relative;
+    width: var(--app-shell-menu-width);
+    min-width: var(--app-shell-menu-width);
+    flex: 0 0 var(--app-shell-menu-width);
+    transition: width 0.3s ease, min-width 0.3s ease, flex-basis 0.3s ease;
+}
+
+.app-shell__body:has(.uds-menu--expanded) {
+    --app-shell-menu-width: 280px;
 }
 
 .app-shell__nav {
@@ -55,8 +70,10 @@
 .app-shell__main {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
     min-height: 0;
+    padding-bottom: var(--app-shell-footer-height);
 }
 
 .app-shell__content {
@@ -93,14 +110,24 @@
 .app-shell__main-content {
     min-width: 0;
     flex: 1;
+    overflow-x: hidden;
 }
 
 .app-shell__footer {
+    position: fixed;
+    left: var(--app-shell-menu-width);
+    right: 0;
+    bottom: 0;
+    height: var(--app-shell-footer-height);
+    box-sizing: border-box;
     padding: var(--uds-spacing-12) var(--uds-spacing-24);
     border-top: 1px solid var(--uds-border-secondary);
     background: var(--uds-surface-primary);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font: var(--uds-typography-body-xs);
     color: var(--uds-text-secondary);
+    z-index: 900;
+    transition: left 0.3s ease;
 }

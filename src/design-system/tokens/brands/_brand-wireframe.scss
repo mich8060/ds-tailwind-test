@@ -1,8 +1,4 @@
 .brand-wireframe {
-    --uds-logo-wireframe-black: var(--uds-color-black);
-    --uds-logo-wireframe-blue: var(--uds-color-blue);
-    --uds-logo-wireframe-green: var(--uds-color-green);
-    --uds-logo-wireframe-orange: var(--uds-color-orange);
 
     --brand-primary-25: #FAFAFA;
     --brand-primary-50: #F5F5F5;
@@ -54,11 +50,4 @@
 
     --uds-button-color-primary-default: var(--uds-color-primary-500);
     --uds-button-color-primary-hover: var(--uds-color-primary-600); 
-}
-
-.brand-wireframe.theme-dark {
-    --uds-logo-wireframe-black: #ffffff;        
-    --uds-logo-wireframe-blue: #ffffff;
-    --uds-logo-wireframe-green: #ffffff;
-    --uds-logo-wireframe-orange: #ffffff;
 }

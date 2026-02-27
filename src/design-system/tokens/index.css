@@ -1,5 +1,4 @@
 .brand-default {
-  --uds-logo-ds-black: #111111;
   --brand-primary-25: #F2FAFD;
   --brand-primary-50: #E3F5FA;
   --brand-primary-100: #AEE0F4;
@@ -46,14 +45,7 @@
   --brand-quaternary-900: #6D4D1A;
 }
 
-.brand-default.theme-dark {
-  --uds-logo-ds-black: #FFFFFF;
-}
-
 .brand-comphealth {
-  --uds-logo-comphealth-orange: #ef681f;
-  --uds-logo-comphealth-purple: #644d7b;
-  --uds-logo-comphealth-white: #ffffff;
   --brand-primary-25: #F0ECF3;
   --brand-primary-50: #EAE4EE;
   --brand-primary-100: #CCC4D7;
@@ -100,16 +92,7 @@
   --brand-quaternary-900: #2A4F7E;
 }
 
-.brand-comphealth.theme-dark {
-  --uds-logo-comphealth-orange: #ffffff;
-  --uds-logo-comphealth-purple: #ffffff;
-  --uds-logo-comphealth-white: #111111;
-}
-
 .brand-weatherby {
-  --uds-logo-weatherby-red: #D36192;
-  --uds-logo-weatherby-teal: #009277;
-  --uds-logo-weatherby-white: #ffffff;
   --brand-primary-25: #FCF2F5;
   --brand-primary-50: #F9E5EC;
   --brand-primary-100: #E7BECC;
@@ -160,15 +143,7 @@
   --uds-button-border-primary-hover: var(--uds-color-primary-500);
 }
 
-.brand-weatherby.theme-dark {
-  --uds-logo-weatherby-red: #ffffff;
-  --uds-logo-weatherby-teal: #ffffff;
-  --uds-logo-weatherby-white: #111111;
-}
-
 .brand-connect {
-  --uds-logo-connect-dark-blue: #0075c9;
-  --uds-logo-connect-light-blue: #00a7e1;
   --brand-primary-25: #FAFDFF;
   --brand-primary-50: #EFFAFF;
   --brand-primary-100: #DEF4FF;
@@ -215,15 +190,7 @@
   --brand-quaternary-900: #473E3C;
 }
 
-.brand-connect.theme-dark {
-  --uds-logo-connect-dark-blue: #ffffff;
-  --uds-logo-connect-light-blue: #ffffff;
-}
-
 .brand-locumsmart {
-  --uds-logo-locumsmart-black: #111111;
-  --uds-logo-locumsmart-blue: #009ADD;
-  --uds-logo-locumsmart-orange: #D7951B;
   --brand-primary-25: #F2FAFD;
   --brand-primary-50: #E3F5FA;
   --brand-primary-100: #AEE0F4;
@@ -270,17 +237,7 @@
   --brand-quaternary-900: #6D4D1A;
 }
 
-.brand-locumsmart.theme-dark {
-  --uds-logo-locumsmart-black: #ffffff;
-  --uds-logo-locumsmart-blue: #ffffff;
-  --uds-logo-locumsmart-orange: #ffffff;
-}
-
 .brand-wireframe {
-  --uds-logo-wireframe-black: var(--uds-color-black);
-  --uds-logo-wireframe-blue: var(--uds-color-blue);
-  --uds-logo-wireframe-green: var(--uds-color-green);
-  --uds-logo-wireframe-orange: var(--uds-color-orange);
   --brand-primary-25: #FAFAFA;
   --brand-primary-50: #F5F5F5;
   --brand-primary-100: #EBEBEB;
@@ -329,16 +286,7 @@
   --uds-button-color-primary-hover: var(--uds-color-primary-600);
 }
 
-.brand-wireframe.theme-dark {
-  --uds-logo-wireframe-black: #ffffff;
-  --uds-logo-wireframe-blue: #ffffff;
-  --uds-logo-wireframe-green: #ffffff;
-  --uds-logo-wireframe-orange: #ffffff;
-}
-
 .brand-modio {
-  --uds-logo-modio-black: #202938;
-  --uds-logo-modio-blue: #36A5CE;
   --brand-primary-25: #F1FBFD;
   --brand-primary-50: #E5F7FC;
   --brand-primary-100: #C8ECF8;
@@ -383,11 +331,6 @@
   --brand-quaternary-700: #54782B;
   --brand-quaternary-800: #476524;
   --brand-quaternary-900: #2F4318;
-}
-
-.brand-modio.theme-dark {
-  --uds-logo-modio-black: #ffffff;
-  --uds-logo-modio-blue: #ffffff;
 }
 
 .brand-gms {
@@ -1632,6 +1575,48 @@
     --uds-line-20: 26px;
   }
 }
+:root {
+  --uds-logo-comphealth-orange: #ef681f;
+  --uds-logo-comphealth-purple: #644d7b;
+  --uds-logo-comphealth-white: #ffffff;
+  --uds-logo-connect-dark-blue: #0075c9;
+  --uds-logo-connect-light-blue: #00a7e1;
+  --uds-logo-ds-black: #111111;
+  --uds-logo-locumsmart-black: #111111;
+  --uds-logo-locumsmart-blue: #009ADD;
+  --uds-logo-locumsmart-orange: #D7951B;
+  --uds-logo-modio-black: #202938;
+  --uds-logo-modio-blue: #36A5CE;
+  --uds-logo-weatherby-red: #D36192;
+  --uds-logo-weatherby-teal: #009277;
+  --uds-logo-weatherby-white: #ffffff;
+  --uds-logo-wireframe-black: var(--uds-color-black);
+  --uds-logo-wireframe-blue: #00A7E1;
+  --uds-logo-wireframe-green: #80BC00;
+  --uds-logo-wireframe-orange: #FF8300;
+}
+
+.theme-dark {
+  --uds-logo-comphealth-orange: #ffffff;
+  --uds-logo-comphealth-purple: #ffffff;
+  --uds-logo-comphealth-white: #111111;
+  --uds-logo-connect-dark-blue: #ffffff;
+  --uds-logo-connect-light-blue: #ffffff;
+  --uds-logo-ds-black: #FFFFFF;
+  --uds-logo-locumsmart-black: #ffffff;
+  --uds-logo-locumsmart-blue: #ffffff;
+  --uds-logo-locumsmart-orange: #ffffff;
+  --uds-logo-modio-black: #ffffff;
+  --uds-logo-modio-blue: #ffffff;
+  --uds-logo-weatherby-red: #ffffff;
+  --uds-logo-weatherby-teal: #ffffff;
+  --uds-logo-weatherby-white: #111111;
+  --uds-logo-wireframe-black: #ffffff;
+  --uds-logo-wireframe-blue: #ffffff;
+  --uds-logo-wireframe-green: #ffffff;
+  --uds-logo-wireframe-orange: #ffffff;
+}
+
 :root {
   --uds-border-primary: var(--system-color-neutrals-300);
   --uds-border-secondary: var(--system-color-neutrals-200);

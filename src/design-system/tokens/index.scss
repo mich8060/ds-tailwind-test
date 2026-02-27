@@ -22,6 +22,7 @@
 @use "./primitives/spacing.primitives";
 @use "./primitives/typography.primitives";
 
+@use "./semantics/branding.semantics";
 @use "./semantics/border.semantics"; 
 @use "./semantics/code.semantics";
 @use "./semantics/container.semantics";  

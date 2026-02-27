@@ -44,5 +44,8 @@ export interface MenuProps extends Omit<HTMLAttributes<HTMLElement>, "onChange">
   showNav?: boolean;
   showModeToggle?: boolean;
   showUser?: boolean;
+  userName?: string;
+  userInitials?: string;
+  userAvatarSrc?: string;
   identity?: string;
 }

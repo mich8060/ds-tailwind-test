@@ -1,7 +1,4 @@
 .brand-weatherby {
-    --uds-logo-weatherby-red: #D36192;
-    --uds-logo-weatherby-teal: #009277;
-    --uds-logo-weatherby-white: #ffffff;
 
     --brand-primary-25: #FCF2F5;
     --brand-primary-50: #F9E5EC;
@@ -55,11 +52,4 @@
     --uds-button-color-primary-hover: var(--uds-color-primary-500);
     --uds-button-border-primary-default: var(--uds-color-primary-700);
     --uds-button-border-primary-hover: var(--uds-color-primary-500);
-}
-
-
-.brand-weatherby.theme-dark {
-    --uds-logo-weatherby-red: #ffffff;
-    --uds-logo-weatherby-teal: #ffffff; 
-    --uds-logo-weatherby-white: #111111;
 }

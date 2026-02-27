@@ -1,0 +1,34 @@
+import { Flex, Table, Text } from "../../design-system";
+
+export interface ComponentPropRow {
+  prop: string;
+  type: string;
+  defaultValue: string;
+  description: string;
+}
+
+const COLUMNS = [
+  { key: "prop", label: "Prop" },
+  { key: "type", label: "Type" },
+  { key: "defaultValue", label: "Default" },
+  { key: "description", label: "Description" },
+];
+
+interface ComponentPropsTableProps {
+  rows: ComponentPropRow[];
+  title?: string;
+}
+
+export function ComponentPropsTable({
+  rows,
+  title = "Props",
+}: ComponentPropsTableProps) {
+  return (
+    <Flex direction="column" gap="12">
+      <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+        {title}
+      </Text>
+      <Table columns={COLUMNS} data={rows} />
+    </Flex>
+  );
+}
