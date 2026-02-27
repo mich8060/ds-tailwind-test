@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import PropTypes from "prop-types";
 import "./_menu.scss";
 import { Link, useLocation } from "react-router-dom";
@@ -70,7 +70,10 @@ function Menu({
     const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({});
     const [isMenuOpen, setIsMenuOpen] = useState(true);
     const normalizedNavItems = useMemo(() => navItems.filter(isMenuNavItem), [navItems]);
-    const normalizedBrands = brands.filter((brand): brand is string => typeof brand === "string");
+    const normalizedBrands = useMemo(
+        () => brands.filter((brand): brand is string => typeof brand === "string"),
+        [brands]
+    );
     const resolvedTitle = typeof title === "string" ? title : "Menu";
     const resolvedActiveBrand =
         typeof activeBrand === "string" ? activeBrand : normalizedBrands[0];
@@ -79,7 +82,10 @@ function Menu({
             ? "design-system"
             : (resolvedActiveBrand ?? identity);
     const activeMenuMode = toMenuMode(activeMode);
-    const normalizedAccountMenuItems = Array.isArray(accountMenuItems) ? accountMenuItems : [];
+    const normalizedAccountMenuItems = useMemo(
+        () => (Array.isArray(accountMenuItems) ? accountMenuItems : []),
+        [accountMenuItems]
+    );
 
     // Auto-expand accordion whose child matches the current route
     useEffect(() => {
@@ -108,33 +114,33 @@ function Menu({
         });
     }, [location.pathname, normalizedNavItems]);
 
-    const toggleAccordion = (label: string) => {
+    const toggleAccordion = useCallback((label: string) => {
         setOpenAccordions((prev) => ({ ...prev, [label]: !prev[label] }));
-    };
-    const toggleMenu = () => setIsMenuOpen((prev) => !prev);
-    const expandMenu = () => setIsMenuOpen(true);
-    const handleCollapsedMenuClickCapture = (event: React.MouseEvent<HTMLElement>) => {
+    }, []);
+    const toggleMenu = useCallback(() => setIsMenuOpen((prev) => !prev), []);
+    const expandMenu = useCallback(() => setIsMenuOpen(true), []);
+    const handleCollapsedMenuClickCapture = useCallback((event: React.MouseEvent<HTMLElement>) => {
         if (!isMenuOpen) {
             // When collapsed, first click should only expand the menu.
             event.preventDefault();
             event.stopPropagation();
             expandMenu();
         }
-    };
-    const handleAccordionClick = (label: string) => {
+    }, [expandMenu, isMenuOpen]);
+    const handleAccordionClick = useCallback((label: string) => {
         if (!isMenuOpen) {
             expandMenu();
             setOpenAccordions((prev) => ({ ...prev, [label]: true }));
             return;
         }
         toggleAccordion(label);
-    };
-    const handleNavItemClick = () => {
+    }, [expandMenu, isMenuOpen, toggleAccordion]);
+    const handleNavItemClick = useCallback(() => {
         if (!isMenuOpen) {
             expandMenu();
         }
-    };
-    const handleModeChange = (mode: MenuMode) => onModeChange?.(mode);
+    }, [expandMenu, isMenuOpen]);
+    const handleModeChange = useCallback((mode: MenuMode) => onModeChange?.(mode), [onModeChange]);
 
     return (
         <aside
@@ -171,7 +177,6 @@ function Menu({
                         layout="icon-only"
                         aria-label="Search"
                         className="uds-menu_search__button"
-                        onClick={() => console.log("Search")}
                     />
                     <div className="uds-menu_search__field">
                         <TextInput

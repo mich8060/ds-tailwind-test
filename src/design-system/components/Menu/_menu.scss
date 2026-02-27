@@ -42,12 +42,6 @@
             transform: translateX(0);
         }
 
-        @for $i from 1 through 10 {
-            .uds-menu_nav__item:nth-child(#{$i}) .uds-menu_nav__item-label,
-            .uds-menu_nav__item:nth-child(#{$i}) .uds-menu_nav__item-caret {
-                transition-delay: #{$i * 0.05}s;
-            }
-        }
         .uds-menu_brand__symbol {
             opacity: 0;
             transition: opacity 0.3s ease;
