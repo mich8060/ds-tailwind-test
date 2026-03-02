@@ -16,7 +16,7 @@ interface TabItemProps {
 
 const BASE_CLASS = "uds-tabs-item";
 
-export default function TabItem({
+function TabItem({
   label,
   active = false,
   icon,
@@ -66,3 +66,5 @@ export default function TabItem({
     </Element>
   );
 }
+
+export default React.memo(TabItem);

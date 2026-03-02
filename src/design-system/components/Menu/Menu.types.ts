@@ -49,4 +49,6 @@ export interface MenuProps extends Omit<HTMLAttributes<HTMLElement>, "onChange">
   userAvatarSrc?: string;
   accountMenuItems?: unknown[];
   identity?: string;
+  /** Initial expanded/collapsed state of the sidebar rail. */
+  defaultExpanded?: boolean;
 }

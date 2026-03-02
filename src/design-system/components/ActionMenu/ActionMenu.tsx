@@ -11,7 +11,7 @@ const BASE_CLASS = "uds-action-menu";
 /**
  * Submenu component for nested menu items
  */
-function Submenu({ item, onItemClick, parentRef }) {
+function Submenu({ item, onItemClick }) {
   const [isOpen, setIsOpen] = useState(false);
   const submenuRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -98,7 +98,6 @@ function Submenu({ item, onItemClick, parentRef }) {
                   key={subItem.id || subIndex}
                   item={subItem}
                   onItemClick={onItemClick}
-                  parentRef={submenuRef}
                 />
               );
             }
@@ -148,7 +147,7 @@ function Submenu({ item, onItemClick, parentRef }) {
 export default function ActionMenu({
   trigger,
   items = [],
-  placement = "bottom-end",
+  placement = "bottom-start",
   fullWidth = false,
   disabled = false,
   onOpenChange,
@@ -239,7 +238,7 @@ export default function ActionMenu({
     }
   };
 
-  const handleToggle = (e) => {
+  const handleToggle = () => {
     if (!disabled) {
       updateOpen(!isOpen);
     }
@@ -285,7 +284,7 @@ export default function ActionMenu({
       });
       
       return (
-        <div ref={triggerRef}>
+        <div ref={triggerRef} className={`${BASE_CLASS}__trigger`}>
           {triggerElement}
         </div>
       );
@@ -293,7 +292,7 @@ export default function ActionMenu({
     
     // Fallback for non-React elements
     return (
-      <div ref={triggerRef} onClick={handleToggle}>
+      <div ref={triggerRef} className={`${BASE_CLASS}__trigger`} onClick={handleToggle}>
         {trigger}
       </div>
     );
@@ -310,7 +309,7 @@ export default function ActionMenu({
       "left-start": "left-start",
       "left-end": "left-end",
     };
-    return placementMap[placement] || "bottom-end";
+    return placementMap[placement] || "bottom-start";
   };
 
   const classNames = [
@@ -359,7 +358,6 @@ export default function ActionMenu({
                   key={item.id || index}
                   item={item}
                   onItemClick={handleItemClick}
-                  parentRef={menuRef}
                 />
               );
             }

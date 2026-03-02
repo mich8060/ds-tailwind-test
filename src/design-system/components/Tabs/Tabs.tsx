@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import TabItem from "./TabItem";
 import Button from "../Button/Button";
 import "./_tabs.scss";
@@ -24,7 +24,7 @@ const appearanceClassMap = {
  * @param {string} className - Additional CSS classes
  * @param {object} props - Additional props to pass to the tabs container
  */
-export default function Tabs({
+function Tabs({
   tabs = [],
   appearance = "underline",
   activeTab,
@@ -38,7 +38,6 @@ export default function Tabs({
   const tabsListRef = useRef(null);
   const [showLeftScroll, setShowLeftScroll] = useState(false);
   const [showRightScroll, setShowRightScroll] = useState(false);
-  const [, setScrollPosition] = useState(0);
 
   // Default to first tab (index 0) if activeTab is not provided or invalid
   const currentActiveTab = activeTab !== undefined && activeTab !== null && activeTab >= 0 && activeTab < tabs.length
@@ -56,17 +55,17 @@ export default function Tabs({
     .filter(Boolean)
     .join(" ");
 
-  const handleTabClick = (index, tab) => {
+  const handleTabClick = useCallback((index, tab) => {
     if (tab.onClick) {
       tab.onClick(index, tab);
     }
     if (onTabChange) {
       onTabChange(index, tab);
     }
-  };
+  }, [onTabChange]);
 
   // Check if scrolling is needed and update scroll button visibility
-  const checkScrollButtons = () => {
+  const checkScrollButtons = useCallback(() => {
     if (!scrollable || !tabsContainerRef.current || !tabsListRef.current) {
       return;
     }
@@ -79,11 +78,10 @@ export default function Tabs({
 
     setShowLeftScroll(scrollLeft > 0);
     setShowRightScroll(scrollLeft < listWidth - containerWidth - 1);
-    setScrollPosition(scrollLeft);
-  };
+  }, [scrollable]);
 
   // Scroll to active tab if it's not visible
-  const scrollToActiveTab = () => {
+  const scrollToActiveTab = useCallback(() => {
     if (!scrollable || !tabsListRef.current || currentActiveTab === undefined) {
       return;
     }
@@ -120,26 +118,26 @@ export default function Tabs({
         behavior: "smooth",
       });
     }
-  };
+  }, [currentActiveTab, scrollable]);
 
   // Handle scroll button clicks
-  const handleScrollLeft = () => {
+  const handleScrollLeft = useCallback(() => {
     if (!tabsListRef.current) return;
     const scrollAmount = tabsListRef.current.offsetWidth * 0.75;
     tabsListRef.current.scrollBy({
       left: -scrollAmount,
       behavior: "smooth",
     });
-  };
+  }, []);
 
-  const handleScrollRight = () => {
+  const handleScrollRight = useCallback(() => {
     if (!tabsListRef.current) return;
     const scrollAmount = tabsListRef.current.offsetWidth * 0.75;
     tabsListRef.current.scrollBy({
       left: scrollAmount,
       behavior: "smooth",
     });
-  };
+  }, []);
 
   // Check scroll buttons on mount, resize, and scroll
   useEffect(() => {
@@ -167,7 +165,7 @@ export default function Tabs({
       resizeObserver.disconnect();
       list.removeEventListener("scroll", checkScrollButtons);
     };
-  }, [scrollable, tabs.length]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [checkScrollButtons, scrollToActiveTab, scrollable, tabs.length]);
 
   // Auto-select first tab on mount if no activeTab is provided
   useEffect(() => {
@@ -187,7 +185,7 @@ export default function Tabs({
         checkScrollButtons();
       }, 100);
     }
-  }, [currentActiveTab, scrollable]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [checkScrollButtons, currentActiveTab, scrollToActiveTab, scrollable]);
 
   // Early return after all hooks
   if (!tabs || tabs.length === 0) {
@@ -317,3 +315,5 @@ export default function Tabs({
     </div>
   );
 }
+
+export default React.memo(Tabs);

@@ -36,6 +36,7 @@ See `/docs` for the full methodology and governance model.
 - [Consumer Project Setup](docs/10-consumer-project-setup.md) – copy-paste setup guide for integrating UDS in a new app
 - [Runtime Tokens Migration](docs/11-runtime-tokens-migration.md) – typed token exports and generated token CSS usage
 - [Theming Engine API](docs/12-theming-engine.md) – createTheme/createBrand/ThemeProvider architecture and usage
+- [Theming Platform API](docs/13-theming-platform-api.md) – formal public theming layer, architecture, and usage
 
 ## NPM package quick start
 

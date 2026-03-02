@@ -1,0 +1,20 @@
+{
+  "name": "uds-consumer-perf-fixture",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build --sourcemap"
+  },
+  "dependencies": {
+    "@mich8060/unified-design-system": "file:../mich8060-unified-design-system-0.2.9.tgz",
+    "@phosphor-icons/react": "^2.1.10",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^6.4.1"
+  }
+}

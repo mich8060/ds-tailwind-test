@@ -4,6 +4,16 @@
   // ActionMenu default is inline-block; we override to full width
   width: 100%;
 
+  // Dropdown uses ActionMenu internally; force trigger wrapper to stretch.
+  &.uds-action-menu {
+    width: 100%;
+  }
+
+  .uds-action-menu__trigger {
+    display: flex;
+    width: 100%;
+  }
+
   // ── Outer wrapper (label + dropdown) ────────────────
   &-outer {
     display: flex;
@@ -18,6 +28,7 @@
     color: var(--uds-text-primary);
     display: block;
     margin-bottom: var(--uds-gap-32);
+    width:100%;
   }
 
   // ── Element: trigger button (default = 44px) ────────

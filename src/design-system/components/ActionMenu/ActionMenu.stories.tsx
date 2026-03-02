@@ -77,7 +77,7 @@ const meta = {
     trigger: { table: { disable: true } },
   },
   args: {
-    placement: "bottom-end",
+    placement: "bottom-start",
     items: BASE_ITEMS as unknown[],
     fullWidth: false,
     disabled: false,
@@ -88,6 +88,26 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+function ToggleItemsPreview(args: React.ComponentProps<typeof ActionMenu>) {
+  const [email, setEmail] = React.useState(true);
+  const [push, setPush] = React.useState(false);
+
+  const items: MenuItem[] = [
+    { label: "Email notifications", type: "toggle", checked: email, onChange: setEmail },
+    { label: "Push notifications", type: "toggle", checked: push, onChange: setPush },
+    { divider: true },
+    { label: "Reset preferences", icon: "ArrowCounterClockwise" },
+  ];
+
+  return withCanvas(
+    <ActionMenu
+      {...args}
+      items={items as unknown[]}
+      trigger={<Button label="Preferences" appearance="outline" icon="SlidersHorizontal" layout="icon-right" />}
+    />,
+  );
+}
 
 export const Playground: Story = {
   render: (args) =>
@@ -153,25 +173,7 @@ export const NestedSubmenus: Story = {
 };
 
 export const ToggleItems: Story = {
-  render: (args) => {
-    const [email, setEmail] = React.useState(true);
-    const [push, setPush] = React.useState(false);
-
-    const items: MenuItem[] = [
-      { label: "Email notifications", type: "toggle", checked: email, onChange: setEmail },
-      { label: "Push notifications", type: "toggle", checked: push, onChange: setPush },
-      { divider: true },
-      { label: "Reset preferences", icon: "ArrowCounterClockwise" },
-    ];
-
-    return withCanvas(
-      <ActionMenu
-        {...args}
-        items={items as unknown[]}
-        trigger={<Button label="Preferences" appearance="outline" icon="SlidersHorizontal" layout="icon-right" />}
-      />,
-    );
-  },
+  render: (args) => <ToggleItemsPreview {...args} />,
 };
 
 export const FullWidth: Story = {

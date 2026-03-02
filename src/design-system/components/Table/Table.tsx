@@ -12,7 +12,7 @@ const BASE_CLASS = "uds-table";
  * @param {string} className - Additional CSS classes
  * @param {object} props - Additional props to pass to the table element
  */
-export default function Table({
+function Table({
   columns = [],
   data = [],
   className = "",
@@ -73,12 +73,16 @@ export default function Table({
  * @param {number} rowIndex - Row index
  * @param {number} colIndex - Column index
  */
-function TableCell({ type, column, row, rowIndex, colIndex }) {
+const TableCell = React.memo(function TableCell({
+  type,
+  column,
+  row,
+  rowIndex,
+  colIndex,
+}) {
   const isHeader = type === "header";
   const Element = isHeader ? "th" : "td";
-  const cellValue = isHeader
-    ? column.label
-    : (row?.[column.key] ?? column.render?.(row, rowIndex, colIndex));
+  const cellValue = isHeader ? column.label : row?.[column.key];
 
   const classNames = [
     `${BASE_CLASS}__cell`,
@@ -145,7 +149,11 @@ function TableCell({ type, column, row, rowIndex, colIndex }) {
   };
 
   return <Element className={classNames}>{renderCellContent()}</Element>;
-}
+});
 
-// Export TableCell for external use if needed
-Table.Cell = TableCell;
+const MemoizedTable = React.memo(Table) as typeof Table & {
+  Cell: typeof TableCell;
+};
+MemoizedTable.Cell = TableCell;
+
+export default MemoizedTable;

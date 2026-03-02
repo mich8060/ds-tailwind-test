@@ -12,7 +12,9 @@ Numeric badge indicator for counts, notifications, and status numbers.
 | Prop | Type | Default | Values | Description |
 |------|------|---------|--------|-------------|
 | `count` | `number\|string` | — | — | Number to display (renders nothing if 0 or falsy) |
-| `variant` | `string` | `"red"` | `"red"`, `"orange"`, `"yellow"`, `"green"`, `"dark-green"`, `"blue"`, `"dark-blue"`, `"purple"`, `"pink"`, `"gray"`, `"outline"` | Color variant |
+| `variant` | `string` | `"red"` | `"blue"`, `"cyan"`, `"green"`, `"magenta"`, `"indigo"`, `"rose"`, `"neutral"`, `"orange"`, `"purple"`, `"red"`, `"sky"`, `"yellow"`, `"inverse"`, `"lime"` | Color variant |
+| `appearance` | `string` | `"solid"` | `"solid"`, `"outlined"` | Visual style variant |
+| `rounded` | `boolean` | `true` | `true`, `false` | Rounded pill vs squared corners |
 | `maxCount` | `number` | `99` | — | Max before showing "99+" |
 | `className` | `string` | `""` | — | Additional CSS classes |
 

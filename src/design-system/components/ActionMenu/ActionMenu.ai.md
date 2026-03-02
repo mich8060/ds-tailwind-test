@@ -14,7 +14,7 @@ Contextual dropdown menu triggered by a button, for grouping actions. Also used 
 |------|------|---------|-------------|
 | `trigger` | `ReactNode` | — | Element that opens the menu (usually a Button) |
 | `items` | `array` | `[]` | Menu items (see Item Object) |
-| `placement` | `string` | `"bottom-end"` | Menu placement: `"bottom-start"`, `"bottom-end"`, `"top-start"`, `"top-end"` |
+| `placement` | `string` | `"bottom-start"` | Menu placement: `"bottom-start"`, `"bottom-end"`, `"top-start"`, `"top-end"` |
 | `fullWidth` | `boolean` | `false` | When `true`, menu stretches to match the trigger width |
 | `disabled` | `boolean` | `false` | Whether the menu is disabled |
 | `onOpenChange` | `function` | — | Callback when open state changes: `(isOpen: boolean) => void` |

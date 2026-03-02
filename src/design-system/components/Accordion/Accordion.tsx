@@ -4,12 +4,12 @@ import "./_accordion.scss";
 import type { AccordionItemProps, AccordionProps } from "./Accordion.types";
 
 const toSafeIdPart = (value: string): string => {
-  const normalized = value
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9_-]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-  return normalized || "item";
+    const normalized = value
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9_-]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    return normalized || "item";
 };
 
 /**
@@ -22,64 +22,64 @@ const toSafeIdPart = (value: string): string => {
  * @param {object} props - Additional props to pass to the accordion item
  */
 export function AccordionItem({
-  label,
-  defaultExpanded = false,
-  children,
-  className = "",
-  onToggle,
-  id,
-  ...props
+    label,
+    defaultExpanded = false,
+    children,
+    className = "",
+    onToggle,
+    id,
+    ...props
 }: AccordionItemProps) {
-  const [expanded, setExpanded] = useState(defaultExpanded);
-  const generatedId = useId();
-  const baseId = useMemo(() => {
-    if (typeof id === "string" && id.trim()) {
-      return toSafeIdPart(id);
-    }
-    if (typeof label === "string" && label.trim()) {
-      return toSafeIdPart(label);
-    }
-    return toSafeIdPart(generatedId);
-  }, [generatedId, id, label]);
-  const headerId = `accordion-header-${baseId}`;
-  const contentId = `accordion-content-${baseId}`;
+    const [expanded, setExpanded] = useState(defaultExpanded);
+    const generatedId = useId();
+    const baseId = useMemo(() => {
+        if (typeof id === "string" && id.trim()) {
+            return toSafeIdPart(id);
+        }
+        if (typeof label === "string" && label.trim()) {
+            return toSafeIdPart(label);
+        }
+        return toSafeIdPart(generatedId);
+    }, [generatedId, id, label]);
+    const headerId = `accordion-header-${baseId}`;
+    const contentId = `accordion-content-${baseId}`;
 
-  const handleToggle = () => {
-    const newExpanded = !expanded;
-    setExpanded(newExpanded);
-    onToggle?.(newExpanded);
-  };
+    const handleToggle = () => {
+        const newExpanded = !expanded;
+        setExpanded(newExpanded);
+        onToggle?.(newExpanded);
+    };
 
-  return (
-    <div className={`accordion-item ${className}`} {...props}>
-      <button
-        type="button"
-        id={headerId}
-        className="accordion-item__header"
-        onClick={handleToggle}
-        aria-expanded={expanded}
-        aria-controls={contentId}
-      >
-        <span className="accordion-item__label">{label}</span>
-        <Icon
-          name="CaretDown"
-          size={16}
-          appearance="bold"
-          className={`accordion-item__icon ${expanded ? "accordion-item__icon--expanded" : ""}`}
-        />
-      </button>
-      <div
-        id={contentId}
-        role="region"
-        aria-labelledby={headerId}
-        className={`accordion-item__body ${expanded ? "accordion-item__body--expanded" : ""}`}
-      >
-        <div className="accordion-item__body-inner">
-          {children}
+    return (
+        <div className={`accordion-item ${className}`} {...props}>
+            <button
+                type="button"
+                id={headerId}
+                className="accordion-item__header"
+                onClick={handleToggle}
+                aria-expanded={expanded}
+                aria-controls={contentId}
+            >
+                <span className="accordion-item__label">{label}</span>
+                <Icon
+                    name="CaretDown"
+                    size={16}
+                    appearance="bold"
+                    className={`accordion-item__icon ${expanded ? "accordion-item__icon--expanded" : ""}`}
+                />
+            </button>
+            <div
+                id={contentId}
+                role="region"
+                aria-labelledby={headerId}
+                className={`accordion-item__body ${expanded ? "accordion-item__body--expanded" : ""}`}
+            >
+                <div className="accordion-item__body-inner">
+                    {children}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 /**
@@ -89,13 +89,13 @@ export function AccordionItem({
  * @param {object} props - Additional props to pass to the accordion container
  */
 export default function Accordion({ children, className = "", ...props }: AccordionProps) {
-  const { variant = "default", ...rest } = props;
-  const variantClass = variant === "secondary" ? "accordion--secondary" : "";
-  const accordionClassName = ["accordion", variantClass, className].filter(Boolean).join(" ");
+    const { variant = "default", ...rest } = props;
+    const variantClass = variant === "secondary" ? "accordion--secondary" : "";
+    const accordionClassName = ["accordion", variantClass, className].filter(Boolean).join(" ");
 
-  return (
-    <div className={accordionClassName} {...rest}>
-      {children}
-    </div>
-  );
+    return (
+        <div className={accordionClassName} {...rest}>
+            {children}
+        </div>
+    );
 }

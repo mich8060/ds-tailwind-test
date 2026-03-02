@@ -35,7 +35,7 @@ const sizeClassMap = {
  * @param {React.ReactNode} children       - Modal body content
  * @param {object}        props            - Additional props spread onto the dialog element
  */
-export default function Modal({
+function Modal({
   open = false,
   onClose,
   title,
@@ -172,3 +172,5 @@ export default function Modal({
 
   return createPortal(modal, container || document.body);
 }
+
+export default React.memo(Modal);

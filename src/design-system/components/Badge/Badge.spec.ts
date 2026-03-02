@@ -1,20 +1,33 @@
 export const BadgeSpec = {
   allowedVariants: {
   "variant": [
-    "red",
-    "orange",
-    "yellow",
-    "green",
-    "dark-green",
     "blue",
-    "dark-blue",
+    "cyan",
+    "green",
+    "magenta",
+    "indigo",
+    "rose",
+    "neutral",
+    "orange",
     "purple",
-    "pink",
-    "gray",
-    "outline"
+    "red",
+    "sky",
+    "yellow",
+    "inverse",
+    "lime"
+  ],
+  "appearance": [
+    "solid",
+    "outlined"
+  ],
+  "rounded": [
+    "true",
+    "false"
   ]
 },
   defaults: {
-  "variant": "red"
+  "variant": "red",
+  "appearance": "solid",
+  "rounded": "true"
 }
 } as const;

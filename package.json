@@ -17,7 +17,7 @@
   "homepage": "https://github.com/chghealthcare/unified-design-system#readme",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "style": "./dist/unified-design-system.css",
+  "style": "./dist/style.css",
   "types": "./dist/design-system/index.d.ts",
   "exports": {
     ".": {
@@ -26,7 +26,295 @@
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
-    "./styles.css": "./dist/unified-design-system.css",
+    "./Accordion": {
+      "types": "./dist/design-system/components/Accordion/Accordion.d.ts",
+      "import": "./dist/components/Accordion/Accordion.js",
+      "require": "./dist/components/Accordion/Accordion.cjs",
+      "default": "./dist/components/Accordion/Accordion.js"
+    },
+    "./ActionMenu": {
+      "types": "./dist/design-system/components/ActionMenu/ActionMenu.d.ts",
+      "import": "./dist/components/ActionMenu/ActionMenu.js",
+      "require": "./dist/components/ActionMenu/ActionMenu.cjs",
+      "default": "./dist/components/ActionMenu/ActionMenu.js"
+    },
+    "./AppShell": {
+      "types": "./dist/app-shell/AppShell.d.ts",
+      "import": "./dist/src/app-shell/AppShell.js",
+      "require": "./dist/src/app-shell/AppShell.cjs",
+      "default": "./dist/src/app-shell/AppShell.js"
+    },
+    "./Avatar": {
+      "types": "./dist/design-system/components/Avatar/Avatar.d.ts",
+      "import": "./dist/components/Avatar/Avatar.js",
+      "require": "./dist/components/Avatar/Avatar.cjs",
+      "default": "./dist/components/Avatar/Avatar.js"
+    },
+    "./Badge": {
+      "types": "./dist/design-system/components/Badge/Badge.d.ts",
+      "import": "./dist/components/Badge/Badge.js",
+      "require": "./dist/components/Badge/Badge.cjs",
+      "default": "./dist/components/Badge/Badge.js"
+    },
+    "./Branding": {
+      "types": "./dist/design-system/components/Branding/Branding.d.ts",
+      "import": "./dist/components/Branding/Branding.js",
+      "require": "./dist/components/Branding/Branding.cjs",
+      "default": "./dist/components/Branding/Branding.js"
+    },
+    "./Breadcrumb": {
+      "types": "./dist/design-system/components/Breadcrumb/Breadcrumb.d.ts",
+      "import": "./dist/components/Breadcrumb/Breadcrumb.js",
+      "require": "./dist/components/Breadcrumb/Breadcrumb.cjs",
+      "default": "./dist/components/Breadcrumb/Breadcrumb.js"
+    },
+    "./Button": {
+      "types": "./dist/design-system/components/Button/Button.d.ts",
+      "import": "./dist/components/Button/Button.js",
+      "require": "./dist/components/Button/Button.cjs",
+      "default": "./dist/components/Button/Button.js"
+    },
+    "./Calendar": {
+      "types": "./dist/design-system/components/Calendar/Calendar.d.ts",
+      "import": "./dist/components/Calendar/Calendar.js",
+      "require": "./dist/components/Calendar/Calendar.cjs",
+      "default": "./dist/components/Calendar/Calendar.js"
+    },
+    "./Card": {
+      "types": "./dist/design-system/components/Card/Card.d.ts",
+      "import": "./dist/components/Card/Card.js",
+      "require": "./dist/components/Card/Card.cjs",
+      "default": "./dist/components/Card/Card.js"
+    },
+    "./Checkbox": {
+      "types": "./dist/design-system/components/Checkbox/Checkbox.d.ts",
+      "import": "./dist/components/Checkbox/Checkbox.js",
+      "require": "./dist/components/Checkbox/Checkbox.cjs",
+      "default": "./dist/components/Checkbox/Checkbox.js"
+    },
+    "./Chip": {
+      "types": "./dist/design-system/components/Chip/Chip.d.ts",
+      "import": "./dist/components/Chip/Chip.js",
+      "require": "./dist/components/Chip/Chip.cjs",
+      "default": "./dist/components/Chip/Chip.js"
+    },
+    "./Code": {
+      "types": "./dist/design-system/components/Code/Code.d.ts",
+      "import": "./dist/components/Code/Code.js",
+      "require": "./dist/components/Code/Code.cjs",
+      "default": "./dist/components/Code/Code.js"
+    },
+    "./Container": {
+      "types": "./dist/design-system/components/Container/Container.d.ts",
+      "import": "./dist/components/Container/Container.js",
+      "require": "./dist/components/Container/Container.cjs",
+      "default": "./dist/components/Container/Container.js"
+    },
+    "./Datepicker": {
+      "types": "./dist/design-system/components/Datepicker/Datepicker.d.ts",
+      "import": "./dist/components/Datepicker/Datepicker.js",
+      "require": "./dist/components/Datepicker/Datepicker.cjs",
+      "default": "./dist/components/Datepicker/Datepicker.js"
+    },
+    "./Dialog": {
+      "types": "./dist/design-system/components/Dialog/Dialog.d.ts",
+      "import": "./dist/components/Dialog/Dialog.js",
+      "require": "./dist/components/Dialog/Dialog.cjs",
+      "default": "./dist/components/Dialog/Dialog.js"
+    },
+    "./Divider": {
+      "types": "./dist/design-system/components/Divider/Divider.d.ts",
+      "import": "./dist/components/Divider/Divider.js",
+      "require": "./dist/components/Divider/Divider.cjs",
+      "default": "./dist/components/Divider/Divider.js"
+    },
+    "./DotStatus": {
+      "types": "./dist/design-system/components/DotStatus/DotStatus.d.ts",
+      "import": "./dist/components/DotStatus/DotStatus.js",
+      "require": "./dist/components/DotStatus/DotStatus.cjs",
+      "default": "./dist/components/DotStatus/DotStatus.js"
+    },
+    "./Dropdown": {
+      "types": "./dist/design-system/components/Dropdown/Dropdown.d.ts",
+      "import": "./dist/components/Dropdown/Dropdown.js",
+      "require": "./dist/components/Dropdown/Dropdown.cjs",
+      "default": "./dist/components/Dropdown/Dropdown.js"
+    },
+    "./EmptyState": {
+      "types": "./dist/design-system/components/EmptyState/EmptyState.d.ts",
+      "import": "./dist/components/EmptyState/EmptyState.js",
+      "require": "./dist/components/EmptyState/EmptyState.cjs",
+      "default": "./dist/components/EmptyState/EmptyState.js"
+    },
+    "./EventCard": {
+      "types": "./dist/design-system/components/EventCard/EventCard.d.ts",
+      "import": "./dist/components/EventCard/EventCard.js",
+      "require": "./dist/components/EventCard/EventCard.cjs",
+      "default": "./dist/components/EventCard/EventCard.js"
+    },
+    "./Field": {
+      "types": "./dist/design-system/components/Field/Field.d.ts",
+      "import": "./dist/components/Field/Field.js",
+      "require": "./dist/components/Field/Field.cjs",
+      "default": "./dist/components/Field/Field.js"
+    },
+    "./FileUpload": {
+      "types": "./dist/design-system/components/FileUpload/FileUpload.d.ts",
+      "import": "./dist/components/FileUpload/FileUpload.js",
+      "require": "./dist/components/FileUpload/FileUpload.cjs",
+      "default": "./dist/components/FileUpload/FileUpload.js"
+    },
+    "./Flex": {
+      "types": "./dist/design-system/components/Flex/Flex.d.ts",
+      "import": "./dist/components/Flex/Flex.js",
+      "require": "./dist/components/Flex/Flex.cjs",
+      "default": "./dist/components/Flex/Flex.js"
+    },
+    "./Icon": {
+      "types": "./dist/design-system/components/Icon/Icon.d.ts",
+      "import": "./dist/components/Icon/Icon.js",
+      "require": "./dist/components/Icon/Icon.cjs",
+      "default": "./dist/components/Icon/Icon.js"
+    },
+    "./ImageAspect": {
+      "types": "./dist/design-system/components/ImageAspect/ImageAspect.d.ts",
+      "import": "./dist/components/ImageAspect/ImageAspect.js",
+      "require": "./dist/components/ImageAspect/ImageAspect.cjs",
+      "default": "./dist/components/ImageAspect/ImageAspect.js"
+    },
+    "./Key": {
+      "types": "./dist/design-system/components/Key/Key.d.ts",
+      "import": "./dist/components/Key/Key.js",
+      "require": "./dist/components/Key/Key.cjs",
+      "default": "./dist/components/Key/Key.js"
+    },
+    "./Menu": {
+      "types": "./dist/design-system/components/Menu/Menu.d.ts",
+      "import": "./dist/components/Menu/Menu.js",
+      "require": "./dist/components/Menu/Menu.cjs",
+      "default": "./dist/components/Menu/Menu.js"
+    },
+    "./MicroCalendar": {
+      "types": "./dist/design-system/components/MicroCalendar/MicroCalendar.d.ts",
+      "import": "./dist/components/MicroCalendar/MicroCalendar.js",
+      "require": "./dist/components/MicroCalendar/MicroCalendar.cjs",
+      "default": "./dist/components/MicroCalendar/MicroCalendar.js"
+    },
+    "./Modal": {
+      "types": "./dist/design-system/components/Modal/Modal.d.ts",
+      "import": "./dist/components/Modal/Modal.js",
+      "require": "./dist/components/Modal/Modal.cjs",
+      "default": "./dist/components/Modal/Modal.js"
+    },
+    "./Pagination": {
+      "types": "./dist/design-system/components/Pagination/Pagination.d.ts",
+      "import": "./dist/components/Pagination/Pagination.js",
+      "require": "./dist/components/Pagination/Pagination.cjs",
+      "default": "./dist/components/Pagination/Pagination.js"
+    },
+    "./PillToggle": {
+      "types": "./dist/design-system/components/PillToggle/PillToggle.d.ts",
+      "import": "./dist/components/PillToggle/PillToggle.js",
+      "require": "./dist/components/PillToggle/PillToggle.cjs",
+      "default": "./dist/components/PillToggle/PillToggle.js"
+    },
+    "./Playground": {
+      "types": "./dist/design-system/components/Playground/Playground.d.ts",
+      "import": "./dist/components/Playground/Playground.js",
+      "require": "./dist/components/Playground/Playground.cjs",
+      "default": "./dist/components/Playground/Playground.js"
+    },
+    "./ProgressCircle": {
+      "types": "./dist/design-system/components/ProgressCircle/ProgressCircle.d.ts",
+      "import": "./dist/components/ProgressCircle/ProgressCircle.js",
+      "require": "./dist/components/ProgressCircle/ProgressCircle.cjs",
+      "default": "./dist/components/ProgressCircle/ProgressCircle.js"
+    },
+    "./ProgressIndicator": {
+      "types": "./dist/design-system/components/ProgressIndicator/ProgressIndicator.d.ts",
+      "import": "./dist/components/ProgressIndicator/ProgressIndicator.js",
+      "require": "./dist/components/ProgressIndicator/ProgressIndicator.cjs",
+      "default": "./dist/components/ProgressIndicator/ProgressIndicator.js"
+    },
+    "./Radio": {
+      "types": "./dist/design-system/components/Radio/Radio.d.ts",
+      "import": "./dist/components/Radio/Radio.js",
+      "require": "./dist/components/Radio/Radio.cjs",
+      "default": "./dist/components/Radio/Radio.js"
+    },
+    "./Slider": {
+      "types": "./dist/design-system/components/Slider/Slider.d.ts",
+      "import": "./dist/components/Slider/Slider.js",
+      "require": "./dist/components/Slider/Slider.cjs",
+      "default": "./dist/components/Slider/Slider.js"
+    },
+    "./Status": {
+      "types": "./dist/design-system/components/Status/Status.d.ts",
+      "import": "./dist/components/Status/Status.js",
+      "require": "./dist/components/Status/Status.cjs",
+      "default": "./dist/components/Status/Status.js"
+    },
+    "./Steps": {
+      "types": "./dist/design-system/components/Steps/Steps.d.ts",
+      "import": "./dist/components/Steps/Steps.js",
+      "require": "./dist/components/Steps/Steps.cjs",
+      "default": "./dist/components/Steps/Steps.js"
+    },
+    "./Table": {
+      "types": "./dist/design-system/components/Table/Table.d.ts",
+      "import": "./dist/components/Table/Table.js",
+      "require": "./dist/components/Table/Table.cjs",
+      "default": "./dist/components/Table/Table.js"
+    },
+    "./Tabs": {
+      "types": "./dist/design-system/components/Tabs/Tabs.d.ts",
+      "import": "./dist/components/Tabs/Tabs.js",
+      "require": "./dist/components/Tabs/Tabs.cjs",
+      "default": "./dist/components/Tabs/Tabs.js"
+    },
+    "./Tag": {
+      "types": "./dist/design-system/components/Tag/Tag.d.ts",
+      "import": "./dist/components/Tag/Tag.js",
+      "require": "./dist/components/Tag/Tag.cjs",
+      "default": "./dist/components/Tag/Tag.js"
+    },
+    "./Text": {
+      "types": "./dist/design-system/components/Text/Text.d.ts",
+      "import": "./dist/components/Text/Text.js",
+      "require": "./dist/components/Text/Text.cjs",
+      "default": "./dist/components/Text/Text.js"
+    },
+    "./Textarea": {
+      "types": "./dist/design-system/components/Textarea/Textarea.d.ts",
+      "import": "./dist/components/Textarea/Textarea.js",
+      "require": "./dist/components/Textarea/Textarea.cjs",
+      "default": "./dist/components/Textarea/Textarea.js"
+    },
+    "./TextInput": {
+      "types": "./dist/design-system/components/TextInput/TextInput.d.ts",
+      "import": "./dist/components/TextInput/TextInput.js",
+      "require": "./dist/components/TextInput/TextInput.cjs",
+      "default": "./dist/components/TextInput/TextInput.js"
+    },
+    "./Toast": {
+      "types": "./dist/design-system/components/Toast/Toast.d.ts",
+      "import": "./dist/components/Toast/Toast.js",
+      "require": "./dist/components/Toast/Toast.cjs",
+      "default": "./dist/components/Toast/Toast.js"
+    },
+    "./Toggle": {
+      "types": "./dist/design-system/components/Toggle/Toggle.d.ts",
+      "import": "./dist/components/Toggle/Toggle.js",
+      "require": "./dist/components/Toggle/Toggle.cjs",
+      "default": "./dist/components/Toggle/Toggle.js"
+    },
+    "./Tooltip": {
+      "types": "./dist/design-system/components/Tooltip/Tooltip.d.ts",
+      "import": "./dist/components/Tooltip/Tooltip.js",
+      "require": "./dist/components/Tooltip/Tooltip.cjs",
+      "default": "./dist/components/Tooltip/Tooltip.js"
+    },
+    "./styles.css": "./dist/style.css",
     "./tokens": {
       "types": "./dist/tokens/index.d.ts",
       "import": "./dist/tokens/index.js"
@@ -80,8 +368,7 @@
     "sass:watch": "sass --watch src/design-system:src/design-system"
   },
   "dependencies": {
-    "prismjs": "^1.30.0",
-    "prop-types": "^15.8.1"
+    "prismjs": "^1.30.0"
   },
   "peerDependencies": {
     "@phosphor-icons/react": "^2.1.10",

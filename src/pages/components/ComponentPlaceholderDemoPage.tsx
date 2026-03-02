@@ -11,12 +11,18 @@ interface ComponentPlaceholderDemoPageProps {
 type VariantConfig = Record<string, string[]>;
 
 const COMPONENT_VARIANTS: Record<string, VariantConfig> = {
-  Badge: { variant: ["red", "orange", "yellow", "green", "dark-green", "blue", "dark-blue", "purple", "pink", "gray", "outline"] },
+  Badge: {
+    variant: ["blue", "cyan", "green", "magenta", "indigo", "rose", "neutral", "orange", "purple", "red", "sky", "yellow", "inverse", "lime"],
+    appearance: ["solid", "outlined"],
+    rounded: ["true", "false"],
+  },
   Button: { layout: ["label-only", "icon-left", "icon-right", "icon-only", "only"], appearance: ["primary", "soft", "outline", "text", "ghost", "disabled", "destructive"], size: ["large", "default", "small", "xsmall"] },
   Chip: { appearance: ["outline", "primary"], shape: ["pill", "rounded"], iconplacement: ["both", "left", "right", "none"] },
+  Container: { appearance: ["default", "transparent"], padding: ["none", "xsmall", "small", "default", "large", "xlarge"] },
   Divider: { alignment: ["left", "center", "right"], variant: ["line", "solid"] },
   DotStatus: { variant: ["light-gray", "red", "orange", "yellow", "light-green", "green", "blue", "dark-blue", "teal", "purple", "pink", "magenta", "dark-red", "dark-gray"], size: ["small", "medium", "large"] },
   Dropdown: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
+  Flex: { fullWidth: ["true", "false"] },
   ImageAspect: { aspectratio: ["square", "video", "4-3", "3-2", "21-9", "portrait", "auto"] },
   Key: { appearance: ["light", "dark"] },
   Modal: { size: ["small", "default", "large", "fullscreen"] },
@@ -45,6 +51,7 @@ const COMPONENTS: Record<string, React.ComponentType<Record<string, unknown>>> =
   Card: DesignSystem.Card as React.ComponentType<Record<string, unknown>>,
   Checkbox: DesignSystem.Checkbox as React.ComponentType<Record<string, unknown>>,
   Chip: DesignSystem.Chip as React.ComponentType<Record<string, unknown>>,
+  Container: DesignSystem.Container as React.ComponentType<Record<string, unknown>>,
   Datepicker: DesignSystem.Datepicker as React.ComponentType<Record<string, unknown>>,
   Dialog: DesignSystem.Dialog as React.ComponentType<Record<string, unknown>>,
   DotStatus: DesignSystem.DotStatus as React.ComponentType<Record<string, unknown>>,
@@ -86,6 +93,7 @@ const BASE_PROPS: Record<string, Record<string, unknown>> = {
   Card: { to: "/components/button", title: "Card Title", description: "Card description", icon: <Icon name="SquaresFour" size={20} /> },
   Checkbox: { label: "Checkbox option" },
   Chip: { label: "Chip label", icon: "Star", badge: "2" },
+  Container: { children: <Text as="span" variant="body-14" leading="regular">Container content</Text> },
   Datepicker: { placeholder: "Select date" },
   Dialog: { title: "Dialog title", description: "Dialog content preview" },
   DotStatus: { variant: "green", size: "medium" },
@@ -167,9 +175,11 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
 
   const buildVariantProps = (key: string, value: string): Record<string, unknown> => {
     const resolvedProp = aliasConfig[key] ?? key;
+    const normalizedValue =
+      value === "true" ? true : value === "false" ? false : value;
     const nextProps: Record<string, unknown> = {
       ...baseProps,
-      [resolvedProp]: value,
+      [resolvedProp]: normalizedValue,
     };
 
     if (componentName === "Steps" && key === "status") {

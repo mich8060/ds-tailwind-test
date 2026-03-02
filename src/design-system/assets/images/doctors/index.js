@@ -1,141 +1,57 @@
-// Doctor avatar images
-import Avatar from "./Avatar.png";
-import Avatar1 from "./Avatar-1.png";
-import Avatar2 from "./Avatar-2.png";
-import Avatar3 from "./Avatar-3.png";
-import Avatar4 from "./Avatar-4.png";
-import Avatar5 from "./Avatar-5.png";
-import Avatar6 from "./Avatar-6.png";
-import Avatar7 from "./Avatar-7.png";
-import Avatar8 from "./Avatar-8.png";
-import Avatar9 from "./Avatar-9.png";
-import Avatar10 from "./Avatar-10.png";
-import Avatar11 from "./Avatar-11.png";
-import Avatar12 from "./Avatar-12.png";
-import Avatar13 from "./Avatar-13.png";
-import Avatar14 from "./Avatar-14.png";
-import Avatar15 from "./Avatar-15.png";
-import Avatar16 from "./Avatar-16.png";
-import Avatar17 from "./Avatar-17.png";
-import Avatar18 from "./Avatar-18.png";
-import Avatar19 from "./Avatar-19.png";
-import Avatar20 from "./Avatar-20.png";
-import Avatar21 from "./Avatar-21.png";
+const modules = import.meta.glob("./*.png", {
+  eager: true,
+  import: "default",
+});
 
-// Named doctors with their images
-export const doctors = {
-  "James Wilson": { image: Avatar, initials: "JW" },
-  "Sarah Chen": { image: Avatar1, initials: "SC" },
-  "Michael Roberts": { image: Avatar2, initials: "MR" },
-  "Emily Thompson": { image: Avatar3, initials: "ET" },
-  "David Kim": { image: Avatar4, initials: "DK" },
-  "Jessica Martinez": { image: Avatar5, initials: "JM" },
-  "Robert Johnson": { image: Avatar6, initials: "RJ" },
-  "Amanda Lee": { image: Avatar7, initials: "AL" },
-  "Christopher Davis": { image: Avatar8, initials: "CD" },
-  "Michelle Brown": { image: Avatar9, initials: "MB" },
-  "Daniel Garcia": { image: Avatar10, initials: "DG" },
-  "Stephanie Miller": { image: Avatar11, initials: "SM" },
-  "Kevin Anderson": { image: Avatar12, initials: "KA" },
-  "Rachel Taylor": { image: Avatar13, initials: "RT" },
-  "Brian White": { image: Avatar14, initials: "BW" },
-  "Jennifer Moore": { image: Avatar15, initials: "JM" },
-  "Andrew Jackson": { image: Avatar16, initials: "AJ" },
-  "Laura Harris": { image: Avatar17, initials: "LH" },
-  "Thomas Clark": { image: Avatar18, initials: "TC" },
-  "Nicole Lewis": { image: Avatar19, initials: "NL" },
-  "William Young": { image: Avatar20, initials: "WY" },
-  "Katherine Hall": { image: Avatar21, initials: "KH" },
-};
+const toDisplayName = (filename) =>
+  filename
+    .replace(/\.[^.]+$/, "")
+    .replace(/[-_]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .join(" ");
 
-// Get doctor by name
-export const getDoctor = (name) => {
-  return doctors[name] || null;
-};
+const toInitials = (name) =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("");
 
-// Get doctor image by name
-export const getDoctorImageByName = (name) => {
-  return doctors[name]?.image || null;
-};
+const fileEntries = Object.entries(modules)
+  .map(([filePath, image]) => {
+    const filename = filePath.split("/").pop() || "";
+    const name = toDisplayName(filename);
+    return [name, image];
+  })
+  .sort(([a], [b]) => a.localeCompare(b));
 
-// Get all doctor names
-export const getDoctorNames = () => {
-  return Object.keys(doctors);
-};
+export const doctors = Object.fromEntries(
+  fileEntries.map(([name, image]) => [name, { image, initials: toInitials(name) }]),
+);
 
-// Array of all doctor images for easy random selection
-export const doctorImages = [
-  Avatar,
-  Avatar1,
-  Avatar2,
-  Avatar3,
-  Avatar4,
-  Avatar5,
-  Avatar6,
-  Avatar7,
-  Avatar8,
-  Avatar9,
-  Avatar10,
-  Avatar11,
-  Avatar12,
-  Avatar13,
-  Avatar14,
-  Avatar15,
-  Avatar16,
-  Avatar17,
-  Avatar18,
-  Avatar19,
-  Avatar20,
-  Avatar21,
-];
-
-// Array of all doctors as objects
-export const doctorList = Object.entries(doctors).map(([name, data]) => ({
+export const doctorList = fileEntries.map(([name]) => ({
   name,
-  ...data,
+  ...doctors[name],
 }));
 
-// Helper to get a random doctor
-export const getRandomDoctor = () => {
-  const names = Object.keys(doctors);
-  const randomName = names[Math.floor(Math.random() * names.length)];
-  return { name: randomName, ...doctors[randomName] };
-};
+export const doctorImages = doctorList.map((doctor) => doctor.image);
 
-// Helper to get a random doctor image
-export const getRandomDoctorImage = () => {
-  return doctorImages[Math.floor(Math.random() * doctorImages.length)];
-};
+export const getDoctor = (name) => doctors[name] || null;
+export const getDoctorImageByName = (name) => doctors[name]?.image || null;
+export const getDoctorNames = () => doctorList.map((doctor) => doctor.name);
 
-// Helper to get a doctor image by index (wraps around if out of bounds)
+export const getRandomDoctor = () =>
+  doctorList[Math.floor(Math.random() * doctorList.length)] || null;
+
+export const getRandomDoctorImage = () =>
+  doctorImages[Math.floor(Math.random() * doctorImages.length)] || null;
+
 export const getDoctorImage = (index) => {
-  return doctorImages[index % doctorImages.length];
-};
-
-// Named exports for individual images
-export {
-  Avatar,
-  Avatar1,
-  Avatar2,
-  Avatar3,
-  Avatar4,
-  Avatar5,
-  Avatar6,
-  Avatar7,
-  Avatar8,
-  Avatar9,
-  Avatar10,
-  Avatar11,
-  Avatar12,
-  Avatar13,
-  Avatar14,
-  Avatar15,
-  Avatar16,
-  Avatar17,
-  Avatar18,
-  Avatar19,
-  Avatar20,
-  Avatar21,
+  if (doctorImages.length === 0) return null;
+  return doctorImages[((index % doctorImages.length) + doctorImages.length) % doctorImages.length];
 };
 
 export default doctors;

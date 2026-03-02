@@ -5,23 +5,28 @@ import type { BadgeProps } from "./Badge.types";
 const BASE_CLASS = "uds-badge";
 
 const variantClassMap = {
-  red: "red",
-  orange: "orange",
-  yellow: "yellow",
-  green: "green",
-  "dark-green": "dark-green",
   blue: "blue",
-  "dark-blue": "dark-blue",
+  cyan: "cyan",
+  green: "green",
+  magenta: "magenta",
+  indigo: "indigo",
+  rose: "rose",
+  neutral: "neutral",
+  orange: "orange",
   purple: "purple",
-  pink: "pink",
-  gray: "gray",
-  outline: "outline",
+  red: "red",
+  sky: "sky",
+  yellow: "yellow",
+  inverse: "inverse",
+  lime: "lime",
 };
 
 /**
  * Badge component for displaying badges
  * @param {number|string} count - The count to display (will be formatted with + if over maxCount)
- * @param {string} variant - Color variant: 'red', 'orange', 'yellow', 'green', 'dark-green', 'blue', 'dark-blue', 'purple', 'pink', 'gray', 'outline'
+ * @param {string} variant - Color variant: 'blue', 'cyan', 'green', 'magenta', 'indigo', 'rose', 'neutral', 'orange', 'purple', 'red', 'sky', 'yellow', 'inverse', 'lime'
+ * @param {string} appearance - Visual style variant: 'solid' or 'outlined'
+ * @param {boolean} rounded - Whether badge corners are fully rounded
  * @param {number} maxCount - Maximum count to display before showing "+" (default: 99)
  * @param {string} className - Additional CSS classes
  * @param {object} props - Additional props to pass to the badge element
@@ -29,6 +34,8 @@ const variantClassMap = {
 export default function Badge({
   count,
   variant = "red",
+  appearance = "solid",
+  rounded = true,
   maxCount = 99,
   className = "",
   ...props
@@ -48,6 +55,8 @@ export default function Badge({
   const classNames = [
     BASE_CLASS,
     variantClassMap[variant] && `${BASE_CLASS}--${variantClassMap[variant]}`,
+    `${BASE_CLASS}--${appearance}`,
+    `${BASE_CLASS}--${rounded ? "rounded" : "square"}`,
     className,
   ]
     .filter(Boolean)

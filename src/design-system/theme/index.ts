@@ -8,6 +8,7 @@ export type {
   CssVarName,
   ModeDefinition,
   ResolvedTheme,
+  Theme,
   ThemeController,
   ThemeDefinition,
   ThemeEngine,

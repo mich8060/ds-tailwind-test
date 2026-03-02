@@ -11,9 +11,13 @@ import { TextInputDemoPage } from "./pages/components/TextInputDemoPage";
 import { ToggleDemoPage } from "./pages/components/ToggleDemoPage";
 import { IconDemoPage } from "./pages/components/IconDemoPage";
 import { AccordionDemoPage } from "./pages/components/AccordionDemoPage";
+import { ActionMenuDemoPage } from "./pages/components/ActionMenuDemoPage";
 import { BrandingDemoPage } from "./pages/components/BrandingDemoPage";
 import { AvatarDemoPage } from "./pages/components/AvatarDemoPage";
+import { BadgeDemoPage } from "./pages/components/BadgeDemoPage";
 import { DividerDemoPage } from "./pages/components/DividerDemoPage";
+import { AppShellDemoPage } from "./pages/components/AppShellDemoPage";
+import { ThemeDemoPage } from "./pages/components/ThemeDemoPage";
 import { TabsDemoPage } from "./pages/components/TabsDemoPage";
 import { ComponentPlaceholderDemoPage } from "./pages/components/ComponentPlaceholderDemoPage";
 import { GettingStartedPage } from "./pages/docs/GettingStartedPage";
@@ -47,6 +51,7 @@ const BRAND_OPTIONS: Brand[] = [
 const COMPONENT_NAV_ITEMS = [
     { label: "Accordion", path: "/components/accordion" },
     { label: "ActionMenu", path: "/components/action-menu" },
+    { label: "AppShell", path: "/components/app-shell" },
     { label: "Avatar", path: "/components/avatar" },
     { label: "Badge", path: "/components/badge" },
     { label: "Branding", path: "/components/branding" },
@@ -54,6 +59,7 @@ const COMPONENT_NAV_ITEMS = [
     { label: "Button", path: "/components/button" },
     { label: "Calendar", path: "/components/calendar" },
     { label: "Card", path: "/components/card" },
+    { label: "Container", path: "/components/container" },
     { label: "Checkbox", path: "/components/checkbox" },
     { label: "Chip", path: "/components/chip" },
     { label: "Datepicker", path: "/components/datepicker" },
@@ -61,6 +67,7 @@ const COMPONENT_NAV_ITEMS = [
     { label: "Divider", path: "/components/divider" },
     { label: "DotStatus", path: "/components/dot-status" },
     { label: "Dropdown", path: "/components/dropdown" },
+    { label: "EmptyState", path: "/components/empty-state" },
     { label: "EventCard", path: "/components/event-card" },
     { label: "Field", path: "/components/field" },
     { label: "FileUpload", path: "/components/file-upload" },
@@ -83,6 +90,7 @@ const COMPONENT_NAV_ITEMS = [
     { label: "Table", path: "/components/table" },
     { label: "Tabs", path: "/components/tabs" },
     { label: "Tag", path: "/components/tag" },
+    { label: "Theme API", path: "/components/theme" },
     { label: "Text", path: "/components/text" },
     { label: "TextInput", path: "/components/text-input" },
     { label: "Textarea", path: "/components/textarea" },
@@ -92,17 +100,17 @@ const COMPONENT_NAV_ITEMS = [
 ];
 
 const PLACEHOLDER_COMPONENT_PAGES = [
-    { componentName: "ActionMenu", path: "/components/action-menu" },
-    { componentName: "Badge", path: "/components/badge" },
     { componentName: "Breadcrumb", path: "/components/breadcrumb" },
     { componentName: "Calendar", path: "/components/calendar" },
     { componentName: "Card", path: "/components/card" },
+    { componentName: "Container", path: "/components/container" },
     { componentName: "Checkbox", path: "/components/checkbox" },
     { componentName: "Chip", path: "/components/chip" },
     { componentName: "Datepicker", path: "/components/datepicker" },
     { componentName: "Dialog", path: "/components/dialog" },
     { componentName: "DotStatus", path: "/components/dot-status" },
     { componentName: "Dropdown", path: "/components/dropdown" },
+    { componentName: "EmptyState", path: "/components/empty-state" },
     { componentName: "EventCard", path: "/components/event-card" },
     { componentName: "Field", path: "/components/field" },
     { componentName: "FileUpload", path: "/components/file-upload" },
@@ -211,7 +219,10 @@ function App() {
                         <Route path="/docs/theming" element={<ThemingPage />} />
                         <Route path="/sample-item" element={<SampleItemPage />} />
                         <Route path="/components/accordion" element={<AccordionDemoPage />} />
+                        <Route path="/components/action-menu" element={<ActionMenuDemoPage />} />
+                        <Route path="/components/app-shell" element={<AppShellDemoPage />} />
                         <Route path="/components/avatar" element={<AvatarDemoPage />} />
+                        <Route path="/components/badge" element={<BadgeDemoPage />} />
                         <Route path="/components/branding" element={<BrandingDemoPage />} />
                         <Route path="/components/button" element={<ButtonDemoPage />} />
                         <Route path="/components/divider" element={<DividerDemoPage />} />
@@ -219,6 +230,7 @@ function App() {
                         <Route path="/components/text" element={<TextDemoPage />} />
                         <Route path="/components/text-input" element={<TextInputDemoPage />} />
                         <Route path="/components/tabs" element={<TabsDemoPage />} />
+                        <Route path="/components/theme" element={<ThemeDemoPage />} />
                         <Route path="/components/toggle" element={<ToggleDemoPage />} />
                         {PLACEHOLDER_COMPONENT_PAGES.map(({ componentName, path }) => (
                             <Route

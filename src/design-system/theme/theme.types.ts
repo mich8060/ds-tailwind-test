@@ -40,6 +40,12 @@ export interface ThemeEngine<BrandName extends string = string> {
   applyToElement(element: HTMLElement, theme: ResolvedTheme<BrandName>): void;
 }
 
+/**
+ * Public theme API type returned by createTheme().
+ * This alias keeps naming concise for consumers while remaining backwards compatible.
+ */
+export type Theme<BrandName extends string = string> = ThemeEngine<BrandName>;
+
 export interface ThemeController<BrandName extends string = string> {
   getSnapshot(): ResolvedTheme<BrandName>;
   subscribe(listener: () => void): () => void;

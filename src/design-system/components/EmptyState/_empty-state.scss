@@ -1,0 +1,48 @@
+@use "./empty-state.tokens" as *;
+@use "../../tokens/primitives/typography.primitives" as *;
+
+.uds-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $empty-state-gap;
+  width: 100%;
+  padding: $empty-state-padding;
+  background: $empty-state-surface;
+  border: $empty-state-border;
+  border-radius: $empty-state-radius;
+  text-align: center;
+
+  &--left {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  &__icon {
+    display: inline-flex;
+    color: $empty-state-icon-color;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--uds-gap-4);
+    max-width: 560px;
+  }
+
+  &__title {
+    @include uds-heading-24-medium;
+    color: $empty-state-title-color;
+  }
+
+  &__description {
+    @include uds-body-16;
+    color: $empty-state-description-color;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--uds-gap-8);
+  }
+}

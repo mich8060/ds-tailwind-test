@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
-import PropTypes from "prop-types";
 import "./_menu.scss";
 import { Link, useLocation } from "react-router-dom";
 import Icon from "../Icon/Icon";
@@ -65,10 +64,11 @@ function Menu({
     userAvatarSrc,
     accountMenuItems = [],
     identity = "design-system",
+    defaultExpanded = true,
 }: MenuProps) {
     const location = useLocation();
     const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({});
-    const [isMenuOpen, setIsMenuOpen] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(defaultExpanded);
     const normalizedNavItems = useMemo(() => navItems.filter(isMenuNavItem), [navItems]);
     const normalizedBrands = useMemo(
         () => brands.filter((brand): brand is string => typeof brand === "string"),
@@ -330,39 +330,6 @@ function Menu({
         </aside>
     );
 }
-
-Menu.propTypes = {
-    title: PropTypes.string,
-    className: PropTypes.string,
-    navItems: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string.isRequired,
-            icon: PropTypes.string.isRequired,
-            path: PropTypes.string,
-            children: PropTypes.arrayOf(
-                PropTypes.shape({
-                    label: PropTypes.string.isRequired,
-                    path: PropTypes.string.isRequired,
-                })
-            ),
-        })
-    ),
-    brands: PropTypes.arrayOf(PropTypes.string),
-    activeBrand: PropTypes.string,
-    onBrandChange: PropTypes.func,
-    activeMode: PropTypes.string,
-    onModeChange: PropTypes.func,
-    showBrand: PropTypes.bool,
-    showSearch: PropTypes.bool,
-    showBrandSwitcher: PropTypes.bool,
-    showNav: PropTypes.bool,
-    showModeToggle: PropTypes.bool,
-    showUser: PropTypes.bool,
-    userName: PropTypes.string,
-    userInitials: PropTypes.string,
-    userAvatarSrc: PropTypes.string,
-    accountMenuItems: PropTypes.array,
-};
 
 Menu.defaultProps = {
     title: "Menu",

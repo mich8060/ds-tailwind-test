@@ -1,0 +1,41 @@
+@use "../../tokens/index" as *;
+@use "./_container.tokens" as *;
+
+.ds-container {
+  display: block;
+  border-radius: $container-radius-default;
+
+  &--appearance-default {
+    background-color: $container-surface-default;
+    border: $container-border-default;
+  }
+
+  &--appearance-transparent {
+    background-color: transparent;
+    border: var(--uds-border-width-1) solid transparent;
+  }
+
+  &--padding-none {
+    padding: $container-padding-none;
+  }
+
+  &--padding-xsmall {
+    padding: $container-padding-xsmall;
+  }
+
+  &--padding-small {
+    padding: $container-padding-small;
+  }
+
+  &--padding-default {
+    padding: $container-padding-default;
+  }
+
+  &--padding-large {
+    padding: $container-padding-large;
+  }
+
+  &--padding-xlarge {
+    padding: $container-padding-xlarge;
+  }
+}

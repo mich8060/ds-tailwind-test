@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useId, useMemo, useState } from "react";
 import Icon from "../Icon/Icon";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import "./_dropdown.scss";
@@ -36,7 +36,7 @@ const stateClassMap = {
  * @param {boolean} disabled - Whether the dropdown is disabled
  * @param {object} props - Additional props to pass to the trigger button
  */
-export default function Dropdown({
+function Dropdown({
   options = [],
   value,
   onChange,
@@ -51,9 +51,9 @@ export default function Dropdown({
   ...props
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const generatedId = useId();
 
-  const dropdownId =
-    id || `dropdown-${Math.random().toString(36).substr(2, 9)}`;
+  const dropdownId = id || `dropdown-${generatedId}`;
 
   // Normalize options to always have { value, label } format
   const normalizedOptions = useMemo(
@@ -147,3 +147,5 @@ export default function Dropdown({
     </div>
   );
 }
+
+export default React.memo(Dropdown);
