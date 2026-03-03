@@ -9,6 +9,7 @@ interface ComponentPlaceholderDemoPageProps {
 }
 
 type VariantConfig = Record<string, string[]>;
+type GenericComponentProps = Record<string, unknown>;
 
 const COMPONENT_VARIANTS: Record<string, VariantConfig> = {
   Badge: {
@@ -17,10 +18,10 @@ const COMPONENT_VARIANTS: Record<string, VariantConfig> = {
     rounded: ["true", "false"],
   },
   Button: { layout: ["label-only", "icon-left", "icon-right", "icon-only", "only"], appearance: ["primary", "soft", "outline", "text", "ghost", "disabled", "destructive"], size: ["large", "default", "small", "xsmall"] },
-  Chip: { appearance: ["outline", "primary"], shape: ["pill", "rounded"], iconplacement: ["both", "left", "right", "none"] },
+  Chip: { selected: ["false", "true"], rounded: ["false", "true"], size: ["default", "compact"], iconplacement: ["both", "left", "right", "none"] },
   Container: { appearance: ["default", "transparent"], padding: ["none", "xsmall", "small", "default", "large", "xlarge"] },
   Divider: { alignment: ["left", "center", "right"], variant: ["line", "solid"] },
-  DotStatus: { variant: ["light-gray", "red", "orange", "yellow", "light-green", "green", "blue", "dark-blue", "teal", "purple", "pink", "magenta", "dark-red", "dark-gray"], size: ["small", "medium", "large"] },
+  DotStatus: { variant: ["red", "blue", "inverse", "orange", "sky", "indigo", "rose", "neutral", "celery", "lime", "yellow", "green", "cyan", "purple", "fuchsia"], size: ["small", "medium", "large"], outline: ["false", "true"] },
   Dropdown: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
   Flex: { fullWidth: ["true", "false"] },
   ImageAspect: { aspectratio: ["square", "video", "4-3", "3-2", "21-9", "portrait", "auto"] },
@@ -56,6 +57,7 @@ const COMPONENTS: Record<string, React.ComponentType<Record<string, unknown>>> =
   Dialog: DesignSystem.Dialog as React.ComponentType<Record<string, unknown>>,
   DotStatus: DesignSystem.DotStatus as React.ComponentType<Record<string, unknown>>,
   Dropdown: DesignSystem.Dropdown as React.ComponentType<Record<string, unknown>>,
+  EmptyState: DesignSystem.EmptyState as unknown as React.ComponentType<Record<string, unknown>>,
   EventCard: DesignSystem.EventCard as React.ComponentType<Record<string, unknown>>,
   Field: DesignSystem.Field as React.ComponentType<Record<string, unknown>>,
   FileUpload: DesignSystem.FileUpload as React.ComponentType<Record<string, unknown>>,
@@ -95,9 +97,23 @@ const BASE_PROPS: Record<string, Record<string, unknown>> = {
   Chip: { label: "Chip label", icon: "Star", badge: "2" },
   Container: { children: <Text as="span" variant="body-14" leading="regular">Container content</Text> },
   Datepicker: { placeholder: "Select date" },
-  Dialog: { title: "Dialog title", description: "Dialog content preview" },
-  DotStatus: { variant: "green", size: "medium" },
+  Dialog: {
+    intent: "info",
+    title: "Dialog title",
+    description: "Dialog content preview",
+    confirmLabel: "Confirm",
+    cancelLabel: "Cancel",
+  },
+  DotStatus: { variant: "green", size: "medium", outline: true },
   Dropdown: { options: [{ value: "1", label: "Option One" }, { value: "2", label: "Option Two" }], placeholder: "Select option" },
+  EmptyState: {
+    icon: "FolderOpen",
+    title: "No results found",
+    description: "Try adjusting your filters or create a new item.",
+    action: <Button label="Create item" />,
+    secondaryAction: <Button label="Clear filters" appearance="outline" />,
+    align: "center",
+  },
   EventCard: { title: "Event title", type: "assignment", status: "active", badge: "Today" },
   Field: { label: "Field label", helperText: "Helper text", children: <DesignSystem.TextInput placeholder="Input inside field" /> },
   FileUpload: { accept: ["image/png", "image/jpeg"], acceptText: "PNG, JPG", maxSize: 5 },
@@ -132,6 +148,63 @@ const BASE_PROPS: Record<string, Record<string, unknown>> = {
   Tooltip: { content: "Tooltip content", children: <Button label="Hover me" appearance="outline" /> },
 };
 
+const DIALOG_PROP_ROWS: ComponentPropRow[] = [
+  {
+    prop: "intent",
+    type: `"info" | "success" | "warning" | "destructive"`,
+    defaultValue: `"info"`,
+    description: "Controls icon and action styling.",
+  },
+  {
+    prop: "title",
+    type: "string",
+    defaultValue: "-",
+    description: "Dialog heading text.",
+  },
+  {
+    prop: "description",
+    type: "string",
+    defaultValue: "-",
+    description: "Supporting body text below the heading.",
+  },
+  {
+    prop: "confirmLabel",
+    type: "string",
+    defaultValue: `"Confirm"`,
+    description: "Primary action button label.",
+  },
+  {
+    prop: "cancelLabel",
+    type: "string",
+    defaultValue: `"Cancel"`,
+    description: "Secondary action button label.",
+  },
+  {
+    prop: "showCancel",
+    type: "boolean",
+    defaultValue: "true",
+    description: "Shows or hides the cancel action.",
+  },
+  {
+    prop: "loading",
+    type: "boolean",
+    defaultValue: "false",
+    description: "Shows loading state on the confirm action.",
+  },
+  {
+    prop: "closeOnBackdrop",
+    type: "boolean",
+    defaultValue: "true",
+    description: "Closes when the scrim is clicked.",
+  },
+  {
+    prop: "closeOnEscape",
+    type: "boolean",
+    defaultValue: "true",
+    description: "Closes when Escape is pressed.",
+  },
+];
+
 class PreviewErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
@@ -154,6 +227,149 @@ class PreviewErrorBoundary extends React.Component<{ children: React.ReactNode }
   }
 }
 
+function InteractiveChipPreview({ props }: { props: GenericComponentProps }) {
+  const initialSelected = typeof props.selected === "boolean" ? props.selected : false;
+  const [selected, setSelected] = React.useState<boolean>(initialSelected);
+
+  React.useEffect(() => {
+    if (typeof props.selected === "boolean") {
+      setSelected(props.selected);
+    }
+  }, [props.selected]);
+
+  const externalOnClick =
+    typeof props.onClick === "function"
+      ? (props.onClick as (event: React.MouseEvent<HTMLElement>) => void)
+      : undefined;
+
+  return (
+    <DesignSystem.Chip
+      {...props}
+      selected={selected}
+      onClick={(event: React.MouseEvent<HTMLElement>) => {
+        setSelected((previous) => !previous);
+        externalOnClick?.(event);
+      }}
+    />
+  );
+}
+
+function InteractiveDialogPreview({ props }: { props: GenericComponentProps }) {
+  const [open, setOpen] = React.useState(false);
+  const [showBodyExample, setShowBodyExample] = React.useState(false);
+  const [showLoadingExample, setShowLoadingExample] = React.useState(false);
+  const [isConfirming, setIsConfirming] = React.useState(false);
+  const confirmTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const onClose = () => {
+    if (confirmTimeoutRef.current) {
+      clearTimeout(confirmTimeoutRef.current);
+      confirmTimeoutRef.current = null;
+    }
+    setIsConfirming(false);
+    setOpen(false);
+  };
+  const onConfirm = () => {
+    if (showLoadingExample) {
+      setIsConfirming(true);
+      confirmTimeoutRef.current = setTimeout(() => {
+        setIsConfirming(false);
+        setOpen(false);
+      }, 1500);
+      return;
+    }
+
+    setOpen(false);
+  };
+  const providedChildren = props.children as React.ReactNode;
+  React.useEffect(() => {
+    return () => {
+      if (confirmTimeoutRef.current) {
+        clearTimeout(confirmTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const bodyContent = (
+    <Flex direction="column" gap="8">
+      <Text as="p" variant="body-14" leading="regular">
+        This is custom content passed through the dialog body slot.
+      </Text>
+      <Text as="p" variant="body-14" leading="regular">
+        Use it for extra details, warnings, or simple form controls.
+      </Text>
+    </Flex>
+  );
+
+  return (
+    <Flex direction="column" gap="12" alignItems="flex-start">
+      <Flex alignItems="center" gap="8" wrap>
+        <Button
+          label="Open Dialog"
+          onClick={() => {
+            setShowBodyExample(false);
+            setShowLoadingExample(false);
+            setIsConfirming(false);
+            setOpen(true);
+          }}
+        />
+        <Button
+          label="Open Dialog (With Body)"
+          appearance="outline"
+          onClick={() => {
+            setShowBodyExample(true);
+            setShowLoadingExample(false);
+            setIsConfirming(false);
+            setOpen(true);
+          }}
+        />
+        <Button
+          label="Open Dialog (Loading)"
+          appearance="outline"
+          onClick={() => {
+            setShowBodyExample(false);
+            setShowLoadingExample(true);
+            setIsConfirming(false);
+            setOpen(true);
+          }}
+        />
+      </Flex>
+      <DesignSystem.Dialog
+        {...props}
+        open={open}
+        onClose={onClose}
+        onConfirm={onConfirm}
+        loading={showLoadingExample && isConfirming}
+      >
+        {showBodyExample ? bodyContent : providedChildren}
+      </DesignSystem.Dialog>
+    </Flex>
+  );
+}
+
+function InteractiveDropdownPreview({ props }: { props: GenericComponentProps }) {
+  const [selectedValue, setSelectedValue] = React.useState<unknown>(props.value);
+
+  React.useEffect(() => {
+    setSelectedValue(props.value);
+  }, [props.value]);
+
+  const externalOnChange =
+    typeof props.onChange === "function"
+      ? (props.onChange as (value: unknown) => void)
+      : undefined;
+
+  return (
+    <DesignSystem.Dropdown
+      {...props}
+      value={selectedValue}
+      onChange={(value: unknown) => {
+        setSelectedValue(value);
+        externalOnChange?.(value);
+      }}
+    />
+  );
+}
+
 const toTitleCase = (value: string): string =>
   value
     .replace(/[-_]/g, " ")
@@ -172,6 +388,8 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
     defaultValue: "-",
     description: `Variant values for ${aliasConfig[key] ?? key}.`,
   }));
+  const bottomPropsRows =
+    componentName === "Dialog" ? DIALOG_PROP_ROWS : propsRows;
 
   const buildVariantProps = (key: string, value: string): Record<string, unknown> => {
     const resolvedProp = aliasConfig[key] ?? key;
@@ -210,6 +428,30 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
       );
     }
 
+    if (componentName === "Chip") {
+      return (
+        <PreviewErrorBoundary>
+          <InteractiveChipPreview props={props} />
+        </PreviewErrorBoundary>
+      );
+    }
+
+    if (componentName === "Dialog") {
+      return (
+        <PreviewErrorBoundary>
+          <InteractiveDialogPreview props={props} />
+        </PreviewErrorBoundary>
+      );
+    }
+
+    if (componentName === "Dropdown") {
+      return (
+        <PreviewErrorBoundary>
+          <InteractiveDropdownPreview props={props} />
+        </PreviewErrorBoundary>
+      );
+    }
+
     return (
       <PreviewErrorBoundary>
         <Component {...props} />
@@ -237,24 +479,55 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
             <Text as="h2" variant="heading-24" weight="medium" leading="regular">
               {toTitleCase(aliasConfig[variantKey] ?? variantKey)} Variants
             </Text>
-            <Flex alignItems="center" gap="16" wrap>
-              {values.map((value) => (
-                <Flex key={`${variantKey}-${value}`} direction="column" gap="8">
-                  {renderPreview(buildVariantProps(variantKey, value))}
-                  <Text as="span" variant="body-12" leading="regular">
-                    {value}
-                  </Text>
+            {componentName === "Chip" && variantKey === "size" ? (
+              <Flex direction="column" gap="12">
+                <Flex alignItems="center" gap="16" wrap>
+                  {values.map((value) => (
+                    <Flex key={`${variantKey}-${value}`} direction="column" gap="8">
+                      {renderPreview(buildVariantProps(variantKey, value))}
+                      <Text as="span" variant="body-12" leading="regular">
+                        {value}
+                      </Text>
+                    </Flex>
+                  ))}
                 </Flex>
-              ))}
-            </Flex>
+                <Flex alignItems="center" gap="16" wrap>
+                  {values.map((value) => (
+                    <Flex key={`${variantKey}-${value}-rounded-false`} direction="column" gap="8">
+                      {renderPreview({
+                        ...buildVariantProps(variantKey, value),
+                        rounded: false,
+                      })}
+                      <Text as="span" variant="body-12" leading="regular">
+                        {`${value} (rounded=false)`}
+                      </Text>
+                    </Flex>
+                  ))}
+                </Flex>
+              </Flex>
+            ) : (
+              <Flex alignItems="center" gap="16" wrap>
+                {values.map((value) => (
+                  <Flex key={`${variantKey}-${value}`} direction="column" gap="8">
+                    {renderPreview(buildVariantProps(variantKey, value))}
+                    <Text as="span" variant="body-12" leading="regular">
+                      {value}
+                    </Text>
+                  </Flex>
+                ))}
+              </Flex>
+            )}
           </Flex>
         ))}
       </Flex>
 
-      {propsRows.length > 0 && (
+      {bottomPropsRows.length > 0 && (
         <>
           <Divider variant="solid" />
-          <ComponentPropsTable rows={propsRows} title="Variant Props" />
+          <ComponentPropsTable
+            rows={bottomPropsRows}
+            title={componentName === "Dialog" ? "Props" : "Variant Props"}
+          />
         </>
       )}
     </DocPageLayout>

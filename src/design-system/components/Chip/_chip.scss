@@ -1,44 +1,86 @@
 @use "../../tokens/index" as *;
 @use "../../tokens/primitives/typography.primitives" as *;
+
 .uds-chip {
-  @include uds-body-14-medium;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--uds-gap-32);
-  padding-inline: var(--uds-spacing-12);
-  padding-block: var(--uds-spacing-6);
-  border: var(--uds-border-width-1) solid;
-  background-color: var(--uds-surface-primary);
-  color: var(--uds-text-primary);
-  cursor: pointer;
-  user-select: none;
-  transition: all var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
-  box-sizing: border-box;
-  white-space: nowrap;
-  width: fit-content;
-  min-width: fit-content;
-  max-width: fit-content;
-  height: fit-content;
-
-  // When used as button, remove default button styles but inherit chip styles
-  &:is(button) {
-    font: inherit;
-    background: none;
+    all: unset;
+    @include uds-body-16-medium;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--uds-gap-4);
+    padding: var(--uds-spacing-6) var(--uds-spacing-12);
     border: var(--uds-border-width-1) solid;
-  }
+    background-color: var(--uds-surface-primary);
+    color: var(--uds-text-primary);
+    cursor: pointer;
+    user-select: none;
+    transition: all var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+    box-sizing: border-box;
+    white-space: nowrap;
+    width: fit-content;
+    min-width: fit-content;
+    max-width: fit-content;
+    height: fit-content;
 
-  // Shape variants
-  &--pill {
-    border-radius: 999px; // Fully rounded pill shape
-  }
+    // When used as button, remove default button styles but inherit chip styles
+    &:is(button) {
+        font: inherit;
+        border: var(--uds-border-width-1) solid;
+    }
 
-  &--rounded {
-    border-radius: var(--uds-radius-4); // Slightly rounded rectangular
-  }
+    // Shape variants
+    &--rounded-true {
+        border-radius: var(--uds-radius-9999); // Fully rounded pill shape
+    }
 
-  // Appearance variants
-  &--outline {
+    &--rounded-false {
+        border-radius: var(--uds-radius-4); // Slightly rounded rectangular
+    }
+
+    // Size variants
+    &--default {
+        @include uds-body-16-medium;
+        gap: var(--uds-gap-4);
+        height:48px;
+    }
+
+    &--compact {
+        @include uds-body-14-medium;
+        gap: var(--uds-gap-4);
+        height:40px;
+    }
+
+    &--default#{&}--rounded-true {
+        padding: var(--uds-spacing-12) var(--uds-spacing-16);
+    }
+
+    &--default#{&}--rounded-false {
+        padding: var(--uds-spacing-12) var(--uds-spacing-12);
+    }
+
+    &--compact#{&}--rounded-true {
+        padding: var(--uds-spacing-4) var(--uds-spacing-10);
+    }
+
+    &--compact#{&}--rounded-false {
+        padding: var(--uds-spacing-6) var(--uds-spacing-8);
+    }
+
+  // State: selected
+  &--selected {
+        background-color: var(--uds-color-primary-50);
+        border-color: var(--uds-color-primary-500);
+        color: var(--uds-color-primary-700);
+
+        &:hover:not(.uds-chip--disabled) {
+            background-color: var(--uds-color-primary-100);
+            border-color: var(--uds-color-primary-600);
+            color: var(--uds-color-primary-800);
+        }
+    }
+
+  // State: unselected (default)
+  &:not(.uds-chip--selected) {
     background-color: var(--uds-surface-primary);
     border-color: var(--uds-border-primary);
     color: var(--uds-text-primary);
@@ -47,72 +89,50 @@
       border-color: var(--uds-border-secondary);
       background-color: var(--uds-surface-secondary);
     }
-
-    &:active:not(.uds-chip--disabled) {
-      border-color: var(--uds-border-tertiary);
-      background-color: var(--uds-surface-tertiary);
-    }
   }
 
-  &--primary {
-    background-color: var(--uds-surface-brand-primary);
-    border-color: var(--uds-border-brand-tertiary);
-    color: var(--uds-text-primary);
+    // Icon placement
+    &__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        line-height: 0;
 
-    &:hover:not(.uds-chip--disabled) {
-      background-color: var(--uds-surface-brand-primary);
-      border-color: var(--uds-border-brand-primary);
-      color: var(--uds-text-brand-primary);
-    }
+        svg {
+            width: 20px;
+            height: 20px;
+        }
 
-    &:active:not(.uds-chip--disabled) {
-      background-color: var(--uds-surface-brand-tertiary);
-      border-color: var(--uds-border-brand-primary);
-    }
-  }
+        &--left {
+            order: -1;
+        }
 
-  // Icon placement
-  &__icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    line-height: 0;
-
-    svg {
-      width: 16px;
-      height: 16px;
+        &--right {
+            order: 1;
+        }
     }
 
-    &--left {
-      order: -1;
+    &__label {
+        display: inline-block;
+        padding: 0 var(--uds-spacing-4);
+        white-space: nowrap;
     }
 
-    &--right {
-      order: 1;
+    &__badge {
+        flex-shrink: 0;
     }
-  }
 
-  &__label {
-    display: inline-block;
-    white-space: nowrap;
-  }
+    // Disabled state
+    &--disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+        pointer-events: none;
+    }
 
-  &__badge {
-    margin-left: var(--uds-gap-16);
-    flex-shrink: 0;
-  }
-
-  // Disabled state
-  &--disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-    pointer-events: none;
-  }
-
-  // Focus state
-  &:focus-visible {
-    outline: solid var(--uds-focus-ring-width) var(--uds-focus-ring-border);
-    outline-offset: var(--uds-focus-ring-offset);
-  }
+    // Focus state
+    &:focus-visible {
+        outline: solid var(--uds-focus-ring-width) var(--uds-focus-ring-border);
+        outline-offset: var(--uds-focus-ring-offset);
+    }
 }

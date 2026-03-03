@@ -40,6 +40,7 @@ export default function Button({
   icons,
   children,
   tracking,
+  loading = false,
   className,
   onClick,
   disabled,
@@ -51,6 +52,7 @@ export default function Button({
     appearanceClassMap[appearance],
     layoutClassMap[layout],
     sizeClassMap[size],
+    loading && `${BASE_CLASS}--loading`,
     className,
   ]
     .filter(Boolean)
@@ -88,7 +90,7 @@ export default function Button({
     return labelNode || iconNode;
   };
 
-  const isDisabled = appearance === "disabled" || Boolean(disabled);
+  const isDisabled = appearance === "disabled" || Boolean(disabled) || loading;
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     if (tracking) {
@@ -113,11 +115,22 @@ export default function Button({
       type="button"
       className={classNames}
       disabled={isDisabled}
+      aria-busy={loading ? "true" : undefined}
       aria-label={buttonAriaLabel}
       onClick={handleClick}
       {...rest}
     >
-      {renderContent()}
+      <span
+        className={`${BASE_CLASS}__content`}
+        aria-hidden={loading ? "true" : undefined}
+      >
+        {renderContent()}
+      </span>
+      {loading ? (
+        <span className={`${BASE_CLASS}__loader`} aria-hidden="true">
+          <Icon name="CircleNotch" size={iconSize} appearance="regular" />
+        </span>
+      ) : null}
     </button>
   );
 }

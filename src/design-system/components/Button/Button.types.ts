@@ -31,4 +31,5 @@ export interface ButtonProps
   icons?: ReactNode;
   children?: ReactNode;
   tracking?: ButtonTracking;
+  loading?: boolean;
 }

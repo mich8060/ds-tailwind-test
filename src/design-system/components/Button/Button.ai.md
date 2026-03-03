@@ -19,6 +19,7 @@ Primary action trigger component supporting multiple visual styles, sizes, and i
 | `iconSize` | `number` | — | Any number | Override icon size in px |
 | `className` | `string` | `""` | Any CSS class | Additional CSS classes |
 | `tracking` | `string` or `object` | — | `"event-name"` or `{ event, category, ... }` | Fires a `uds:track` CustomEvent on click with a structured payload |
+| `loading` | `boolean` | `false` | — | Keeps button width, hides content, and shows a spinning loader icon |
 | `onClick` | `function` | — | — | Click handler |
 | `disabled` | `boolean` | `false` | — | Disables the button |
 | `aria-label` | `string` | — | — | Accessible label (auto-generated for icon-only) |
@@ -95,6 +96,12 @@ useEffect(() => {
   window.addEventListener("uds:track", handler);
   return () => window.removeEventListener("uds:track", handler);
 }, []);
+```
+
+### Loading state
+```jsx
+<Button label="Saving" loading />
+<Button label="Submitting" appearance="primary" loading />
 ```
 
 ## Composition

@@ -16,6 +16,7 @@
     --uds-font-size-24: 24px;
 
     --uds-font-size-20: 20px;
+    --uds-font-size-18: 18px;
     --uds-font-size-16: 16px;
     --uds-font-size-14: 14px;
     --uds-font-size-12: 12px;
@@ -33,7 +34,8 @@
     --uds-line-28: 36px;
     --uds-line-24: 32px;
 
-    --uds-line-20: 28px;
+    --uds-line-20: 28px;    
+    --uds-line-18: 28px;
     --uds-line-16: 24px;
     --uds-line-14: 20px;
     --uds-line-12: 16px;
@@ -490,6 +492,30 @@
 
 @mixin uds-body-20-bold {
     @include uds-body-20;
+    font-weight: var(--uds-font-weight-bold);
+}
+
+@mixin uds-body-18 {
+    font-size: var(--uds-font-size-18);
+    line-height: var(--uds-line-18);
+    font-family: var(--uds-font-family);
+    font-weight: var(--uds-font-weight);
+    letter-spacing: 0px;
+}
+
+@mixin uds-body-18-medium {
+    @include uds-body-18;
+    font-weight: var(--uds-font-weight-medium);
+    letter-spacing: 0em;
+}
+
+@mixin uds-body-18-semibold {
+    @include uds-body-18;
+    font-weight: var(--uds-font-weight-semibold);
+}
+
+@mixin uds-body-18-bold {
+    @include uds-body-18;
     font-weight: var(--uds-font-weight-bold);
 }
 

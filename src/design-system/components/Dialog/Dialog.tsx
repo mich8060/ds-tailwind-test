@@ -3,18 +3,19 @@ import { createPortal } from "react-dom";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";
 import "./_dialog.scss";
-import type { DialogProps } from "./Dialog.types";
+import type { DialogIntent, DialogProps } from "./Dialog.types";
 
 const BASE_CLASS = "uds-dialog";
+const APP_SHELL_SELECTOR = ".app-shell";
 
-const INTENT_ICONS = {
+const INTENT_ICONS: Record<DialogIntent, string> = {
   info: "Info",
   success: "CheckCircle",
   warning: "Warning",
   destructive: "WarningOctagon",
 };
 
-const INTENT_COLORS = {
+const INTENT_COLORS: Record<DialogIntent, string> = {
   info: "var(--uds-system-action-primary)",
   success: "var(--uds-system-constructive-primary)",
   warning: "var(--uds-system-warning-primary)",
@@ -66,12 +67,13 @@ export default function Dialog({
   children,
   ...props
 }: DialogProps) {
-  const dialogRef = useRef(null);
-  const previousActiveElement = useRef(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (open) {
-      previousActiveElement.current = document.activeElement;
+      previousActiveElement.current =
+        document.activeElement instanceof HTMLElement ? document.activeElement : null;
       document.body.style.overflow = "hidden";
       requestAnimationFrame(() => {
         dialogRef.current?.focus();
@@ -84,7 +86,7 @@ export default function Dialog({
   }, [open]);
 
   const handleKeyDown = useCallback(
-    (e) => {
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (e.key === "Escape" && closeOnEscape && onClose) {
         e.stopPropagation();
         onClose();
@@ -94,7 +96,7 @@ export default function Dialog({
   );
 
   const handleBackdropClick = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLDivElement>) => {
       if (e.target === e.currentTarget && closeOnBackdrop && onClose) {
         onClose();
       }
@@ -112,8 +114,29 @@ export default function Dialog({
 
   if (!open) return null;
 
-  const resolvedIcon = icon || INTENT_ICONS[intent] || INTENT_ICONS.info;
-  const iconColor = INTENT_COLORS[intent] || INTENT_COLORS.info;
+  const resolvePortalTarget = (): HTMLElement => {
+    if (container instanceof HTMLElement) {
+      return container;
+    }
+
+    const activeElement = document.activeElement;
+    if (activeElement instanceof Element) {
+      const nearestShell = activeElement.closest(APP_SHELL_SELECTOR);
+      if (nearestShell instanceof HTMLElement) {
+        return nearestShell;
+      }
+    }
+
+    const shellRoot = document.querySelector(APP_SHELL_SELECTOR);
+    if (shellRoot instanceof HTMLElement) {
+      return shellRoot;
+    }
+
+    return document.body;
+  };
+
+  const resolvedIcon = icon || INTENT_ICONS[intent];
+  const iconColor = INTENT_COLORS[intent];
 
   const dialogClasses = [
     BASE_CLASS,
@@ -183,5 +206,5 @@ export default function Dialog({
     </div>
   );
 
-  return createPortal(dialog, container || document.body);
+  return createPortal(dialog, resolvePortalTarget());
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Icon from "../Icon/Icon";
 import Badge from "../Badge/Badge";
 import "./_chip.scss";
@@ -6,17 +6,12 @@ import type { ChipProps } from "./Chip.types";
 
 const BASE_CLASS = "uds-chip";
 
-const appearanceClassMap = {
-  outline: "outline",
-  primary: "primary",
+const sizeClassMap: Record<string, string> = {
+  default: "default",
+  compact: "compact",
 };
 
-const shapeClassMap = {
-  pill: "pill",
-  rounded: "rounded",
-};
-
-const iconPlacementClassMap = {
+const iconPlacementClassMap: Record<string, string> = {
   both: "icon-both",
   left: "icon-left",
   right: "icon-right",
@@ -26,8 +21,9 @@ const iconPlacementClassMap = {
 /**
  * Chip component for displaying labels, tags, or filters
  * @param {string} label - The text content of the chip
- * @param {string} appearance - Visual style variant: 'outline' or 'primary'
- * @param {string} shape - Shape variant: 'pill' (fully rounded) or 'rounded' (slightly rounded)
+ * @param {boolean} selected - Selected state (unselected by default)
+ * @param {boolean} rounded - Shape toggle: true (fully rounded), false (less rounded)
+ * @param {string} size - Size variant: 'default' or 'compact'
  * @param {string} iconPlacement - Icon placement: 'both', 'left', 'right', or 'none'
  * @param {string} icon - Icon name to display (when iconPlacement is not 'none')
  * @param {number|string} badge - Badge count to display
@@ -39,22 +35,40 @@ const iconPlacementClassMap = {
  */
 export default function Chip({
   label,
-  appearance = "outline",
-  shape = "pill",
+  selected,
+  rounded = true,
+  size = "default",
   iconPlacement = "none",
   icon,
   badge,
-  badgeVariant = "red",
+  badgeVariant = "sky",
   className = "",
   onClick,
   disabled = false,
   ...props
 }: ChipProps) {
+  const isControlled = typeof selected === "boolean";
+  const [internalSelected, setInternalSelected] = useState<boolean>(selected ?? false);
+  const isOn = isControlled ? selected : internalSelected;
+  const isRounded = rounded;
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (disabled) {
+      return;
+    }
+
+    if (!isControlled) {
+      setInternalSelected((previous) => !previous);
+    }
+
+    onClick?.(event);
+  };
+
   const classNames = [
     BASE_CLASS,
-    appearanceClassMap[appearance] &&
-      `${BASE_CLASS}--${appearanceClassMap[appearance]}`,
-    shapeClassMap[shape] && `${BASE_CLASS}--${shapeClassMap[shape]}`,
+    isOn && `${BASE_CLASS}--selected`,
+    `${BASE_CLASS}--rounded-${isRounded ? "true" : "false"}`,
+    sizeClassMap[size] && `${BASE_CLASS}--${sizeClassMap[size]}`,
     iconPlacementClassMap[iconPlacement] &&
       `${BASE_CLASS}--${iconPlacementClassMap[iconPlacement]}`,
     disabled && `${BASE_CLASS}--disabled`,
@@ -65,39 +79,48 @@ export default function Chip({
 
   const hasLeftIcon = iconPlacement === "both" || iconPlacement === "left";
   const hasRightIcon = iconPlacement === "both" || iconPlacement === "right";
-  const Element = onClick ? "button" : "span";
+  const iconSize = size === "compact" ? 14 : 16;
+  const isIconName = typeof icon === "string";
+
+  const leftIcon = hasLeftIcon && icon ? (
+    isIconName ? (
+      <Icon
+        name={icon}
+        size={20}
+        appearance="regular"
+        className={`${BASE_CLASS}__icon ${BASE_CLASS}__icon--left`}
+      />
+    ) : (
+      <span className={`${BASE_CLASS}__icon ${BASE_CLASS}__icon--left`}>{icon}</span>
+    )
+  ) : null;
+
+  const rightIcon = hasRightIcon && icon ? (
+    isIconName ? (
+      <Icon
+        name={icon}
+        size={20}
+        appearance="regular"
+        className={`${BASE_CLASS}__icon ${BASE_CLASS}__icon--right`}
+      />
+    ) : (
+      <span className={`${BASE_CLASS}__icon ${BASE_CLASS}__icon--right`}>{icon}</span>
+    )
+  ) : null;
 
   return (
-    <Element
+    <button
+      type="button"
       className={classNames}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
+      aria-pressed={isOn}
       disabled={disabled}
       {...props}
     >
-      {hasLeftIcon && icon && (
-        <Icon
-          name={icon}
-          size={16}
-          appearance="regular"
-          className={`${BASE_CLASS}__icon ${BASE_CLASS}__icon--left`}
-        />
-      )}
-      {label && <span className={`${BASE_CLASS}__label`}>{label}</span>}
-      {hasRightIcon && icon && (
-        <Icon
-          name={icon}
-          size={16}
-          appearance="regular"
-          className={`${BASE_CLASS}__icon ${BASE_CLASS}__icon--right`}
-        />
-      )}
-      {badge && (
-        <Badge
-          count={badge}
-          variant={badgeVariant}
-          className={`${BASE_CLASS}__badge`}
-        />
-      )}
-    </Element>
+      {leftIcon}
+      {label ? <span className={`${BASE_CLASS}__label`}>{label}</span> : null}
+      {rightIcon}
+      {badge ? <Badge count={badge} variant={badgeVariant} className={`${BASE_CLASS}__badge`} /> : null}
+    </button>
   );
 }

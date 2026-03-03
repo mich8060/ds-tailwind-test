@@ -1,14 +1,19 @@
-import type { HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, MouseEventHandler, ReactNode } from "react";
+import type { BadgeVariant } from "../Badge/Badge.types";
 
-export interface ChipProps extends HTMLAttributes<HTMLDivElement> {
-  label?: unknown;
-  appearance?: string;
-  shape?: string;
-  iconPlacement?: string;
+export type ChipSize = "default" | "compact";
+export type ChipIconPlacement = "both" | "left" | "right" | "none";
+
+export interface ChipProps extends HTMLAttributes<HTMLElement> {
+  label?: ReactNode;
+  selected?: boolean;
+  rounded?: boolean;
+  size?: ChipSize;
+  iconPlacement?: ChipIconPlacement;
   icon?: string | ReactNode;
-  badge?: unknown;
-  badgeVariant?: string;
+  badge?: number | string;
+  badgeVariant?: BadgeVariant;
   className?: string;
-  onClick?: (...args: unknown[]) => void;
+  onClick?: MouseEventHandler<HTMLElement>;
   disabled?: boolean;
 }

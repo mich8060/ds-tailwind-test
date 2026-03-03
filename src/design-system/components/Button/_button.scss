@@ -14,11 +14,10 @@
     color: var(--uds-button-text-default);
     cursor: pointer;
     display: inline-flex;
-    gap: var(--uds-gap-16);
-    height: fit-content;
+    gap: var(--uds-gap-4);
+    height: 44px;
     justify-content: center;
-    padding-block: var(--uds-spacing-10);
-    padding-inline: var(--uds-spacing-16);
+    padding: var(--uds-spacing-10) var(--uds-spacing-16);
     text-transform: capitalize;
     transition:
         background-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
@@ -26,6 +25,7 @@
         color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
         box-shadow var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
     width: fit-content;
+    position: relative;
 
     &:focus-visible {
         outline: solid var(--uds-focus-ring-width) var(--uds-focus-ring-border);
@@ -50,8 +50,8 @@
 
         svg {
             flex-shrink: 0;
-            height: var(--uds-size-icon-lg);
-            width: var(--uds-size-icon-lg);
+            height: 20px;
+            width: 20px;
         }
     }
 
@@ -61,54 +61,91 @@
         white-space: nowrap;
     }
 
-    &--large {
-        @include uds-body-20-semibold;
-        padding: var(--uds-spacing-12) var(--uds-spacing-18);
+    &__content {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: inherit;
+    }
 
-        .uds-button__icon svg {
-            height: var(--uds-size-icon-xl);
-            width: var(--uds-size-icon-xl);
+    &__loader {
+        position: absolute;
+        inset: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+        pointer-events: none;
+
+        svg {
+            animation: uds-button-spin 1s linear infinite;
         }
+    }
+
+    &--loading &__content {
+        visibility: hidden;
+    }
+
+    &--large {
+        @include uds-body-18-semibold;
+        padding: var(--uds-spacing-12) var(--uds-spacing-18);
+        height: 56px;
     }
 
     &--small {
         @include uds-body-14-semibold;
-        padding: var(--uds-spacing-8) var(--uds-spacing-12);
+        padding: var(--uds-spacing-4) var(--uds-spacing-12);
+        height: 36px;
 
         .uds-button__icon svg {
-            height: var(--uds-size-icon-md);
-            width: var(--uds-size-icon-md);
+            height: 16px;
+            width: 16px;
+        }
+
+        .uds-button__loader svg {
+            height: 16px;
+            width: 16px;
         }
     }
 
     &--xsmall {
         @include uds-body-12-semibold;
         padding: var(--uds-spacing-8) var(--uds-spacing-10);
+        height:32px;
 
         .uds-button__icon svg {
-            height: var(--uds-size-icon-md);
-            width: var(--uds-size-icon-md);
+            height: 16px;
+            width: 16px;
+        }
+
+        .uds-button__loader svg {
+            height: 16px;
+            width: 16px;
         }
     }
 
     &--icon-only,
     &--only {
         padding: var(--uds-spacing-12);
+        width: 44px;
     }
 
     &--icon-only.uds-button--large,
     &--only.uds-button--large {
         padding: var(--uds-spacing-14);
+        width: 56px;
     }
 
     &--icon-only.uds-button--small,
     &--only.uds-button--small {
         padding: var(--uds-spacing-10);
+        width: 36px;
     }
 
     &--icon-only.uds-button--xsmall,
     &--only.uds-button--xsmall {
         padding: var(--uds-spacing-8);
+        width: 32px;
     }
 
     &--soft {
@@ -178,5 +215,15 @@
         color: var(--uds-button-text-disabled);
         cursor: not-allowed;
         pointer-events: none;
+    }
+}
+
+@keyframes uds-button-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
     }
 }

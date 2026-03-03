@@ -63,7 +63,7 @@
         z-index: 1;
         display: inline-flex;
         align-items: center;
-        gap: var(--uds-gap-32);
+        gap: var(--uds-gap-0);
         background-color: var(--uds-surface-primary);
         border: var(--uds-border-width-1) solid var(--uds-border-primary);
         padding-inline: var(--uds-spacing-12);
@@ -100,7 +100,7 @@
         @include uds-body-14-medium;
         display: inline-flex;
         align-items: center;
-        gap: var(--uds-gap-24);
+        gap: var(--uds-gap-8);
         color: var(--uds-text-primary);
         background-color: var(--uds-surface-primary);
         padding-inline: var(--uds-spacing-8);

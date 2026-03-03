@@ -1,3 +1,4 @@
+:root,
 .brand-default {
   --brand-primary-25: #F2FAFD;
   --brand-primary-50: #E3F5FA;
@@ -1422,6 +1423,7 @@
   --uds-font-size-28: 28px;
   --uds-font-size-24: 24px;
   --uds-font-size-20: 20px;
+  --uds-font-size-18: 18px;
   --uds-font-size-16: 16px;
   --uds-font-size-14: 14px;
   --uds-font-size-12: 12px;
@@ -1437,6 +1439,7 @@
   --uds-line-28: 36px;
   --uds-line-24: 32px;
   --uds-line-20: 28px;
+  --uds-line-18: 28px;
   --uds-line-16: 24px;
   --uds-line-14: 20px;
   --uds-line-12: 16px;

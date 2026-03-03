@@ -12,8 +12,9 @@ Interactive label component for filters, selections, or tags with optional icon 
 | Prop | Type | Default | Values | Description |
 |------|------|---------|--------|-------------|
 | `label` | `string` | — | — | Chip text |
-| `appearance` | `string` | `"outline"` | `"outline"`, `"primary"` | Visual style |
+| `selected` | `boolean` | `false` | `true`, `false` | Selection state (`false` = unselected/default, `true` = selected) |
 | `shape` | `string` | `"pill"` | `"pill"`, `"rounded"` | Shape variant |
+| `size` | `string` | `"default"` | `"default"`, `"compact"` | Size variant |
 | `iconPlacement` | `string` | `"none"` | `"none"`, `"left"`, `"right"`, `"both"` | Icon position |
 | `icon` | `string` | — | Phosphor icon name | Icon to display |
 | `badge` | `number\|string` | — | — | Badge count |
@@ -27,7 +28,7 @@ Interactive label component for filters, selections, or tags with optional icon 
 ### Filter chips
 ```jsx
 <Flex gap="8">
-  <Chip label="All" appearance="primary" onClick={() => setFilter("all")} />
+  <Chip label="All" selected onClick={() => setFilter("all")} />
   <Chip label="Active" onClick={() => setFilter("active")} />
   <Chip label="Archived" onClick={() => setFilter("archived")} />
 </Flex>

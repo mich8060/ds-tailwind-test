@@ -1,144 +1,133 @@
 @use "../../tokens/index" as *;
 @use "../../tokens/primitives/typography.primitives" as *;
+
 .uds-dropdown {
-  // ActionMenu default is inline-block; we override to full width
-  width: 100%;
-
-  // Dropdown uses ActionMenu internally; force trigger wrapper to stretch.
-  &.uds-action-menu {
     width: 100%;
-  }
 
-  .uds-action-menu__trigger {
-    display: flex;
-    width: 100%;
-  }
-
-  // ── Outer wrapper (label + dropdown) ────────────────
-  &-outer {
-    display: flex;
-    flex-direction: column;
-    gap: var(--uds-gap-32);
-    width: 100%;
-  }
-
-  // ── Element: label ──────────────────────────────────
-  &__label {
-    @include uds-body-14-medium;
-    color: var(--uds-text-primary);
-    display: block;
-    margin-bottom: var(--uds-gap-32);
-    width:100%;
-  }
-
-  // ── Element: trigger button (default = 44px) ────────
-  &__trigger {
-    all: unset;
-    @include uds-body-16;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 44px;
-    padding: var(--uds-spacing-10) var(--uds-spacing-12);
-    background-color: var(--uds-input-surface);
-    border: var(--uds-border-width-1) solid var(--uds-border-primary);
-    border-radius: var(--uds-radius-4);
-    color: var(--uds-text-primary);
-    cursor: pointer;
-    transition:
-      background-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
-      border-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
-      color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
-      box-shadow var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
-    box-sizing: border-box;
-    text-align: left;
-
-    &:focus-visible {
-      outline: solid var(--uds-focus-ring-width) var(--uds-focus-ring-border);
-      outline-offset: var(--uds-focus-ring-offset);
-    }
-  }
-
-  // ── Element: displayed value ────────────────────────
-  &__value {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &--placeholder {
-      color: var(--uds-text-secondary);
-    }
-  }
-
-  // ── Element: caret icon ─────────────────────────────
-  &__icon {
-    flex-shrink: 0;
-    margin-left: var(--uds-gap-32);
-    transition: transform var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
-    color: var(--uds-text-secondary);
-
-    &--open {
-      transform: rotate(180deg);
-    }
-  }
-
-  // ── Element: options panel (via ActionMenu menuClassName)
-  &__menu {
-    max-height: 300px;
-    overflow-y: auto;
-  }
-
-  // ── Size: compact ───────────────────────────────────
-  &--compact {
-    .uds-dropdown__trigger {
-      padding: var(--uds-spacing-8) var(--uds-spacing-10);
-      @include uds-body-14;
-      height: 36px;
-    }
-  }
-
-  // ── State: focused ──────────────────────────────────
-  &--focused {
-    .uds-dropdown__trigger {
-      border-color: var(--uds-border-brand-primary);
-    }
-  }
-
-  // ── State: error ────────────────────────────────────
-  &--error {
-    .uds-dropdown__trigger {
-      border-color: var(--uds-text-error, #ef4444);
-      background-color: var(--uds-surface-primary);
-      color: #ef4444;
+    &.uds-action-menu {
+        width: 100%;
     }
 
-    .uds-dropdown__value {
-      color: #ef4444;
+    .uds-action-menu__trigger {
+        display: flex;
+        width: 100%;
     }
 
-    .uds-dropdown__icon {
-      color: #ef4444;
-    }
-  }
-
-  // ── State: disabled ─────────────────────────────────
-  &--disabled {
-    .uds-dropdown__trigger {
-      background-color: var(--uds-surface-tertiary);
-      border-color: var(--uds-border-primary);
-      color: var(--uds-text-secondary);
-      cursor: not-allowed;
-      opacity: 0.6;
+    &-outer {
+        display: flex;
+        flex-direction: column;
+        gap: var(--uds-gap-32);
+        width: 100%;
     }
 
-    .uds-dropdown__value {
-      color: var(--uds-text-secondary);
+    &__label {
+        @include uds-body-14-medium;
+        color: var(--uds-text-primary);
+        display: block;
+        margin-bottom: var(--uds-gap-32);
+        width: 100%;
     }
 
-    .uds-dropdown__icon {
-      color: var(--uds-text-secondary);
+    &__trigger {
+        all: unset;
+        @include uds-body-16;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 44px;
+        padding: var(--uds-spacing-10) var(--uds-spacing-12);
+        background-color: var(--uds-input-surface);
+        border: var(--uds-border-width-1) solid var(--uds-border-primary);
+        border-radius: var(--uds-radius-4);
+        color: var(--uds-text-primary);
+        cursor: pointer;
+        transition:
+            background-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
+            border-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
+            color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
+            box-shadow var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+        box-sizing: border-box;
+        text-align: left;
+
+        &:focus-visible {
+            outline: solid var(--uds-focus-ring-width) var(--uds-focus-ring-border);
+            outline-offset: var(--uds-focus-ring-offset);
+        }
     }
-  }
+
+    &__value {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &--placeholder {
+            color: var(--uds-text-secondary);
+        }
+    }
+
+    &__icon {
+        flex-shrink: 0;
+        margin-left: var(--uds-gap-32);
+        transition: transform var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+        color: var(--uds-text-secondary);
+
+        &--open {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__menu {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    &--compact {
+        .uds-dropdown__trigger {
+            padding: var(--uds-spacing-8) var(--uds-spacing-10);
+            @include uds-body-14;
+            height: 36px;
+        }
+    }
+
+    &--focused {
+        .uds-dropdown__trigger {
+            border-color: var(--uds-border-brand-primary);
+        }
+    }
+
+    &--error {
+        .uds-dropdown__trigger {
+            border-color: var(--uds-text-error, #ef4444);
+            background-color: var(--uds-surface-primary);
+            color: #ef4444;
+        }
+
+        .uds-dropdown__value {
+            color: #ef4444;
+        }
+
+        .uds-dropdown__icon {
+            color: #ef4444;
+        }
+    }
+
+    &--disabled {
+        .uds-dropdown__trigger {
+            background-color: var(--uds-surface-tertiary);
+            border-color: var(--uds-border-primary);
+            color: var(--uds-text-secondary);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .uds-dropdown__value {
+            color: var(--uds-text-secondary);
+        }
+
+        .uds-dropdown__icon {
+            color: var(--uds-text-secondary);
+        }
+    }
 }

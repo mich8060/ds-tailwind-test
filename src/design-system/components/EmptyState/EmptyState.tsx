@@ -33,8 +33,8 @@ export function EmptyState({
       </div>
       {(action || secondaryAction) ? (
         <div className="uds-empty-state__actions">
-          {action}
           {secondaryAction}
+          {action}
         </div>
       ) : null}
     </div>

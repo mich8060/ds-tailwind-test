@@ -23,65 +23,67 @@
   }
 
   // Variant colors
-  &--light-gray {
-    background-color: #f3f4f6; // Very light gray
-  }
-
   &--red {
-    background-color: #ef4444; // Bright red
-  }
-
-  &--orange {
-    background-color: #f97316; // Bright orange
-  }
-
-  &--yellow {
-    background-color: #eab308; // Bright yellow
-  }
-
-  &--light-green {
-    background-color: #84cc16; // Light green (lime)
-  }
-
-  &--green {
-    background-color: #22c55e; // Darker green
+    background-color: var(--uds-color-accent-red-600);
   }
 
   &--blue {
-    background-color: #3b82f6; // Medium blue
+    background-color: var(--uds-color-accent-blue-700);
   }
 
-  &--dark-blue {
-    background-color: #2563eb; // Dark blue
+  &--inverse {
+    background-color: var(--uds-surface-inverse);
   }
 
-  &--teal {
-    background-color: #14b8a6; // Teal/Cyan
+  &--orange {
+    background-color: var(--uds-color-accent-orange-600);
+  }
+
+  &--sky {
+    background-color: var(--uds-color-accent-sky-600);
+  }
+
+  &--indigo {
+    background-color: var(--uds-color-accent-indigo-600);
+  }
+
+  &--rose {
+    background-color: var(--uds-color-accent-rose-600);
+  }
+
+  &--neutral {
+    background-color: var(--uds-color-neutrals-300);
+  }
+
+  &--celery {
+    background-color: var(--uds-color-accent-lime-400);
+  }
+
+  &--lime {
+    background-color: var(--uds-color-accent-lime-400);
+  }
+
+  &--yellow {
+    background-color: var(--uds-color-accent-yellow-300);
+  }
+
+  &--green {
+    background-color: var(--uds-color-accent-green-600);
+  }
+
+  &--cyan {
+    background-color: var(--uds-color-accent-cyan-600);
   }
 
   &--purple {
-    background-color: #a855f7; // Medium purple
+    background-color: var(--uds-color-accent-purple-700);
   }
 
-  &--pink {
-    background-color: #ec4899; // Bright pink
+  &--fuchsia {
+    background-color: var(--uds-color-accent-fuchsia-600);
   }
 
-  &--magenta {
-    background-color: #d946ef; // Darker pink/magenta
-  }
-
-  &--dark-red {
-    background-color: #dc2626; // Dark red/maroon
-  }
-
-  &--dark-gray {
-    background-color: #1f2937; // Dark gray (almost black)
-  }
-
-  // Outline variant
   &--outline {
-    border: var(--uds-border-width-1) solid var(--uds-border-inverse); // Light gray border/ring
-    // Background colors remain the same as defined above
+    border: var(--uds-border-width-2) solid var(--uds-border-inverse);
   }
 }

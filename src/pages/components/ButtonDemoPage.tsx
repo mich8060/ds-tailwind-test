@@ -27,6 +27,7 @@ const BUTTON_PROPS: ComponentPropRow[] = [
     { prop: "icons", type: "ReactNode", defaultValue: "-", description: "Custom icon slot content." },
     { prop: "children", type: "ReactNode", defaultValue: "-", description: "Optional custom content." },
     { prop: "tracking", type: "string | Record<string, unknown>", defaultValue: "-", description: "Analytics payload for click tracking." },
+    { prop: "loading", type: "boolean", defaultValue: "false", description: "Shows a spinner while preserving button width and disables interaction." },
     {
         prop: "...rest",
         type: "ButtonHTMLAttributes<HTMLButtonElement>",
@@ -123,6 +124,19 @@ export function ButtonDemoPage() {
                         <Button label="Disabled prop" disabled />
                         <Button label="Tracking Event" tracking="button-demo-click" />
                         <Button label="Tracking Payload" tracking={{ event: "demo_click", section: "button" }} />
+                    </Flex>
+                </Flex>
+                <Divider variant="solid" />
+
+                <Flex direction="column" gap="12">
+                    <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+                        Loading State
+                    </Text>
+                    <Flex alignItems="center" gap="12" wrap>
+                        <Button label="Saving" loading />
+                        <Button label="Submitting" appearance="soft" loading />
+                        <Button label="Deleting" appearance="destructive" loading />
+                        <Button layout="icon-left" icon="DownloadSimple" label="Downloading" loading />
                     </Flex>
                 </Flex>
             </Flex>

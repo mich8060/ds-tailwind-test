@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import "./styles/index.scss";
 
 import { AppShell } from "./app-shell/AppShell";
@@ -27,6 +27,7 @@ import { ThemingPage } from "./pages/docs/ThemingPage";
 import { LayoutConventionsPage } from "./pages/docs/LayoutConventionsPage";
 import { FoundationsPage } from "./pages/docs/FoundationsPage";
 import { SampleItemPage } from "./pages/docs/SampleItemPage";
+import { TemplateCanvasPage } from "./pages/docs/TemplateCanvasPage";
 
 type Brand =
     | "default"
@@ -150,6 +151,7 @@ const NAV_ITEMS = [
             { label: "Design Tokens", path: "/docs/tokens" },
             { label: "Layout Conventions", path: "/docs/layout-conventions" },
             { label: "Overview", path: "/getting-started" },
+            { label: "Template Canvas", path: "/template-canvas" },
             { label: "Theming", path: "/docs/theming" },
         ],
     },
@@ -173,6 +175,7 @@ const ACCOUNT_MENU_ITEMS = [
 ];
 
 function App() {
+    const location = useLocation();
     const [brand, setBrand] = React.useState<Brand>("default");
     const [theme, setTheme] = React.useState<Theme>("light");
 
@@ -192,6 +195,14 @@ function App() {
         () => (brand === "default" ? "design-system" : brand),
         [brand]
     );
+
+    if (location.pathname === "/template-canvas") {
+        return (
+            <Routes>
+                <Route path="/template-canvas" element={<TemplateCanvasPage />} />
+            </Routes>
+        );
+    }
 
     return (
         <AppShell brand={brand} theme={theme}>

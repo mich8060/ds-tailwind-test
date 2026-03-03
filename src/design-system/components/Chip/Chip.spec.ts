@@ -1,12 +1,16 @@
 export const ChipSpec = {
   allowedVariants: {
-  "appearance": [
-    "outline",
-    "primary"
+  "selected": [
+    "false",
+    "true"
   ],
   "shape": [
     "pill",
     "rounded"
+  ],
+  "size": [
+    "default",
+    "compact"
   ],
   "iconplacement": [
     "both",
@@ -16,8 +20,9 @@ export const ChipSpec = {
   ]
 },
   defaults: {
-  "appearance": "outline",
+  "selected": "false",
   "shape": "pill",
+  "size": "default",
   "iconPlacement": "none",
   "badgeVariant": "red"
 }

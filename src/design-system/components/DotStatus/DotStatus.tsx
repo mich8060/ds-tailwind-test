@@ -5,20 +5,21 @@ import type { DotStatusProps } from "./DotStatus.types";
 const BASE_CLASS = "uds-dot-status";
 
 const variantClassMap = {
-  "light-gray": "light-gray",
   red: "red",
-  orange: "orange",
-  yellow: "yellow",
-  "light-green": "light-green",
-  green: "green",
   blue: "blue",
-  "dark-blue": "dark-blue",
-  teal: "teal",
+  inverse: "inverse",
+  orange: "orange",
+  sky: "sky",
+  indigo: "indigo",
+  rose: "rose",
+  neutral: "neutral",
+  celery: "celery",
+  lime: "lime",
+  yellow: "yellow",
+  green: "green",
+  cyan: "cyan",
   purple: "purple",
-  pink: "pink",
-  magenta: "magenta",
-  "dark-red": "dark-red",
-  "dark-gray": "dark-gray",
+  fuchsia: "fuchsia",
 };
 
 const sizeClassMap = {
@@ -44,11 +45,13 @@ export default function DotStatus({
   "aria-label": ariaLabel,
   ...props
 }: DotStatusProps) {
+  const isOutlineEnabled = outline === true || outline === "true";
+
   const classNames = [
     BASE_CLASS,
     variantClassMap[variant] && `${BASE_CLASS}--${variantClassMap[variant]}`,
     sizeClassMap[size] && `${BASE_CLASS}--${sizeClassMap[size]}`,
-    outline && `${BASE_CLASS}--outline`,
+    isOutlineEnabled && `${BASE_CLASS}--outline`,
     className,
   ]
     .filter(Boolean)

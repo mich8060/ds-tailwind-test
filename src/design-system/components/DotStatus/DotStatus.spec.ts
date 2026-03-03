@@ -1,29 +1,35 @@
 export const DotStatusSpec = {
   allowedVariants: {
   "variant": [
-    "light-gray",
     "red",
-    "orange",
-    "yellow",
-    "light-green",
-    "green",
     "blue",
-    "dark-blue",
-    "teal",
+    "inverse",
+    "orange",
+    "sky",
+    "indigo",
+    "rose",
+    "neutral",
+    "celery",
+    "lime",
+    "yellow",
+    "green",
+    "cyan",
     "purple",
-    "pink",
-    "magenta",
-    "dark-red",
-    "dark-gray"
+    "fuchsia"
   ],
   "size": [
     "small",
     "medium",
     "large"
+  ],
+  "outline": [
+    "false",
+    "true"
   ]
 },
   defaults: {
   "variant": "blue",
-  "size": "medium"
+  "size": "medium",
+  "outline": "false"
 }
 } as const;
