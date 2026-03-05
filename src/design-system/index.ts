@@ -1,3 +1,5 @@
+import "./global.scss";
+
 export * from "./components/Accordion";
 export * from "./components/ActionMenu";
 export * from "./components/Avatar";
