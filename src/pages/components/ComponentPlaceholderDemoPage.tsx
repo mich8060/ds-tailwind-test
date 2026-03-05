@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../../design-system/components/Button";
+import { Code } from "../../design-system/components/Code";
 import { Divider } from "../../design-system/components/Divider";
 import { Flex } from "../../design-system/components/Flex";
 import { Icon } from "../../design-system/components/Icon";
@@ -301,6 +302,20 @@ const DIALOG_PROP_ROWS: ComponentPropRow[] = [
   },
 ];
 
+const CONTAINER_BASIC_SNIPPET = `<Container>
+  <Text as="span" variant="body-14" leading="regular">
+    Container content
+  </Text>
+</Container>`;
+
+const CONTAINER_APPEARANCE_SNIPPET = `<Container appearance="default">Default surface</Container>
+<Container appearance="transparent">Transparent surface</Container>`;
+
+const CONTAINER_PADDING_SNIPPET = `<Container padding="none">No padding</Container>
+<Container padding="small">Small padding</Container>
+<Container padding="default">Default padding</Container>
+<Container padding="large">Large padding</Container>`;
+
 class PreviewErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
@@ -526,6 +541,10 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
       ];
     }
 
+    if (componentName === "Container" && key === "padding") {
+      nextProps.appearance = "default";
+    }
+
     return nextProps;
   };
 
@@ -597,6 +616,20 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
           </Text>
           {renderPreview(baseProps)}
         </Flex>
+
+        {componentName === "Container" && (
+          <>
+            <Divider variant="solid" />
+            <Flex direction="column" gap="12">
+              <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+                Code Samples
+              </Text>
+              <Code language="tsx" code={CONTAINER_BASIC_SNIPPET} />
+              <Code language="tsx" code={CONTAINER_APPEARANCE_SNIPPET} />
+              <Code language="tsx" code={CONTAINER_PADDING_SNIPPET} />
+            </Flex>
+          </>
+        )}
 
         {variantEntries.length > 0 && <Divider variant="solid" />}
 

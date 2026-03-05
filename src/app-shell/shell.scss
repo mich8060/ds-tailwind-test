@@ -1,4 +1,9 @@
 /* App Shell: layout only (consumes tokens, does not define brand values) */
+body {
+    background: var(--uds-surface-primary);
+    margin:0;
+    padding:0;
+}
 
 .app-shell {
     position: relative;
