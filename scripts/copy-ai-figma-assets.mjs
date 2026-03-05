@@ -17,6 +17,18 @@ const copies = [
     source: `${rootDir}/src/ai/prompts/figma-make.prompt.md`,
     destination: `${rootDir}/dist/ai/prompts/figma-make.prompt.md`,
   },
+  {
+    source: `${rootDir}/src/ai/prompts/system.prompt.md`,
+    destination: `${rootDir}/dist/ai/prompts/system.prompt.md`,
+  },
+  {
+    source: `${rootDir}/src/ai/prompts/repair.prompt.md`,
+    destination: `${rootDir}/dist/ai/prompts/repair.prompt.md`,
+  },
+  {
+    source: `${rootDir}/src/ai/prompts/starter.prompt.md`,
+    destination: `${rootDir}/dist/ai/prompts/starter.prompt.md`,
+  },
 ];
 
 for (const item of copies) {

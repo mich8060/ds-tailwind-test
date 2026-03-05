@@ -25,10 +25,13 @@ For any model/tooling integration, read in this order:
 5. `@mich8060/unified-design-system/ai/figma-make.json`
 6. `@mich8060/unified-design-system/ai/figma-make`
 7. `@mich8060/unified-design-system/ai/prompts/figma-make`
-8. `@mich8060/unified-design-system/ai/templates`
-9. `@mich8060/unified-design-system/ai/examples`
-10. `@mich8060/unified-design-system/ai/validation`
-11. `@mich8060/unified-design-system/ai/sdk`
+8. `@mich8060/unified-design-system/ai/prompts/system`
+9. `@mich8060/unified-design-system/ai/prompts/repair`
+10. `@mich8060/unified-design-system/ai/prompts/starter`
+11. `@mich8060/unified-design-system/ai/templates`
+12. `@mich8060/unified-design-system/ai/examples`
+13. `@mich8060/unified-design-system/ai/validation`
+14. `@mich8060/unified-design-system/ai/sdk`
 
 ## Icon options for AI
 

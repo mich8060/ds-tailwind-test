@@ -62,6 +62,9 @@ const requiredAiExports = [
   "./ai/figma-make.json",
   "./ai/figma-make",
   "./ai/prompts/figma-make",
+  "./ai/prompts/system",
+  "./ai/prompts/repair",
+  "./ai/prompts/starter",
   "./ai/manifest.json",
   "./ai/discovery.json",
   "./ai/discovery",
@@ -131,6 +134,15 @@ if (aiDiscovery.entrypoints?.figmaMakeContract !== `${pkg.name}/ai/figma-make`) 
 }
 if (aiDiscovery.entrypoints?.figmaMakePrompt !== `${pkg.name}/ai/prompts/figma-make`) {
   fail("ai discovery entrypoints.figmaMakePrompt must point to package /ai/prompts/figma-make export.");
+}
+if (aiDiscovery.entrypoints?.systemPrompt !== `${pkg.name}/ai/prompts/system`) {
+  fail("ai discovery entrypoints.systemPrompt must point to package /ai/prompts/system export.");
+}
+if (aiDiscovery.entrypoints?.repairPrompt !== `${pkg.name}/ai/prompts/repair`) {
+  fail("ai discovery entrypoints.repairPrompt must point to package /ai/prompts/repair export.");
+}
+if (aiDiscovery.entrypoints?.starterPrompt !== `${pkg.name}/ai/prompts/starter`) {
+  fail("ai discovery entrypoints.starterPrompt must point to package /ai/prompts/starter export.");
 }
 if (aiDiscovery.entrypoints?.templatesCatalog !== `${pkg.name}/ai/templates`) {
   fail("ai discovery entrypoints.templatesCatalog must point to package /ai/templates export.");

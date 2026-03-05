@@ -1025,7 +1025,7 @@
   --system-color-white: #ffffff;
   --system-color-transparent: rgba(255, 255, 255, 0.0099999998);
   --system-color-neutrals-25: #fafbfc;
-  --system-color-neutrals-50: #f9fafc;
+  --system-color-neutrals-50: ##fafafa;
   --system-color-neutrals-100: #f3f4f6;
   --system-color-neutrals-200: #e6e7eb;
   --system-color-neutrals-300: #d2d5dc;
@@ -1896,5 +1896,3 @@
   --uds-text-link-secondary-active: var(--system-color-white);
   --uds-text-link-secondary-visited: var(--system-color-white);
 }
-
-/*# sourceMappingURL=index.css.map */
