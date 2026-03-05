@@ -33,11 +33,22 @@
       "default": "./dist/ai/index.js"
     },
     "./ai/schema": "./dist/ai/schemas/ai-output.schema.json",
+    "./ai/icons.json": "./dist/ai/icons/catalog.json",
+    "./ai/icons": "./dist/ai/icons/catalog.json",
     "./ai/templates.json": "./dist/ai/templates/layouts.json",
     "./ai/templates": "./dist/ai/templates/layouts.json",
+    "./ai/figma-make.json": "./dist/ai/figma-make.contract.json",
+    "./ai/figma-make": "./dist/ai/figma-make.md",
+    "./ai/prompts/figma-make": "./dist/ai/prompts/figma-make.prompt.md",
     "./ai/manifest.json": "./dist/ai/manifest.json",
     "./ai/discovery.json": "./dist/ai/discovery.json",
     "./ai/discovery": "./dist/ai/discovery.json",
+    "./figma-make": {
+      "types": "./dist/design-system/figma-make/index.d.ts",
+      "import": "./dist/figma-make/index.js",
+      "require": "./dist/figma-make/index.cjs",
+      "default": "./dist/figma-make/index.js"
+    },
     "./Accordion": {
       "types": "./dist/design-system/components/Accordion/Accordion.d.ts",
       "import": "./dist/components/Accordion/Accordion.js",
@@ -86,6 +97,12 @@
       "require": "./dist/components/Button/Button.cjs",
       "default": "./dist/components/Button/Button.js"
     },
+    "./ButtonGroup": {
+      "types": "./dist/design-system/components/ButtonGroup/ButtonGroup.d.ts",
+      "import": "./dist/components/ButtonGroup/ButtonGroup.js",
+      "require": "./dist/components/ButtonGroup/ButtonGroup.cjs",
+      "default": "./dist/components/ButtonGroup/ButtonGroup.js"
+    },
     "./Calendar": {
       "types": "./dist/design-system/components/Calendar/Calendar.d.ts",
       "import": "./dist/components/Calendar/Calendar.js",
@@ -103,6 +120,12 @@
       "import": "./dist/components/Checkbox/Checkbox.js",
       "require": "./dist/components/Checkbox/Checkbox.cjs",
       "default": "./dist/components/Checkbox/Checkbox.js"
+    },
+    "./CheckboxGroup": {
+      "types": "./dist/design-system/components/CheckboxGroup/CheckboxGroup.d.ts",
+      "import": "./dist/components/CheckboxGroup/CheckboxGroup.js",
+      "require": "./dist/components/CheckboxGroup/CheckboxGroup.cjs",
+      "default": "./dist/components/CheckboxGroup/CheckboxGroup.js"
     },
     "./Chip": {
       "types": "./dist/design-system/components/Chip/Chip.d.ts",
@@ -242,6 +265,12 @@
       "require": "./dist/components/Radio/Radio.cjs",
       "default": "./dist/components/Radio/Radio.js"
     },
+    "./RadioGroup": {
+      "types": "./dist/design-system/components/RadioGroup/RadioGroup.d.ts",
+      "import": "./dist/components/RadioGroup/RadioGroup.js",
+      "require": "./dist/components/RadioGroup/RadioGroup.cjs",
+      "default": "./dist/components/RadioGroup/RadioGroup.js"
+    },
     "./Slider": {
       "types": "./dist/design-system/components/Slider/Slider.d.ts",
       "import": "./dist/components/Slider/Slider.js",
@@ -253,6 +282,12 @@
       "import": "./dist/components/Status/Status.js",
       "require": "./dist/components/Status/Status.cjs",
       "default": "./dist/components/Status/Status.js"
+    },
+    "./Statistics": {
+      "types": "./dist/design-system/components/Statistics/Statistics.d.ts",
+      "import": "./dist/components/Statistics/Statistics.js",
+      "require": "./dist/components/Statistics/Statistics.cjs",
+      "default": "./dist/components/Statistics/Statistics.js"
     },
     "./Steps": {
       "types": "./dist/design-system/components/Steps/Steps.d.ts",
@@ -271,6 +306,12 @@
       "import": "./dist/components/Tabs/Tabs.js",
       "require": "./dist/components/Tabs/Tabs.cjs",
       "default": "./dist/components/Tabs/Tabs.js"
+    },
+    "./charts-bizcharts": {
+      "types": "./dist/design-system/charts/index.d.ts",
+      "import": "./dist/charts-bizcharts/index.js",
+      "require": "./dist/charts-bizcharts/index.cjs",
+      "default": "./dist/charts-bizcharts/index.js"
     },
     "./Tag": {
       "types": "./dist/design-system/components/Tag/Tag.d.ts",
@@ -401,11 +442,14 @@
   "sideEffects": false,
   "scripts": {
     "dev": "vite --configLoader native",
-    "build": "vite build --configLoader native && npm run build:types && npm run build:tokens && npm run build:ai:schema && npm run build:ai:templates && npm run build:api && npm run build:ai:manifest && npm run build:ai:discovery",
+    "dev:preact": "UDS_USE_PREACT_COMPAT=1 vite --configLoader native",
+    "build": "vite build --configLoader native && npm run build:types && npm run build:tokens && npm run build:ai:schema && npm run build:ai:icons && npm run build:ai:templates && npm run build:ai:figma && npm run build:api && npm run build:ai:manifest && npm run build:ai:discovery",
     "build:types": "tsc -p tsconfig.build.json",
     "build:tokens": "tsc -p tsconfig.tokens.json && node --experimental-specifier-resolution=node scripts/generate-tokens-css.mjs",
     "build:ai:schema": "node scripts/copy-ai-schema.mjs",
+    "build:ai:icons": "node scripts/copy-ai-icons.mjs",
     "build:ai:templates": "node scripts/copy-ai-templates.mjs",
+    "build:ai:figma": "node scripts/copy-ai-figma-assets.mjs",
     "build:api": "node --experimental-strip-types scripts/generate-api-artifacts.ts",
     "build:ai:manifest": "node --experimental-strip-types --experimental-specifier-resolution=node scripts/generate-ai-manifest.ts",
     "build:ai:discovery": "node --experimental-strip-types --experimental-specifier-resolution=node scripts/generate-ai-discovery.ts",
@@ -417,7 +461,9 @@
     "ai:generate-ui": "node --experimental-strip-types scripts/ai/generate-ui.ts",
     "ci:ai": "npm run ai:validate && npm run ai:validate:examples && npm run ai:gate:contracts && npm run ai:enforce && npm run ai:token-diff",
     "size:check": "node scripts/check-bundle-size.mjs",
+    "perf:smoke": "node scripts/perf-smoke.mjs",
     "ci:bundle": "npm run build && npm run size:check",
+    "ci:perf": "npm run build && npm run size:check && npm run perf:smoke",
     "preview": "vite preview --configLoader native",
     "lint": "eslint .",
     "lint:styles": "stylelint \"src/**/*.scss\"",
@@ -428,6 +474,7 @@
     "sass:watch": "sass --watch src/design-system:src/design-system"
   },
   "dependencies": {
+    "bizcharts": "^4.1.23",
     "prismjs": "^1.30.0"
   },
   "peerDependencies": {

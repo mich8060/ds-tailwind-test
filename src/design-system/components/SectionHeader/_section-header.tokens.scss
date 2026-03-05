@@ -1,0 +1,4 @@
+// Map semantic tokens to component-local vars
+@use "../../tokens/index" as *;
+
+$section-header-example: var(--spacing-2);

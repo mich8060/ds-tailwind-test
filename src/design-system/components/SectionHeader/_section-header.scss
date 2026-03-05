@@ -1,0 +1,36 @@
+@use "./section-header.tokens" as *;
+
+.uds-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--uds-spacing-16);
+  width: 100%;
+
+  &__description {
+    color: var(--uds-text-secondary);
+  }
+
+  &--with-divider {
+    padding-bottom: var(--uds-spacing-16);
+    border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
+  }
+
+  &__eyebrow {
+    color: var(--uds-text-brand-tertiary);
+  }
+
+  &__content {
+    display: flex;
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: var(--uds-spacing-8);
+  }
+
+  &__meta {
+    margin-top: var(--uds-spacing-16);
+  }
+
+  &__actions {
+    flex: 0 0 auto;
+  }
+}

@@ -1,5 +1,9 @@
 import React from "react";
-import { Button, Divider, Flex, Icon, Text } from "../../design-system";
+import { Button } from "../../design-system/components/Button";
+import { Divider } from "../../design-system/components/Divider";
+import { Flex } from "../../design-system/components/Flex";
+import { Icon } from "../../design-system/components/Icon";
+import { Text } from "../../design-system/components/Text";
 import * as DesignSystem from "../../design-system";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
@@ -20,6 +24,9 @@ const COMPONENT_VARIANTS: Record<string, VariantConfig> = {
   Button: { layout: ["label-only", "icon-left", "icon-right", "icon-only", "only"], appearance: ["primary", "soft", "outline", "text", "ghost", "disabled", "destructive"], size: ["large", "default", "small", "xsmall"] },
   Chip: { selected: ["false", "true"], rounded: ["false", "true"], size: ["default", "compact"], iconplacement: ["both", "left", "right", "none"] },
   Container: { appearance: ["default", "transparent"], padding: ["none", "xsmall", "small", "default", "large", "xlarge"] },
+  CurrencyInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
+  DateInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
+  DateRangeInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"], disabled: ["false", "true"] },
   Divider: { alignment: ["left", "center", "right"], variant: ["line", "solid"] },
   DotStatus: { variant: ["red", "blue", "inverse", "orange", "sky", "indigo", "rose", "neutral", "celery", "lime", "yellow", "green", "cyan", "purple", "fuchsia"], size: ["small", "medium", "large"], outline: ["false", "true"] },
   Dropdown: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
@@ -27,6 +34,9 @@ const COMPONENT_VARIANTS: Record<string, VariantConfig> = {
   ImageAspect: { aspectratio: ["square", "video", "4-3", "3-2", "21-9", "portrait", "auto"] },
   Key: { appearance: ["light", "dark"] },
   Modal: { size: ["small", "default", "large", "fullscreen"] },
+  NumberInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
+  PasswordInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
+  PhoneInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
   ProgressCircle: { shape: ["circle", "half-circle"], size: ["xxs", "xs", "sm", "md", "lg"] },
   ProgressIndicator: {
     labelPosition: ["false", "right", "bottom", "top-floating", "bottom-floating"],
@@ -36,8 +46,11 @@ const COMPONENT_VARIANTS: Record<string, VariantConfig> = {
   Status: { appearance: ["light-gray", "white"], shape: ["pill", "rounded"] },
   Steps: { orientation: ["horizontal", "vertical"], status: ["complete", "active", "incomplete", "disabled", "error"], size: ["default", "compact"] },
   Tag: { appearance: ["label-only", "icon-left"], size: ["compact", "default"], color: ["transparent", "neutral", "red", "orange", "yellow", "emerald", "green", "sky", "cyan", "blue", "indigo", "purple", "fuchsia", "magenta", "inverse"] },
+  SearchInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
   TextInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
   Textarea: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
+  TokenInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
+  TimeInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
   Toast: { variant: ["success", "error", "warning", "info"] },
   Toggle: { size: ["large", "small"] },
   Tooltip: { placement: ["top", "bottom", "left", "right"] },
@@ -57,6 +70,9 @@ const COMPONENTS: Record<string, React.ComponentType<Record<string, unknown>>> =
   Checkbox: DesignSystem.Checkbox as React.ComponentType<Record<string, unknown>>,
   Chip: DesignSystem.Chip as React.ComponentType<Record<string, unknown>>,
   Container: DesignSystem.Container as React.ComponentType<Record<string, unknown>>,
+  CurrencyInput: DesignSystem.CurrencyInput as React.ComponentType<Record<string, unknown>>,
+  DateInput: DesignSystem.DateInput as React.ComponentType<Record<string, unknown>>,
+  DateRangeInput: DesignSystem.DateRangeInput as React.ComponentType<Record<string, unknown>>,
   Datepicker: DesignSystem.Datepicker as React.ComponentType<Record<string, unknown>>,
   Dialog: DesignSystem.Dialog as React.ComponentType<Record<string, unknown>>,
   DotStatus: DesignSystem.DotStatus as React.ComponentType<Record<string, unknown>>,
@@ -71,10 +87,14 @@ const COMPONENTS: Record<string, React.ComponentType<Record<string, unknown>>> =
   Menu: DesignSystem.Menu as React.ComponentType<Record<string, unknown>>,
   MicroCalendar: DesignSystem.MicroCalendar as React.ComponentType<Record<string, unknown>>,
   Modal: DesignSystem.Modal as React.ComponentType<Record<string, unknown>>,
+  NumberInput: DesignSystem.NumberInput as React.ComponentType<Record<string, unknown>>,
   Pagination: DesignSystem.Pagination as React.ComponentType<Record<string, unknown>>,
+  PasswordInput: DesignSystem.PasswordInput as React.ComponentType<Record<string, unknown>>,
+  PhoneInput: DesignSystem.PhoneInput as React.ComponentType<Record<string, unknown>>,
   ProgressCircle: DesignSystem.ProgressCircle as React.ComponentType<Record<string, unknown>>,
   ProgressIndicator: DesignSystem.ProgressIndicator as React.ComponentType<Record<string, unknown>>,
   Radio: DesignSystem.Radio as React.ComponentType<Record<string, unknown>>,
+  SearchInput: DesignSystem.SearchInput as React.ComponentType<Record<string, unknown>>,
   Slider: DesignSystem.Slider as React.ComponentType<Record<string, unknown>>,
   Status: DesignSystem.Status as React.ComponentType<Record<string, unknown>>,
   Steps: DesignSystem.Steps as React.ComponentType<Record<string, unknown>>,
@@ -82,6 +102,8 @@ const COMPONENTS: Record<string, React.ComponentType<Record<string, unknown>>> =
   Tabs: DesignSystem.Tabs as React.ComponentType<Record<string, unknown>>,
   Tag: DesignSystem.Tag as React.ComponentType<Record<string, unknown>>,
   Textarea: DesignSystem.Textarea as React.ComponentType<Record<string, unknown>>,
+  TokenInput: DesignSystem.TokenInput as React.ComponentType<Record<string, unknown>>,
+  TimeInput: DesignSystem.TimeInput as React.ComponentType<Record<string, unknown>>,
   Toast: DesignSystem.Toast as React.ComponentType<Record<string, unknown>>,
   Tooltip: DesignSystem.Tooltip as React.ComponentType<Record<string, unknown>>,
 };
@@ -98,6 +120,9 @@ const BASE_PROPS: Record<string, Record<string, unknown>> = {
   Checkbox: { label: "Checkbox option" },
   Chip: { label: "Chip label", icon: "Star", badge: "2" },
   Container: { children: <Text as="span" variant="body-14" leading="regular">Container content</Text> },
+  CurrencyInput: { placeholder: "0.00" },
+  DateInput: { placeholder: "Select date" },
+  DateRangeInput: { startPlaceholder: "Start date", endPlaceholder: "End date" },
   Datepicker: { placeholder: "Select date" },
   Dialog: {
     intent: "info",
@@ -189,10 +214,14 @@ const BASE_PROPS: Record<string, Record<string, unknown>> = {
     ],
   },
   MicroCalendar: { defaultDate: new Date() },
+  NumberInput: { placeholder: "0" },
   Pagination: { currentPage: 3, totalPages: 10 },
+  PasswordInput: { placeholder: "Enter password" },
+  PhoneInput: { placeholder: "(555) 123-4567" },
   ProgressCircle: { value: 65, max: 100, label: "Progress", showLabel: true },
   ProgressIndicator: { value: 45, max: 100, label: "Loading", showLabel: false },
   Radio: { label: "Radio option", checked: true },
+  SearchInput: { placeholder: "Search..." },
   Slider: { value: 40, min: 0, max: 100 },
   Status: { label: "In Progress" },
   Steps: {
@@ -209,6 +238,8 @@ const BASE_PROPS: Record<string, Record<string, unknown>> = {
   Tabs: { tabs: [{ id: "overview", label: "Overview" }, { id: "details", label: "Details" }, { id: "activity", label: "Activity" }] },
   Tag: { label: "Tag label" },
   Textarea: { placeholder: "Enter details..." },
+  TokenInput: { tokens: ["alpha", "beta"], placeholder: "Add tokens..." },
+  TimeInput: { placeholder: "Select time" },
   Toast: { title: "Notification", message: "Toast message preview" },
   Tooltip: { content: "Tooltip content", children: <Button label="Hover me" appearance="outline" /> },
 };
@@ -576,7 +607,7 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
             </Text>
             {componentName === "Chip" && variantKey === "size" ? (
               <Flex direction="column" gap="12">
-                <Flex alignItems="center" gap="16" wrap>
+                <Flex direction="column" alignItems="flex-start" gap="16">
                   {values.map((value) => (
                     <Flex key={`${variantKey}-${value}`} direction="column" gap="8">
                       {renderPreview(buildVariantProps(variantKey, value))}
@@ -586,7 +617,7 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
                     </Flex>
                   ))}
                 </Flex>
-                <Flex alignItems="center" gap="16" wrap>
+                <Flex direction="column" alignItems="flex-start" gap="16">
                   {values.map((value) => (
                     <Flex key={`${variantKey}-${value}-rounded-false`} direction="column" gap="8">
                       {renderPreview({
@@ -602,7 +633,7 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
               </Flex>
             ) : componentName === "ProgressCircle" && variantKey === "shape" ? (
               <Flex direction="column" gap="16">
-                <Flex alignItems="center" gap="16" wrap>
+                <Flex direction="column" alignItems="flex-start" gap="16">
                   {values.map((value) => (
                     <Flex key={`${variantKey}-${value}`} direction="column" gap="8">
                       {renderPreview(buildVariantProps(variantKey, value))}
@@ -617,7 +648,7 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
                   <Text as="span" variant="body-12" leading="regular">
                     Circle sizes
                   </Text>
-                  <Flex alignItems="center" gap="16" wrap>
+                  <Flex direction="column" alignItems="flex-start" gap="16">
                     {(variantConfig.size ?? ["xxs", "xs", "sm", "md", "lg"]).map((size) => (
                       <Flex key={`circle-${size}`} direction="column" gap="8">
                         {renderPreview({
@@ -637,7 +668,7 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
                   <Text as="span" variant="body-12" leading="regular">
                     Half-circle sizes
                   </Text>
-                  <Flex alignItems="center" gap="16" wrap>
+                  <Flex direction="column" alignItems="flex-start" gap="16">
                     {(variantConfig.size ?? ["xxs", "xs", "sm", "md", "lg"]).map((size) => (
                       <Flex key={`half-circle-${size}`} direction="column" gap="8">
                         {renderPreview({
@@ -665,7 +696,7 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
                 ))}
               </Flex>
             ) : (
-              <Flex alignItems="center" gap="16" wrap>
+              <Flex direction="column" alignItems="flex-start" gap="16">
                 {values.map((value) => (
                   <Flex key={`${variantKey}-${value}`} direction="column" gap="8">
                     {renderPreview(buildVariantProps(variantKey, value))}

@@ -1,5 +1,6 @@
 import { ComponentRegistry } from "./manifest/components.manifest";
 import { getVersionLineage, UDSGovernance } from "./manifest/governance.manifest";
+import { IntentComponentMappings } from "./manifest/intent-mappings.manifest";
 import { LayoutRules } from "./manifest/layout.manifest";
 import { PatternRegistry } from "./manifest/patterns.manifest";
 import { PropAliasRules } from "./manifest/prop-aliases.manifest";
@@ -7,7 +8,16 @@ import { UDSAIContract, UDSManifest, UDS_AI_CONTRACT, UDS_AI_MANIFEST } from "./
 import { TokenIntentMap } from "./manifest/tokens.intent.manifest";
 
 export { UDSManifest, UDSAIContract, UDS_AI_CONTRACT, UDS_AI_MANIFEST };
-export { ComponentRegistry, PatternRegistry, LayoutRules, PropAliasRules, TokenIntentMap, UDSGovernance, getVersionLineage };
+export {
+  ComponentRegistry,
+  PatternRegistry,
+  LayoutRules,
+  PropAliasRules,
+  TokenIntentMap,
+  IntentComponentMappings,
+  UDSGovernance,
+  getVersionLineage,
+};
 export { runPolicyEngine } from "./policies/policy.engine";
 export { createUDSRuntimeHelperSDK } from "./sdk";
 export { validateTree } from "./validation/validateTree";

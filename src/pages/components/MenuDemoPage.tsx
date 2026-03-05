@@ -1,5 +1,8 @@
+import { Divider } from "../../design-system/components/Divider";
+import { Flex } from "../../design-system/components/Flex";
+import { Menu } from "../../design-system/components/Menu";
+import { Text } from "../../design-system/components/Text";
 import { useState } from "react";
-import { Divider, Flex, Menu, Text } from "../../design-system";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 
@@ -49,6 +52,7 @@ const MENU_NAV_ITEMS = [
     icon: "SquaresFour",
     children: [
       { label: "Button", path: "/components/button" },
+      { label: "Charts", path: "/components/charts" },
       { label: "Field", path: "/components/field" },
       { label: "Flex", path: "/components/flex" },
       { label: "Menu", path: "/components/menu" },

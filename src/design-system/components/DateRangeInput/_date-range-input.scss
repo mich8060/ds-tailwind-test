@@ -1,0 +1,93 @@
+@use "../../tokens/index" as *;
+@use "../../tokens/primitives/typography.primitives" as *;
+
+.uds-date-range-input {
+    display: flex;
+    align-items: center;
+    gap: var(--uds-spacing-8);
+    width: 100%;
+    box-sizing: border-box;
+    border: var(--uds-border-width-1) solid var(--uds-border-primary);
+    border-radius: var(--uds-radius-4);
+    background: var(--uds-surface-secondary);
+    padding: 0 var(--uds-spacing-12);
+    min-height: 44px;
+    transition: border-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+
+    &:focus-within {
+        border-color: var(--uds-border-brand-primary);
+    }
+
+    &__input {
+        flex: 1 1 0;
+        min-width: 0;
+
+        .uds-input-wrapper {
+            width: 100%;
+        }
+
+        .uds-input {
+            border: none;
+            background: transparent;
+            border-radius: 0;
+            height: auto;
+            min-height: 0;
+            padding: 0;
+        }
+    }
+
+    // Hide the native date picker icon on the first input
+    &__input--start {
+        // default size
+        flex: 0 0 100px;
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+            pointer-events: none;
+            width: 0;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    // Only apply explicit width to the end field
+    &__input--end {
+        flex: 1;
+    }
+
+    &__separator {
+        @include uds-body-14-medium;
+        color: var(--uds-text-tertiary);
+        flex: 0 0 auto;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    &--compact {
+        min-height: 36px;
+        padding: 0 var(--uds-spacing-10);
+
+        .uds-date-range-input__input--start {
+            flex: 0 0 85px;
+        }
+
+        .uds-date-range-input__separator {
+            @include uds-body-12-medium;
+        }
+    }
+
+    &--focused {
+        border-color: var(--uds-border-brand-primary);
+    }
+
+    &--error {
+        border-color: var(--uds-system-destructive-primary);
+        color: var(--uds-text-destructive-primary);
+    }
+
+    &--disabled {
+        background: var(--uds-surface-tertiary);
+        border-color: var(--uds-border-primary);
+        opacity: 0.7;
+    }
+}

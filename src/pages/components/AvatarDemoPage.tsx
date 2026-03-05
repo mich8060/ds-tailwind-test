@@ -1,4 +1,7 @@
-import { Avatar, Divider, Flex, Text } from "../../design-system";
+import { Avatar } from "../../design-system/components/Avatar";
+import { Divider } from "../../design-system/components/Divider";
+import { Flex } from "../../design-system/components/Flex";
+import { Text } from "../../design-system/components/Text";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 

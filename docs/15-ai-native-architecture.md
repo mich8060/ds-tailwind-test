@@ -1,146 +1,102 @@
 # UDS AI-Native Architecture
 
-This document defines a non-runtime AI metadata layer for `@mich8060/unified-design-system` so autonomous agents can generate high-quality UI with explicit constraints.
+This document defines the current AI contract architecture for `@mich8060/unified-design-system`.
 
-## Design Goals
+## Goals
 
-- Keep component runtime behavior unchanged.
-- Keep bundle impact near zero for normal UI consumers.
-- Provide machine-readable metadata for components, flows, tokens, spacing, and anti-patterns.
-- Support progressive rollout from partial metadata coverage to full design system coverage.
+- Keep runtime component behavior independent from AI metadata.
+- Publish deterministic, machine-readable AI contracts for generation and validation.
+- Make discovery consistent across models with one canonical index.
+- Enforce contract drift in CI.
 
-## Proposed Architecture
+## Architecture Layers
 
-### 1) Runtime Layer (unchanged)
+### 1) Runtime UI Layer
 
-- Existing component runtime modules under `src/design-system/components/*`.
-- Existing root API remains:
-  - `import { Button } from "@mich8060/unified-design-system"`
-  - `import Button from "@mich8060/unified-design-system/Button"`
+- Source: `src/design-system/components/**`
+- Public package entrypoints: root component exports and per-component subpaths.
+- No required dependency on AI metadata for normal runtime consumers.
 
-### 2) AI Metadata Layer (new)
+### 2) Runtime AI API Layer
 
-- New source folder: `src/design-system/ai/`
-- Core files:
-  - `manifest/system.manifest.ts` — root AI contract (`UDSManifest`)
-  - `manifest/components.manifest.ts` — `ComponentRegistry` for all exported runtime components
-  - `manifest/patterns.manifest.ts` — `PatternRegistry` with reusable screen flows
-  - `manifest/layout.manifest.ts` — `LayoutRules` and composition constraints
-  - `manifest/tokens.intent.manifest.ts` — `TokenIntentMap`
-  - `validation/validateTree.ts` — deterministic validation utility
-  - `examples/trees.example.ts` — valid/invalid example trees
-  - `index.ts` — AI-facing exports.
+- Source: `src/design-system/ai/**`
+- Core exports:
+  - `@mich8060/unified-design-system/ai`
+  - `@mich8060/unified-design-system/ai/manifest`
+  - `@mich8060/unified-design-system/ai/validation`
+  - `@mich8060/unified-design-system/ai/examples`
+  - `@mich8060/unified-design-system/ai/sdk`
+- Key capabilities:
+  - governed manifest registries (`ComponentRegistry`, `LayoutRules`, `PatternRegistry`, governance lineage)
+  - policy engine + schema/composition validation
+  - deterministic failure fingerprints and repair feedback
+  - runtime helper SDK (`createUDSRuntimeHelperSDK`) for validation and prop canonicalization
 
-### 3) Package Export Layer (new subpath)
+### 3) AI Authoring Workspace Layer
 
-- Add `./ai` and `./ai/*` in `package.json` `exports`.
-- Keep AI metadata opt-in and separate from standard runtime imports.
+- Source: `src/ai/**`
+- Published machine-readable artifacts:
+  - `@mich8060/unified-design-system/ai/discovery.json`
+  - `@mich8060/unified-design-system/ai/manifest.json`
+  - `@mich8060/unified-design-system/ai/schema`
+  - `@mich8060/unified-design-system/ai/icons`
+  - `@mich8060/unified-design-system/ai/templates`
+- Authoring utilities:
+  - `src/ai/prompts/*` for generation/repair prompts
+  - `src/ai/examples/*` for generated examples
 
-## Root System Manifest
+## Discoverability Contract
 
-```ts
-export const UDSManifest = {
-  version: "0.2.12",
-  tokenVersion: "1.0.0",
-  components: ComponentRegistry,
-  patterns: PatternRegistry,
-  layout: LayoutRules,
-  tokens: TokenIntentMap,
-  governance: {
-    maxPrimaryActionsPerSection: 1,
-    spacingUnit: 4,
-    defaultRadius: "--uds-radius-8",
-  },
-};
-```
+`src/ai/discovery.json` is the canonical entrypoint for all models and tooling.
 
-## Example Pattern Definition
+- Contract name: `uds.ai.discovery`
+- Includes:
+  - recommended read order
+  - canonical package subpaths for manifest/schema/icons/templates/validation/sdk
+  - active version lineage (`system`, `token`, `manifest`, `governance`, `policy`)
 
-```ts
-{
-  name: "AuthForm",
-  layout: "vertical",
-  requiredComponents: ["Card", "Field", "TextInput", "Button", "Text"],
-  structure: [
-    { type: "Card", role: "container" },
-    { type: "Text", role: "heading", props: { variant: "heading-24" } },
-    { type: "Field", role: "email-field" },
-    { type: "TextInput", role: "email-input", props: { type: "email" } },
-    { type: "Button", role: "primary-submit", props: { appearance: "primary" } },
-  ],
-  spacing: "--uds-spacing-16",
-}
-```
+## Contract Artifacts
 
-## Export Strategy
+- `src/ai/manifest/manifest.json`
+  - Contract name: `uds.ai.contract`
+- `src/ai/icons/catalog.json`
+  - Contract name: `uds.ai.icon-catalog`
+  - Contains icon naming rules, appearance options, and intent-based recommendations.
+- `src/ai/templates/layouts.json`
+  - Contract name: `uds.ai.layout-templates`
+  - Contains governed layout starter templates and constraints.
 
-- ESM-first with CJS fallback:
-  - `@mich8060/unified-design-system/ai` -> `dist/ai/index.js` (ESM), `dist/ai/index.cjs` (CJS)
-  - `@mich8060/unified-design-system/ai/manifest` -> structured manifest layer
-  - `@mich8060/unified-design-system/ai/validation` -> validator utilities
-  - `@mich8060/unified-design-system/ai/examples` -> reference trees
-- Tree-shakeability:
-  - AI metadata is isolated to `./ai` subpath.
-  - Runtime consumers importing components do not need to import `./ai`.
-  - Agents can import granular metadata exports from `./ai`.
+## Validation and Governance
 
-## Validation Utility
+Validation entrypoint: `validateAIOutput()`.
 
-`validateTree(tree)` enforces:
+- Input: generated JSON tree payload
+- Enforces:
+  - schema shape
+  - composition and policy rules
+  - drift rules
+  - version field consistency (`manifestVersion`, `governanceVersion`, `policyVersion`)
+- Returns deterministic output with:
+  - `status`
+  - `violations`
+  - `warnings`
+  - `deterministicFeedback` (fingerprint + stable repair guidance when failing)
+  - `versionLineage`
 
-- max primary actions per section
-- allowed child composition mappings
-- spacing token usage from allowed token list
-- disallowed nesting rules
+## Build and Publish Flow
 
-The utility returns a deterministic machine-readable payload:
+`npm run build` generates and publishes AI artifacts into `dist/ai/**`:
 
-```ts
-{
-  valid: boolean,
-  errors: Array<{
-    code: "MAX_PRIMARY_ACTIONS" | "INVALID_COMPOSITION" | "INVALID_SPACING_TOKEN" | "DISALLOWED_NESTING",
-    path: string,
-    message: string
-  }>
-}
-```
+- schema copy
+- icon catalog copy
+- template catalog copy
+- generated component API artifacts
+- generated AI manifest
+- generated discovery index
 
-## Migration Plan
-
-### Phase 0 — Foundation (complete)
-
-- Add typed AI schema and manifest.
-- Add initial metadata coverage for high-impact components (`Button`, `Table`, `Field`, `Modal`).
-- Add baseline patterns, token-intent map, layout rules, and anti-patterns.
-
-### Phase 1 — Full Component Coverage
-
-- Add metadata entries for every public component.
-- Add required-prop and variant/state constraints from each `.spec.ts`.
-- Add component-level accessibility checks.
-
-### Phase 2 — Rule Quality and Validation
-
-- Add CI validation for AI metadata integrity:
-  - every manifest entry resolves to an exported metadata constant
-  - token names used in metadata exist in token source
-  - import paths in metadata resolve to real package subpaths
-
-### Phase 3 — Agent Optimization
-
-- Add goal-oriented pattern library (CRUD, table filtering, detail panels, modal confirmations).
-- Add scoring hints (preferred composition choices, confidence tags).
-- Add versioned deprecation hints per component and prop.
-
-### Phase 4 — Governance
-
-- Require metadata updates in PRs for component API changes.
-- Version metadata (`metadataVersion`) independently from package version.
-- Publish changelog section: “AI Metadata Changes”.
+`package.json` exports are the API truth for all AI entrypoints.
 
 ## Non-Goals
 
-- No runtime component behavior changes.
-- No additional client-side rendering logic.
-- No required runtime dependency on AI metadata for component usage.
+- No runtime component behavior changes driven by AI metadata.
+- No requirement for app consumers to import AI subpaths.

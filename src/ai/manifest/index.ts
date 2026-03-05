@@ -3,5 +3,6 @@ export * from "./components.manifest";
 export * from "./patterns.manifest";
 export * from "./layout.manifest";
 export * from "./tokens.intent.manifest";
+export * from "./intent-mappings.manifest";
 export * from "./governance.manifest";
 export * from "./system.manifest";

@@ -7,6 +7,7 @@ import { UDS_RUNTIME_VERSION } from "../src/design-system/version.ts";
 import { ComponentRegistry as PublicComponentRegistry } from "../src/ai/manifest/components.manifest.ts";
 import { ComponentRegistry as RuntimeComponentRegistry } from "../src/design-system/ai/manifest/components.manifest.ts";
 import { LayoutRules } from "../src/design-system/ai/manifest/layout.manifest.ts";
+import { IntentComponentMappings } from "../src/design-system/ai/manifest/intent-mappings.manifest.ts";
 import { UDS_TOKEN_INTENTS } from "../src/design-system/ai/token-intents.ts";
 
 type Primitive = string | number | boolean | null;
@@ -121,6 +122,7 @@ async function buildContract(): Promise<Record<string, unknown>> {
       maxWidth: LayoutRules.maxWidth,
       maxNestingDepth: UDSGovernance.limits.maxNestingDepth,
     },
+    intentComponentMappings: IntentComponentMappings,
     tokenIntents: Object.fromEntries(UDS_TOKEN_INTENTS.map((entry) => [entry.intent, entry.tokens])),
   };
 }

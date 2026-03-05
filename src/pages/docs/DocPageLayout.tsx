@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { Flex, Text } from "../../design-system";
+import { Flex } from "../../design-system/components/Flex";
+import { Text } from "../../design-system/components/Text";
 
 interface DocPageLayoutProps {
   title: string;

@@ -1,0 +1,76 @@
+{
+  "contractName": "uds.ai.icon-catalog",
+  "schemaVersion": "1.0.0",
+  "library": "@phosphor-icons/react",
+  "naming": {
+    "format": "PascalCase",
+    "examples": ["House", "MagnifyingGlass", "CaretDown", "WarningCircle"],
+    "normalization": "If user prompt includes kebab/snake/space case, normalize to PascalCase before output."
+  },
+  "appearanceOptions": ["regular", "bold", "thin", "light", "duotone", "fill"],
+  "sizeGuidance": {
+    "small": 16,
+    "default": 20,
+    "large": 24
+  },
+  "recommendedByIntent": {
+    "navigation": ["House", "Compass", "List", "Sidebar", "ArrowLeft", "ArrowRight", "CaretLeft", "CaretRight"],
+    "search": ["MagnifyingGlass", "Funnel", "SlidersHorizontal"],
+    "actions": ["Plus", "PlusCircle", "PencilSimple", "Copy", "Trash", "Check", "X", "DotsThreeVertical"],
+    "statusPositive": ["CheckCircle", "Check", "SealCheck"],
+    "statusWarning": ["Warning", "WarningCircle"],
+    "statusError": ["XCircle", "WarningOctagon"],
+    "statusInfo": ["Info", "Info"],
+    "timeAndCalendar": ["CalendarBlank", "Clock", "Timer"],
+    "communication": ["Bell", "ChatCircle", "EnvelopeSimple", "Phone"],
+    "userAndAccess": ["User", "Users", "UserCircle", "Lock", "ShieldCheck"],
+    "filesAndData": ["FileText", "DownloadSimple", "UploadSimple", "Paperclip", "Database"]
+  },
+  "componentUsageHints": [
+    {
+      "component": "Button",
+      "props": {
+        "icon": "string",
+        "layout": "icon-left | icon-right | icon-only | label-only"
+      },
+      "examples": [
+        "<Button label=\"Search\" icon=\"MagnifyingGlass\" layout=\"icon-left\" />",
+        "<Button icon=\"DotsThreeVertical\" layout=\"icon-only\" appearance=\"ghost\" aria-label=\"More actions\" />"
+      ]
+    },
+    {
+      "component": "Icon",
+      "props": {
+        "name": "Phosphor icon name",
+        "appearance": "regular | bold | thin | light | duotone | fill",
+        "size": "number"
+      },
+      "examples": [
+        "<Icon name=\"House\" size={20} appearance=\"regular\" />",
+        "<Icon name=\"WarningCircle\" size={16} appearance=\"fill\" />"
+      ]
+    },
+    {
+      "component": "Status",
+      "props": {
+        "variant": "icon",
+        "icon": "Phosphor icon name"
+      },
+      "examples": ["<Status label=\"Error\" color=\"red\" variant=\"icon\" icon=\"WarningCircle\" />"]
+    },
+    {
+      "component": "Chip",
+      "props": {
+        "icon": "Phosphor icon name",
+        "iconPlacement": "left | right | both | none"
+      },
+      "examples": ["<Chip label=\"Messages\" icon=\"ChatCircle\" iconPlacement=\"left\" />"]
+    }
+  ],
+  "rules": [
+    "Prefer at least one icon in dense navigation/action regions unless prohibited by accessibility context.",
+    "For icon-only buttons, always include aria-label.",
+    "Do not use inline SVGs or external icon libraries in generated output.",
+    "If uncertain, use a recommendedByIntent icon before inventing names."
+  ]
+}

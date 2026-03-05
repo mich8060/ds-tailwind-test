@@ -91,6 +91,32 @@ export const ComponentRegistry = {
     },
     constraints: { onlyOnePrimaryPerSection: true },
   },
+  ButtonGroup: {
+    category: "action",
+    intent: "Grouped related button actions",
+    description:
+      "A compositional wrapper that arranges multiple Button actions with consistent spacing and orientation for related decisions.",
+    alsoKnownAs: ["Action Group", "Button Cluster", "Action Row"],
+    roles: ["group"],
+    preferredParent: ["Card", "Container", "Dialog", "Modal"],
+    props: {
+      orientation: {
+        type: "enum",
+        values: ["horizontal", "vertical"],
+      },
+      size: {
+        type: "enum",
+        values: ["xsmall", "small", "default", "large"],
+      },
+      fullWidth: {
+        type: "boolean",
+      },
+      disabled: {
+        type: "boolean",
+      },
+    },
+    constraints: { onlyOnePrimaryPerSection: true },
+  },
   Calendar: {
     category: "form",
     intent: "Calendar grid date selection",
@@ -117,6 +143,33 @@ export const ComponentRegistry = {
     alsoKnownAs: ["Multi-select Control", "Boolean Input", "Selection Box"],
     roles: ["checkbox"],
     preferredParent: ["Field", "Form"],
+  },
+  CheckboxGroup: {
+    category: "form",
+    intent: "Grouped multi-select checkboxes",
+    description:
+      "A grouped set of Checkbox controls for selecting multiple options with shared label, orientation, and change handling.",
+    alsoKnownAs: ["Checkbox List", "Multi-select Group", "Selection Group"],
+    roles: ["group"],
+    preferredParent: ["Field", "Form", "Card"],
+    props: {
+      orientation: {
+        type: "enum",
+        values: ["vertical", "horizontal"],
+      },
+      disabled: {
+        type: "boolean",
+      },
+    },
+  },
+  Checklist: {
+    category: "navigation",
+    intent: "Sidebar step checklist with completion progress",
+    description:
+      "A vertical step checklist used as a sidebar to track progress through multi-step workflows and forms.",
+    alsoKnownAs: ["Progress Checklist", "Step Checklist", "Application Checklist", "Sidebar Progress"],
+    roles: ["navigation"],
+    preferredParent: ["AppShell", "Container", "Card"],
   },
   Chip: {
     category: "form",
@@ -339,6 +392,24 @@ export const ComponentRegistry = {
     roles: ["radio"],
     preferredParent: ["Field", "Form"],
   },
+  RadioGroup: {
+    category: "form",
+    intent: "Grouped single-select radios",
+    description:
+      "A grouped set of Radio controls for selecting exactly one option with shared name, layout orientation, and state handling.",
+    alsoKnownAs: ["Single Select Group", "Option Group", "Radio Set"],
+    roles: ["radiogroup"],
+    preferredParent: ["Field", "Form", "Card"],
+    props: {
+      orientation: {
+        type: "enum",
+        values: ["vertical", "horizontal"],
+      },
+      disabled: {
+        type: "boolean",
+      },
+    },
+  },
   Slider: {
     category: "form",
     intent: "Range/value slider input",
@@ -356,6 +427,29 @@ export const ComponentRegistry = {
     alsoKnownAs: ["Status Indicator", "State Indicator", "System Status"],
     roles: ["status"],
     preferredParent: ["Table", "Card", "Flex"],
+  },
+  Statistics: {
+    category: "data-display",
+    intent: "KPI and metric summary display",
+    description:
+      "A metric display component for KPI values with optional trend indication, helper context, and icon.",
+    alsoKnownAs: ["Stat Card", "KPI Tile", "Metric Card", "KPI Summary"],
+    roles: ["status"],
+    preferredParent: ["Card", "Container", "Flex"],
+    props: {
+      appearance: {
+        type: "enum",
+        values: ["default", "outlined"],
+      },
+      size: {
+        type: "enum",
+        values: ["default", "compact"],
+      },
+      trend: {
+        type: "enum",
+        values: ["up", "down", "neutral"],
+      },
+    },
   },
   Steps: {
     category: "navigation",
@@ -428,6 +522,15 @@ export const ComponentRegistry = {
     alsoKnownAs: ["Multi-line Input", "Text Area Field", "Long Text Input"],
     roles: ["textbox"],
     preferredParent: ["Field", "Form"],
+  },
+  Toolbar: {
+    category: "layout",
+    intent: "Top bar with edge actions and centered identity/title",
+    description:
+      "A horizontal application bar that reserves left and right action regions and a centered title or branding slot.",
+    alsoKnownAs: ["Top Bar", "Header Bar", "Action Bar", "Title Bar"],
+    roles: ["toolbar"],
+    preferredParent: ["AppShell", "Container", "root"],
   },
   Toast: {
     category: "feedback",

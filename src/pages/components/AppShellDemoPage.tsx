@@ -1,5 +1,14 @@
-import { useState, type CSSProperties } from "react";
-import { Avatar, Button, Code, Divider, Dropdown, Flex, Menu, Text, Toggle } from "../../design-system";
+import { Avatar } from "../../design-system/components/Avatar";
+import { useState } from "react";
+import { Button } from "../../design-system/components/Button";
+import type { CSSProperties } from "react";
+import { Code } from "../../design-system/components/Code";
+import { Divider } from "../../design-system/components/Divider";
+import { Dropdown } from "../../design-system/components/Dropdown";
+import { Flex } from "../../design-system/components/Flex";
+import { Menu } from "../../design-system/components/Menu";
+import { Text } from "../../design-system/components/Text";
+import { Toggle } from "../../design-system/components/Toggle";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 import { doctorList } from "../../design-system/assets/images/doctors";
@@ -9,6 +18,9 @@ const APP_SHELL_PROPS: ComponentPropRow[] = [
   { prop: "theme", type: '"light" | "dark"', defaultValue: '"light"', description: "Theme namespace class applied to shell root (`theme-*`)." },
   { prop: "layout", type: "ShellLayoutConfig", defaultValue: "defaultLayout", description: "Layout and density configuration object." },
   { prop: "slots", type: "AppShellSlots", defaultValue: "{}", description: "Optional overrides for Header, Sidebar, Breadcrumb, Footer, SubNav." },
+  { prop: "skipToContent", type: "boolean", defaultValue: "true", description: "Renders keyboard-accessible skip link that jumps to main content." },
+  { prop: "skipToContentLabel", type: "string", defaultValue: '"Skip to content"', description: "Accessible label text shown for the skip link." },
+  { prop: "mainContentId", type: "string", defaultValue: "generated", description: "Optional custom id for the main content target used by skip link." },
   { prop: "children", type: "ReactNode", defaultValue: "-", description: "Compound regions using `AppShell.Menu`, `AppShell.Content`, `AppShell.Listview`, `AppShell.Main`." },
   { prop: "className", type: "string", defaultValue: '""', description: "Additional CSS classes on shell root." },
 ];

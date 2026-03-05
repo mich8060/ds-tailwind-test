@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
-import { Branding, Button, Divider, Flex, Text } from "../../design-system";
+import { useEffect } from "react";
+import { Branding } from "../../design-system/components/Branding";
+import { Button } from "../../design-system/components/Button";
+import { Divider } from "../../design-system/components/Divider";
+import { Flex } from "../../design-system/components/Flex";
+import { Text } from "../../design-system/components/Text";
+import { useState } from "react";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 

@@ -393,6 +393,64 @@
         ]
       }
     },
+    "ButtonGroup": {
+      "name": "ButtonGroup",
+      "category": "action",
+      "intent": "Grouped related button actions",
+      "purpose": "Groups related button actions with consistent spacing and orientation.",
+      "tier": 2,
+      "description": "A compositional wrapper that arranges multiple Button actions with consistent spacing and orientation for related decisions.",
+      "roles": [
+        "group"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {
+        "orientation": {
+          "type": "enum",
+          "values": [
+            "horizontal",
+            "vertical"
+          ],
+          "default": "horizontal"
+        },
+        "size": {
+          "type": "enum",
+          "values": [
+            "xsmall",
+            "small",
+            "default",
+            "large"
+          ],
+          "default": "default"
+        }
+      },
+      "defaults": {
+        "orientation": "horizontal",
+        "size": "default"
+      },
+      "composition": {
+        "preferredParents": [
+          "Card",
+          "Container",
+          "Dialog",
+          "Modal"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": [
+          "--uds-spacing-8",
+          "--uds-color-neutral-700",
+          "--uds-radius-8"
+        ]
+      }
+    },
     "Calendar": {
       "name": "Calendar",
       "category": "form",
@@ -508,6 +566,102 @@
         ]
       }
     },
+    "CheckboxGroup": {
+      "name": "CheckboxGroup",
+      "category": "form",
+      "intent": "Grouped multi-select checkboxes",
+      "purpose": "Provides grouped multi-select choices using Checkbox controls.",
+      "tier": 2,
+      "description": "A grouped set of Checkbox controls for selecting multiple options with shared label, orientation, and change handling.",
+      "roles": [
+        "group"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {
+        "orientation": {
+          "type": "enum",
+          "values": [
+            "vertical",
+            "horizontal"
+          ],
+          "default": "vertical"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "defaults": {
+        "orientation": "vertical",
+        "disabled": false
+      },
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form",
+          "Card"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": [
+          "--uds-spacing-8",
+          "--uds-spacing-12",
+          "--uds-color-neutral-700",
+          "--uds-color-blue-600"
+        ]
+      }
+    },
+    "Checklist": {
+      "name": "Checklist",
+      "category": "navigation",
+      "intent": "Sidebar step checklist with completion progress",
+      "purpose": "Sidebar checklist for multi-step flows with completion status.",
+      "tier": 2,
+      "description": "A vertical step checklist used as a sidebar to track progress through multi-step workflows and forms.",
+      "roles": [
+        "navigation"
+      ],
+      "slots": null,
+      "states": [
+        "default",
+        "active",
+        "completed",
+        "disabled"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "AppShell",
+          "Container",
+          "Card"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": [
+          "--uds-surface-primary",
+          "--uds-border-primary",
+          "--uds-text-primary",
+          "--uds-text-secondary",
+          "--uds-surface-brand-primary",
+          "--uds-spacing-8",
+          "--uds-spacing-12",
+          "--uds-spacing-20",
+          "--uds-spacing-24"
+        ]
+      }
+    },
     "Chip": {
       "name": "Chip",
       "category": "form",
@@ -537,7 +691,8 @@
           "type": "enum",
           "values": [
             "default",
-            "compact"
+            "compact",
+            "mini"
           ],
           "default": "default"
         },
@@ -1777,6 +1932,58 @@
         ]
       }
     },
+    "RadioGroup": {
+      "name": "RadioGroup",
+      "category": "form",
+      "intent": "Grouped single-select radios",
+      "purpose": "Provides grouped single-select choices using Radio controls.",
+      "tier": 2,
+      "description": "A grouped set of Radio controls for selecting exactly one option with shared name, layout orientation, and state handling.",
+      "roles": [
+        "radiogroup"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {
+        "orientation": {
+          "type": "enum",
+          "values": [
+            "vertical",
+            "horizontal"
+          ],
+          "default": "vertical"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "defaults": {
+        "orientation": "vertical",
+        "disabled": false
+      },
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form",
+          "Card"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": [
+          "--uds-spacing-8",
+          "--uds-spacing-12",
+          "--uds-color-neutral-700",
+          "--uds-color-blue-600"
+        ]
+      }
+    },
     "Slider": {
       "name": "Slider",
       "category": "form",
@@ -1812,6 +2019,53 @@
         ]
       }
     },
+    "Statistics": {
+      "name": "Statistics",
+      "category": "data-display",
+      "intent": "KPI and metric summary display",
+      "purpose": "Displays a KPI value with optional context, trend, and icon.",
+      "tier": 2,
+      "description": "A metric display component for KPI values with optional trend indication, helper context, and icon.",
+      "roles": [
+        "status"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {
+        "trend": {
+          "type": "enum",
+          "values": [
+            "up",
+            "down",
+            "neutral"
+          ],
+          "default": "neutral"
+        }
+      },
+      "defaults": {
+        "trend": "neutral"
+      },
+      "composition": {
+        "preferredParents": [
+          "Card",
+          "Container",
+          "Flex"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": [
+          "--uds-spacing-8",
+          "--uds-color-neutral-700",
+          "--uds-radius-8"
+        ]
+      }
+    },
     "Status": {
       "name": "Status",
       "category": "data-display",
@@ -1829,7 +2083,8 @@
           "type": "enum",
           "values": [
             "light-gray",
-            "white"
+            "white",
+            "transparent"
           ],
           "default": "light-gray"
         },
@@ -2005,6 +2260,14 @@
       "slots": null,
       "states": [],
       "props": {
+        "orientation": {
+          "type": "enum",
+          "values": [
+            "horizontal",
+            "vertical"
+          ],
+          "default": "horizontal"
+        },
         "appearance": {
           "type": "string",
           "default": "underline"
@@ -2015,6 +2278,7 @@
         }
       },
       "defaults": {
+        "orientation": "horizontal",
         "appearance": "underline",
         "tagVariant": "red"
       },
@@ -2453,6 +2717,43 @@
         ]
       }
     },
+    "Toolbar": {
+      "name": "Toolbar",
+      "category": "layout",
+      "intent": "Top bar with edge actions and centered identity/title",
+      "purpose": "Top action bar with left and right action regions and centered title/branding.",
+      "tier": 2,
+      "description": "A horizontal application bar that reserves left and right action regions and a centered title or branding slot.",
+      "roles": [
+        "toolbar"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "AppShell",
+          "Container",
+          "root"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": [
+          "--uds-surface-primary",
+          "--uds-border-primary",
+          "--uds-spacing-8",
+          "--uds-spacing-12",
+          "--uds-spacing-16"
+        ]
+      }
+    },
     "Tooltip": {
       "name": "Tooltip",
       "category": "feedback",
@@ -2769,6 +3070,69 @@
       "dialog": "720px"
     },
     "maxNestingDepth": 8
+  },
+  "intentComponentMappings": {
+    "primaryAction": {
+      "component": "Button",
+      "props": {
+        "appearance": "primary"
+      },
+      "notes": "Use one primary action per section max."
+    },
+    "secondaryAction": {
+      "component": "Button",
+      "props": {
+        "appearance": "text"
+      },
+      "notes": "Use non-primary appearance for secondary actions."
+    },
+    "sectionContainer": {
+      "component": "Container",
+      "props": {
+        "gap": "--uds-spacing-24"
+      },
+      "notes": "Default section wrapper with governed spacing."
+    },
+    "contentStack": {
+      "component": "Flex",
+      "props": {
+        "direction": "column",
+        "gap": "--uds-spacing-16"
+      },
+      "notes": "Primary stack for vertical rhythm."
+    },
+    "formFieldWrapper": {
+      "component": "Field",
+      "notes": "Wrap inputs that require label/helper/error messaging."
+    },
+    "textInputControl": {
+      "component": "TextInput",
+      "notes": "Use TextInput for freeform single-line text."
+    },
+    "selectionControl": {
+      "component": "Dropdown",
+      "notes": "Use Dropdown for controlled selection."
+    },
+    "statusIndicator": {
+      "component": "Status",
+      "notes": "Use semantic status component for state communication."
+    },
+    "badgeLabel": {
+      "component": "Tag",
+      "notes": "Use Tag for concise categorical labels."
+    },
+    "contextualActions": {
+      "component": "ActionMenu",
+      "notes": "Use ActionMenu for row/object-level secondary actions."
+    },
+    "dataPresentation": {
+      "component": "Table",
+      "notes": "Use Table for tabular datasets and structured records."
+    },
+    "confirmationDialog": {
+      "component": "Modal",
+      "notes": "Use Modal for confirmation/destructive decision points."
+    }
   },
   "tokenIntents": {
     "surface/background": [

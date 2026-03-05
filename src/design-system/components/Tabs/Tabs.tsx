@@ -12,6 +12,11 @@ const appearanceClassMap = {
   "block-inverted": "block-inverted",
 };
 
+const orientationClassMap = {
+  horizontal: "horizontal",
+  vertical: "vertical",
+};
+
 /**
  * Tabs component - A simple complete tab group
  *
@@ -27,6 +32,7 @@ const appearanceClassMap = {
 function Tabs({
   tabs = [],
   appearance = "underline",
+  orientation = "horizontal",
   activeTab,
   fill = false,
   scrollable = false,
@@ -34,10 +40,13 @@ function Tabs({
   className = "",
   ...props
 }: TabsProps) {
-  const tabsContainerRef = useRef(null);
-  const tabsListRef = useRef(null);
+  const tabsContainerRef = useRef<HTMLDivElement | null>(null);
+  const tabsListRef = useRef<HTMLDivElement | null>(null);
   const [showLeftScroll, setShowLeftScroll] = useState(false);
   const [showRightScroll, setShowRightScroll] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const isScrollable = scrollable && orientation === "horizontal";
 
   // Default to first tab (index 0) if activeTab is not provided or invalid
   const currentActiveTab = activeTab !== undefined && activeTab !== null && activeTab >= 0 && activeTab < tabs.length
@@ -48,8 +57,10 @@ function Tabs({
     BASE_CLASS,
     appearanceClassMap[appearance] &&
       `${BASE_CLASS}--${appearanceClassMap[appearance]}`,
+    orientationClassMap[orientation] &&
+      `${BASE_CLASS}--${orientationClassMap[orientation]}`,
     fill && `${BASE_CLASS}--fill`,
-    scrollable && `${BASE_CLASS}--scrollable`,
+    isScrollable && `${BASE_CLASS}--scrollable`,
     className,
   ]
     .filter(Boolean)
@@ -66,7 +77,7 @@ function Tabs({
 
   // Check if scrolling is needed and update scroll button visibility
   const checkScrollButtons = useCallback(() => {
-    if (!scrollable || !tabsContainerRef.current || !tabsListRef.current) {
+    if (!isScrollable || !tabsContainerRef.current || !tabsListRef.current) {
       return;
     }
 
@@ -78,11 +89,11 @@ function Tabs({
 
     setShowLeftScroll(scrollLeft > 0);
     setShowRightScroll(scrollLeft < listWidth - containerWidth - 1);
-  }, [scrollable]);
+  }, [isScrollable]);
 
   // Scroll to active tab if it's not visible
   const scrollToActiveTab = useCallback(() => {
-    if (!scrollable || !tabsListRef.current || currentActiveTab === undefined) {
+    if (!isScrollable || !tabsListRef.current || currentActiveTab === undefined) {
       return;
     }
 
@@ -118,7 +129,7 @@ function Tabs({
         behavior: "smooth",
       });
     }
-  }, [currentActiveTab, scrollable]);
+  }, [currentActiveTab, isScrollable]);
 
   // Handle scroll button clicks
   const handleScrollLeft = useCallback(() => {
@@ -139,9 +150,28 @@ function Tabs({
     });
   }, []);
 
+  useEffect(() => {
+    const target = tabsContainerRef.current ?? tabsListRef.current;
+    if (!target || typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setIsVisible(Boolean(entry?.isIntersecting));
+      },
+      { root: null, threshold: 0.01 }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
   // Check scroll buttons on mount, resize, and scroll
   useEffect(() => {
-    if (!scrollable) return;
+    if (!isScrollable || !isVisible) return;
 
     checkScrollButtons();
     scrollToActiveTab();
@@ -165,7 +195,7 @@ function Tabs({
       resizeObserver.disconnect();
       list.removeEventListener("scroll", checkScrollButtons);
     };
-  }, [checkScrollButtons, scrollToActiveTab, scrollable, tabs.length]);
+  }, [checkScrollButtons, scrollToActiveTab, isScrollable, isVisible, tabs.length]);
 
   // Auto-select first tab on mount if no activeTab is provided
   useEffect(() => {
@@ -178,14 +208,14 @@ function Tabs({
 
   // Scroll to active tab when it changes
   useEffect(() => {
-    if (scrollable) {
+    if (isScrollable && isVisible) {
       // Small delay to ensure DOM is updated
       setTimeout(() => {
         scrollToActiveTab();
         checkScrollButtons();
       }, 100);
     }
-  }, [checkScrollButtons, currentActiveTab, scrollToActiveTab, scrollable]);
+  }, [checkScrollButtons, currentActiveTab, scrollToActiveTab, isScrollable, isVisible]);
 
   // Early return after all hooks
   if (!tabs || tabs.length === 0) {
@@ -242,7 +272,7 @@ function Tabs({
     </div>
   );
 
-  if (scrollable) {
+  if (isScrollable) {
     return (
       <div ref={tabsContainerRef} className={classNames}>
         {showLeftScroll && (

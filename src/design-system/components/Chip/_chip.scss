@@ -41,17 +41,23 @@
     &--default {
         @include uds-body-16-medium;
         gap: var(--uds-gap-4);
-        height:48px;
+        height:40px;
     }
 
     &--compact {
         @include uds-body-14-medium;
         gap: var(--uds-gap-4);
-        height:40px;
+        height:32px;
+    }
+
+    &--mini {
+        @include uds-body-12-medium;
+        gap: var(--uds-gap-4);
+        height: 24px;
     }
 
     &--default#{&}--rounded-true {
-        padding: var(--uds-spacing-12) var(--uds-spacing-16);
+        padding: var(--uds-spacing-12) var(--uds-spacing-12);
     }
 
     &--default#{&}--rounded-false {
@@ -59,11 +65,19 @@
     }
 
     &--compact#{&}--rounded-true {
-        padding: var(--uds-spacing-4) var(--uds-spacing-10);
+        padding: var(--uds-spacing-4) var(--uds-spacing-8);
     }
 
     &--compact#{&}--rounded-false {
         padding: var(--uds-spacing-6) var(--uds-spacing-8);
+    }
+
+    &--mini#{&}--rounded-true {
+        padding: var(--uds-spacing-4) var(--uds-spacing-8);
+    }
+
+    &--mini#{&}--rounded-false {
+        padding: var(--uds-spacing-4) var(--uds-spacing-8);
     }
 
   // State: selected
@@ -98,11 +112,6 @@
         justify-content: center;
         flex-shrink: 0;
         line-height: 0;
-
-        svg {
-            width: 20px;
-            height: 20px;
-        }
 
         &--left {
             order: -1;

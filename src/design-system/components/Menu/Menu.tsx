@@ -69,6 +69,7 @@ function Menu({
     const location = useLocation();
     const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({});
     const [isMenuOpen, setIsMenuOpen] = useState(defaultExpanded);
+    const [visibleNavCount, setVisibleNavCount] = useState(24);
     const normalizedNavItems = useMemo(() => navItems.filter(isMenuNavItem), [navItems]);
     const normalizedBrands = useMemo(
         () => brands.filter((brand): brand is string => typeof brand === "string"),
@@ -86,6 +87,19 @@ function Menu({
         () => (Array.isArray(accountMenuItems) ? accountMenuItems : []),
         [accountMenuItems]
     );
+
+    useEffect(() => {
+        if (normalizedNavItems.length <= visibleNavCount) return;
+        const runner = () => setVisibleNavCount(normalizedNavItems.length);
+
+        if (typeof requestIdleCallback === "function") {
+            const id = requestIdleCallback(runner);
+            return () => cancelIdleCallback(id);
+        }
+
+        const timeoutId = window.setTimeout(runner, 50);
+        return () => window.clearTimeout(timeoutId);
+    }, [normalizedNavItems.length, visibleNavCount]);
 
     // Auto-expand accordion whose child matches the current route
     useEffect(() => {
@@ -141,6 +155,63 @@ function Menu({
         }
     }, [expandMenu, isMenuOpen]);
     const handleModeChange = useCallback((mode: MenuMode) => onModeChange?.(mode), [onModeChange]);
+    const renderedNavItems = useMemo(
+        () =>
+            normalizedNavItems.slice(0, visibleNavCount).map((item) => {
+                const children = item.children ?? [];
+                const hasChildren = children.length > 0;
+                const isOpen = openAccordions[item.label];
+                const isExpanded = isMenuOpen && isOpen;
+
+                if (hasChildren) {
+                    return (
+                        <div className={`uds-menu_nav__item uds-menu_nav__item--accordion${isOpen ? " uds-menu_nav__item--open" : ""}`} key={item.label}>
+                            <button
+                                type="button"
+                                className="uds-menu_nav__item-link"
+                                onClick={() => handleAccordionClick(item.label)}
+                                title={item.label}
+                            >
+                                <span className="uds-menu_nav__item-icon">
+                                    <Icon name={item.icon} size={24} appearance="duotone" />
+                                </span>
+                                <div className="uds-menu_nav__item-label">{item.label}</div>
+                                <span className={`uds-menu_nav__item-caret${isOpen ? " uds-menu_nav__item-caret--open" : ""}`}>
+                                    <Icon name="CaretDown" size={16} />
+                                </span>
+                            </button>
+                            {isExpanded ? (
+                                <div className="uds-menu_nav__children uds-menu_nav__children--open">
+                                    {children.map((child: MenuChildItem) => (
+                                        <Link
+                                            key={child.path}
+                                            className={`uds-menu_nav__child-link${location.pathname === child.path ? " uds-menu_nav__child-link--active" : ""}`}
+                                            to={child.path}
+                                            onClick={handleNavItemClick}
+                                            title={child.label}
+                                        >
+                                            {child.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            ) : null}
+                        </div>
+                    );
+                }
+
+                return (
+                    <div className={`uds-menu_nav__item${location.pathname === item.path ? " uds-menu_nav__item--active" : ""}`} key={item.path ?? item.label}>
+                        <Link className="uds-menu_nav__item-link" to={item.path ?? "/"} onClick={handleNavItemClick} title={item.label}>
+                            <span className="uds-menu_nav__item-icon">
+                                <Icon name={item.icon} size={24} appearance="duotone" />
+                            </span>
+                            <div className="uds-menu_nav__item-label">{item.label}</div>
+                        </Link>
+                    </div>
+                );
+            }),
+        [normalizedNavItems, visibleNavCount, openAccordions, isMenuOpen, handleAccordionClick, location.pathname, handleNavItemClick]
+    );
 
     return (
         <aside
@@ -216,59 +287,7 @@ function Menu({
             )}
             {showNav && (
                 <nav className="uds-menu_nav">
-                    {normalizedNavItems.map((item) => {
-                        const children = item.children ?? [];
-                        const hasChildren = children.length > 0;
-                        const isOpen = openAccordions[item.label];
-                        const isExpanded = isMenuOpen && isOpen;
-
-                        if (hasChildren) {
-                            return (
-                                <div className={`uds-menu_nav__item uds-menu_nav__item--accordion${isOpen ? " uds-menu_nav__item--open" : ""}`} key={item.label}>
-                                    <button
-                                        type="button"
-                                        className="uds-menu_nav__item-link"
-                                        onClick={() => handleAccordionClick(item.label)}
-                                        title={item.label}
-                                    >
-                                        <span className="uds-menu_nav__item-icon">
-                                            <Icon name={item.icon} size={24} appearance="duotone" />
-                                        </span>
-                                        <div className="uds-menu_nav__item-label">{item.label}</div>
-                                        <span className={`uds-menu_nav__item-caret${isOpen ? " uds-menu_nav__item-caret--open" : ""}`}>
-                                            <Icon name="CaretDown" size={16} />
-                                        </span>
-                                    </button>
-                                    {isExpanded ? (
-                                        <div className="uds-menu_nav__children uds-menu_nav__children--open">
-                                            {children.map((child: MenuChildItem) => (
-                                                <Link
-                                                    key={child.path}
-                                                    className={`uds-menu_nav__child-link${location.pathname === child.path ? " uds-menu_nav__child-link--active" : ""}`}
-                                                    to={child.path}
-                                                    onClick={handleNavItemClick}
-                                                    title={child.label}
-                                                >
-                                                    {child.label}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    ) : null}
-                                </div>
-                            );
-                        }
-
-                        return (
-                            <div className={`uds-menu_nav__item${location.pathname === item.path ? " uds-menu_nav__item--active" : ""}`} key={item.path ?? item.label}>
-                                <Link className="uds-menu_nav__item-link" to={item.path ?? "/"} onClick={handleNavItemClick} title={item.label}>
-                                    <span className="uds-menu_nav__item-icon">
-                                        <Icon name={item.icon} size={24} appearance="duotone" />
-                                    </span>
-                                    <div className="uds-menu_nav__item-label">{item.label}</div>
-                                </Link>
-                            </div>
-                        );
-                    })}
+                    {renderedNavItems}
                 </nav>
             )}
             {showModeToggle && onModeChange && (

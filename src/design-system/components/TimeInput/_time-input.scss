@@ -1,0 +1,8 @@
+@use "./time-input.tokens" as *;
+
+.ds-time-input {
+  padding: $time-input-example;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+}

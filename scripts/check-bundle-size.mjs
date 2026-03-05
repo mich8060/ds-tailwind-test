@@ -13,6 +13,16 @@ const files = [
     path: resolve(root, "dist/index.cjs"),
     maxBytes: Number(process.env.UDS_MAX_CJS_BYTES ?? 240_000),
   },
+  {
+    name: "dist/style.css",
+    path: resolve(root, "dist/style.css"),
+    maxBytes: Number(process.env.UDS_MAX_CSS_BYTES ?? 320_000),
+  },
+  {
+    name: "dist/charts/BizChartsAdapters.js",
+    path: resolve(root, "dist/charts/BizChartsAdapters.js"),
+    maxBytes: Number(process.env.UDS_MAX_CHART_ADAPTER_BYTES ?? 30_000),
+  },
 ];
 
 const toKiB = (bytes) => `${(bytes / 1024).toFixed(2)} KiB`;

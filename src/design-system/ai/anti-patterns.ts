@@ -1,5 +1,5 @@
 export const UDS_GLOBAL_ANTI_PATTERNS: readonly string[] = [
-  "Do not hardcode colors, spacing, radii, or typography values; use semantic tokens.",
+  "Do not invent custom CSS variables; use --uds-* variables or hardcoded literals.",
   "Do not bypass Field when rendering form controls that require labels or validation.",
   "Do not mix multiple primary call-to-action buttons in a single local action cluster.",
   "Do not use Modal for low-priority or passive content.",

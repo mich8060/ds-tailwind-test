@@ -57,3 +57,9 @@ export type GovernanceManifest = {
     spacingUnit: number;
   };
 };
+
+export type IntentComponentMapping = {
+  component: string;
+  props?: Record<string, unknown>;
+  notes?: string;
+};

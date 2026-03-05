@@ -1,10 +1,10 @@
 # AI CI Enforcement
 
-This document describes the CI enforcement pipeline for governed AI output in UDS.
+This document describes the current AI governance checks for UDS.
 
-## Required AI Output Contract
+## Required Generated Output Contract
 
-All AI-generated files under `ai-generated/**` must be JSON and include:
+All generated files under `ai-generated/**` must be JSON and include:
 
 - `manifestVersion`
 - `governanceVersion`
@@ -12,58 +12,77 @@ All AI-generated files under `ai-generated/**` must be JSON and include:
 - `tree`
 - `audit`
 
-Example file: `ai-generated/metadata/sample-auth-form.json`.
-
-## Enforcement Scripts
+## Local Script Gates
 
 - `npm run ai:validate`
-  - validates required structure
-  - runs `validateAIOutput()`
-  - fails on validation status `fail`
-- `npm run ai:enforce`
-  - drift guard for unknown components/tokens, inline styles, margin usage, hardcoded colors
-- `npm run ai:token-diff`
-  - detects raw color/hard spacing additions
-  - blocks new token categories unless `ALLOW_NEW_TOKEN_CATEGORIES=true`
+  - validates generated output payload shape and policy compliance via `validateAIOutput()`
+- `npm run ai:validate:examples`
+  - validates governed training examples in `src/design-system/ai/examples/training.examples.ts`
 - `npm run ai:gate:contracts`
-  - validates AI contract integrity and naming/version consistency
-  - enforces required package AI subpath exports
-  - ensures generated component API has no ambiguous prop collisions or leaked alias props
+  - validates AI contract integrity across:
+    - required package AI exports
+    - version constant alignment
+    - discovery entrypoint wiring
+    - icon/template catalog contracts
+    - generated component API ambiguity checks
+- `npm run ai:enforce`
+  - enforces drift restrictions (unknown components/tokens, inline style, raw HTML usage)
+- `npm run ai:token-diff`
+  - blocks unapproved token-category drift
 - `npm run ci:ai`
-  - executes the full AI gate sequence
+  - canonical local sequence:
+    - `ai:validate`
+    - `ai:validate:examples`
+    - `ai:gate:contracts`
+    - `ai:enforce`
+    - `ai:token-diff`
+
+## Build Prerequisite
+
+Run `npm run build` before validating in clean environments so generated AI artifacts exist in `dist/ai/**`.
+
+Build includes:
+
+- `build:ai:schema`
+- `build:ai:icons`
+- `build:ai:templates`
+- `build:ai:manifest`
+- `build:ai:discovery`
 
 ## GitHub Workflow
 
 Workflow file: `.github/workflows/ai-validation.yml`
 
-Behavior:
+Current behavior:
 
-- Runs on pull requests that modify `ai-generated/**`.
-- Builds package first so AI subpath imports resolve.
-- Executes validation/enforcement scripts.
-- Supports controlled override via `ai-override` label:
-  - checks still run
-  - requires at least two approvals
-- uploads `ai-generated/metadata/` as CI artifact.
+- Triggers on pull requests that modify `ai-generated/**`
+- Installs dependencies and runs full package build first
+- Executes:
+  - `scripts/validate-ai-output.mjs`
+  - `scripts/enforce-ai-usage.mjs`
+  - `scripts/diff-token-usage.mjs`
+- Supports `ai-override` label:
+  - checks continue with `continue-on-error`
+  - requires at least two approving reviews
+- Uploads `ai-generated/metadata/` artifacts
 
-## Strict vs Non-Strict
+Note: The workflow currently runs the script-level gates directly, while local `ci:ai` additionally includes example and contract-integrity checks.
 
-- Strict mode (`UDSGovernance.enforcement.strictMode=true`)
-  - any error returns `status: "fail"`
-  - CI blocks merge
-- Non-strict mode
-  - warnings can be returned without blocking
-  - policy consumers can choose additional handling
-
-## Deterministic Governance Result
+## Deterministic Validation Result
 
 `validateAIOutput()` returns:
 
 - `status`
 - `violations`
 - `warnings`
+- `deterministicFeedback` (when failing)
 - `governanceVersionUsed`
 - `manifestVersionUsed`
 - `policyVersionUsed`
 - `timestamp`
 - `versionLineage` (`udsVersion`, `tokenVersion`, `manifestVersion`, `governanceVersion`, `policyVersion`)
+
+## Strict Mode
+
+- With `UDSGovernance.enforcement.strictMode = true`, any error yields `status: "fail"`.
+- In strict mode, governed CI should block merge on failures.

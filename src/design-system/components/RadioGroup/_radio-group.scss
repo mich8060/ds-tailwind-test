@@ -1,0 +1,25 @@
+@use "./radio-group.tokens" as *;
+
+.uds-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--uds-spacing-12);
+
+    &__label {
+        color: var(--uds-text-primary);
+    }
+
+    &__options {
+        display: flex;
+        flex-direction: column;
+        gap: var(--uds-spacing-12);
+    }
+
+    &--horizontal {
+        .uds-radio-group__options {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: var(--uds-spacing-16);
+        }
+    }
+}

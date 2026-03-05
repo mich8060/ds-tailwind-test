@@ -16,6 +16,7 @@ export { LayoutRules } from "./layout.manifest";
 export { CompositionRules } from "./composition.manifest";
 export { PropAliasRules, getCanonicalPropName, getAliasEntries } from "./prop-aliases.manifest";
 export { TokenIntentMap } from "./tokens.intent.manifest";
+export { IntentComponentMappings } from "./intent-mappings.manifest";
 
 export type {
   ComponentManifestItem,

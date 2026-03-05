@@ -1,4 +1,6 @@
-import { Flex, Table, Text } from "../../design-system";
+import { Flex } from "../../design-system/components/Flex";
+import { Table } from "../../design-system/components/Table";
+import { Text } from "../../design-system/components/Text";
 import { colorTokens } from "../../design-system/tokens/runtime/color";
 import { motionTokens } from "../../design-system/tokens/runtime/motion";
 import { radiusTokens } from "../../design-system/tokens/runtime/radius";

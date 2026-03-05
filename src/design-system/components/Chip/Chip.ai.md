@@ -14,7 +14,7 @@ Interactive label component for filters, selections, or tags with optional icon 
 | `label` | `string` | — | — | Chip text |
 | `selected` | `boolean` | `false` | `true`, `false` | Selection state (`false` = unselected/default, `true` = selected) |
 | `shape` | `string` | `"pill"` | `"pill"`, `"rounded"` | Shape variant |
-| `size` | `string` | `"default"` | `"default"`, `"compact"` | Size variant |
+| `size` | `string` | `"default"` | `"default"`, `"compact"`, `"mini"` | Size variant |
 | `iconPlacement` | `string` | `"none"` | `"none"`, `"left"`, `"right"`, `"both"` | Icon position |
 | `icon` | `string` | — | Phosphor icon name | Icon to display |
 | `badge` | `number\|string` | — | — | Badge count |

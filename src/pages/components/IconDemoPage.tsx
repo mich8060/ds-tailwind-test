@@ -1,5 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
-import { Button, Divider, Dropdown, Flex, Icon, Text, TextInput } from "../../design-system";
+import { useEffect } from "react";
+import { useMemo } from "react";
+import { Button } from "../../design-system/components/Button";
+import { Divider } from "../../design-system/components/Divider";
+import { Dropdown } from "../../design-system/components/Dropdown";
+import { Flex } from "../../design-system/components/Flex";
+import { Icon } from "../../design-system/components/Icon";
+import { TextInput } from "../../design-system/components/TextInput";
+import { Text } from "../../design-system/components/Text";
+import { useState } from "react";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 

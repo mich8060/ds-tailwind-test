@@ -47,6 +47,14 @@
     "jsx": "<Button layout=\"label-only\" appearance=\"primary\" size=\"default\" />"
   },
   {
+    "component": "ButtonGroup",
+    "props": {
+      "orientation": "horizontal",
+      "size": "default"
+    },
+    "jsx": "<ButtonGroup orientation=\"horizontal\" size=\"default\" />"
+  },
+  {
     "component": "Calendar",
     "props": {},
     "jsx": "<Calendar />"
@@ -60,6 +68,19 @@
     "component": "Checkbox",
     "props": {},
     "jsx": "<Checkbox />"
+  },
+  {
+    "component": "CheckboxGroup",
+    "props": {
+      "orientation": "vertical",
+      "disabled": false
+    },
+    "jsx": "<CheckboxGroup orientation=\"vertical\" disabled={false} />"
+  },
+  {
+    "component": "Checklist",
+    "props": {},
+    "jsx": "<Checklist />"
   },
   {
     "component": "Chip",
@@ -89,11 +110,26 @@
     "jsx": "<Container appearance=\"default\" padding=\"default\" />"
   },
   {
+    "component": "CurrencyInput",
+    "props": {},
+    "jsx": "<CurrencyInput />"
+  },
+  {
+    "component": "DateInput",
+    "props": {},
+    "jsx": "<DateInput />"
+  },
+  {
     "component": "Datepicker",
     "props": {
       "size": "desktop"
     },
     "jsx": "<Datepicker size=\"desktop\" />"
+  },
+  {
+    "component": "DateRangeInput",
+    "props": {},
+    "jsx": "<DateRangeInput />"
   },
   {
     "component": "Dialog",
@@ -207,11 +243,30 @@
     "jsx": "<Modal size=\"default\" />"
   },
   {
+    "component": "NumberInput",
+    "props": {
+      "size": "default",
+      "state": "default",
+      "type": "number"
+    },
+    "jsx": "<NumberInput size=\"default\" state=\"default\" type=\"number\" />"
+  },
+  {
     "component": "Pagination",
     "props": {
       "variant": "default"
     },
     "jsx": "<Pagination variant=\"default\" />"
+  },
+  {
+    "component": "PasswordInput",
+    "props": {},
+    "jsx": "<PasswordInput />"
+  },
+  {
+    "component": "PhoneInput",
+    "props": {},
+    "jsx": "<PhoneInput />"
   },
   {
     "component": "ProgressCircle",
@@ -236,9 +291,34 @@
     "jsx": "<Radio />"
   },
   {
+    "component": "RadioGroup",
+    "props": {
+      "orientation": "vertical",
+      "disabled": false
+    },
+    "jsx": "<RadioGroup orientation=\"vertical\" disabled={false} />"
+  },
+  {
+    "component": "SearchInput",
+    "props": {},
+    "jsx": "<SearchInput />"
+  },
+  {
+    "component": "SectionHeader",
+    "props": {},
+    "jsx": "<SectionHeader />"
+  },
+  {
     "component": "Slider",
     "props": {},
     "jsx": "<Slider />"
+  },
+  {
+    "component": "Statistics",
+    "props": {
+      "trend": "neutral"
+    },
+    "jsx": "<Statistics trend=\"neutral\" />"
   },
   {
     "component": "Status",
@@ -265,10 +345,11 @@
   {
     "component": "Tabs",
     "props": {
+      "orientation": "horizontal",
       "appearance": "underline",
       "tagVariant": "red"
     },
-    "jsx": "<Tabs appearance=\"underline\" tagVariant=\"red\" />"
+    "jsx": "<Tabs orientation=\"horizontal\" appearance=\"underline\" tagVariant=\"red\" />"
   },
   {
     "component": "Tag",
@@ -308,6 +389,11 @@
     "jsx": "<TextInput size=\"default\" state=\"default\" type=\"text\" iconPosition=\"right\" />"
   },
   {
+    "component": "TimeInput",
+    "props": {},
+    "jsx": "<TimeInput />"
+  },
+  {
     "component": "Toast",
     "props": {
       "variant": "info"
@@ -320,6 +406,11 @@
       "size": "large"
     },
     "jsx": "<Toggle size=\"large\" />"
+  },
+  {
+    "component": "Toolbar",
+    "props": {},
+    "jsx": "<Toolbar />"
   },
   {
     "component": "Tooltip",

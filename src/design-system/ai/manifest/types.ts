@@ -87,6 +87,14 @@ export interface TokenIntentMapType {
   state: Record<string, string>;
 }
 
+export interface IntentComponentMappingsType {
+  [intent: string]: {
+    component: string;
+    props?: Record<string, unknown>;
+    notes?: string;
+  };
+}
+
 export interface UDSManifestType {
   version: string;
   tokenVersion: string;
@@ -94,6 +102,7 @@ export interface UDSManifestType {
   patterns: PatternRegistryType;
   layout: LayoutManifestRules;
   tokens: TokenIntentMapType;
+  intentComponentMappings: IntentComponentMappingsType;
   governance: ManifestGovernance;
 }
 

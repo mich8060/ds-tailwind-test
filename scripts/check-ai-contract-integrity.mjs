@@ -17,6 +17,7 @@ const packageJsonPath = resolve(rootDir, "package.json");
 const componentApiPath = resolve(rootDir, "src", "design-system", "generated", "component-api.json");
 const manifestPath = resolve(rootDir, "src", "ai", "manifest", "manifest.json");
 const discoveryPath = resolve(rootDir, "src", "ai", "discovery.json");
+const iconCatalogPath = resolve(rootDir, "src", "ai", "icons", "catalog.json");
 const templatesPath = resolve(rootDir, "src", "ai", "templates", "layouts.json");
 const governanceSourcePath = resolve(rootDir, "src", "ai", "manifest", "governance.manifest.ts");
 
@@ -24,6 +25,7 @@ const pkg = readJson(packageJsonPath);
 const componentApi = readJson(componentApiPath);
 const aiManifest = readJson(manifestPath);
 const aiDiscovery = readJson(discoveryPath);
+const aiIconCatalog = readJson(iconCatalogPath);
 const aiTemplates = readJson(templatesPath);
 const governanceSource = readText(governanceSourcePath);
 
@@ -44,10 +46,16 @@ if (!manifestVersion || !governanceVersion || !policyVersion || !contractSchemaV
 }
 
 const requiredAiExports = [
+  "./figma-make",
   "./ai",
   "./ai/schema",
+  "./ai/icons.json",
+  "./ai/icons",
   "./ai/templates.json",
   "./ai/templates",
+  "./ai/figma-make.json",
+  "./ai/figma-make",
+  "./ai/prompts/figma-make",
   "./ai/manifest.json",
   "./ai/discovery.json",
   "./ai/discovery",
@@ -106,6 +114,18 @@ if (aiDiscovery.entrypoints?.contractManifest !== `${pkg.name}/ai/manifest.json`
 if (aiDiscovery.entrypoints?.schema !== `${pkg.name}/ai/schema`) {
   fail("ai discovery entrypoints.schema must point to package /ai/schema export.");
 }
+if (aiDiscovery.entrypoints?.iconCatalog !== `${pkg.name}/ai/icons`) {
+  fail("ai discovery entrypoints.iconCatalog must point to package /ai/icons export.");
+}
+if (aiDiscovery.entrypoints?.figmaMakeContractJson !== `${pkg.name}/ai/figma-make.json`) {
+  fail("ai discovery entrypoints.figmaMakeContractJson must point to package /ai/figma-make.json export.");
+}
+if (aiDiscovery.entrypoints?.figmaMakeContract !== `${pkg.name}/ai/figma-make`) {
+  fail("ai discovery entrypoints.figmaMakeContract must point to package /ai/figma-make export.");
+}
+if (aiDiscovery.entrypoints?.figmaMakePrompt !== `${pkg.name}/ai/prompts/figma-make`) {
+  fail("ai discovery entrypoints.figmaMakePrompt must point to package /ai/prompts/figma-make export.");
+}
 if (aiDiscovery.entrypoints?.templatesCatalog !== `${pkg.name}/ai/templates`) {
   fail("ai discovery entrypoints.templatesCatalog must point to package /ai/templates export.");
 }
@@ -128,6 +148,23 @@ if (aiTemplates.schemaVersion !== contractSchemaVersion) {
 }
 if (!Array.isArray(aiTemplates.templates) || aiTemplates.templates.length === 0) {
   fail("ai templates must include a non-empty templates array.");
+}
+
+if (aiIconCatalog.contractName !== "uds.ai.icon-catalog") {
+  fail(
+    `ai icon catalog contractName must be "uds.ai.icon-catalog", got "${aiIconCatalog.contractName ?? "undefined"}".`
+  );
+}
+if (aiIconCatalog.schemaVersion !== contractSchemaVersion) {
+  fail(
+    `ai icon catalog schemaVersion "${aiIconCatalog.schemaVersion}" does not match AI_CONTRACT_SCHEMA_VERSION "${contractSchemaVersion}".`
+  );
+}
+if (!Array.isArray(aiIconCatalog.appearanceOptions) || aiIconCatalog.appearanceOptions.length === 0) {
+  fail("ai icon catalog must include a non-empty appearanceOptions array.");
+}
+if (!aiIconCatalog.recommendedByIntent || typeof aiIconCatalog.recommendedByIntent !== "object") {
+  fail("ai icon catalog must include recommendedByIntent mappings.");
 }
 
 const versioning = aiManifest.versioning ?? {};

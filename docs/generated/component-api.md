@@ -68,6 +68,19 @@ This file is generated from `src/design-system/components/*/*.spec.ts`.
 | `layout` | `enum` | label-only, icon-left, icon-right, icon-only, only | `label-only` |
 | `size` | `enum` | large, default, small, xsmall | `default` |
 
+### ButtonGroup
+
+Groups related button actions with consistent spacing and orientation.
+
+- Source: `src/design-system/components/ButtonGroup/ButtonGroup.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| `orientation` | `enum` | horizontal, vertical | `horizontal` |
+| `size` | `enum` | xsmall, small, default, large | `default` |
+
 ### Calendar
 
 - Source: `src/design-system/components/Calendar/Calendar.spec.ts`
@@ -95,6 +108,31 @@ This file is generated from `src/design-system/components/*/*.spec.ts`.
 | --- | --- | --- | --- |
 | _none_ | - | - | - |
 
+### CheckboxGroup
+
+Provides grouped multi-select choices using Checkbox controls.
+
+- Source: `src/design-system/components/CheckboxGroup/CheckboxGroup.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| `disabled` | `boolean` | - | `false` |
+| `orientation` | `enum` | vertical, horizontal | `vertical` |
+
+### Checklist
+
+Sidebar checklist for multi-step flows with completion status.
+
+- Source: `src/design-system/components/Checklist/Checklist.spec.ts`
+- Tier: `2`
+- States: `default`, `active`, `completed`, `disabled`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
+
 ### Chip
 
 - Source: `src/design-system/components/Chip/Chip.spec.ts`
@@ -106,7 +144,7 @@ This file is generated from `src/design-system/components/*/*.spec.ts`.
 | `iconPlacement` | `enum` | both, left, right, none | `none` |
 | `selected` | `boolean` | - | `false` |
 | `shape` | `enum` | pill, rounded | `pill` |
-| `size` | `enum` | default, compact | `default` |
+| `size` | `enum` | default, compact, mini | `default` |
 
 ### Code
 
@@ -132,6 +170,30 @@ Provides a reusable content wrapper with optional filled or transparent surface 
 | `appearance` | `enum` | default, transparent | `default` |
 | `padding` | `enum` | none, xsmall, small, default, large, xlarge | `default` |
 
+### CurrencyInput
+
+Describe purpose.
+
+- Source: `src/design-system/components/CurrencyInput/CurrencyInput.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
+
+### DateInput
+
+Describe purpose.
+
+- Source: `src/design-system/components/DateInput/DateInput.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
+
 ### Datepicker
 
 - Source: `src/design-system/components/Datepicker/Datepicker.spec.ts`
@@ -140,6 +202,18 @@ Provides a reusable content wrapper with optional filled or transparent surface 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
 | `size` | `string` | - | `desktop` |
+
+### DateRangeInput
+
+Describe purpose.
+
+- Source: `src/design-system/components/DateRangeInput/DateRangeInput.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
 
 ### Dialog
 
@@ -295,6 +369,17 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 | --- | --- | --- | --- |
 | `size` | `enum` | small, default, large, fullscreen | `default` |
 
+### NumberInput
+
+- Source: `src/design-system/components/NumberInput/NumberInput.spec.ts`
+- States: `default`, `focused`, `error`, `disabled`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| `size` | `enum` | compact, default | `default` |
+| `state` | `enum` | default, focused, error, disabled | `default` |
+| `type` | `string` | - | `number` |
+
 ### Pagination
 
 - Source: `src/design-system/components/Pagination/Pagination.spec.ts`
@@ -302,6 +387,30 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
 | `variant` | `string` | - | `default` |
+
+### PasswordInput
+
+Describe purpose.
+
+- Source: `src/design-system/components/PasswordInput/PasswordInput.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
+
+### PhoneInput
+
+Describe purpose.
+
+- Source: `src/design-system/components/PhoneInput/PhoneInput.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
 
 ### ProgressCircle
 
@@ -332,6 +441,43 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 | --- | --- | --- | --- |
 | _none_ | - | - | - |
 
+### RadioGroup
+
+Provides grouped single-select choices using Radio controls.
+
+- Source: `src/design-system/components/RadioGroup/RadioGroup.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| `disabled` | `boolean` | - | `false` |
+| `orientation` | `enum` | vertical, horizontal | `vertical` |
+
+### SearchInput
+
+Describe purpose.
+
+- Source: `src/design-system/components/SearchInput/SearchInput.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
+
+### SectionHeader
+
+Describe purpose.
+
+- Source: `src/design-system/components/SectionHeader/SectionHeader.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
+
 ### Slider
 
 - Source: `src/design-system/components/Slider/Slider.spec.ts`
@@ -341,6 +487,18 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 | --- | --- | --- | --- |
 | _none_ | - | - | - |
 
+### Statistics
+
+Displays a KPI value with optional context, trend, and icon.
+
+- Source: `src/design-system/components/Statistics/Statistics.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| `trend` | `enum` | up, down, neutral | `neutral` |
+
 ### Status
 
 - Source: `src/design-system/components/Status/Status.spec.ts`
@@ -348,7 +506,7 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
-| `appearance` | `enum` | light-gray, white | `light-gray` |
+| `appearance` | `enum` | light-gray, white, transparent | `light-gray` |
 | `shape` | `enum` | pill, rounded | `pill` |
 | `variant` | `string` | - | `blue` |
 
@@ -381,6 +539,7 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
 | `appearance` | `string` | - | `underline` |
+| `orientation` | `enum` | horizontal, vertical | `horizontal` |
 | `tagVariant` | `string` | - | `red` |
 
 ### Tag
@@ -434,6 +593,18 @@ Applies UDS typography variants with governed weight and leading options while p
 | `state` | `enum` | default, focused, error, disabled | `default` |
 | `type` | `string` | - | `text` |
 
+### TimeInput
+
+Describe purpose.
+
+- Source: `src/design-system/components/TimeInput/TimeInput.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
+
 ### Toast
 
 - Source: `src/design-system/components/Toast/Toast.spec.ts`
@@ -451,6 +622,18 @@ Applies UDS typography variants with governed weight and leading options while p
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
 | `size` | `enum` | large, small | `large` |
+
+### Toolbar
+
+Top action bar with left and right action regions and centered title/branding.
+
+- Source: `src/design-system/components/Toolbar/Toolbar.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| _none_ | - | - | - |
 
 ### Tooltip
 

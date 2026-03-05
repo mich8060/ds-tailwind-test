@@ -83,6 +83,7 @@ const TableCell = React.memo(function TableCell({
   const isHeader = type === "header";
   const Element = isHeader ? "th" : "td";
   const cellValue = isHeader ? column.label : row?.[column.key];
+  const EMPTY_CELL_PLACEHOLDER = "\u00A0";
 
   const classNames = [
     `${BASE_CLASS}__cell`,
@@ -93,11 +94,15 @@ const TableCell = React.memo(function TableCell({
     .filter(Boolean)
     .join(" ");
 
+  const isEmptyContent = (value: unknown) =>
+    value == null || (typeof value === "string" && value.trim() === "");
+
   // Handle different cell content types
   const renderCellContent = () => {
     // If column has a render function, use it
     if (!isHeader && column.render) {
-      return column.render(row, rowIndex, colIndex);
+      const renderedCell = column.render(row, rowIndex, colIndex);
+      return isEmptyContent(renderedCell) ? EMPTY_CELL_PLACEHOLDER : renderedCell;
     }
 
     // If cellValue is already a React element, return it
@@ -143,7 +148,7 @@ const TableCell = React.memo(function TableCell({
     // Handle data cells
     return (
       <div className={`${BASE_CLASS}__cell-content`}>
-        {cellValue != null ? String(cellValue) : ""}
+        {isEmptyContent(cellValue) ? EMPTY_CELL_PLACEHOLDER : String(cellValue)}
       </div>
     );
   };

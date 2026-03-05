@@ -10,6 +10,7 @@ type PhosphorIconComponent = React.ElementType<{
 } & Record<string, unknown>>;
 
 const warnedInvalidIcons = new Set<string>();
+const resolvedIconCache = new Map<string, PhosphorIconComponent | null>();
 const __DEV__ = import.meta.env.DEV;
 
 const isRenderableIcon = (value: unknown): value is PhosphorIconComponent =>
@@ -22,14 +23,25 @@ const toPascalCase = (value: string): string =>
     .join("");
 
 const resolveIconComponent = (iconName: string): PhosphorIconComponent | null => {
+  if (resolvedIconCache.has(iconName)) {
+    return resolvedIconCache.get(iconName) ?? null;
+  }
+
   const candidate = PhosphorIcons[iconName as keyof typeof PhosphorIcons];
-  if (isRenderableIcon(candidate)) return candidate as PhosphorIconComponent;
+  if (isRenderableIcon(candidate)) {
+    const resolved = candidate as PhosphorIconComponent;
+    resolvedIconCache.set(iconName, resolved);
+    return resolved;
+  }
 
   const fallbackCandidate = PhosphorIcons[`${iconName}Icon` as keyof typeof PhosphorIcons];
   if (isRenderableIcon(fallbackCandidate)) {
-    return fallbackCandidate as PhosphorIconComponent;
+    const resolved = fallbackCandidate as PhosphorIconComponent;
+    resolvedIconCache.set(iconName, resolved);
+    return resolved;
   }
 
+  resolvedIconCache.set(iconName, null);
   return null;
 };
 

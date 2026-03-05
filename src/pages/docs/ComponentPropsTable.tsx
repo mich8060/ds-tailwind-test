@@ -1,4 +1,6 @@
-import { Flex, Table, Text } from "../../design-system";
+import { Flex } from "../../design-system/components/Flex";
+import { Table } from "../../design-system/components/Table";
+import { Text } from "../../design-system/components/Text";
 
 export interface ComponentPropRow {
   prop: string;

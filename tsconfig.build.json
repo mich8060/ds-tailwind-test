@@ -11,6 +11,7 @@
   },
   "include": [
     "src/design-system/index.ts",
+    "src/design-system/figma-make/index.ts",
     "src/design-system/ai/index.ts",
     "src/design-system/ai/manifest/index.ts",
     "src/design-system/ai/validation/index.ts",

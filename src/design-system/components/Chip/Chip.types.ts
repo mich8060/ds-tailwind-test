@@ -1,7 +1,7 @@
 import type { HTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import type { BadgeVariant } from "../Badge/Badge.types";
 
-export type ChipSize = "default" | "compact";
+export type ChipSize = "default" | "compact" | "mini";
 export type ChipIconPlacement = "both" | "left" | "right" | "none";
 
 export interface ChipProps extends HTMLAttributes<HTMLElement> {

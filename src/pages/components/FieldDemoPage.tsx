@@ -1,5 +1,11 @@
+import { Divider } from "../../design-system/components/Divider";
+import { Dropdown } from "../../design-system/components/Dropdown";
+import { Field } from "../../design-system/components/Field";
+import { Flex } from "../../design-system/components/Flex";
+import { TextInput } from "../../design-system/components/TextInput";
+import { Textarea } from "../../design-system/components/Textarea";
+import { Text } from "../../design-system/components/Text";
 import { useState } from "react";
-import { Divider, Dropdown, Field, Flex, Text, TextInput, Textarea } from "../../design-system";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 

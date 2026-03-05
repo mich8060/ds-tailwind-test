@@ -1,0 +1,25 @@
+@use "./checkbox-group.tokens" as *;
+
+.uds-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uds-spacing-8);
+
+  &__label {
+    color: var(--uds-text-primary);
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--uds-spacing-12);
+  }
+
+  &--horizontal {
+    .uds-checkbox-group__options {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--uds-spacing-16);
+    }
+  }
+}

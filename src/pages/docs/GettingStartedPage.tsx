@@ -1,5 +1,7 @@
+import { Button } from "../../design-system/components/Button";
+import { Flex } from "../../design-system/components/Flex";
+import { Text } from "../../design-system/components/Text";
 import { useNavigate } from "react-router-dom";
-import { Button, Flex, Text } from "../../design-system";
 import { DocPageLayout } from "./DocPageLayout";
 
 const QUICK_STEPS = [

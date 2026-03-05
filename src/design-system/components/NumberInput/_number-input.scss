@@ -1,0 +1,160 @@
+@use "../../tokens/index" as *;
+@use "../../tokens/primitives/typography.primitives" as *;
+
+.uds-number-input {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: var(--uds-spacing-4);
+  width: 100%;
+  height: 44px;
+  padding: 0;
+  box-sizing: border-box;
+  border: var(--uds-border-width-1) solid var(--uds-input-border);
+  border-radius: var(--uds-radius-4);
+  background-color: var(--uds-input-surface);
+  overflow: clip;
+  transition:
+    border-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
+    box-shadow var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
+    background-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
+    color var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+
+  &-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--uds-spacing-6);
+    width: 100%;
+  }
+
+  &__label {
+    @include uds-body-14-semibold;
+    color: var(--uds-text-primary);
+  }
+
+  &__supporting-text {
+    @include uds-body-12;
+    color: var(--uds-text-secondary);
+    margin: 0;
+
+    &--error {
+      color: var(--uds-system-destructive-primary);
+    }
+  }
+
+  &__step {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    padding: 0 var(--uds-spacing-12);
+    color: var(--uds-icon-primary);
+    cursor: pointer;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    transition:
+      color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
+      background-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &--decrement {
+      border-right: var(--uds-border-width-1) solid var(--uds-input-border);
+    }
+
+    &--increment {
+      border-left: var(--uds-border-width-1) solid var(--uds-input-border);
+    }
+  }
+
+  &__input {
+    all: unset;
+    @include uds-body-16;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0 var(--uds-spacing-4);
+    color: var(--uds-icon-primary);
+    text-align: center;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: var(--uds-text-placeholder);
+      text-align: center;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  &--compact {
+    height: 36px;
+
+    .uds-number-input__input {
+      @include uds-body-14;
+    }
+  }
+
+  &--focused {
+    border-color: var(--uds-system-action-primary);
+    box-shadow:
+      -3px -3px 0 0 var(--uds-system-action-quaternary),
+      3px 3px 0 0 var(--uds-system-action-quaternary),
+      3px -3px 0 0 var(--uds-system-action-quaternary),
+      -3px 3px 0 0 var(--uds-system-action-quaternary);
+  }
+
+  &:focus-within:not(.uds-number-input--disabled):not(.uds-number-input--error) {
+    border-color: var(--uds-system-action-primary);
+    box-shadow:
+      -3px -3px 0 0 var(--uds-system-action-quaternary),
+      3px 3px 0 0 var(--uds-system-action-quaternary),
+      3px -3px 0 0 var(--uds-system-action-quaternary),
+      -3px 3px 0 0 var(--uds-system-action-quaternary);
+  }
+
+  &--error {
+    border-color: var(--uds-system-destructive-primary);
+    box-shadow:
+      -3px -3px 0 0 var(--uds-system-destructive-quaternary),
+      3px 3px 0 0 var(--uds-system-destructive-quaternary),
+      3px -3px 0 0 var(--uds-system-destructive-quaternary),
+      -3px 3px 0 0 var(--uds-system-destructive-quaternary);
+
+    .uds-number-input__input,
+    .uds-number-input__input::placeholder,
+    .uds-number-input__step {
+      color: var(--uds-system-destructive-primary);
+    }
+  }
+
+  &--disabled {
+    background-color: var(--uds-surface-disabled);
+    border-color: var(--uds-border-disabled);
+
+    .uds-number-input__input,
+    .uds-number-input__input::placeholder,
+    .uds-number-input__step {
+      color: var(--uds-icon-disabled);
+    }
+  }
+
+  &--disabled .uds-number-input__step,
+  &--disabled .uds-number-input__input {
+    pointer-events: none;
+  }
+
+  &--disabled .uds-number-input__step--decrement,
+  &--disabled .uds-number-input__step--increment {
+    border-color: var(--uds-border-disabled);
+  }
+}

@@ -157,6 +157,45 @@ export const UDS_TRAINING_EXAMPLES: readonly AITrainingExample[] = [
     }
   },
   {
+    id: "invalid-custom-css-variable",
+    scenario: "Uses non-UDS CSS variable references in component props.",
+    kind: "invalid",
+    tags: ["tokens", "css-variables", "governance"],
+    output: {
+      tree: {
+        type: "Container",
+        props: { surfaceColor: "var(--brand-primary-500)" },
+        children: [{ type: "Text", props: { color: "--custom-text-color", variant: "body-16" } }]
+      }
+    },
+    expected: {
+      status: "fail",
+      violationCodes: ["RULE_CUSTOM_CSS_VAR_DISALLOWED"]
+    },
+    rationale: {
+      why: "Generated output must not introduce custom CSS variables outside --uds-* namespace.",
+      fix: "Use --uds-* references or hardcoded literal values."
+    }
+  },
+  {
+    id: "invalid-tailwind-classname",
+    scenario: "Output includes Tailwind utility classes.",
+    kind: "invalid",
+    tags: ["tailwind", "className", "governance"],
+    output: {
+      tree: {
+        type: "Container",
+        props: { className: "p-4 bg-blue-600 text-white" },
+        children: [{ type: "Text", props: { variant: "body-16", text: "Example" } }]
+      }
+    },
+    expected: { status: "fail", violationCodes: ["RULE_TAILWIND_CLASS_DISALLOWED"] },
+    rationale: {
+      why: "Figma Make output must not fall back to Tailwind utility classes.",
+      fix: "Use UDS components and governed tokenized props instead of className utilities."
+    }
+  },
+  {
     id: "invalid-composition-parent-child",
     scenario: "Composition places a form field directly inside Menu.",
     kind: "invalid",

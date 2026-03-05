@@ -1,52 +1,41 @@
 # Tabs
 
-Tab navigation component for switching between content views.
-
-## When to Use
-- Switching between related content views without page navigation
-- Organizing content into logical sections (e.g., Details / Activity / Settings)
+Use `Tabs` to switch between related views. Supports horizontal and vertical tab lists.
 
 ## Props
 
-### Tabs (container)
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | — | `Tab` components |
-| `activeTab` | `string` | — | Currently active tab ID |
-| `onChange` | `function` | — | Callback `(tabId: string) => void` |
-| `className` | `string` | `""` | Additional CSS classes |
-
-### Tab
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `id` | `string` | — | Tab identifier |
-| `label` | `string` | — | Tab label text |
-| `icon` | `string` | — | Phosphor icon name |
-| `badge` | `number` | — | Badge count on tab |
-| `disabled` | `boolean` | `false` | Disabled state |
+| Prop | Type | Default |
+|---|---|---|
+| `tabs` | `Array<{ id?: string \| number; label: string; icon?: string; tag?: string \| number; tagVariant?: string }>` | `[]` |
+| `appearance` | `"underline" \| "block" \| "block-inverted"` | `"underline"` |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` |
+| `activeTab` | `number` | `0` |
+| `fill` | `boolean` | `false` |
+| `scrollable` | `boolean` | `false` |
+| `onTabChange` | `(index, tab) => void` | `undefined` |
 
 ## Examples
 
-```jsx
-const [activeTab, setActiveTab] = useState("details");
-
-<Tabs activeTab={activeTab} onChange={setActiveTab}>
-  <Tab id="details" label="Details" />
-  <Tab id="activity" label="Activity" badge={3} />
-  <Tab id="settings" label="Settings" icon="Gear" />
-</Tabs>
-
-{activeTab === "details" && <DetailsPanel />}
-{activeTab === "activity" && <ActivityFeed />}
-{activeTab === "settings" && <SettingsForm />}
+```tsx
+<Tabs
+  tabs={[
+    { id: "overview", label: "Overview" },
+    { id: "details", label: "Details" },
+    { id: "activity", label: "Activity" },
+  ]}
+  appearance="underline"
+  orientation="vertical"
+  activeTab={0}
+/>
 ```
 
-## Import
-```jsx
-import { Tabs, Tab } from "@mich8060/chg-design-system";
+```tsx
+<Tabs
+  tabs={[
+    { id: "inbox", label: "Inbox", icon: "Tray", tag: 12, tagVariant: "red" },
+    { id: "assigned", label: "Assigned", icon: "UserCircle", tag: 4, tagVariant: "blue" },
+  ]}
+  appearance="underline"
+  scrollable
+/>
 ```
-
-## Note
-- Only manages tab header navigation — you render the corresponding content conditionally

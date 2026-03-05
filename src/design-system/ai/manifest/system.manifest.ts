@@ -2,6 +2,7 @@ import { tokenVersion } from "../../tokens/runtime/index";
 import { UDS_RUNTIME_VERSION } from "../../version";
 import { ComponentRegistry } from "./components.manifest";
 import { UDSGovernance } from "./governance.manifest";
+import { IntentComponentMappings } from "./intent-mappings.manifest";
 import { LayoutRules } from "./layout.manifest";
 import { PatternRegistry } from "./patterns.manifest";
 import { TokenIntentMap } from "./tokens.intent.manifest";
@@ -14,6 +15,7 @@ export const UDSManifest: UDSManifestType = {
   patterns: PatternRegistry,
   layout: LayoutRules,
   tokens: TokenIntentMap,
+  intentComponentMappings: IntentComponentMappings,
   governance: {
     maxPrimaryActionsPerSection: UDSGovernance.limits.maxPrimaryActionsPerSection,
     spacingUnit: UDSGovernance.compliance.spacingUnit,

@@ -1,5 +1,10 @@
 # Tabs
 
+## Key Props
+
+- `appearance`: `"underline" | "block" | "block-inverted"`
+- `orientation`: `"horizontal" | "vertical"` (default: `"horizontal"`)
+
 ## Structure Compliance
 
 - Uses semantic token styles from `var(--uds-...)`.

@@ -1,5 +1,7 @@
+import { Divider } from "../../design-system/components/Divider";
+import { Flex } from "../../design-system/components/Flex";
+import { Text } from "../../design-system/components/Text";
 import { useState } from "react";
-import { Divider, Flex, Text } from "../../design-system";
 import Accordion, { AccordionItem } from "../../design-system/components/Accordion/Accordion";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";

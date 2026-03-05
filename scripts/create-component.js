@@ -28,7 +28,7 @@ fs.mkdirSync(dir, { recursive: true });
 const files = [
   {
     name: `${componentName}.tsx`,
-    content: `import React from "react";\nimport "./_${kebab}.scss";\n\nexport function ${componentName}({ children }: { children?: React.ReactNode }) {\n  return <div className="ds-${kebab}">{children ?? "${componentName}"}</div>;\n}\n`
+    content: `import React from "react";\nimport "./_${kebab}.scss";\n\nexport function ${componentName}({ children }: { children?: React.ReactNode }) {\n  return <div className="uds-${kebab}">{children ?? "${componentName}"}</div>;\n}\n`
   },
   {
     name: `${componentName}.types.ts`,
@@ -48,7 +48,7 @@ const files = [
   },
   {
     name: `_${kebab}.scss`,
-    content: `@use "./${kebab}.tokens" as *;\n\n.ds-${kebab} {\n  padding: $${kebab}-example;\n  background: var(--color-surface-1);\n  border: 1px solid var(--color-border-subtle);\n  border-radius: var(--radius-sm);\n}\n`
+    content: `@use "./${kebab}.tokens" as *;\n\n.uds-${kebab} {\n  padding: $${kebab}-example;\n  background: var(--color-surface-1);\n  border: 1px solid var(--color-border-subtle);\n  border-radius: var(--radius-sm);\n}\n`
   },
   {
     name: `${componentName}.stories.tsx`,

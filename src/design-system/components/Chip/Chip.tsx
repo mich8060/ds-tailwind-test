@@ -9,6 +9,7 @@ const BASE_CLASS = "uds-chip";
 const sizeClassMap: Record<string, string> = {
   default: "default",
   compact: "compact",
+  mini: "mini",
 };
 
 const iconPlacementClassMap: Record<string, string> = {
@@ -23,7 +24,7 @@ const iconPlacementClassMap: Record<string, string> = {
  * @param {string} label - The text content of the chip
  * @param {boolean} selected - Selected state (unselected by default)
  * @param {boolean} rounded - Shape toggle: true (fully rounded), false (less rounded)
- * @param {string} size - Size variant: 'default' or 'compact'
+ * @param {string} size - Size variant: 'default', 'compact', or 'mini'
  * @param {string} iconPlacement - Icon placement: 'both', 'left', 'right', or 'none'
  * @param {string} icon - Icon name to display (when iconPlacement is not 'none')
  * @param {number|string} badge - Badge count to display
@@ -79,14 +80,14 @@ export default function Chip({
 
   const hasLeftIcon = iconPlacement === "both" || iconPlacement === "left";
   const hasRightIcon = iconPlacement === "both" || iconPlacement === "right";
-  const iconSize = size === "compact" ? 14 : 16;
+  const iconSize = size === "mini" ? 12 : size === "compact" ? 14 : 16;
   const isIconName = typeof icon === "string";
 
   const leftIcon = hasLeftIcon && icon ? (
     isIconName ? (
       <Icon
         name={icon}
-        size={20}
+        size={iconSize}
         appearance="regular"
         className={`${BASE_CLASS}__icon ${BASE_CLASS}__icon--left`}
       />
@@ -99,7 +100,7 @@ export default function Chip({
     isIconName ? (
       <Icon
         name={icon}
-        size={20}
+        size={iconSize}
         appearance="regular"
         className={`${BASE_CLASS}__icon ${BASE_CLASS}__icon--right`}
       />

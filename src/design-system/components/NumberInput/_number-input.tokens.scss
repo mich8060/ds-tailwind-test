@@ -1,0 +1,4 @@
+// Map semantic tokens to component-local vars
+@use "../../tokens/index" as *;
+
+$number-input-example: var(--spacing-2);

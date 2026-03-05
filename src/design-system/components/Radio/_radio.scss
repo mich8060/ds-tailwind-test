@@ -6,7 +6,7 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: var(--uds-gap-12);
+    gap: var(--uds-gap-8);
     cursor: pointer;
     user-select: none;
 
@@ -33,6 +33,7 @@
         }
 
         &:checked+.radio__circle {
+            background-color: var(--uds-surface-brand-tertiary);
             border-color: var(--uds-border-brand-primary);
         }
 
@@ -42,7 +43,7 @@
 
         &:disabled+.radio__circle {
             background-color: var(--uds-surface-tertiary);
-            border-color: var(--uds-border-primary);
+            border-color: var(--uds-border-tertiary);
             cursor: not-allowed;
         }
 
@@ -62,7 +63,7 @@
         min-height: 20px;
         border: var(--uds-border-width-1) solid var(--uds-border-primary);
         border-radius: 50%;
-        background-color: var(--uds-surface-brand-tertiary);
+        background-color: var(--uds-surface-primary);
         transition:
             border-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
             box-shadow var(--uds-animation-duration-200) var(--uds-animation-ease-standard);

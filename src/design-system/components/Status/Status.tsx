@@ -8,6 +8,7 @@ const BASE_CLASS = "uds-status";
 const appearanceClassMap = {
   "light-gray": "light-gray",
   white: "white",
+  transparent: "transparent",
 };
 
 const shapeClassMap = {

@@ -60,6 +60,18 @@
         }
     }
 
+    &--transparent {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--uds-text-primary);
+
+        &:hover:not(&--disabled),
+        &:active:not(&--disabled) {
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+
     &__dot {
         flex-shrink: 0;
     }

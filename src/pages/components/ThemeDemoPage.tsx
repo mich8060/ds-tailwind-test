@@ -1,17 +1,11 @@
 import { useState, type CSSProperties } from "react";
-import {
-  Button,
-  Code,
-  Divider,
-  Dropdown,
-  Flex,
-  Text,
-  ThemeProvider,
-  createBrand,
-  createTheme,
-  useTheme,
-  useThemeController,
-} from "../../design-system";
+import { Button } from "../../design-system/components/Button";
+import { Code } from "../../design-system/components/Code";
+import { Divider } from "../../design-system/components/Divider";
+import { Dropdown } from "../../design-system/components/Dropdown";
+import { Flex } from "../../design-system/components/Flex";
+import { Text } from "../../design-system/components/Text";
+import { ThemeProvider, createBrand, createTheme, useTheme, useThemeController } from "../../design-system/theme";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 
@@ -26,14 +20,34 @@ const DEMO_THEME = createTheme<DemoBrand>({
     "--uds-text-primary": "#0f172a",
     "--uds-text-secondary": "#334155",
     "--uds-border-primary": "#cbd5e1",
-    "--uds-color-brand-primary": "#2563eb",
+    "--brand-primary-25": "#eff6ff",
+    "--brand-primary-50": "#dbeafe",
+    "--brand-primary-100": "#bfdbfe",
+    "--brand-primary-200": "#93c5fd",
+    "--brand-primary-300": "#60a5fa",
+    "--brand-primary-400": "#3b82f6",
+    "--brand-primary-500": "#2563eb",
+    "--brand-primary-600": "#1d4ed8",
+    "--brand-primary-700": "#1e40af",
+    "--brand-primary-800": "#1e3a8a",
+    "--brand-primary-900": "#172554",
   },
   brands: {
     default: createBrand("default"),
     ocean: createBrand("ocean", {
       className: "brand-ocean",
       tokens: {
-        "--uds-color-brand-primary": "#0ea5e9",
+        "--brand-primary-25": "#ecfeff",
+        "--brand-primary-50": "#cffafe",
+        "--brand-primary-100": "#a5f3fc",
+        "--brand-primary-200": "#67e8f9",
+        "--brand-primary-300": "#22d3ee",
+        "--brand-primary-400": "#06b6d4",
+        "--brand-primary-500": "#0891b2",
+        "--brand-primary-600": "#0e7490",
+        "--brand-primary-700": "#155e75",
+        "--brand-primary-800": "#164e63",
+        "--brand-primary-900": "#083344",
         "--uds-surface-secondary": "#ecfeff",
       },
       modeTokens: {
@@ -74,11 +88,18 @@ const THEME_PROPS: ComponentPropRow[] = [
 const CREATE_THEME_SNIPPET = `const theme = createTheme({
   defaultBrand: "default",
   defaultMode: "light",
-  baseTokens: { "--uds-text-primary": "#0f172a" },
+  baseTokens: {
+    "--uds-text-primary": "#0f172a",
+    "--brand-primary-500": "#2563eb",
+    "--brand-primary-700": "#1e40af",
+  },
   brands: {
     default: createBrand("default"),
     ocean: createBrand("ocean", {
-      tokens: { "--uds-color-brand-primary": "#0ea5e9" },
+      tokens: {
+        "--brand-primary-500": "#0891b2",
+        "--brand-primary-700": "#155e75",
+      },
       modeTokens: { dark: { "--uds-surface-primary": "#082f49" } },
     }),
   },

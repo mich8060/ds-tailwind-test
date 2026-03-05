@@ -1,5 +1,9 @@
 import React from "react";
-import { Code, Divider, FileUpload, Flex, Text } from "../../design-system";
+import { Code } from "../../design-system/components/Code";
+import { Divider } from "../../design-system/components/Divider";
+import { FileUpload } from "../../design-system/components/FileUpload";
+import { Flex } from "../../design-system/components/Flex";
+import { Text } from "../../design-system/components/Text";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 

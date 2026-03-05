@@ -2,7 +2,8 @@ export const StatusSpec = {
   allowedVariants: {
   "appearance": [
     "light-gray",
-    "white"
+    "white",
+    "transparent"
   ],
   "shape": [
     "pill",

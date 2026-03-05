@@ -278,6 +278,67 @@ export const COMPONENT_API = {
     },
     "antiPatterns": []
   },
+  "ButtonGroup": {
+    "name": "ButtonGroup",
+    "source": "src/design-system/components/ButtonGroup/ButtonGroup.spec.ts",
+    "tier": 2,
+    "purpose": "Groups related button actions with consistent spacing and orientation.",
+    "props": {
+      "orientation": {
+        "type": "enum",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      },
+      "size": {
+        "type": "enum",
+        "values": [
+          "xsmall",
+          "small",
+          "default",
+          "large"
+        ],
+        "default": "default"
+      }
+    },
+    "defaults": {
+      "orientation": "horizontal",
+      "size": "default"
+    },
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [
+      "--uds-spacing-8",
+      "--uds-spacing-16"
+    ],
+    "accessibility": {
+      "role": "group",
+      "keyboard": [
+        "Tab",
+        "Enter",
+        "Space"
+      ]
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": [
+      "Do not set button appearances in ButtonGroup options; grouped buttons are outline only.",
+      "Do not mix unrelated actions in one ButtonGroup."
+    ]
+  },
   "Calendar": {
     "name": "Calendar",
     "source": "src/design-system/components/Calendar/Calendar.spec.ts",
@@ -367,6 +428,107 @@ export const COMPONENT_API = {
     },
     "antiPatterns": []
   },
+  "CheckboxGroup": {
+    "name": "CheckboxGroup",
+    "source": "src/design-system/components/CheckboxGroup/CheckboxGroup.spec.ts",
+    "tier": 2,
+    "purpose": "Provides grouped multi-select choices using Checkbox controls.",
+    "props": {
+      "orientation": {
+        "type": "enum",
+        "values": [
+          "vertical",
+          "horizontal"
+        ],
+        "default": "vertical"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "defaults": {
+      "orientation": "vertical",
+      "disabled": false
+    },
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [
+      "--uds-spacing-8",
+      "--uds-spacing-16",
+      "--uds-text-primary"
+    ],
+    "accessibility": {
+      "role": "group",
+      "keyboard": [
+        "Tab",
+        "Space"
+      ]
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": [
+      "Do not use CheckboxGroup when only one value may be selected.",
+      "Do not hide option labels."
+    ]
+  },
+  "Checklist": {
+    "name": "Checklist",
+    "source": "src/design-system/components/Checklist/Checklist.spec.ts",
+    "tier": 2,
+    "purpose": "Sidebar checklist for multi-step flows with completion status.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default",
+      "active",
+      "completed",
+      "disabled"
+    ],
+    "tokensUsed": [
+      "--uds-surface-primary",
+      "--uds-border-primary",
+      "--uds-text-primary",
+      "--uds-text-secondary",
+      "--uds-surface-brand-primary",
+      "--uds-spacing-8",
+      "--uds-spacing-12",
+      "--uds-spacing-20",
+      "--uds-spacing-24"
+    ],
+    "accessibility": {
+      "role": "navigation",
+      "keyboard": [
+        "Tab",
+        "Enter",
+        "Space"
+      ]
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
   "Chip": {
     "name": "Chip",
     "source": "src/design-system/components/Chip/Chip.spec.ts",
@@ -387,7 +549,8 @@ export const COMPONENT_API = {
         "type": "enum",
         "values": [
           "default",
-          "compact"
+          "compact",
+          "mini"
         ],
         "default": "default"
       },
@@ -565,6 +728,64 @@ export const COMPONENT_API = {
       "Do not hardcode spacing values on top of Container padding variants."
     ]
   },
+  "CurrencyInput": {
+    "name": "CurrencyInput",
+    "source": "src/design-system/components/CurrencyInput/CurrencyInput.spec.ts",
+    "tier": 2,
+    "purpose": "Describe purpose.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "role": "generic",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
+  "DateInput": {
+    "name": "DateInput",
+    "source": "src/design-system/components/DateInput/DateInput.spec.ts",
+    "tier": 2,
+    "purpose": "Describe purpose.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "role": "generic",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
   "Datepicker": {
     "name": "Datepicker",
     "source": "src/design-system/components/Datepicker/Datepicker.spec.ts",
@@ -588,6 +809,35 @@ export const COMPONENT_API = {
         "Field",
         "Modal"
       ],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
+  "DateRangeInput": {
+    "name": "DateRangeInput",
+    "source": "src/design-system/components/DateRangeInput/DateRangeInput.spec.ts",
+    "tier": 2,
+    "purpose": "Describe purpose.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "role": "generic",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
       "disallowedChildren": []
     },
     "aliases": {
@@ -1253,6 +1503,62 @@ export const COMPONENT_API = {
     },
     "antiPatterns": []
   },
+  "NumberInput": {
+    "name": "NumberInput",
+    "source": "src/design-system/components/NumberInput/NumberInput.spec.ts",
+    "props": {
+      "size": {
+        "type": "enum",
+        "values": [
+          "compact",
+          "default"
+        ],
+        "default": "default"
+      },
+      "state": {
+        "type": "enum",
+        "values": [
+          "default",
+          "focused",
+          "error",
+          "disabled"
+        ],
+        "default": "default"
+      },
+      "type": {
+        "type": "string",
+        "default": "number"
+      }
+    },
+    "defaults": {
+      "size": "default",
+      "state": "default",
+      "type": "number"
+    },
+    "states": [
+      "default",
+      "focused",
+      "error",
+      "disabled"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
   "Pagination": {
     "name": "Pagination",
     "source": "src/design-system/components/Pagination/Pagination.spec.ts",
@@ -1268,6 +1574,64 @@ export const COMPONENT_API = {
     "states": [],
     "tokensUsed": [],
     "accessibility": {
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
+  "PasswordInput": {
+    "name": "PasswordInput",
+    "source": "src/design-system/components/PasswordInput/PasswordInput.spec.ts",
+    "tier": 2,
+    "purpose": "Describe purpose.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "role": "generic",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
+  "PhoneInput": {
+    "name": "PhoneInput",
+    "source": "src/design-system/components/PhoneInput/PhoneInput.spec.ts",
+    "tier": 2,
+    "purpose": "Describe purpose.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "role": "generic",
       "keyboard": []
     },
     "composition": {
@@ -1423,6 +1787,121 @@ export const COMPONENT_API = {
     },
     "antiPatterns": []
   },
+  "RadioGroup": {
+    "name": "RadioGroup",
+    "source": "src/design-system/components/RadioGroup/RadioGroup.spec.ts",
+    "tier": 2,
+    "purpose": "Provides grouped single-select choices using Radio controls.",
+    "props": {
+      "orientation": {
+        "type": "enum",
+        "values": [
+          "vertical",
+          "horizontal"
+        ],
+        "default": "vertical"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "defaults": {
+      "orientation": "vertical",
+      "disabled": false
+    },
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [
+      "--uds-spacing-8",
+      "--uds-spacing-16",
+      "--uds-text-primary"
+    ],
+    "accessibility": {
+      "role": "radiogroup",
+      "keyboard": [
+        "Tab",
+        "ArrowUp",
+        "ArrowDown",
+        "Space"
+      ]
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": [
+      "Do not use RadioGroup when users can select more than one option.",
+      "Do not omit visible labels when context is unclear."
+    ]
+  },
+  "SearchInput": {
+    "name": "SearchInput",
+    "source": "src/design-system/components/SearchInput/SearchInput.spec.ts",
+    "tier": 2,
+    "purpose": "Describe purpose.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "role": "generic",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
+  "SectionHeader": {
+    "name": "SectionHeader",
+    "source": "src/design-system/components/SectionHeader/SectionHeader.spec.ts",
+    "tier": 2,
+    "purpose": "Describe purpose.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "role": "generic",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
   "Slider": {
     "name": "Slider",
     "source": "src/design-system/components/Slider/Slider.spec.ts",
@@ -1449,6 +1928,58 @@ export const COMPONENT_API = {
     },
     "antiPatterns": []
   },
+  "Statistics": {
+    "name": "Statistics",
+    "source": "src/design-system/components/Statistics/Statistics.spec.ts",
+    "tier": 2,
+    "purpose": "Displays a KPI value with optional context, trend, and icon.",
+    "props": {
+      "trend": {
+        "type": "enum",
+        "values": [
+          "up",
+          "down",
+          "neutral"
+        ],
+        "default": "neutral"
+      }
+    },
+    "defaults": {
+      "trend": "neutral"
+    },
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [
+      "--uds-surface-secondary",
+      "--uds-surface-primary",
+      "--uds-border-primary",
+      "--uds-radius-8",
+      "--uds-text-secondary",
+      "--uds-system-success-primary",
+      "--uds-system-destructive-primary"
+    ],
+    "accessibility": {
+      "role": "status",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": [
+      "Do not use Statistics for interactive controls.",
+      "Do not place long paragraph content inside helper text."
+    ]
+  },
   "Status": {
     "name": "Status",
     "source": "src/design-system/components/Status/Status.spec.ts",
@@ -1457,7 +1988,8 @@ export const COMPONENT_API = {
         "type": "enum",
         "values": [
           "light-gray",
-          "white"
+          "white",
+          "transparent"
         ],
         "default": "light-gray"
       },
@@ -1597,6 +2129,14 @@ export const COMPONENT_API = {
     "name": "Tabs",
     "source": "src/design-system/components/Tabs/Tabs.spec.ts",
     "props": {
+      "orientation": {
+        "type": "enum",
+        "values": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      },
       "appearance": {
         "type": "string",
         "default": "underline"
@@ -1607,6 +2147,7 @@ export const COMPONENT_API = {
       }
     },
     "defaults": {
+      "orientation": "horizontal",
       "appearance": "underline",
       "tagVariant": "red"
     },
@@ -1920,6 +2461,35 @@ export const COMPONENT_API = {
     },
     "antiPatterns": []
   },
+  "TimeInput": {
+    "name": "TimeInput",
+    "source": "src/design-system/components/TimeInput/TimeInput.spec.ts",
+    "tier": 2,
+    "purpose": "Describe purpose.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "role": "generic",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
   "Toast": {
     "name": "Toast",
     "source": "src/design-system/components/Toast/Toast.spec.ts",
@@ -1987,6 +2557,41 @@ export const COMPONENT_API = {
         "Field",
         "Menu"
       ],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
+  "Toolbar": {
+    "name": "Toolbar",
+    "source": "src/design-system/components/Toolbar/Toolbar.spec.ts",
+    "tier": 2,
+    "purpose": "Top action bar with left and right action regions and centered title/branding.",
+    "props": {},
+    "defaults": {},
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [
+      "--uds-surface-primary",
+      "--uds-border-primary",
+      "--uds-spacing-8",
+      "--uds-spacing-12",
+      "--uds-spacing-16"
+    ],
+    "accessibility": {
+      "role": "toolbar",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
       "disallowedChildren": []
     },
     "aliases": {

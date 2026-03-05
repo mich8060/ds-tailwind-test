@@ -1,5 +1,9 @@
+import { Divider } from "../../design-system/components/Divider";
+import { Flex } from "../../design-system/components/Flex";
+import { ProgressIndicator } from "../../design-system/components/ProgressIndicator";
+import { Text } from "../../design-system/components/Text";
+import { Code } from "../../design-system/components/Code";
 import { useState } from "react";
-import { Divider, Flex, ProgressIndicator, Text } from "../../design-system";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 
@@ -19,6 +23,25 @@ const PROGRESS_INDICATOR_PROPS: ComponentPropRow[] = [
   { prop: "labelPosition", type: '"false" | "right" | "bottom" | "top-floating" | "bottom-floating"', defaultValue: '"false"', description: "Position of the percentage value label." },
   { prop: "className", type: "string", defaultValue: '""', description: "Additional classes for the root element." },
 ];
+
+const DEFAULT_SNIPPET = `<ProgressIndicator value={64} max={100} label="Application progress" />
+<ProgressIndicator value={64} max={100} label="Application progress" showValue />`;
+
+const VARIANT_SNIPPET = `<ProgressIndicator value={72} variant="default" label="Default" showValue />
+<ProgressIndicator value={72} variant="blue" label="Blue" showValue />
+<ProgressIndicator value={72} variant="green" label="Green / Success" showValue />
+<ProgressIndicator value={72} variant="orange" label="Orange / Warning" showValue />
+<ProgressIndicator value={72} variant="red" label="Red / Error" showValue />
+<ProgressIndicator value={72} variant="purple" label="Purple" showValue />`;
+
+const SIZE_SNIPPET = `<ProgressIndicator value={64} size="small" label="Small" showValue />
+<ProgressIndicator value={64} size="medium" label="Medium" showValue />
+<ProgressIndicator value={64} size="large" label="Large" showValue />`;
+
+const LABEL_POSITION_SNIPPET = `<ProgressIndicator value={58} label="Right Value" labelPosition="right" />
+<ProgressIndicator value={58} label="Bottom Value" labelPosition="bottom" />
+<ProgressIndicator value={58} label="Top Floating Value" labelPosition="top-floating" />
+<ProgressIndicator value={58} label="Bottom Floating Value" labelPosition="bottom-floating" />`;
 
 function DemoBlock({
   title,
@@ -59,6 +82,7 @@ export function ProgressIndicatorDemoPage() {
         >
           <ProgressIndicator value={value} max={100} label="Application progress" />
           <ProgressIndicator value={value} max={100} label="Application progress" showValue />
+          <Code language="tsx" code={DEFAULT_SNIPPET} />
         </DemoBlock>
 
         <Divider variant="solid" />
@@ -73,6 +97,7 @@ export function ProgressIndicatorDemoPage() {
           <ProgressIndicator value={72} variant="orange" label="Orange / Warning" showValue />
           <ProgressIndicator value={72} variant="red" label="Red / Error" showValue />
           <ProgressIndicator value={72} variant="purple" label="Purple" showValue />
+          <Code language="tsx" code={VARIANT_SNIPPET} />
         </DemoBlock>
 
         <Divider variant="solid" />
@@ -84,6 +109,7 @@ export function ProgressIndicatorDemoPage() {
           <ProgressIndicator value={value} size="small" label="Small" showValue />
           <ProgressIndicator value={value} size="medium" label="Medium" showValue />
           <ProgressIndicator value={value} size="large" label="Large" showValue />
+          <Code language="tsx" code={SIZE_SNIPPET} />
         </DemoBlock>
 
         <Divider variant="solid" />
@@ -96,6 +122,7 @@ export function ProgressIndicatorDemoPage() {
           <ProgressIndicator value={58} label="Bottom Value" labelPosition="bottom" />
           <ProgressIndicator value={58} label="Top Floating Value" labelPosition="top-floating" />
           <ProgressIndicator value={58} label="Bottom Floating Value" labelPosition="bottom-floating" />
+          <Code language="tsx" code={LABEL_POSITION_SNIPPET} />
         </DemoBlock>
       </Flex>
 

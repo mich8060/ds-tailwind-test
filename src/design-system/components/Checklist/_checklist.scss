@@ -1,0 +1,96 @@
+.uds-checklist {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--uds-spacing-24);
+    padding: var(--uds-spacing-24);
+    background: var(--uds-surface-primary);
+    border: var(--uds-border-width-1) solid var(--uds-border-primary);
+    box-sizing: border-box;
+
+    &__head {
+        display: flex;
+        flex-direction: column;
+        gap: var(--uds-spacing-12);
+    }
+
+    &__header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--uds-spacing-12);
+    }
+
+    &__count {
+        color: var(--uds-text-secondary);
+        white-space: nowrap;
+    }
+
+    &__progress {
+        height: 8px;
+        margin-top: var(--uds-spacing-12);
+        border-radius: 999px;
+        background: var(--uds-border-primary);
+        overflow: hidden;
+    }
+
+    &__progress-fill {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--uds-surface-brand-tertiary);
+        transition: width 160ms ease;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--uds-spacing-8);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: var(--uds-spacing-12);
+        padding: var(--uds-spacing-8) 0;
+        background: transparent;
+        border: 0;
+        color: var(--uds-text-secondary);
+        text-align: left;
+        cursor: pointer;
+
+        &:disabled {
+            cursor: default;
+        }
+
+        &--completed .uds-checklist__indicator {
+            border-color: var(--uds-surface-brand-tertiary);
+            background: var(--uds-surface-brand-tertiary);
+        }
+
+        &--active {
+            color: var(--uds-text-primary);
+        }
+
+        &--disabled {
+            opacity: 0.5;
+        }
+    }
+
+    &__indicator {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: var(--uds-border-width-2) solid var(--uds-border-primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--uds-surface-primary);
+    }
+}

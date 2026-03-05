@@ -1,0 +1,4 @@
+// Map semantic tokens to component-local vars
+@use "../../tokens/index" as *;
+
+$radio-group-example: var(--spacing-2);

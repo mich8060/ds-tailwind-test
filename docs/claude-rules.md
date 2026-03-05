@@ -56,7 +56,7 @@ Use the CLI scaffold to generate this: `npm run generate:component -- ComponentN
 
 ## Component Rules
 
-- **BEM class prefix:** `ds-` (e.g., `.ds-button--primary`)
+- **BEM class prefix:** `uds-` (e.g., `.uds-button--primary`)
 - `index.ts` exports only the component itself — never internal helpers
 - All public API types live in `ComponentName.types.ts`
 - Every component must have a `ComponentName.spec.ts` defining variants, states, tokens used, and accessibility info

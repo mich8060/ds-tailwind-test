@@ -1,4 +1,5 @@
-import { Flex, Text } from "../../design-system";
+import { Flex } from "../../design-system/components/Flex";
+import { Text } from "../../design-system/components/Text";
 import { DocPageLayout } from "./DocPageLayout";
 
 const LAYOUT_RULES = [

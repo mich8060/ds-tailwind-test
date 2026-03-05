@@ -5,7 +5,11 @@
     {
       "id": "auth-form-card",
       "intent": "Authentication form with one primary action and optional secondary action.",
-      "tags": ["form", "auth", "card"],
+      "tags": [
+        "form",
+        "auth",
+        "card"
+      ],
       "slots": {
         "title": "Sign in",
         "subtitle": "Use your work account",
@@ -14,20 +18,66 @@
       },
       "tree": {
         "type": "Container",
-        "props": { "gap": "--uds-spacing-24" },
+        "props": {
+          "gap": "--uds-spacing-24"
+        },
         "children": [
           {
             "type": "Card",
             "children": [
-              { "type": "Text", "props": { "variant": "heading-24", "text": "{{title}}" } },
-              { "type": "Text", "props": { "variant": "body-16", "text": "{{subtitle}}" } },
-              { "type": "Field", "children": [{ "type": "TextInput", "props": { "type": "email" } }] },
-              { "type": "Field", "children": [{ "type": "TextInput", "props": { "type": "password" } }] },
+              {
+                "type": "Text",
+                "props": {
+                  "variant": "heading-24",
+                  "text": "{{title}}"
+                }
+              },
+              {
+                "type": "Text",
+                "props": {
+                  "variant": "body-16",
+                  "text": "{{subtitle}}"
+                }
+              },
+              {
+                "type": "Field",
+                "children": [
+                  {
+                    "type": "TextInput",
+                    "props": {
+                      "type": "email"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "Field",
+                "children": [
+                  {
+                    "type": "TextInput",
+                    "props": {
+                      "type": "password"
+                    }
+                  }
+                ]
+              },
               {
                 "type": "Flex",
                 "children": [
-                  { "type": "Button", "props": { "appearance": "primary", "label": "{{primaryActionLabel}}" } },
-                  { "type": "Button", "props": { "appearance": "text", "label": "{{secondaryActionLabel}}" } }
+                  {
+                    "type": "Button",
+                    "props": {
+                      "appearance": "primary",
+                      "label": "{{primaryActionLabel}}"
+                    }
+                  },
+                  {
+                    "type": "Button",
+                    "props": {
+                      "appearance": "text",
+                      "label": "{{secondaryActionLabel}}"
+                    }
+                  }
                 ]
               }
             ]
@@ -37,71 +87,163 @@
       "constraints": [
         "Keep max one primary Button in the section.",
         "Wrap all form controls with Field."
+      ],
+      "priority": "first-choice",
+      "recommendedFor": [
+        "figma-make"
       ]
     },
     {
       "id": "dashboard-table-summary",
       "intent": "Summary header with data table and row actions.",
-      "tags": ["dashboard", "table", "summary"],
+      "tags": [
+        "dashboard",
+        "table",
+        "summary"
+      ],
       "slots": {
         "heading": "Open Requests",
         "primaryActionLabel": "Create request"
       },
       "tree": {
         "type": "Container",
-        "props": { "gap": "--uds-spacing-16" },
+        "props": {
+          "gap": "--uds-spacing-16"
+        },
         "children": [
           {
             "type": "Flex",
             "children": [
-              { "type": "Text", "props": { "variant": "heading-24", "text": "{{heading}}" } },
-              { "type": "Button", "props": { "appearance": "primary", "label": "{{primaryActionLabel}}" } }
+              {
+                "type": "Text",
+                "props": {
+                  "variant": "heading-24",
+                  "text": "{{heading}}"
+                }
+              },
+              {
+                "type": "Button",
+                "props": {
+                  "appearance": "primary",
+                  "label": "{{primaryActionLabel}}"
+                }
+              }
             ]
           },
           {
             "type": "Table",
             "children": [
-              { "type": "Status", "props": { "variant": "success", "text": "Ready" } },
-              { "type": "Tag", "props": { "color": "blue", "label": "Active" } },
-              { "type": "ActionMenu", "props": { "triggerLabel": "Row actions" } }
+              {
+                "type": "Status",
+                "props": {
+                  "variant": "success",
+                  "text": "Ready"
+                }
+              },
+              {
+                "type": "Tag",
+                "props": {
+                  "color": "blue",
+                  "label": "Active"
+                }
+              },
+              {
+                "type": "ActionMenu",
+                "props": {
+                  "triggerLabel": "Row actions"
+                }
+              }
             ]
           }
         ]
       },
       "constraints": [
         "Only use allowed Table children (Tag, Status, Avatar, Button, ActionMenu, ProgressIndicator, DotStatus)."
+      ],
+      "priority": "first-choice",
+      "recommendedFor": [
+        "figma-make"
       ]
     },
     {
       "id": "settings-two-column",
       "intent": "Two-column settings page with form area and contextual summary card.",
-      "tags": ["settings", "form", "two-column"],
+      "tags": [
+        "settings",
+        "form",
+        "two-column"
+      ],
       "slots": {
         "pageTitle": "Account Settings",
         "saveLabel": "Save changes"
       },
       "tree": {
         "type": "Container",
-        "props": { "gap": "--uds-spacing-24" },
+        "props": {
+          "gap": "--uds-spacing-24"
+        },
         "children": [
-          { "type": "Text", "props": { "variant": "heading-24", "text": "{{pageTitle}}" } },
+          {
+            "type": "Text",
+            "props": {
+              "variant": "heading-24",
+              "text": "{{pageTitle}}"
+            }
+          },
           {
             "type": "Flex",
-            "props": { "gap": "--uds-spacing-24" },
+            "props": {
+              "gap": "--uds-spacing-24"
+            },
             "children": [
               {
                 "type": "Card",
                 "children": [
-                  { "type": "Field", "children": [{ "type": "TextInput", "props": { "type": "text" } }] },
-                  { "type": "Field", "children": [{ "type": "Dropdown" }] },
-                  { "type": "Button", "props": { "appearance": "primary", "label": "{{saveLabel}}" } }
+                  {
+                    "type": "Field",
+                    "children": [
+                      {
+                        "type": "TextInput",
+                        "props": {
+                          "type": "text"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Field",
+                    "children": [
+                      {
+                        "type": "Dropdown"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Button",
+                    "props": {
+                      "appearance": "primary",
+                      "label": "{{saveLabel}}"
+                    }
+                  }
                 ]
               },
               {
                 "type": "Card",
                 "children": [
-                  { "type": "Text", "props": { "variant": "body-16", "text": "Changes apply to your profile." } },
-                  { "type": "Tag", "props": { "color": "neutral", "label": "Profile" } }
+                  {
+                    "type": "Text",
+                    "props": {
+                      "variant": "body-16",
+                      "text": "Changes apply to your profile."
+                    }
+                  },
+                  {
+                    "type": "Tag",
+                    "props": {
+                      "color": "neutral",
+                      "label": "Profile"
+                    }
+                  }
                 ]
               }
             ]
@@ -111,12 +253,20 @@
       "constraints": [
         "Avoid multiple primary buttons in the same section.",
         "Use spacing tokens from the governed spacing system."
+      ],
+      "priority": "first-choice",
+      "recommendedFor": [
+        "figma-make"
       ]
     },
     {
       "id": "modal-confirmation",
       "intent": "Confirmation flow in modal with primary and dismissive actions.",
-      "tags": ["modal", "confirmation", "destructive"],
+      "tags": [
+        "modal",
+        "confirmation",
+        "destructive"
+      ],
       "slots": {
         "title": "Delete item?",
         "body": "This action cannot be undone.",
@@ -126,13 +276,37 @@
       "tree": {
         "type": "Modal",
         "children": [
-          { "type": "Text", "props": { "variant": "heading-24", "text": "{{title}}" } },
-          { "type": "Text", "props": { "variant": "body-16", "text": "{{body}}" } },
+          {
+            "type": "Text",
+            "props": {
+              "variant": "heading-24",
+              "text": "{{title}}"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "variant": "body-16",
+              "text": "{{body}}"
+            }
+          },
           {
             "type": "Flex",
             "children": [
-              { "type": "Button", "props": { "appearance": "text", "label": "{{cancelLabel}}" } },
-              { "type": "Button", "props": { "appearance": "destructive", "label": "{{confirmLabel}}" } }
+              {
+                "type": "Button",
+                "props": {
+                  "appearance": "text",
+                  "label": "{{cancelLabel}}"
+                }
+              },
+              {
+                "type": "Button",
+                "props": {
+                  "appearance": "destructive",
+                  "label": "{{confirmLabel}}"
+                }
+              }
             ]
           }
         ]
@@ -140,12 +314,20 @@
       "constraints": [
         "Do not nest Modal inside Modal.",
         "Keep one destructive primary-like action."
+      ],
+      "priority": "first-choice",
+      "recommendedFor": [
+        "figma-make"
       ]
     },
     {
       "id": "wizard-steps-form",
       "intent": "Multi-step form shell with progress indicator and staged actions.",
-      "tags": ["wizard", "steps", "form"],
+      "tags": [
+        "wizard",
+        "steps",
+        "form"
+      ],
       "slots": {
         "title": "Create Job Posting",
         "nextLabel": "Next",
@@ -154,18 +336,55 @@
       "tree": {
         "type": "Container",
         "children": [
-          { "type": "Text", "props": { "variant": "heading-24", "text": "{{title}}" } },
-          { "type": "Steps" },
+          {
+            "type": "Text",
+            "props": {
+              "variant": "heading-24",
+              "text": "{{title}}"
+            }
+          },
+          {
+            "type": "Steps"
+          },
           {
             "type": "Card",
             "children": [
-              { "type": "Field", "children": [{ "type": "TextInput", "props": { "type": "text" } }] },
-              { "type": "Field", "children": [{ "type": "Textarea" }] },
+              {
+                "type": "Field",
+                "children": [
+                  {
+                    "type": "TextInput",
+                    "props": {
+                      "type": "text"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "Field",
+                "children": [
+                  {
+                    "type": "Textarea"
+                  }
+                ]
+              },
               {
                 "type": "Flex",
                 "children": [
-                  { "type": "Button", "props": { "appearance": "text", "label": "{{backLabel}}" } },
-                  { "type": "Button", "props": { "appearance": "primary", "label": "{{nextLabel}}" } }
+                  {
+                    "type": "Button",
+                    "props": {
+                      "appearance": "text",
+                      "label": "{{backLabel}}"
+                    }
+                  },
+                  {
+                    "type": "Button",
+                    "props": {
+                      "appearance": "primary",
+                      "label": "{{nextLabel}}"
+                    }
+                  }
                 ]
               }
             ]
@@ -175,7 +394,23 @@
       "constraints": [
         "Fields must contain form controls.",
         "Keep one primary action for each step section."
+      ],
+      "priority": "first-choice",
+      "recommendedFor": [
+        "figma-make"
       ]
     }
-  ]
+  ],
+  "selectionPolicy": {
+    "mode": "template-first",
+    "recommendedFor": [
+      "figma-make"
+    ],
+    "fallback": "Only use freeform composition when no template intent matches.",
+    "guards": [
+      "Use UDS components only.",
+      "Do not use Tailwind utilities or className styling.",
+      "Use --uds-* tokens or hardcoded literals only."
+    ]
+  }
 }

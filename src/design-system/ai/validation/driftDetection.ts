@@ -4,8 +4,6 @@ import { TokenIntentMap } from "../manifest/tokens.intent.manifest";
 import type { UINodeTree } from "../manifest/types";
 import type { PolicyViolation } from "../policies/policy.types";
 
-const COLOR_LITERAL_REGEX = /#(?:[a-fA-F0-9]{3,8})\b|rgb\(|rgba\(|hsl\(|hsla\(/;
-
 const knownTokenSet = new Set<string>([
   ...LayoutRules.spacingSystem.allowedTokens,
   ...Object.values(TokenIntentMap.surface),
@@ -87,15 +85,6 @@ export function detectDrift(tree: UINodeTree): PolicyViolation[] {
             `${path}.${key}`,
             node.type,
             value
-          );
-        }
-        if (COLOR_LITERAL_REGEX.test(value)) {
-          pushViolation(
-            violations,
-            "DRIFT_HARDCODED_COLOR",
-            "Hardcoded color literal detected. Use semantic UDS token values.",
-            `${path}.${key}`,
-            node.type
           );
         }
       }

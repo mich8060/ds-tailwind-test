@@ -1,5 +1,9 @@
-import { useMemo, useState } from "react";
-import { Checkbox, Divider, Flex, Text } from "../../design-system";
+import { useMemo } from "react";
+import { Checkbox } from "../../design-system/components/Checkbox";
+import { Divider } from "../../design-system/components/Divider";
+import { Flex } from "../../design-system/components/Flex";
+import { Text } from "../../design-system/components/Text";
+import { useState } from "react";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 

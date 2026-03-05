@@ -1,11 +1,15 @@
+import { Divider } from "../../design-system/components/Divider";
+import { Flex } from "../../design-system/components/Flex";
+import { Tabs } from "../../design-system/components/Tabs";
+import { Text } from "../../design-system/components/Text";
 import { useState } from "react";
-import { Divider, Flex, Tabs, Text } from "../../design-system";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 
 const TABS_PROPS: ComponentPropRow[] = [
   { prop: "tabs", type: "Array<{ id?: string | number; label: string; icon?: string; tag?: string | number; tagVariant?: string }>", defaultValue: "[]", description: "Tab item definitions." },
   { prop: "appearance", type: '"underline" | "block" | "block-inverted"', defaultValue: '"underline"', description: "Visual style for the tab list." },
+  { prop: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "Tab list layout direction." },
   { prop: "activeTab", type: "number", defaultValue: "0", description: "Index of the active tab (0-based)." },
   { prop: "fill", type: "boolean", defaultValue: "false", description: "Whether tabs stretch to fill available width." },
   { prop: "scrollable", type: "boolean", defaultValue: "false", description: "Enables horizontal scrolling controls when tabs overflow." },
@@ -42,6 +46,7 @@ export function TabsDemoPage() {
   const [blockInvertedActive, setBlockInvertedActive] = useState(0);
   const [fillActive, setFillActive] = useState(0);
   const [scrollableActive, setScrollableActive] = useState(0);
+  const [verticalActive, setVerticalActive] = useState(0);
 
   return (
     <DocPageLayout
@@ -64,6 +69,24 @@ export function TabsDemoPage() {
               activeTab={underlineActive}
               onTabChange={(index) => setUnderlineActive(index as number)}
             />
+          </Flex>
+
+          <Flex direction="column" gap="8">
+            <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+              Underline Vertical
+            </Text>
+            <Flex alignItems="flex-start" gap="24" wrap>
+              <Tabs
+                tabs={TABS_WITH_META}
+                appearance="underline"
+                orientation="vertical"
+                activeTab={verticalActive}
+                onTabChange={(index) => setVerticalActive(index as number)}
+              />
+              <Text as="p" variant="body-16" leading="regular">
+                Active tab: {TABS_WITH_META[verticalActive]?.label}
+              </Text>
+            </Flex>
           </Flex>
 
           <Flex direction="column" gap="8">
@@ -118,6 +141,7 @@ export function TabsDemoPage() {
             onTabChange={(index) => setScrollableActive(index as number)}
           />
         </Flex>
+
       </Flex>
 
       <Divider variant="solid" />

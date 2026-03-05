@@ -6,11 +6,15 @@ import { enforcePrimaryActionLimitRule } from "./rules/action.rules";
 import { enforceSpacingTokenRule } from "./rules/spacing.rules";
 import { enforceAccessibilityRule } from "./rules/accessibility.rules";
 import { enforceCanonicalPropsRule } from "./rules/props.rules";
+import { enforceTokenVariableRule } from "./rules/token-variable.rules";
+import { enforceTailwindDisallowRule } from "./rules/tailwind.rules";
 
 const POLICY_RULES = [
   enforceCompositionRule,
   enforcePrimaryActionLimitRule,
   enforceSpacingTokenRule,
+  enforceTokenVariableRule,
+  enforceTailwindDisallowRule,
   enforceAccessibilityRule,
   enforceCanonicalPropsRule,
 ] as const;

@@ -10,7 +10,8 @@ export const ChipSpec = {
   ],
   "size": [
     "default",
-    "compact"
+    "compact",
+    "mini"
   ],
   "iconPlacement": [
     "both",

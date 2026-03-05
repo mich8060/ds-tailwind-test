@@ -7,6 +7,9 @@ This folder is the **authoring workspace** for Claude/Cursor AI generation, sepa
 - `manifest/` — machine-readable generation contracts and constraints
 - `discovery.json` — single machine-readable entrypoint index for all model integrations
 - `schemas/` — JSON schema for generated artifacts
+- `icons/` — machine-readable icon catalog and icon usage rules
+- `figma-make.contract.json` — machine-readable Figma Make contract
+- `figma-make.md` — Figma Make specific UDS-only generation contract
 - `templates/` — layout starter templates with placeholders and constraints
 - `prompts/` — reusable prompt templates for generation and repair flows
 - `examples/` — curated valid/invalid generation examples for model guidance
@@ -18,10 +21,23 @@ For any model/tooling integration, read in this order:
 1. `@mich8060/unified-design-system/ai/discovery.json`
 2. `@mich8060/unified-design-system/ai/manifest.json`
 3. `@mich8060/unified-design-system/ai/schema`
-4. `@mich8060/unified-design-system/ai/templates`
-5. `@mich8060/unified-design-system/ai/examples`
-6. `@mich8060/unified-design-system/ai/validation`
-7. `@mich8060/unified-design-system/ai/sdk`
+4. `@mich8060/unified-design-system/ai/icons`
+5. `@mich8060/unified-design-system/ai/figma-make.json`
+6. `@mich8060/unified-design-system/ai/figma-make`
+7. `@mich8060/unified-design-system/ai/prompts/figma-make`
+8. `@mich8060/unified-design-system/ai/templates`
+9. `@mich8060/unified-design-system/ai/examples`
+10. `@mich8060/unified-design-system/ai/validation`
+11. `@mich8060/unified-design-system/ai/sdk`
+
+## Icon options for AI
+
+Use `@mich8060/unified-design-system/ai/icons` for:
+
+- Allowed icon naming format and normalization rules
+- Recommended icon choices by UI intent
+- Supported icon appearances and sizing defaults
+- Component-specific icon usage examples (`Button`, `Icon`, `Status`, `Chip`)
 
 ## Layout templates
 
@@ -66,6 +82,11 @@ Every generated screen JSON should include:
 - `policyVersion`
 - `tree`
 - `audit`
+
+Generation policy also requires:
+
+- Never define custom CSS variables in output.
+- Use only `--uds-*` variable references or hardcoded literal values.
 
 See `schemas/ai-output.schema.json` and `ai-generated/screens/template.screen.json`.
 

@@ -1,6 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useEffect, useId, useMemo, useState } from "react";
 import type { ShellLayoutConfig } from "./layout.types";
 import { defaultLayout } from "./layout.types";
+import Avatar from "../design-system/components/Avatar/Avatar";
+import ActionMenu from "../design-system/components/ActionMenu/ActionMenu";
+import Button from "../design-system/components/Button/Button";
+import Branding from "../design-system/components/Branding/Branding";
+import { Toolbar } from "../design-system/components/Toolbar/Toolbar";
 import "./shell.scss";
 
 export interface AppShellSlots {
@@ -31,6 +36,14 @@ export interface AppShellProps {
     brand?: string;
     theme?: "light" | "dark";
     className?: string;
+    skipToContent?: boolean;
+    skipToContentLabel?: string;
+    mainContentId?: string;
+    mobileBrandLabel?: string;
+    mobileUserName?: string;
+    mobileUserInitials?: string;
+    mobileUserAvatarSrc?: string;
+    mobileAccountMenuItems?: unknown[];
 }
 
 /** Slot wrapper props used by AppShell compound regions. */
@@ -50,8 +63,45 @@ function AppShellComponent({
     brand = "default",
     theme = "light",
     className = "",
+    skipToContent = true,
+    skipToContentLabel = "Skip to content",
+    mainContentId,
+    mobileBrandLabel,
+    mobileUserName = "Jane Doe",
+    mobileUserInitials = "JD",
+    mobileUserAvatarSrc,
+    mobileAccountMenuItems = [],
 }: AppShellProps) {
     const config = useMemo(() => ({ ...defaultLayout, ...layout }), [layout]);
+    const generatedMainId = useId().replace(/[:]/g, "");
+    const resolvedMainContentId = mainContentId ?? `app-shell-main-${generatedMainId}`;
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const resolvedMobileBrandLabel = mobileBrandLabel ?? (brand === "default" ? "design-system" : brand);
+    const normalizedMobileAccountMenuItems = useMemo(
+        () => (Array.isArray(mobileAccountMenuItems) ? mobileAccountMenuItems : []),
+        [mobileAccountMenuItems]
+    );
+    const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
+    const toggleMobileMenu = useCallback(() => setIsMobileMenuOpen((prev) => !prev), []);
+
+    useEffect(() => {
+        if (!isMobileMenuOpen) return undefined;
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                closeMobileMenu();
+            }
+        };
+        window.addEventListener("keydown", handleEscape);
+        return () => window.removeEventListener("keydown", handleEscape);
+    }, [closeMobileMenu, isMobileMenuOpen]);
+
+    const handleSidebarClickCapture = useCallback((event: React.MouseEvent<HTMLElement>) => {
+        const target = event.target as Element | null;
+        if (!target) return;
+        if (target.closest("a")) {
+            closeMobileMenu();
+        }
+    }, [closeMobileMenu]);
 
     const shellClass = [
         "app-shell",
@@ -60,6 +110,7 @@ function AppShellComponent({
         `density-${config.density}`,
         `container-${config.container}`,
         `padding-${config.padding}`,
+        isMobileMenuOpen ? "app-shell--mobile-menu-open" : "",
         className,
     ].join(" ");
 
@@ -100,14 +151,55 @@ function AppShellComponent({
 
     return (
         <div className={shellClass}>
+            {skipToContent ? (
+                <a className="app-shell__skip-link" href={`#${resolvedMainContentId}`}>
+                    {skipToContentLabel}
+                </a>
+            ) : null}
+            {config.sidebar ? (
+                <div className="app-shell__mobile-toolbar-wrap">
+                    <Toolbar
+                        className="app-shell__mobile-toolbar"
+                        left={(
+                            <Button
+                                appearance="text"
+                                icon="List"
+                                label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                                layout="icon-only"
+                                aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                                onClick={toggleMobileMenu}
+                            />
+                        )}
+                        center={(
+                            <Branding brand={resolvedMobileBrandLabel} symbol />
+                        )}
+                        right={(
+                            <ActionMenu
+                                placement="bottom-end"
+                                items={normalizedMobileAccountMenuItems}
+                                trigger={(
+                                    <button type="button" className="app-shell__mobile-avatar-trigger" aria-label={`${mobileUserName} account menu`}>
+                                        <Avatar
+                                            src={mobileUserAvatarSrc}
+                                            initials={mobileUserInitials}
+                                            alt={mobileUserName ? `${mobileUserName} avatar` : "User avatar"}
+                                            size="default"
+                                        />
+                                    </button>
+                                )}
+                            />
+                        )}
+                    />
+                </div>
+            ) : null}
             <div className="app-shell__body">
                 {config.sidebar ? (
-                    <aside className="app-shell__sidebar" aria-label="Primary">
+                    <aside className="app-shell__sidebar" aria-label="Primary" onClickCapture={handleSidebarClickCapture}>
                         {customMenu}
                     </aside>
                 ) : null}
                 <div className="app-shell__main">
-                    <main className="app-shell__content" id="main">
+                    <main className="app-shell__content" id={resolvedMainContentId} tabIndex={-1}>
                         {customListview ? (
                             <aside className="app-shell__listview">{customListview}</aside>
                         ) : null}
@@ -118,6 +210,14 @@ function AppShellComponent({
                     {config.footer ? Footer : null}
                 </div>
             </div>
+            {config.sidebar ? (
+                <button
+                    type="button"
+                    className="app-shell__mobile-backdrop"
+                    onClick={closeMobileMenu}
+                    aria-label="Close navigation menu"
+                />
+            ) : null}
         </div>
     );
 }
