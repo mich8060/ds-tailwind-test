@@ -40,6 +40,7 @@ This document defines the current AI contract architecture for `@mich8060/unifie
   - `@mich8060/unified-design-system/ai/manifest.json`
   - `@mich8060/unified-design-system/ai/schema`
   - `@mich8060/unified-design-system/ai/icons`
+  - `@mich8060/unified-design-system/ai/icons.json`
   - `@mich8060/unified-design-system/ai/templates`
 - Authoring utilities:
   - `src/ai/prompts/*` for generation/repair prompts

@@ -5,6 +5,7 @@ Contract discovery order:
 - `@mich8060/unified-design-system/ai/manifest.json`
 - `@mich8060/unified-design-system/ai/schema`
 - `@mich8060/unified-design-system/ai/icons`
+- `@mich8060/unified-design-system/ai/icons.json`
 - `@mich8060/unified-design-system/ai/navigation`
 - `@mich8060/unified-design-system/ai/templates`
 
@@ -15,6 +16,7 @@ Hard constraints:
 - Use semantic token intents from `ai/manifest/tokens.intent.manifest.ts`.
 - Resolve UI intents using `ai/manifest/intent-mappings.manifest.ts` before freeform composition.
 - Respect governance limits from `ai/manifest/governance.manifest.ts`.
+- Load icon options from `@mich8060/unified-design-system/ai/icons` (or `@mich8060/unified-design-system/ai/icons.json`) before choosing icons.
 - Use icon names from the icon catalog (`ai/icons/catalog.json`) when adding icons.
 - Maximum one primary button per section.
 - No raw HTML tags.

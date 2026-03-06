@@ -12,6 +12,7 @@ Hard rules:
 - Never use Tailwind classes/utilities.
 - Never invent CSS variables. Use `--uds-*` tokens or hardcoded literals.
 - Prefer canonical props from the AI manifest and component contracts.
+- Load icon options from `@mich8060/unified-design-system/ai/icons` (alias: `@mich8060/unified-design-system/ai/icons.json`) before assigning any icon prop.
 - Default `Container` to `appearance=\"transparent\"` and `padding=\"large\"` (24px) unless overridden by explicit requirements.
 
 Required layout scaffold:

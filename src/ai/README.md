@@ -23,21 +23,22 @@ For any model/tooling integration, read in this order:
 2. `@mich8060/unified-design-system/ai/manifest.json`
 3. `@mich8060/unified-design-system/ai/schema`
 4. `@mich8060/unified-design-system/ai/icons`
-5. `@mich8060/unified-design-system/ai/figma-make.json`
-6. `@mich8060/unified-design-system/ai/figma-make`
-7. `@mich8060/unified-design-system/ai/prompts/figma-make`
-8. `@mich8060/unified-design-system/ai/prompts/system`
-9. `@mich8060/unified-design-system/ai/prompts/repair`
-10. `@mich8060/unified-design-system/ai/prompts/starter`
-11. `@mich8060/unified-design-system/ai/navigation`
-12. `@mich8060/unified-design-system/ai/templates`
-13. `@mich8060/unified-design-system/ai/examples`
-14. `@mich8060/unified-design-system/ai/validation`
-15. `@mich8060/unified-design-system/ai/sdk`
+5. `@mich8060/unified-design-system/ai/icons.json`
+6. `@mich8060/unified-design-system/ai/figma-make.json`
+7. `@mich8060/unified-design-system/ai/figma-make`
+8. `@mich8060/unified-design-system/ai/prompts/figma-make`
+9. `@mich8060/unified-design-system/ai/prompts/system`
+10. `@mich8060/unified-design-system/ai/prompts/repair`
+11. `@mich8060/unified-design-system/ai/prompts/starter`
+12. `@mich8060/unified-design-system/ai/navigation`
+13. `@mich8060/unified-design-system/ai/templates`
+14. `@mich8060/unified-design-system/ai/examples`
+15. `@mich8060/unified-design-system/ai/validation`
+16. `@mich8060/unified-design-system/ai/sdk`
 
 ## Icon options for AI
 
-Use `@mich8060/unified-design-system/ai/icons` for:
+Use `@mich8060/unified-design-system/ai/icons` (or alias `@mich8060/unified-design-system/ai/icons.json`) for:
 
 - Allowed icon naming format and normalization rules
 - Recommended icon choices by UI intent

@@ -49,7 +49,7 @@ Use this contract when generating interfaces from Figma Make into code for `@mic
 
 ## Icon Guidance
 
-- Choose icon names only from `@mich8060/unified-design-system/ai/icons`.
+- Choose icon names only from `@mich8060/unified-design-system/ai/icons` (alias: `@mich8060/unified-design-system/ai/icons.json`).
 - Prefer intent-aligned icons from catalog `recommendedByIntent`.
 
 ## Brand Navigation Guidance

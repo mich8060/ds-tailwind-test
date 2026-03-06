@@ -7,6 +7,7 @@ Hard requirements:
 - Do not use Tailwind classes or utility CSS.
 - Do not use ad-hoc `className` styling.
 - Ensure app root is wrapped in `BrowserRouter` (or `RouterProvider`) before rendering route-aware UDS components.
+- Load icons from `@mich8060/unified-design-system/ai/icons` (alias `@mich8060/unified-design-system/ai/icons.json`) before assigning icon props.
 - Do not create custom CSS variables.
 - Use only `--uds-*` variables or hardcoded literals.
 - Use canonical prop names only (reject Ant-style aliases like `Menu.items`, `Flex.vertical`, `Button.type`).
