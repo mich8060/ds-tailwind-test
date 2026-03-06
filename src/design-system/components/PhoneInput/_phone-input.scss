@@ -1,6 +1,6 @@
 @use "./phone-input.tokens" as *;
 
-.ds-phone-input {
+.uds-phone-input {
   padding: $phone-input-example;
   background: var(--color-surface-1);
   border: 1px solid var(--color-border-subtle);

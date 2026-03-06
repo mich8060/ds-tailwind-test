@@ -1,6 +1,6 @@
 @use "./date-input.tokens" as *;
 
-.ds-date-input {
+.uds-date-input {
   padding: $date-input-example;
   background: var(--color-surface-1);
   border: 1px solid var(--color-border-subtle);

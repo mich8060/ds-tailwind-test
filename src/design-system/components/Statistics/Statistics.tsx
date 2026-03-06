@@ -1,6 +1,5 @@
 import Icon from "../Icon/Icon";
 import { Text } from "../Text/Text";
-import Status from "../Status/Status";
 import "./_statistics.scss";
 import type { StatisticsProps } from "./Statistics.types";
 import ProgressIndicator from "../ProgressIndicator";
@@ -16,18 +15,13 @@ export function Statistics({
     label,
     value,
     helperText,
-    statusLabel,
     changeText,
     trend = "neutral",
     icon,
-    actionIcon,
+    iconAccent,
     labelBoxColor,
-    showAccentRail = true,
-    hideAccentRail = false,
-    accent = "neutral",
     progressValue,
     progressLabel,
-    progressDelta,
     className = "",
     style,
     ...rest
@@ -40,12 +34,10 @@ export function Statistics({
             ? Math.min(100, Math.max(0, progressValue))
             : undefined;
 
-    const hasHeader = hasContent(label) || Boolean(icon) || Boolean(actionIcon);
+    const hasHeader = hasContent(label) || Boolean(icon);
     const hasValue = hasContent(value);
-    const hasStatus = hasContent(statusLabel);
     const hasHelper = hasContent(helperText);
     const hasChange = hasContent(changeText);
-    const shouldShowAccentRail = hideAccentRail ? false : showAccentRail;
 
     const iconTileStyle: CSSProperties | undefined =
         typeof labelBoxColor === "string" && labelBoxColor.trim().length > 0
@@ -54,8 +46,7 @@ export function Statistics({
 
     const classNames = [
         "uds-statistics",
-        shouldShowAccentRail ? "uds-statistics--with-rail" : "uds-statistics--no-rail",
-        `uds-statistics--accent-${accent}`,
+        iconAccent && `uds-statistics--icon-accent-${iconAccent}`,
         hasChange && `uds-statistics--trend-${trend}`,
         className,
     ]
@@ -66,25 +57,17 @@ export function Statistics({
         <div className={classNames} style={style} {...rest}>
             {hasHeader ? (
                 <div className="uds-statistics__header">
-                    <div className="uds-statistics__bar">
-                    </div>
                     <div className="uds-statistics__main">
                         {icon ? (
                             <div className="uds-statistics__icon">
-                                <span className="uds-statistics__icon-tile" style={iconTileStyle} aria-hidden="true">
-                                    <Icon name={icon} size={18} />
-                                </span>
                                 {hasContent(label) ? (
-                                    <Text as="span" variant="body-12" weight="semibold" leading="regular">
+                                    <Text as="span" variant="body-14" weight="semibold" leading="regular" className="uds-statistics__label">
                                         {label}
                                     </Text>
                                 ) : null}
-                            </div>
-                        ) : null}
-
-                        {hasStatus ? (
-                            <div className="uds-statistics__status">
-                                <Status label={statusLabel} appearance="transparent" variant="blue" />
+                                <span className="uds-statistics__icon-tile" style={iconTileStyle} aria-hidden="true">
+                                    <Icon name={icon} size={24} />
+                                </span>
                             </div>
                         ) : null}
                         <div className="uds-statistics__text">
@@ -97,7 +80,7 @@ export function Statistics({
                             ) : null}
 
                             {hasHelper ? (
-                                <Text as="p" variant="body-12" leading="regular">
+                                <Text as="p" variant="body-14" leading="regular">
                                     {helperText}
                                 </Text>
                             ) : null}
@@ -105,7 +88,7 @@ export function Statistics({
                             {hasChange ? (
                                 <div className="uds-statistics__change">
                                     <Icon name={TREND_ICON[trend]} size={14} />
-                                    <Text as="span" variant="body-12" weight="semibold" leading="regular">
+                                    <Text as="span" variant="body-14" weight="semibold" leading="regular">
                                         {changeText}
                                     </Text>
                                 </div>
@@ -124,19 +107,6 @@ export function Statistics({
                             </div>
                         ) : null}
 
-                    </div>
-                    <div className="uds-statistics__meta">
-                        {actionIcon ? (
-                            <span className="uds-statistics__action-icon" aria-hidden="true">
-                                <Icon name={actionIcon} size={24} />
-                            </span>
-                        ) : null}
-
-                        {hasContent(progressDelta) ? (
-                            <Text as="span" variant="body-20" weight="medium" leading="regular" className="uds-statistics__progress-delta">
-                                {progressDelta}
-                            </Text>
-                        ) : null}
                     </div>
                 </div>
             ) : null}

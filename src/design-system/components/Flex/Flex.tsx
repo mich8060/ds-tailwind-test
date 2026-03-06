@@ -94,15 +94,15 @@ export const Flex = React.forwardRef<HTMLElement, FlexProps>(function Flex(
   const hasAutoGap = String(gap).trim() === "auto";
 
   const classes = [
-    "ds-flex",
-    `ds-flex--direction-${direction}`,
-    justifyContent && `ds-flex--justify-${toKebab(justifyContent)}`,
-    alignItems && `ds-flex--align-${toKebab(alignItems)}`,
-    `ds-flex--wrap-${toKebab(wrapValue)}`,
-    inline && "ds-flex--inline",
-    fullWidth && "ds-flex--full-width",
-    span && "ds-flex--span",
-    hasAutoGap && "ds-flex--gap-auto",
+    "uds-flex",
+    `uds-flex--direction-${direction}`,
+    justifyContent && `uds-flex--justify-${toKebab(justifyContent)}`,
+    alignItems && `uds-flex--align-${toKebab(alignItems)}`,
+    `uds-flex--wrap-${toKebab(wrapValue)}`,
+    inline && "uds-flex--inline",
+    fullWidth && "uds-flex--full-width",
+    span && "uds-flex--span",
+    hasAutoGap && "uds-flex--gap-auto",
     className
   ]
     .filter(Boolean)

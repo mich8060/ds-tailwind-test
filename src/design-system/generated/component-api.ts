@@ -1199,10 +1199,15 @@ export const COMPONENT_API = {
       "fullWidth": {
         "type": "boolean",
         "default": false
+      },
+      "span": {
+        "type": "boolean",
+        "default": false
       }
     },
     "defaults": {
-      "fullWidth": false
+      "fullWidth": false,
+      "span": false
     },
     "states": [
       "default"
@@ -1896,10 +1901,15 @@ export const COMPONENT_API = {
           "neutral"
         ],
         "default": "neutral"
+      },
+      "hideAccentRail": {
+        "type": "boolean",
+        "default": false
       }
     },
     "defaults": {
-      "trend": "neutral"
+      "trend": "neutral",
+      "hideAccentRail": false
     },
     "states": [
       "default"

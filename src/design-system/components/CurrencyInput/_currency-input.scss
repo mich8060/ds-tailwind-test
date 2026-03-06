@@ -1,6 +1,6 @@
 @use "./currency-input.tokens" as *;
 
-.ds-currency-input {
+.uds-currency-input {
   padding: $currency-input-example;
   background: var(--color-surface-1);
   border: 1px solid var(--color-border-subtle);

@@ -9,7 +9,7 @@ import "prismjs/components/prism-tsx";
 import "./_code.scss";
 import type { CodeProps } from "./Code.types";
 
-const BASE_CLASS = "ds-code";
+const BASE_CLASS = "uds-code";
 
 const escapeHtml = (value: string): string =>
   value

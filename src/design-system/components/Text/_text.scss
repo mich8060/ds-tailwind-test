@@ -2,48 +2,48 @@
 @use "./_text.tokens" as *;
 @use "../../tokens/primitives/typography.primitives" as *;
 
-.ds-text {
+.uds-text {
   margin: 0;
   font-family: $text-family;
   font-weight: $text-weight-regular;
 }
 
-.ds-text--weight-regular { font-weight: $text-weight-regular; }
-.ds-text--weight-medium { font-weight: $text-weight-medium; }
-.ds-text--weight-semibold { font-weight: $text-weight-semibold; }
-.ds-text--weight-bold { font-weight: $text-weight-bold; }
+.uds-text--weight-regular { font-weight: $text-weight-regular; }
+.uds-text--weight-medium { font-weight: $text-weight-medium; }
+.uds-text--weight-semibold { font-weight: $text-weight-semibold; }
+.uds-text--weight-bold { font-weight: $text-weight-bold; }
 
-.ds-text--leading-tight { }
-.ds-text--leading-regular { }
-.ds-text--leading-loose { }
+.uds-text--leading-tight { }
+.uds-text--leading-regular { }
+.uds-text--leading-loose { }
 
-@mixin ds-text-variant($name) {
-  .ds-text--#{$name} {
+@mixin uds-text-variant($name) {
+  .uds-text--#{$name} {
     font-size: var(--uds-type-#{$name}-font-size);
     letter-spacing: var(--uds-type-#{$name}-letter-spacing);
     text-transform: var(--uds-type-#{$name}-text-transform);
     line-height: var(--uds-type-#{$name}-line-regular);
   }
-  .ds-text--#{$name}.ds-text--leading-tight { line-height: var(--uds-type-#{$name}-line-tight); }
-  .ds-text--#{$name}.ds-text--leading-regular { line-height: var(--uds-type-#{$name}-line-regular); }
-  .ds-text--#{$name}.ds-text--leading-loose { line-height: var(--uds-type-#{$name}-line-loose); }
+  .uds-text--#{$name}.uds-text--leading-tight { line-height: var(--uds-type-#{$name}-line-tight); }
+  .uds-text--#{$name}.uds-text--leading-regular { line-height: var(--uds-type-#{$name}-line-regular); }
+  .uds-text--#{$name}.uds-text--leading-loose { line-height: var(--uds-type-#{$name}-line-loose); }
 }
 
-@include ds-text-variant("display-128");
-@include ds-text-variant("display-96");
-@include ds-text-variant("display-72");
-@include ds-text-variant("display-60");
-@include ds-text-variant("display-48");
-@include ds-text-variant("display-36");
+@include uds-text-variant("display-128");
+@include uds-text-variant("display-96");
+@include uds-text-variant("display-72");
+@include uds-text-variant("display-60");
+@include uds-text-variant("display-48");
+@include uds-text-variant("display-36");
 
-@include ds-text-variant("heading-32");
-@include ds-text-variant("heading-28");
-@include ds-text-variant("heading-24");
+@include uds-text-variant("heading-32");
+@include uds-text-variant("heading-28");
+@include uds-text-variant("heading-24");
 
-@include ds-text-variant("body-20");
-@include ds-text-variant("body-16");
-@include ds-text-variant("body-14");
-@include ds-text-variant("body-12");
+@include uds-text-variant("body-20");
+@include uds-text-variant("body-16");
+@include uds-text-variant("body-14");
+@include uds-text-variant("body-12");
 
 /* ===== Legacy class aliases (migration support) ===== */
 .uds-leading-tight { line-height: 1; }

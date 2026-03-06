@@ -3,16 +3,16 @@ import type { TextLeading, TextProps, TextWeight } from "./Text.types";
 import "./_text.scss";
 
 const weightClass: Record<TextWeight, string> = {
-  regular: "ds-text--weight-regular",
-  medium: "ds-text--weight-medium",
-  semibold: "ds-text--weight-semibold",
-  bold: "ds-text--weight-bold"
+  regular: "uds-text--weight-regular",
+  medium: "uds-text--weight-medium",
+  semibold: "uds-text--weight-semibold",
+  bold: "uds-text--weight-bold"
 };
 
 const leadingClass: Record<TextLeading, string> = {
-  tight: "ds-text--leading-tight",
-  regular: "ds-text--leading-regular",
-  loose: "ds-text--leading-loose"
+  tight: "uds-text--leading-tight",
+  regular: "uds-text--leading-regular",
+  loose: "uds-text--leading-loose"
 };
 
 export function Text<T extends React.ElementType = "p">({
@@ -29,8 +29,8 @@ export function Text<T extends React.ElementType = "p">({
   return (
     <Component
       className={[
-        "ds-text",
-        `ds-text--${variant}`,
+        "uds-text",
+        `uds-text--${variant}`,
         weightClass[weight],
         leadingClass[leading],
         className

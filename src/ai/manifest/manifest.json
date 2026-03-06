@@ -1330,10 +1330,15 @@
         "fullWidth": {
           "type": "boolean",
           "default": false
+        },
+        "span": {
+          "type": "boolean",
+          "default": false
         }
       },
       "defaults": {
-        "fullWidth": false
+        "fullWidth": false,
+        "span": false
       },
       "composition": {
         "preferredParents": [
@@ -1987,10 +1992,15 @@
             "neutral"
           ],
           "default": "neutral"
+        },
+        "hideAccentRail": {
+          "type": "boolean",
+          "default": false
         }
       },
       "defaults": {
-        "trend": "neutral"
+        "trend": "neutral",
+        "hideAccentRail": false
       },
       "composition": {
         "preferredParents": [

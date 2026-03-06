@@ -303,6 +303,7 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
 | `fullWidth` | `boolean` | - | `false` |
+| `span` | `boolean` | - | `false` |
 
 ### Icon
 
@@ -487,6 +488,7 @@ Displays a KPI value with optional context, trend, and icon.
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
+| `hideAccentRail` | `boolean` | - | `false` |
 | `trend` | `enum` | up, down, neutral | `neutral` |
 
 ### Status

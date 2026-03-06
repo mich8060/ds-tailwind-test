@@ -193,9 +193,10 @@
   {
     "component": "Flex",
     "props": {
-      "fullWidth": false
+      "fullWidth": false,
+      "span": false
     },
-    "jsx": "<Flex fullWidth={false} />"
+    "jsx": "<Flex fullWidth={false} span={false} />"
   },
   {
     "component": "Icon",
@@ -311,9 +312,10 @@
   {
     "component": "Statistics",
     "props": {
-      "trend": "neutral"
+      "trend": "neutral",
+      "hideAccentRail": false
     },
-    "jsx": "<Statistics trend=\"neutral\" />"
+    "jsx": "<Statistics trend=\"neutral\" hideAccentRail={false} />"
   },
   {
     "component": "Status",
