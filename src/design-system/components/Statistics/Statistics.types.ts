@@ -12,7 +12,12 @@ export interface StatisticsProps extends HTMLAttributes<HTMLDivElement> {
   trend?: StatisticsTrend;
   icon?: string;
   actionIcon?: string;
+  /** Inline CSS color value for the label icon tile background. */
+  labelBoxColor?: string;
+  /** Legacy flag for accent rail visibility. */
   showAccentRail?: boolean;
+  /** When true, hides the left accent rail entirely. */
+  hideAccentRail?: boolean;
   accent?: StatisticsAccent;
   progressValue?: number;
   progressLabel?: ReactNode;

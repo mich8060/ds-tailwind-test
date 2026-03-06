@@ -12,6 +12,7 @@ const FLEX_PROPS: ComponentPropRow[] = [
   { prop: "justifyContent", type: "string", defaultValue: '"flex-start"', description: "Main-axis alignment and distribution of children." },
   { prop: "wrap", type: "boolean", defaultValue: "false", description: "Allows items to wrap onto multiple lines when true." },
   { prop: "fullWidth", type: "boolean", defaultValue: "false", description: "Expands the flex container to span 100% width." },
+  { prop: "span", type: "boolean", defaultValue: "false", description: "Applies `flex: 1` to all first-level children." },
   { prop: "className", type: "string", defaultValue: '""', description: "Adds custom CSS classes to the root element." },
   { prop: "style", type: "object", defaultValue: "{}", description: "Applies inline styles to the root element." },
   { prop: "children", type: "ReactNode", defaultValue: "-", description: "Elements rendered inside the flex container." },
@@ -148,6 +149,29 @@ export function FlexDemoPage() {
   justifyContent="space-between"
   gap="8"
 >
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Flex>`}</pre>
+        </Flex>
+
+        <Divider variant="solid" />
+
+        <Flex direction="column" gap="12">
+          <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+            Span
+          </Text>
+          <Text as="p" variant="body-16" leading="regular">
+            Set <code>span</code> to apply <code>flex: 1</code> to all first-level children.
+          </Text>
+
+          <Flex direction="row" gap="8" span>
+            {item("Item 1")}
+            {item("Item 2")}
+            {item("Item 3")}
+          </Flex>
+
+          <pre style={codeBlockStyle}>{`<Flex direction="row" gap="8" span>
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>

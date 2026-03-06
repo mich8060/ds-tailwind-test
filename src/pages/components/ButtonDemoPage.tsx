@@ -1,4 +1,5 @@
 import { Button } from "../../design-system/components/Button";
+import { Code } from "../../design-system/components/Code";
 import { Divider } from "../../design-system/components/Divider";
 import { Flex } from "../../design-system/components/Flex";
 import { Text } from "../../design-system/components/Text";
@@ -70,6 +71,32 @@ const BUTTON_LAYOUT_EXAMPLES = [
     },
 ];
 
+const VARIANTS_SNIPPET = `<Button appearance="primary" label="Primary" />
+<Button appearance="soft" label="Soft" />
+<Button appearance="outline" label="Outline" />
+<Button appearance="text" label="Text" />
+<Button appearance="ghost" label="Ghost" />
+<Button appearance="destructive" label="Destructive" />
+<Button appearance="disabled" label="Disabled" />`;
+
+const LAYOUTS_SNIPPET = `<Button size="default" layout="label-only" label="Label only" />
+<Button size="default" layout="icon-left" icon="Plus" label="Add User" />
+<Button size="default" layout="icon-right" icon="ArrowRight" label="Continue" />
+<Button size="default" layout="icon-only" icon="Trash" label="Delete" aria-label="Delete item" />
+<Button size="default" layout="only" icon="DotsThree" label="More actions" aria-label="More actions" />`;
+
+const INTERACTION_SNIPPET = `<Button label="Disabled prop" disabled />
+<Button label="Tracking Event" tracking="button-demo-click" />
+<Button
+  label="Tracking Payload"
+  tracking={{ event: "demo_click", section: "button" }}
+/>`;
+
+const LOADING_SNIPPET = `<Button label="Saving" loading />
+<Button label="Submitting" appearance="soft" loading />
+<Button label="Deleting" appearance="destructive" loading />
+<Button layout="icon-left" icon="DownloadSimple" label="Downloading" loading />`;
+
 export function ButtonDemoPage() {
     return (
         <DocPageLayout
@@ -90,6 +117,7 @@ export function ButtonDemoPage() {
                         <Button appearance="destructive" label="Destructive" />
                         <Button appearance="disabled" label="Disabled" />
                     </Flex>
+                    <Code language="tsx" code={VARIANTS_SNIPPET} />
                 </Flex>
                 <Divider variant="solid" />
 
@@ -116,6 +144,7 @@ export function ButtonDemoPage() {
                             </Flex>
                         </Flex>
                     ))}
+                    <Code language="tsx" code={LAYOUTS_SNIPPET} />
                 </Flex>
                 <Divider variant="solid" />
 
@@ -128,6 +157,7 @@ export function ButtonDemoPage() {
                         <Button label="Tracking Event" tracking="button-demo-click" />
                         <Button label="Tracking Payload" tracking={{ event: "demo_click", section: "button" }} />
                     </Flex>
+                    <Code language="tsx" code={INTERACTION_SNIPPET} />
                 </Flex>
                 <Divider variant="solid" />
 
@@ -141,6 +171,7 @@ export function ButtonDemoPage() {
                         <Button label="Deleting" appearance="destructive" loading />
                         <Button layout="icon-left" icon="DownloadSimple" label="Downloading" loading />
                     </Flex>
+                    <Code language="tsx" code={LOADING_SNIPPET} />
                 </Flex>
             </Flex>
             <Divider variant="solid" />

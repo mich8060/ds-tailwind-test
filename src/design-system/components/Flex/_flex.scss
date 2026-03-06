@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+.ds-flex--span > * {
+  flex: 1;
+}
+
 .ds-flex--direction-row {
   flex-direction: row;
 }

@@ -45,6 +45,29 @@ const META_SNIPPET = `<SectionHeader
 />;
 `;
 
+const FULL_SNIPPET = `<SectionHeader
+  eyebrow="Pipeline"
+  title="Anesthesiology - Phoenix"
+  description="Use this layout for section intros that need context, status metadata, and immediate actions."
+  divider
+  meta={
+    <>
+      <Tag label="12 Active" color="blue" />
+      <Tag label="3 At Risk" color="red" />
+      <Text as="span" variant="body-14" leading="regular">
+        Last synced 2 minutes ago
+      </Text>
+    </>
+  }
+  actions={
+    <>
+      <Button label="View Report" appearance="outline" />
+      <Button label="Add Candidate" />
+    </>
+  }
+/>;
+`;
+
 export function SectionHeaderDemoPage() {
   return (
     <DocPageLayout
@@ -133,6 +156,7 @@ export function SectionHeaderDemoPage() {
               </>
             }
           />
+          <Code language="tsx" code={FULL_SNIPPET} />
         </Flex>
 
       </Flex>

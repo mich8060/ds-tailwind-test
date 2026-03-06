@@ -81,6 +81,7 @@ export const Flex = React.forwardRef<HTMLElement, FlexProps>(function Flex(
     wrap = false,
     gap,
     fullWidth = false,
+    span = false,
     inline = false,
     className,
     style,
@@ -100,6 +101,7 @@ export const Flex = React.forwardRef<HTMLElement, FlexProps>(function Flex(
     `ds-flex--wrap-${toKebab(wrapValue)}`,
     inline && "ds-flex--inline",
     fullWidth && "ds-flex--full-width",
+    span && "ds-flex--span",
     hasAutoGap && "ds-flex--gap-auto",
     className
   ]

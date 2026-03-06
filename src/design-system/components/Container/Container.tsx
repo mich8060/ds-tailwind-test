@@ -10,9 +10,9 @@ export function Container({
   ...rest
 }: ContainerProps) {
   const classNames = [
-    "ds-container",
-    `ds-container--appearance-${appearance}`,
-    `ds-container--padding-${padding}`,
+    "uds-container",
+    `uds-container--appearance-${appearance}`,
+    `uds-container--padding-${padding}`,
     className,
   ]
     .filter(Boolean)

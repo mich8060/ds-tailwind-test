@@ -103,3 +103,5 @@ Use the governed training set exported from runtime AI examples:
 
 - `src/design-system/ai/examples/training.examples.ts`
 - validate with `npm run ai:validate:examples`
+- Additional scenario dataset (JSONL):
+  - `src/ai/examples/signin-flow-uds.jsonl`

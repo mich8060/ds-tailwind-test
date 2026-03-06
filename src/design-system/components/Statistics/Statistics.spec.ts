@@ -10,6 +10,10 @@ export const StatisticsSpec: ComponentSpec = {
       values: ["up", "down", "neutral"],
       default: "neutral",
     },
+    hideAccentRail: {
+      type: "boolean",
+      default: false,
+    },
   },
   states: ["default"],
   tokensUsed: [

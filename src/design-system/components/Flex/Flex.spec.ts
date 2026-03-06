@@ -8,6 +8,10 @@ export const FlexSpec: ComponentSpec = {
     fullWidth: {
       type: "boolean",
       default: false
+    },
+    span: {
+      type: "boolean",
+      default: false
     }
   },
   states: ["default"],

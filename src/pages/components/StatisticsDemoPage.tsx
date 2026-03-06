@@ -11,7 +11,9 @@ const STATISTICS_PROPS: ComponentPropRow[] = [
   { prop: "trend", type: '"up" | "down" | "neutral"', defaultValue: '"neutral"', description: "Color and icon direction for change row." },
   { prop: "icon", type: "string", defaultValue: "-", description: "Optional icon name shown in the leading icon tile." },
   { prop: "actionIcon", type: "string", defaultValue: "-", description: "Optional top-right action icon." },
+  { prop: "labelBoxColor", type: "string", defaultValue: "-", description: "Optional CSS color value for the label icon tile background." },
   { prop: "showAccentRail", type: "boolean", defaultValue: "true", description: "Shows or hides the left accent rail." },
+  { prop: "hideAccentRail", type: "boolean", defaultValue: "false", description: "Hides the left accent rail entirely (overrides showAccentRail)." },
   { prop: "accent", type: '"brand" | "success" | "warning" | "danger" | "neutral"', defaultValue: '"neutral"', description: "Left accent rail color." },
   { prop: "progressValue", type: "number", defaultValue: "-", description: "Optional progress bar percentage (0-100)." },
   { prop: "progressLabel", type: "ReactNode", defaultValue: "-", description: "Label shown next to the progress bar." },
@@ -35,14 +37,32 @@ const MINIMAL_SNIPPET = `<Statistics
   label="Open Requisitions"
   value="42"
   helperText="Current month"
-  showAccentRail={false}
+  hideAccentRail
 />`;
 
 const TREND_ONLY_SNIPPET = `<Statistics
   label="Avg Time to Fill"
+  statusLabel="Operational"
   value="17d"
+  helperText="Rolling 30-day average"
   changeText="No change"
   trend="neutral"
+  icon="Clock"
+  actionIcon="ArrowsOut"
+  accent="success"
+/>`;
+
+const LABEL_BOX_COLOR_SNIPPET = `<Statistics
+  label="Pipeline Velocity"
+  value="84%"
+  icon="Gauge"
+  labelBoxColor="var(--uds-system-success-subtle)"
+/>`;
+
+const HIDE_RAIL_SNIPPET = `<Statistics
+  label="Open Requisitions"
+  value="42"
+  hideAccentRail
 />`;
 
 export function StatisticsDemoPage() {
@@ -73,7 +93,7 @@ export function StatisticsDemoPage() {
           label="Open Requisitions"
           value="42"
           helperText="Current month"
-          showAccentRail={false}
+          hideAccentRail
         />
         <Code language="tsx" code={MINIMAL_SNIPPET} />
       </Flex>
@@ -94,6 +114,31 @@ export function StatisticsDemoPage() {
           accent="success"
         />
         <Code language="tsx" code={TREND_ONLY_SNIPPET} />
+      </Flex>
+
+      <Divider variant="solid" />
+
+      <Flex direction="column" gap="16">
+        <Text as="h2" variant="heading-24" weight="medium" leading="regular">Custom Label Box Color</Text>
+        <Statistics
+          label="Pipeline Velocity"
+          value="84%"
+          icon="Gauge"
+          labelBoxColor="var(--uds-system-success-subtle)"
+        />
+        <Code language="tsx" code={LABEL_BOX_COLOR_SNIPPET} />
+      </Flex>
+
+      <Divider variant="solid" />
+
+      <Flex direction="column" gap="16">
+        <Text as="h2" variant="heading-24" weight="medium" leading="regular">Hide Accent Rail</Text>
+        <Statistics
+          label="Open Requisitions"
+          value="42"
+          hideAccentRail
+        />
+        <Code language="tsx" code={HIDE_RAIL_SNIPPET} />
       </Flex>
 
       <Divider variant="solid" />

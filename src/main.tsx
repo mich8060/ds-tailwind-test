@@ -312,7 +312,7 @@ function App() {
                     activeMode={theme}
                     onModeChange={handleModeChange}
                     showBrandSwitcher
-                    showSearch={false}
+                    showSearch
                     showModeToggle
                     userName="Emily Brown"
                     userInitials="EB"

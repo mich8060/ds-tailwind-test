@@ -249,8 +249,8 @@ export function AppShellDemoPage() {
                   className="example"
                   defaultExpanded={false}
                   navItems={LIVE_PREVIEW_MENU_ITEMS}
-                  showSearch={false}
-                  showBrandSwitcher={false}
+                  showSearch
+                  showBrandSwitcher
                   showModeToggle={false}
                   showUser={false}
                 />

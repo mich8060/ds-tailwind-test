@@ -4,6 +4,7 @@ import Status from "../Status/Status";
 import "./_statistics.scss";
 import type { StatisticsProps } from "./Statistics.types";
 import ProgressIndicator from "../ProgressIndicator";
+import type { CSSProperties } from "react";
 
 const TREND_ICON: Record<NonNullable<StatisticsProps["trend"]>, string> = {
     up: "TrendUp",
@@ -20,12 +21,15 @@ export function Statistics({
     trend = "neutral",
     icon,
     actionIcon,
+    labelBoxColor,
     showAccentRail = true,
+    hideAccentRail = false,
     accent = "neutral",
     progressValue,
     progressLabel,
     progressDelta,
     className = "",
+    style,
     ...rest
 }: StatisticsProps) {
     const hasContent = (content: unknown): boolean =>
@@ -41,10 +45,16 @@ export function Statistics({
     const hasStatus = hasContent(statusLabel);
     const hasHelper = hasContent(helperText);
     const hasChange = hasContent(changeText);
+    const shouldShowAccentRail = hideAccentRail ? false : showAccentRail;
+
+    const iconTileStyle: CSSProperties | undefined =
+        typeof labelBoxColor === "string" && labelBoxColor.trim().length > 0
+            ? { backgroundColor: labelBoxColor.trim() }
+            : undefined;
 
     const classNames = [
         "uds-statistics",
-        showAccentRail ? "uds-statistics--with-rail" : "uds-statistics--no-rail",
+        shouldShowAccentRail ? "uds-statistics--with-rail" : "uds-statistics--no-rail",
         `uds-statistics--accent-${accent}`,
         hasChange && `uds-statistics--trend-${trend}`,
         className,
@@ -53,7 +63,7 @@ export function Statistics({
         .join(" ");
 
     return (
-        <div className={classNames} {...rest}>
+        <div className={classNames} style={style} {...rest}>
             {hasHeader ? (
                 <div className="uds-statistics__header">
                     <div className="uds-statistics__bar">
@@ -61,7 +71,7 @@ export function Statistics({
                     <div className="uds-statistics__main">
                         {icon ? (
                             <div className="uds-statistics__icon">
-                                <span className="uds-statistics__icon-tile" aria-hidden="true">
+                                <span className="uds-statistics__icon-tile" style={iconTileStyle} aria-hidden="true">
                                     <Icon name={icon} size={18} />
                                 </span>
                                 {hasContent(label) ? (

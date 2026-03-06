@@ -438,6 +438,7 @@
     "**/*.scss"
   ],
   "scripts": {
+    "clean": "node -e \"const { rmSync } = require('node:fs'); ['dist', 'node_modules/.vite', '.vite'].forEach((p) => rmSync(p, { recursive: true, force: true }));\"",
     "dev": "vite --configLoader native",
     "dev:preact": "UDS_USE_PREACT_COMPAT=1 vite --configLoader native",
     "build": "vite build --configLoader native && npm run build:types && npm run build:tokens && npm run build:ai:schema && npm run build:ai:icons && npm run build:ai:templates && npm run build:ai:figma && npm run build:api && npm run build:ai:manifest && npm run build:ai:discovery",

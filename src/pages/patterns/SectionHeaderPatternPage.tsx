@@ -1,10 +1,51 @@
 import type { ReactNode } from "react";
 import { Button } from "../../design-system/components/Button";
+import { Code } from "../../design-system/components/Code";
 import { Divider } from "../../design-system/components/Divider";
 import { Flex } from "../../design-system/components/Flex";
 import { Tag } from "../../design-system/components/Tag";
 import { Text } from "../../design-system/components/Text";
 import { DocPageLayout } from "../docs/DocPageLayout";
+
+const BASIC_SNIPPET = `<SectionHeaderBlock
+  eyebrow="Overview"
+  title="Candidates"
+  description="Review active candidates, monitor progress, and manage handoff steps for this pipeline."
+/>`;
+
+const ACTIONS_SNIPPET = `<SectionHeaderBlock
+  eyebrow="Section Header Pattern"
+  title="Open Requisitions"
+  description="Track open roles and quickly create or export requisition details."
+  actions={
+    <>
+      <Button label="Export" appearance="outline" />
+      <Button label="New Requisition" />
+    </>
+  }
+/>`;
+
+const META_SNIPPET = `<SectionHeaderBlock
+  eyebrow="Pipeline"
+  title="Cardiology - Denver"
+  description="Current status and assignment metadata for this workflow."
+  meta={
+    <>
+      <Tag label="8 Active" color="green" />
+      <Tag label="2 Needs Review" color="orange" />
+      <Text as="span" variant="body-14" leading="regular">
+        Updated 5 minutes ago
+      </Text>
+    </>
+  }
+  actions={
+    <>
+      <Button label="View Report" appearance="outline" />
+      <Button label="Assign Candidate" />
+    </>
+  }
+/>;
+`;
 
 function SectionHeaderBlock({
   eyebrow,
@@ -69,6 +110,7 @@ export function SectionHeaderPatternPage() {
             title="Candidates"
             description="Review active candidates, monitor progress, and manage handoff steps for this pipeline."
           />
+          <Code language="tsx" code={BASIC_SNIPPET} />
         </Flex>
 
         <Divider variant="solid" />
@@ -88,6 +130,7 @@ export function SectionHeaderPatternPage() {
               </>
             }
           />
+          <Code language="tsx" code={ACTIONS_SNIPPET} />
         </Flex>
 
         <Divider variant="solid" />
@@ -116,6 +159,7 @@ export function SectionHeaderPatternPage() {
               </>
             }
           />
+          <Code language="tsx" code={META_SNIPPET} />
         </Flex>
       </Flex>
     </DocPageLayout>
