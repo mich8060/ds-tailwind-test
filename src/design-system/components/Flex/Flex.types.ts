@@ -34,6 +34,10 @@ export interface FlexProps extends React.HTMLAttributes<HTMLElement> {
   direction?: FlexDirection;
   justifyContent?: FlexJustifyContent;
   alignItems?: FlexAlignItems;
+  top?: boolean;
+  bottom?: boolean;
+  left?: boolean;
+  right?: boolean;
   wrap?: boolean | FlexWrap;
   gap?: FlexGapToken | FlexGapTokenName | FlexGapSpecial | number | string;
   fullWidth?: boolean;

@@ -31,6 +31,18 @@ function toKebab(value: string): string {
   return value.replace(/\s+/g, "-");
 }
 
+function resolveTopBottom(top?: boolean, bottom?: boolean): "flex-start" | "flex-end" | undefined {
+  if (top) return "flex-start";
+  if (bottom) return "flex-end";
+  return undefined;
+}
+
+function resolveLeftRight(left?: boolean, right?: boolean): "flex-start" | "flex-end" | undefined {
+  if (left) return "flex-start";
+  if (right) return "flex-end";
+  return undefined;
+}
+
 function normalizeGap(gap: FlexProps["gap"]): string | number | undefined {
   if (gap == null) return undefined;
 
@@ -78,6 +90,10 @@ const FlexBase = React.forwardRef<HTMLElement, FlexProps>(function Flex(
     direction = "row",
     justifyContent,
     alignItems,
+    top = false,
+    bottom = false,
+    left = false,
+    right = false,
     wrap = false,
     gap,
     fullWidth = false,
@@ -92,12 +108,20 @@ const FlexBase = React.forwardRef<HTMLElement, FlexProps>(function Flex(
 ) {
   const wrapValue = normalizeWrap(wrap);
   const hasAutoGap = String(gap).trim() === "auto";
+  const verticalAlignment = resolveTopBottom(top, bottom);
+  const horizontalAlignment = resolveLeftRight(left, right);
+  const resolvedJustifyContent =
+    justifyContent ??
+    (direction === "row" ? horizontalAlignment : verticalAlignment);
+  const resolvedAlignItems =
+    alignItems ??
+    (direction === "row" ? verticalAlignment : horizontalAlignment);
 
   const classes = [
     "uds-flex",
     `uds-flex--direction-${direction}`,
-    justifyContent && `uds-flex--justify-${toKebab(justifyContent)}`,
-    alignItems && `uds-flex--align-${toKebab(alignItems)}`,
+    resolvedJustifyContent && `uds-flex--justify-${toKebab(resolvedJustifyContent)}`,
+    resolvedAlignItems && `uds-flex--align-${toKebab(resolvedAlignItems)}`,
     `uds-flex--wrap-${toKebab(wrapValue)}`,
     inline && "uds-flex--inline",
     fullWidth && "uds-flex--full-width",

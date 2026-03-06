@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { Code } from "../../design-system/components/Code";
 import { Divider } from "../../design-system/components/Divider";
 import { Flex } from "../../design-system/components/Flex";
 import { Text } from "../../design-system/components/Text";
@@ -10,6 +11,10 @@ const FLEX_PROPS: ComponentPropRow[] = [
   { prop: "gap", type: "string", defaultValue: '"0"', description: "Spacing between children (supports UDS spacing tokens)." },
   { prop: "alignItems", type: "string", defaultValue: '"stretch"', description: "Cross-axis alignment for children." },
   { prop: "justifyContent", type: "string", defaultValue: '"flex-start"', description: "Main-axis alignment and distribution of children." },
+  { prop: "top", type: "boolean", defaultValue: "false", description: "Shorthand vertical start alignment (`alignItems` for row, `justifyContent` for column)." },
+  { prop: "bottom", type: "boolean", defaultValue: "false", description: "Shorthand vertical end alignment (`alignItems` for row, `justifyContent` for column)." },
+  { prop: "left", type: "boolean", defaultValue: "false", description: "Shorthand horizontal start alignment (`justifyContent` for row, `alignItems` for column)." },
+  { prop: "right", type: "boolean", defaultValue: "false", description: "Shorthand horizontal end alignment (`justifyContent` for row, `alignItems` for column)." },
   { prop: "wrap", type: "boolean", defaultValue: "false", description: "Allows items to wrap onto multiple lines when true." },
   { prop: "fullWidth", type: "boolean", defaultValue: "false", description: "Expands the flex container to span 100% width." },
   { prop: "span", type: "boolean", defaultValue: "false", description: "Applies `flex: 1` to all first-level children." },
@@ -26,17 +31,83 @@ const itemStyle: CSSProperties = {
   backgroundColor: "var(--uds-surface-secondary)",
 };
 
-const codeBlockStyle: CSSProperties = {
-  margin: 0,
-  padding: "var(--uds-spacing-12)",
-  border: "var(--uds-border-width-1) solid var(--uds-border-secondary)",
-  borderRadius: "var(--uds-radius-4)",
-  backgroundColor: "var(--uds-surface-secondary)",
-  overflowX: "auto",
-  whiteSpace: "pre",
-};
-
 const item = (label: string) => <div style={itemStyle}>{label}</div>;
+
+const DIRECTION_SNIPPET = `<Flex direction="row" gap="8">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Flex>
+
+<Flex direction="column" gap="8">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Flex>`;
+
+const TOP_BOTTOM_LEFT_RIGHT_SNIPPET = `<Flex direction="row" top left gap="8" style={{ minHeight: "96px" }}>
+  <div>Top Left</div>
+  <div>Aligned</div>
+</Flex>
+
+<Flex direction="row" bottom right gap="8" style={{ minHeight: "96px" }}>
+  <div>Bottom Right</div>
+  <div>Aligned</div>
+</Flex>`;
+
+const GAP_SNIPPET = `<Flex direction="row" gap="16">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Flex>`;
+
+const ALIGNMENT_SNIPPET = `<Flex
+  direction="row"
+  alignItems="center"
+  justifyContent="space-between"
+  gap="8"
+>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Flex>`;
+
+const SPAN_SNIPPET = `<Flex direction="row" gap="8" span>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Flex>`;
+
+const FLEX_FULL_SNIPPET = `<Flex direction="row" gap="8" style={{ width: "100%" }}>
+  <Flex.Full>
+    <div>Grows</div>
+  </Flex.Full>
+  <div>Natural width</div>
+</Flex>`;
+
+const BORDERED_LAYOUT_SNIPPET = `<Flex
+  direction="column"
+  gap="12"
+  fullWidth
+  style={{
+    border: "var(--uds-border-width-1) solid var(--uds-border-primary)",
+    borderRadius: "var(--uds-radius-8)",
+    padding: "var(--uds-spacing-16)",
+  }}
+>
+  <Text>Section title</Text>
+  <Flex direction="row" gap="8" wrap>
+    <div>Filter A</div>
+    <div>Filter B</div>
+    <div>Filter C</div>
+  </Flex>
+</Flex>`;
+
+const WRAP_SNIPPET = `<Flex direction="row" gap="8" wrap style={{ maxWidth: "300px" }}>
+  {[1, 2, 3, 4, 5, 6].map((num) => (
+    <div key={num}>Item {num}</div>
+  ))}
+</Flex>`;
 
 export function FlexDemoPage() {
   return (
@@ -71,17 +142,50 @@ export function FlexDemoPage() {
             {item("Item 3")}
           </Flex>
 
-          <pre style={codeBlockStyle}>{`<Flex direction="row" gap="8">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</Flex>
+          <Code language="tsx" code={DIRECTION_SNIPPET} />
+        </Flex>
 
-<Flex direction="column" gap="8">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</Flex>`}</pre>
+        <Divider variant="solid" />
+
+        <Flex direction="column" gap="12">
+          <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+            Top & Bottom / Left & Right
+          </Text>
+          <Text as="p" variant="body-16" leading="regular">
+            Use <code>top</code>, <code>bottom</code>, <code>left</code>, and <code>right</code> as alignment shorthands.
+          </Text>
+
+          <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+            Top Left
+          </Text>
+          <Flex
+            direction="row"
+            top
+            left
+            gap="8"
+            style={{ minHeight: "96px", border: "var(--uds-border-width-1) dashed var(--uds-border-secondary)" }}
+          >
+            {item("Top")}
+            {item("Left")}
+            {item("Aligned")}
+          </Flex>
+
+          <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+            Bottom Right
+          </Text>
+          <Flex
+            direction="row"
+            bottom
+            right
+            gap="8"
+            style={{ minHeight: "96px", border: "var(--uds-border-width-1) dashed var(--uds-border-secondary)" }}
+          >
+            {item("Bottom")}
+            {item("Right")}
+            {item("Aligned")}
+          </Flex>
+
+          <Code language="tsx" code={TOP_BOTTOM_LEFT_RIGHT_SNIPPET} />
         </Flex>
 
         <Divider variant="solid" />
@@ -109,11 +213,7 @@ export function FlexDemoPage() {
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">Gap 32px</Text>
           <Flex direction="row" gap="32">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Flex>
 
-          <pre style={codeBlockStyle}>{`<Flex direction="row" gap="16">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</Flex>`}</pre>
+          <Code language="tsx" code={GAP_SNIPPET} />
         </Flex>
 
         <Divider variant="solid" />
@@ -144,16 +244,7 @@ export function FlexDemoPage() {
             {item("Item 3")}
           </Flex>
 
-          <pre style={codeBlockStyle}>{`<Flex
-  direction="row"
-  alignItems="center"
-  justifyContent="space-between"
-  gap="8"
->
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</Flex>`}</pre>
+          <Code language="tsx" code={ALIGNMENT_SNIPPET} />
         </Flex>
 
         <Divider variant="solid" />
@@ -172,11 +263,7 @@ export function FlexDemoPage() {
             {item("Item 3")}
           </Flex>
 
-          <pre style={codeBlockStyle}>{`<Flex direction="row" gap="8" span>
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</Flex>`}</pre>
+          <Code language="tsx" code={SPAN_SNIPPET} />
         </Flex>
 
         <Divider variant="solid" />
@@ -194,12 +281,7 @@ export function FlexDemoPage() {
             {item("Natural width")}
           </Flex>
 
-          <pre style={codeBlockStyle}>{`<Flex direction="row" gap="8" style={{ width: "100%" }}>
-  <Flex.Full>
-    <div>Grows</div>
-  </Flex.Full>
-  <div>Natural width</div>
-</Flex>`}</pre>
+          <Code language="tsx" code={FLEX_FULL_SNIPPET} />
         </Flex>
 
         <Divider variant="solid" />
@@ -230,23 +312,7 @@ export function FlexDemoPage() {
             </Flex>
           </Flex>
 
-          <pre style={codeBlockStyle}>{`<Flex
-  direction="column"
-  gap="12"
-  fullWidth
-  style={{
-    border: "var(--uds-border-width-1) solid var(--uds-border-primary)",
-    borderRadius: "var(--uds-radius-8)",
-    padding: "var(--uds-spacing-16)",
-  }}
->
-  <Text>Section title</Text>
-  <Flex direction="row" gap="8" wrap>
-    <div>Filter A</div>
-    <div>Filter B</div>
-    <div>Filter C</div>
-  </Flex>
-</Flex>`}</pre>
+          <Code language="tsx" code={BORDERED_LAYOUT_SNIPPET} />
         </Flex>
 
         <Divider variant="solid" />
@@ -265,11 +331,7 @@ export function FlexDemoPage() {
             ))}
           </Flex>
 
-          <pre style={codeBlockStyle}>{`<Flex direction="row" gap="8" wrap style={{ maxWidth: "300px" }}>
-  {[1, 2, 3, 4, 5, 6].map((num) => (
-    <div key={num}>Item {num}</div>
-  ))}
-</Flex>`}</pre>
+          <Code language="tsx" code={WRAP_SNIPPET} />
         </Flex>
 
         <Divider variant="solid" />
