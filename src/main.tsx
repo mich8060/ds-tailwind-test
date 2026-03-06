@@ -28,6 +28,7 @@ const PasswordInputDemoPage = lazyNamed(() => import("./pages/components/Passwor
 const PhoneInputDemoPage = lazyNamed(() => import("./pages/components/PhoneInputDemoPage"), "PhoneInputDemoPage");
 const CurrencyInputDemoPage = lazyNamed(() => import("./pages/components/CurrencyInputDemoPage"), "CurrencyInputDemoPage");
 const SearchInputDemoPage = lazyNamed(() => import("./pages/components/SearchInputDemoPage"), "SearchInputDemoPage");
+const ScrollViewDemoPage = lazyNamed(() => import("./pages/components/ScrollViewDemoPage"), "ScrollViewDemoPage");
 const SectionHeaderDemoPage = lazyNamed(
     () => import("./pages/components/SectionHeaderDemoPage"),
     "SectionHeaderDemoPage"
@@ -157,6 +158,7 @@ const COMPONENT_NAV_ITEMS = [
     { label: "Radio", path: "/components/radio" },
     { label: "RadioGroup", path: "/components/radio-group" },
     { label: "SearchInput", path: "/components/search-input" },
+    { label: "ScrollView", path: "/components/scroll-view" },
     { label: "SectionHeader", path: "/components/section-header" },
     { label: "Slider", path: "/components/slider" },
     { label: "Status", path: "/components/status" },
@@ -362,6 +364,7 @@ function App() {
                             <Route path="/components/phone-input" element={<PhoneInputDemoPage />} />
                             <Route path="/components/currency-input" element={<CurrencyInputDemoPage />} />
                             <Route path="/components/search-input" element={<SearchInputDemoPage />} />
+                            <Route path="/components/scroll-view" element={<ScrollViewDemoPage />} />
                             <Route path="/components/section-header" element={<SectionHeaderDemoPage />} />
                             <Route path="/components/url-input" element={<URLInputDemoPage />} />
                             <Route path="/components/time-input" element={<TimeInputDemoPage />} />

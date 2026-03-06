@@ -40,3 +40,7 @@ export interface FlexProps extends React.HTMLAttributes<HTMLElement> {
   span?: boolean;
   inline?: boolean;
 }
+
+export interface FlexItemProps extends React.HTMLAttributes<HTMLElement> {
+  as?: React.ElementType;
+}

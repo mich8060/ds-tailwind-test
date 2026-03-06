@@ -1,6 +1,6 @@
 import React from "react";
 import "./_flex.scss";
-import type { FlexProps } from "./Flex.types";
+import type { FlexItemProps, FlexProps } from "./Flex.types";
 
 const GAP_TOKEN_VALUES = new Set([
   "0",
@@ -72,7 +72,7 @@ function warnInvalidGap(gap: FlexProps["gap"]) {
   }
 }
 
-export const Flex = React.forwardRef<HTMLElement, FlexProps>(function Flex(
+const FlexBase = React.forwardRef<HTMLElement, FlexProps>(function Flex(
   {
     as: Component = "div",
     direction = "row",
@@ -123,3 +123,28 @@ export const Flex = React.forwardRef<HTMLElement, FlexProps>(function Flex(
     </Component>
   );
 });
+
+const FlexFull = React.forwardRef<HTMLElement, FlexItemProps>(function FlexFull(
+  {
+    as: Component = "div",
+    className,
+    children,
+    ...rest
+  },
+  ref
+) {
+  const classes = ["uds-flex__full", className].filter(Boolean).join(" ");
+
+  return (
+    <Component ref={ref} className={classes} {...rest}>
+      {children}
+    </Component>
+  );
+});
+
+type FlexCompound = typeof FlexBase & {
+  Full: typeof FlexFull;
+};
+
+export const Flex = FlexBase as FlexCompound;
+Flex.Full = FlexFull;

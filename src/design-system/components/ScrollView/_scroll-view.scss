@@ -1,0 +1,16 @@
+@use "./scroll-view.tokens" as *;
+
+.uds-scroll-view {
+  display: block;
+  max-width: 100%;
+
+  &--vertical {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &--horizontal {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}

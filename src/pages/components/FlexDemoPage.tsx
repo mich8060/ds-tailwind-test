@@ -13,6 +13,7 @@ const FLEX_PROPS: ComponentPropRow[] = [
   { prop: "wrap", type: "boolean", defaultValue: "false", description: "Allows items to wrap onto multiple lines when true." },
   { prop: "fullWidth", type: "boolean", defaultValue: "false", description: "Expands the flex container to span 100% width." },
   { prop: "span", type: "boolean", defaultValue: "false", description: "Applies `flex: 1` to all first-level children." },
+  { prop: "Flex.Full", type: "compound child", defaultValue: "-", description: "Wrap a specific child to apply `flex: 1` selectively." },
   { prop: "className", type: "string", defaultValue: '""', description: "Adds custom CSS classes to the root element." },
   { prop: "style", type: "object", defaultValue: "{}", description: "Applies inline styles to the root element." },
   { prop: "children", type: "ReactNode", defaultValue: "-", description: "Elements rendered inside the flex container." },
@@ -175,6 +176,29 @@ export function FlexDemoPage() {
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
+</Flex>`}</pre>
+        </Flex>
+
+        <Divider variant="solid" />
+
+        <Flex direction="column" gap="12">
+          <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+            Selective Full Child
+          </Text>
+          <Text as="p" variant="body-16" leading="regular">
+            Use <code>Flex.Full</code> when only specific children should grow with <code>flex: 1</code>.
+          </Text>
+
+          <Flex direction="row" gap="8" style={{ width: "100%" }}>
+            <Flex.Full>{item("Grows")}</Flex.Full>
+            {item("Natural width")}
+          </Flex>
+
+          <pre style={codeBlockStyle}>{`<Flex direction="row" gap="8" style={{ width: "100%" }}>
+  <Flex.Full>
+    <div>Grows</div>
+  </Flex.Full>
+  <div>Natural width</div>
 </Flex>`}</pre>
         </Flex>
 

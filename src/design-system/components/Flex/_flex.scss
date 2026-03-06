@@ -84,3 +84,8 @@
 .uds-flex--gap-auto {
   justify-content: space-between;
 }
+
+.uds-flex__full {
+  flex: 1;
+  min-width: 0;
+}

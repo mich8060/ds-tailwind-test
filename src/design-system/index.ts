@@ -53,6 +53,7 @@ export * from "./components/TextInput";
 export * from "./components/Textarea";
 export * from "./components/Toast";
 export * from "./components/SearchInput";
+export * from "./components/ScrollView";
 export * from "./components/SectionHeader";
 export * from "./components/TokenInput";
 export * from "./components/Toolbar";

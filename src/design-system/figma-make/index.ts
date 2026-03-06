@@ -23,6 +23,7 @@ export { Modal } from "../components/Modal";
 export { Pagination } from "../components/Pagination";
 export { ProgressIndicator } from "../components/ProgressIndicator";
 export { SearchInput } from "../components/SearchInput";
+export { ScrollView } from "../components/ScrollView";
 export { Slider } from "../components/Slider";
 export { Status } from "../components/Status";
 export { Steps } from "../components/Steps";

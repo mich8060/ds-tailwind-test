@@ -313,6 +313,46 @@ const CONTAINER_PADDING_SNIPPET = `<Container padding="none">No padding</Contain
 <Container padding="default">Default padding</Container>
 <Container padding="large">Large padding</Container>`;
 
+const DROPDOWN_BASIC_SNIPPET = `<Dropdown
+  options={[
+    { value: "all", label: "All Departments" },
+    { value: "engineering", label: "Engineering" },
+    { value: "product", label: "Product" },
+  ]}
+  placeholder="Select a department"
+/>`;
+
+const DROPDOWN_CONTROLLED_SNIPPET = `const [department, setDepartment] = useState("engineering");
+
+<Dropdown
+  label="Department"
+  value={department}
+  onChange={setDepartment}
+  options={[
+    { value: "engineering", label: "Engineering" },
+    { value: "product", label: "Product" },
+    { value: "design", label: "Design" },
+  ]}
+/>`;
+
+const DROPDOWN_STATE_SNIPPET = `<Dropdown
+  label="Status"
+  state="error"
+  options={[
+    { value: "active", label: "Active" },
+    { value: "paused", label: "Paused" },
+  ]}
+/>
+
+<Dropdown
+  label="Archived"
+  disabled
+  options={[
+    { value: "yes", label: "Yes" },
+    { value: "no", label: "No" },
+  ]}
+/>`;
+
 class PreviewErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
@@ -614,16 +654,27 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
           {renderPreview(baseProps)}
         </Flex>
 
-        {componentName === "Container" && (
+        {(componentName === "Container" || componentName === "Dropdown") && (
           <>
             <Divider variant="solid" />
             <Flex direction="column" gap="12">
               <Text as="h2" variant="heading-24" weight="medium" leading="regular">
                 Code Samples
               </Text>
-              <Code language="tsx" code={CONTAINER_BASIC_SNIPPET} />
-              <Code language="tsx" code={CONTAINER_APPEARANCE_SNIPPET} />
-              <Code language="tsx" code={CONTAINER_PADDING_SNIPPET} />
+              {componentName === "Container" && (
+                <>
+                  <Code language="tsx" code={CONTAINER_BASIC_SNIPPET} />
+                  <Code language="tsx" code={CONTAINER_APPEARANCE_SNIPPET} />
+                  <Code language="tsx" code={CONTAINER_PADDING_SNIPPET} />
+                </>
+              )}
+              {componentName === "Dropdown" && (
+                <>
+                  <Code language="tsx" code={DROPDOWN_BASIC_SNIPPET} />
+                  <Code language="tsx" code={DROPDOWN_CONTROLLED_SNIPPET} />
+                  <Code language="tsx" code={DROPDOWN_STATE_SNIPPET} />
+                </>
+              )}
             </Flex>
           </>
         )}
