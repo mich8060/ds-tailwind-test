@@ -106,29 +106,23 @@
 
   &--focused {
     border-color: var(--uds-system-action-primary);
-    box-shadow:
-      -3px -3px 0 0 var(--uds-system-action-quaternary),
-      3px 3px 0 0 var(--uds-system-action-quaternary),
-      3px -3px 0 0 var(--uds-system-action-quaternary),
-      -3px 3px 0 0 var(--uds-system-action-quaternary);
+    outline: 3px solid var(--uds-system-action-tertiary);
+    outline-offset: 0;
+    box-shadow: none;
   }
 
   &:focus-within:not(.uds-number-input--disabled):not(.uds-number-input--error) {
     border-color: var(--uds-system-action-primary);
-    box-shadow:
-      -3px -3px 0 0 var(--uds-system-action-quaternary),
-      3px 3px 0 0 var(--uds-system-action-quaternary),
-      3px -3px 0 0 var(--uds-system-action-quaternary),
-      -3px 3px 0 0 var(--uds-system-action-quaternary);
+    outline: 3px solid var(--uds-system-action-tertiary);
+    outline-offset: 0;
+    box-shadow: none;
   }
 
   &--error {
     border-color: var(--uds-system-destructive-primary);
-    box-shadow:
-      -3px -3px 0 0 var(--uds-system-destructive-quaternary),
-      3px 3px 0 0 var(--uds-system-destructive-quaternary),
-      3px -3px 0 0 var(--uds-system-destructive-quaternary),
-      -3px 3px 0 0 var(--uds-system-destructive-quaternary);
+    outline: 3px solid var(--uds-system-destructive-tertiary);
+    outline-offset: 0;
+    box-shadow: none;
 
     .uds-number-input__input,
     .uds-number-input__input::placeholder,

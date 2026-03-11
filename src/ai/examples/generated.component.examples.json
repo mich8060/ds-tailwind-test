@@ -10,6 +10,14 @@
     "jsx": "<ActionMenu />"
   },
   {
+    "component": "AppShell",
+    "props": {
+      "brand": "default",
+      "theme": "light"
+    },
+    "jsx": "<AppShell brand=\"default\" theme=\"light\" />"
+  },
+  {
     "component": "Avatar",
     "props": {
       "size": "default"
@@ -195,10 +203,12 @@
   {
     "component": "Flex",
     "props": {
-      "fullWidth": false,
-      "span": false
+      "direction": "row",
+      "justifyContent": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap"
     },
-    "jsx": "<Flex fullWidth={false} span={false} />"
+    "jsx": "<Flex direction=\"row\" justifyContent=\"flex-start\" alignItems=\"stretch\" wrap=\"nowrap\" />"
   },
   {
     "component": "Icon",
@@ -220,6 +230,14 @@
       "appearance": "light"
     },
     "jsx": "<Key appearance=\"light\" />"
+  },
+  {
+    "component": "Layout",
+    "props": {
+      "fullWidth": false,
+      "appearance": "full"
+    },
+    "jsx": "<Layout fullWidth={false} appearance=\"full\" />"
   },
   {
     "component": "Menu",

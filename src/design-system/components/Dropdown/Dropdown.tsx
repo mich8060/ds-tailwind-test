@@ -152,6 +152,8 @@ function Dropdown({
       <ActionMenu
         trigger={triggerButton}
         items={menuItems}
+        variant="search"
+        searchPlaceholder={`Search ${placeholderText.toLowerCase()}`}
         placement={placement}
         fullWidth
         disabled={disabled}

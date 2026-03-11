@@ -11,8 +11,8 @@ export interface CompositionConstraints {
 }
 
 const allowedChildrenByParent: Record<string, string[]> = {
-  AppShell: ["Menu", "Container", "Flex", "Text", "Button"],
-  Container: ["Flex", "Table", "Text", "Button", "Field", "Divider", "Tag"],
+  AppShell: ["Menu", "Container", "Layout", "Text", "Button"],
+  Container: ["Layout", "Table", "Text", "Button", "Field", "Divider", "Tag"],
   Field: ["TextInput", "Input", "Dropdown", "Datepicker", "Textarea", "Checkbox", "Radio", "Toggle", "Slider", "FileUpload"],
   Modal: ["Text", "Button", "Divider", "Field", "TextInput", "Dropdown", "Datepicker", "Textarea", "Tag"],
   Table: ["Tag", "Status", "Avatar", "Button", "ActionMenu", "ProgressIndicator", "DotStatus"],
@@ -23,7 +23,7 @@ const allowedChildrenByParent: Record<string, string[]> = {
 const allowedParentsByChild: Record<string, string[]> = {
   ActionMenu: ["Menu", "Table"],
   Avatar: ["Table"],
-  Button: ["AppShell", "Container", "Flex", "Modal", "Table", "Tabs"],
+  Button: ["AppShell", "Container", "Layout", "Modal", "Table", "Tabs"],
   Checkbox: ["Field"],
   Container: ["AppShell", "root"],
   Datepicker: ["Field", "Modal"],
@@ -32,7 +32,7 @@ const allowedParentsByChild: Record<string, string[]> = {
   Dropdown: ["Field", "Menu", "Modal"],
   Field: ["Container", "Modal", "Tabs"],
   FileUpload: ["Field"],
-  Flex: ["AppShell", "Container"],
+  Layout: ["AppShell", "Container"],
   Icon: ["Menu"],
   Input: ["Field"],
   Menu: ["AppShell", "root"],
@@ -43,7 +43,7 @@ const allowedParentsByChild: Record<string, string[]> = {
   Status: ["Table"],
   Table: ["Container", "Tabs"],
   Tag: ["Container", "Modal", "Table", "Tabs"],
-  Text: ["AppShell", "Container", "Flex", "Menu", "Modal", "Tabs"],
+  Text: ["AppShell", "Container", "Layout", "Menu", "Modal", "Tabs"],
   TextInput: ["Field", "Modal"],
   Textarea: ["Field", "Modal"],
   Toggle: ["Field", "Menu"],

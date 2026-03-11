@@ -59,7 +59,7 @@ This keeps brand/theme/layout behavior consistent with shell governance.
   - `red`, `orange`, `yellow`, `green`, `dark-green`, `blue`, `dark-blue`, `purple`, `pink`, `gray`, `outline`
 - Variants like `success`, `warning`, `error`, `info`, `default` are not the current `Badge` variant API.
 
-### Flex
+### Layout
 
 - `direction` supports `row` and `column` (not reverse directions in current types).
 - `gap` should use UDS spacing tokens where possible (`"8"`, `"12"`, `"16"`, etc., or `spacing-*` token names).
@@ -91,7 +91,7 @@ import {
   Badge,
   Steps,
   Text,
-  Flex,
+  Layout,
   Accordion,
 } from "@mich8060/unified-design-system";
 import "@mich8060/unified-design-system/styles.css";

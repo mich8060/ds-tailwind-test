@@ -12,6 +12,7 @@ export interface PolicyViolation {
 export interface PolicyRuleContext {
   tree: UINodeTree;
   governanceConfig: GovernanceConfig;
+  patternId?: string;
 }
 
 export type PolicyRule = (context: PolicyRuleContext) => PolicyViolation[];

@@ -1,18 +1,103 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect, useMemo } from "react";
+import { createPortal } from "react-dom";
 import Icon from "../Icon/Icon";
 import Divider from "../Divider/Divider";
 import Key from "../Key/Key";
+import { SearchInput } from "../SearchInput/SearchInput";
 import Toggle from "../Toggle/Toggle";
 import "./_action-menu.scss";
 import type { ActionMenuProps } from "./ActionMenu.types";
 
 const BASE_CLASS = "uds-action-menu";
 
+const SEARCHABLE_VARIANTS = new Set(["search", "autosuggest"]);
+
+const normalizeText = (value) => String(value || "").trim().toLowerCase();
+
+const getItemLabel = (item) =>
+  typeof item?.label === "string" ? item.label : "";
+
+const trimDividers = (items) => {
+  const trimmed = [...items];
+  while (trimmed.length > 0 && trimmed[0]?.divider) {
+    trimmed.shift();
+  }
+  while (trimmed.length > 0 && trimmed[trimmed.length - 1]?.divider) {
+    trimmed.pop();
+  }
+  return trimmed;
+};
+
+const filterItemsByQuery = (items, query) => {
+  const normalizedQuery = normalizeText(query);
+  if (!normalizedQuery) return items;
+
+  const filtered = [];
+  for (const item of items) {
+    if (item?.divider) {
+      filtered.push(item);
+      continue;
+    }
+
+    const label = normalizeText(getItemLabel(item));
+    const childItems = Array.isArray(item?.items)
+      ? filterItemsByQuery(item.items, query)
+      : null;
+    const hasMatchingChildren = Array.isArray(childItems) && childItems.length > 0;
+    const isMatch = label.includes(normalizedQuery);
+
+    if (isMatch || hasMatchingChildren) {
+      filtered.push(
+        hasMatchingChildren
+          ? {
+              ...item,
+              items: trimDividers(childItems),
+            }
+          : item,
+      );
+    }
+  }
+
+  return trimDividers(filtered);
+};
+
+const renderHighlightedLabel = (label, query, autosuggestOnlyPrefix = false) => {
+  const normalizedQuery = normalizeText(query);
+  if (!normalizedQuery || !label) return label;
+
+  const normalizedLabel = normalizeText(label);
+  const matchIndex = autosuggestOnlyPrefix
+    ? normalizedLabel.startsWith(normalizedQuery)
+      ? 0
+      : -1
+    : normalizedLabel.indexOf(normalizedQuery);
+
+  if (matchIndex < 0) return label;
+
+  const matchEnd = matchIndex + normalizedQuery.length;
+  const before = label.slice(0, matchIndex);
+  const match = label.slice(matchIndex, matchEnd);
+  const after = label.slice(matchEnd);
+
+  return (
+    <>
+      {before}
+      <span
+        className={`${BASE_CLASS}__match ${autosuggestOnlyPrefix ? `${BASE_CLASS}__match--weight` : ""}`}
+      >
+        {match}
+      </span>
+      {after}
+    </>
+  );
+};
+
 /**
  * Submenu component for nested menu items
  */
 function Submenu({ item, onItemClick }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [openLeft, setOpenLeft] = useState(false);
   const submenuRef = useRef(null);
   const timeoutRef = useRef(null);
 
@@ -42,6 +127,27 @@ function Submenu({ item, onItemClick }) {
       clearTimeout(timeoutRef.current);
     };
   }, []);
+
+  useLayoutEffect(() => {
+    if (!isOpen || !submenuRef.current) return;
+    const rect = submenuRef.current.getBoundingClientRect();
+    const overflowsRight = rect.right > window.innerWidth - 8;
+    const overflowsLeft = rect.left < 8;
+
+    if (overflowsRight && !overflowsLeft) {
+      setOpenLeft(true);
+      return;
+    }
+
+    if (overflowsLeft && !overflowsRight) {
+      setOpenLeft(false);
+      return;
+    }
+
+    if (overflowsRight && overflowsLeft) {
+      setOpenLeft(rect.right - window.innerWidth > 8);
+    }
+  }, [isOpen]);
 
   return (
     <div
@@ -76,7 +182,7 @@ function Submenu({ item, onItemClick }) {
       {isOpen && item.items && (
         <div
           ref={submenuRef}
-          className={`${BASE_CLASS}__submenu`}
+          className={`${BASE_CLASS}__submenu ${openLeft ? `${BASE_CLASS}__submenu--left` : ""}`}
           role="menu"
           aria-orientation="vertical"
           onMouseEnter={handleSubmenuMouseEnter}
@@ -148,6 +254,9 @@ export default function ActionMenu({
   trigger,
   items = [],
   placement = "bottom-start",
+  variant = "default",
+  searchPlaceholder = "Search...",
+  noResultsText = "No results found",
   fullWidth = false,
   disabled = false,
   onOpenChange,
@@ -156,8 +265,24 @@ export default function ActionMenu({
   ...props
 }: ActionMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [menuStyle, setMenuStyle] = useState({});
+  const [portalContainer, setPortalContainer] = useState(null);
   const menuRef = useRef(null);
   const triggerRef = useRef(null);
+  const repositionRafRef = useRef(null);
+  const resolvedSideRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [autosuggestQuery, setAutosuggestQuery] = useState("");
+
+  const isSearchVariant = variant === "search";
+  const isAutosuggestVariant = variant === "autosuggest";
+  const isFilterVariant = SEARCHABLE_VARIANTS.has(variant);
+  const activeQuery = isSearchVariant ? searchQuery : isAutosuggestVariant ? autosuggestQuery : "";
+
+  const filteredItems = useMemo(
+    () => (isFilterVariant ? filterItemsByQuery(items, activeQuery) : items),
+    [isFilterVariant, items, activeQuery],
+  );
   const handleEscape = (event) => {
     if (event.key === "Escape") {
       updateOpen(false);
@@ -168,6 +293,9 @@ export default function ActionMenu({
   // Wrapper that also fires the onOpenChange callback
   const updateOpen = (nextOpen) => {
     setIsOpen(nextOpen);
+    if (!nextOpen) {
+      resolvedSideRef.current = null;
+    }
     if (onOpenChange) onOpenChange(nextOpen);
   };
   
@@ -195,7 +323,199 @@ export default function ActionMenu({
     };
   }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const updateMenuPosition = () => {
+    if (!isOpen || !menuRef.current || !triggerRef.current) return;
+    const shellMainContainer = triggerRef.current.closest(".app-shell__main-content");
+    const nextPortalContainer =
+      shellMainContainer instanceof HTMLElement ? shellMainContainer : document.body;
+    setPortalContainer(nextPortalContainer);
+
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const menuRect = menuRef.current.getBoundingClientRect();
+    const containerRect =
+      nextPortalContainer === document.body
+        ? { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }
+        : nextPortalContainer.getBoundingClientRect();
+
+    const containerScrollTop =
+      nextPortalContainer === document.body ? 0 : nextPortalContainer.scrollTop;
+    const containerScrollLeft =
+      nextPortalContainer === document.body ? 0 : nextPortalContainer.scrollLeft;
+
+    const containerViewportWidth =
+      nextPortalContainer === document.body ? window.innerWidth : nextPortalContainer.clientWidth;
+    const containerViewportHeight =
+      nextPortalContainer === document.body ? window.innerHeight : nextPortalContainer.clientHeight;
+
+    const viewportPadding = 8;
+    const menuGap = 8;
+
+    const [requestedSide = "bottom", requestedAlign = "start"] = String(placement).split("-");
+
+    const getCoords = (side, align) => {
+      let top = 0;
+      let left = 0;
+      const triggerTopInContainer = triggerRect.top - containerRect.top + containerScrollTop;
+      const triggerBottomInContainer = triggerRect.bottom - containerRect.top + containerScrollTop;
+      const triggerLeftInContainer = triggerRect.left - containerRect.left + containerScrollLeft;
+      const triggerRightInContainer = triggerRect.right - containerRect.left + containerScrollLeft;
+
+      if (side === "bottom") top = triggerBottomInContainer + menuGap;
+      if (side === "top") top = triggerTopInContainer - menuRect.height - menuGap;
+      if (side === "right") left = triggerRightInContainer + menuGap;
+      if (side === "left") left = triggerLeftInContainer - menuRect.width - menuGap;
+
+      if (side === "bottom" || side === "top") {
+        if (align === "end") {
+          left = triggerRightInContainer - menuRect.width;
+        } else {
+          left = triggerLeftInContainer;
+        }
+      }
+
+      if (side === "left" || side === "right") {
+        if (align === "end") {
+          top = triggerBottomInContainer - menuRect.height;
+        } else {
+          top = triggerTopInContainer;
+        }
+      }
+
+      return { top, left };
+    };
+
+    const overflowsViewport = (coords) => ({
+      top: coords.top < containerScrollTop + viewportPadding,
+      bottom:
+        coords.top + menuRect.height >
+        containerScrollTop + containerViewportHeight - viewportPadding,
+      left: coords.left < containerScrollLeft + viewportPadding,
+      right:
+        coords.left + menuRect.width >
+        containerScrollLeft + containerViewportWidth - viewportPadding,
+    });
+
+    let side = resolvedSideRef.current ?? requestedSide;
+    const align = requestedAlign;
+    let coords = getCoords(side, align);
+
+    // Resolve side once per open session to avoid flip wobble during scroll.
+    if (!resolvedSideRef.current) {
+      const overflow = overflowsViewport(coords);
+      if (side === "bottom" && overflow.bottom) {
+        side = "top";
+        coords = getCoords(side, align);
+      } else if (side === "top" && overflow.top) {
+        side = "bottom";
+        coords = getCoords(side, align);
+      } else if (side === "right" && overflow.right) {
+        side = "left";
+        coords = getCoords(side, align);
+      } else if (side === "left" && overflow.left) {
+        side = "right";
+        coords = getCoords(side, align);
+      }
+      resolvedSideRef.current = side;
+    }
+
+    let clampedTop = coords.top;
+    let clampedLeft = coords.left;
+
+    clampedTop = Math.max(
+      containerScrollTop + viewportPadding,
+      Math.min(
+        clampedTop,
+        containerScrollTop + containerViewportHeight - menuRect.height - viewportPadding
+      )
+    );
+    clampedLeft = Math.max(
+      containerScrollLeft + viewportPadding,
+      Math.min(
+        clampedLeft,
+        containerScrollLeft + containerViewportWidth - menuRect.width - viewportPadding
+      )
+    );
+
+    const nextStyle = {
+      position: nextPortalContainer === document.body ? "fixed" : "absolute",
+      top: `${clampedTop}px`,
+      left: `${clampedLeft}px`,
+      width: fullWidth ? `${triggerRect.width}px` : undefined,
+    };
+
+    setMenuStyle((prevStyle) => {
+      if (
+        prevStyle.top === nextStyle.top &&
+        prevStyle.left === nextStyle.left &&
+        prevStyle.width === nextStyle.width &&
+        prevStyle.position === nextStyle.position
+      ) {
+        return prevStyle;
+      }
+      return nextStyle;
+    });
+  };
+
+  useLayoutEffect(() => {
+    if (!isOpen) return;
+    if (portalContainer === null) {
+      const shellMainContainer = triggerRef.current?.closest(".app-shell__main-content");
+      setPortalContainer(
+        shellMainContainer instanceof HTMLElement ? shellMainContainer : document.body
+      );
+    }
+    updateMenuPosition();
+  }, [isOpen, placement, fullWidth, portalContainer]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const scheduleReposition = () => {
+      if (repositionRafRef.current != null) return;
+      repositionRafRef.current = requestAnimationFrame(() => {
+        repositionRafRef.current = null;
+        updateMenuPosition();
+      });
+    };
+
+    window.addEventListener("resize", scheduleReposition);
+    return () => {
+      window.removeEventListener("resize", scheduleReposition);
+      if (repositionRafRef.current != null) {
+        cancelAnimationFrame(repositionRafRef.current);
+        repositionRafRef.current = null;
+      }
+    };
+  }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!isOpen) {
+      setSearchQuery("");
+      return;
+    }
+    if (isSearchVariant) {
+      requestAnimationFrame(() => {
+        const searchField = menuRef.current?.querySelector('input[type="search"]');
+        searchField?.focus();
+      });
+    }
+  }, [isOpen, isSearchVariant]);
+
   const handleMenuKeyDown = (event) => {
+    const isTypingInSearchInput =
+      isSearchVariant &&
+      event.target instanceof HTMLInputElement &&
+      event.target.type === "search" &&
+      menuRef.current?.contains(event.target);
+
+    if (isTypingInSearchInput) {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        const firstItem = menuRef.current?.querySelector('[role="menuitem"]:not([disabled])');
+        firstItem?.focus();
+      }
+      return;
+    }
+
     const menuItems = menuRef.current?.querySelectorAll(
       '[role="menuitem"]:not([disabled])',
     );
@@ -255,6 +575,23 @@ export default function ActionMenu({
     updateOpen(false);
   };
 
+  const renderSearchHeader = () => {
+    if (!isSearchVariant) return null;
+
+    return (
+      <div className={`${BASE_CLASS}__search`}>
+        <SearchInput
+          size="compact"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          className={`${BASE_CLASS}__search-input`}
+          placeholder={searchPlaceholder}
+          aria-label={searchPlaceholder}
+        />
+      </div>
+    );
+  };
+
   const renderTrigger = () => {
     if (!trigger) {
       return null;
@@ -263,21 +600,57 @@ export default function ActionMenu({
     // Clone the trigger element and add onClick handler
     if (React.isValidElement(trigger)) {
       const originalOnClick = trigger.props?.onClick;
+      const originalOnChange = trigger.props?.onChange;
+      const originalOnFocus = trigger.props?.onFocus;
+      const originalOnKeyDown = trigger.props?.onKeyDown;
       const triggerElement = React.cloneElement(trigger, {
         disabled: disabled || trigger.props?.disabled,
         "aria-disabled": disabled || undefined,
         onClick: (e) => {
-          e.preventDefault();
-          e.stopPropagation();
           if (disabled) {
             return;
           }
-          // Call the trigger's original onClick if it exists
+          if (!isAutosuggestVariant) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
           if (originalOnClick) {
             originalOnClick(e);
           }
-          // Always call our toggle handler
-          handleToggle(e);
+          if (isAutosuggestVariant) {
+            updateOpen(true);
+          } else {
+            handleToggle(e);
+          }
+        },
+        onFocus: (e) => {
+          if (originalOnFocus) originalOnFocus(e);
+          if (disabled || !isAutosuggestVariant) return;
+          updateOpen(true);
+        },
+        onChange: (e) => {
+          if (originalOnChange) originalOnChange(e);
+          if (disabled || !isAutosuggestVariant) return;
+          const target = e?.target;
+          const nextValue =
+            target && typeof target === "object" && "value" in target
+              ? String(target.value ?? "")
+              : "";
+          setAutosuggestQuery(nextValue);
+          updateOpen(true);
+        },
+        onKeyDown: (e) => {
+          if (originalOnKeyDown) originalOnKeyDown(e);
+          if (disabled || !isAutosuggestVariant) return;
+          if (e.key === "Escape") {
+            updateOpen(false);
+            return;
+          }
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            const firstItem = menuRef.current?.querySelector('[role="menuitem"]:not([disabled])');
+            firstItem?.focus();
+          }
         },
         "aria-haspopup": "true",
         "aria-expanded": isOpen,
@@ -298,20 +671,6 @@ export default function ActionMenu({
     );
   };
 
-  const getPlacementClass = () => {
-    const placementMap = {
-      "bottom-start": "bottom-start",
-      "bottom-end": "bottom-end",
-      "top-start": "top-start",
-      "top-end": "top-end",
-      "right-start": "right-start",
-      "right-end": "right-end",
-      "left-start": "left-start",
-      "left-end": "left-end",
-    };
-    return placementMap[placement] || "bottom-start";
-  };
-
   const classNames = [
     BASE_CLASS,
     isOpen && `${BASE_CLASS}--open`,
@@ -324,7 +683,8 @@ export default function ActionMenu({
 
   const menuClassNames = [
     `${BASE_CLASS}__menu`,
-    `${BASE_CLASS}__menu--${getPlacementClass()}`,
+    `${BASE_CLASS}__menu--portal`,
+    variant === "search" && `${BASE_CLASS}__menu--search`,
     fullWidth && `${BASE_CLASS}__menu--full-width`,
     menuClassName,
   ]
@@ -334,96 +694,104 @@ export default function ActionMenu({
   return (
     <div className={classNames} {...props}>
       {renderTrigger()}
-      {isOpen && !disabled && (
-        <div
-          ref={menuRef}
-          className={menuClassNames}
-          role="menu"
-          aria-orientation="vertical"
-          onKeyDown={handleMenuKeyDown}
-        >
-          {items.map((item, index) => {
-            if (item.divider) {
-              return (
-                <div key={`divider-${index}`} className={`${BASE_CLASS}__divider`}>
-                  <Divider />
-                </div>
-              );
-            }
+      {isOpen && !disabled && portalContainer
+        ? createPortal(
+            <div
+              ref={menuRef}
+              className={menuClassNames}
+              style={menuStyle}
+              role="menu"
+              aria-orientation="vertical"
+              onKeyDown={handleMenuKeyDown}
+            >
+              {renderSearchHeader()}
+              {filteredItems.length === 0 ? (
+                <div className={`${BASE_CLASS}__empty`}>{noResultsText}</div>
+              ) : null}
+              {filteredItems.map((item, index) => {
+                if (item.divider) {
+                  return (
+                    <div key={`divider-${index}`} className={`${BASE_CLASS}__divider`}>
+                      <Divider />
+                    </div>
+                  );
+                }
 
-            // Check if item has submenu
-            if (item.items && item.items.length > 0) {
-              return (
-                <Submenu
-                  key={item.id || index}
-                  item={item}
-                  onItemClick={handleItemClick}
-                />
-              );
-            }
-
-            // Toggle item type
-            if (item.type === "toggle") {
-              return (
-                <div
-                  key={item.id || index}
-                  className={`${BASE_CLASS}__item ${BASE_CLASS}__item--toggle ${item.disabled ? `${BASE_CLASS}__item--disabled` : ""}`}
-                  role="menuitemcheckbox"
-                  aria-checked={!!item.checked}
-                  aria-label={item.label}
-                >
-                  {item.icon && (
-                    <Icon
-                      name={item.icon}
-                      size={16}
-                      appearance="regular"
-                      className={`${BASE_CLASS}__item-icon`}
+                // Check if item has submenu
+                if (item.items && item.items.length > 0) {
+                  return (
+                    <Submenu
+                      key={item.id || index}
+                      item={item}
+                      onItemClick={handleItemClick}
                     />
-                  )}
-                  <span className={`${BASE_CLASS}__item-label`}>
-                    {item.label}
-                  </span>
-                  <Toggle
-                    checked={!!item.checked}
-                    size="small"
-                    disabled={item.disabled}
-                    onChange={(checked) => {
-                      if (item.onChange) item.onChange(checked);
-                    }}
-                    className={`${BASE_CLASS}__item-toggle`}
-                  />
-                </div>
-              );
-            }
+                  );
+                }
 
-            return (
-              <button
-                key={item.id || index}
-                className={`${BASE_CLASS}__item ${item.disabled ? `${BASE_CLASS}__item--disabled` : ""} ${item.active ? `${BASE_CLASS}__item--active` : ""} ${item.destructive ? `${BASE_CLASS}__item--destructive` : ""}`}
-                role="menuitem"
-                disabled={item.disabled}
-                onClick={(e) => handleItemClick(item, e)}
-                aria-label={item.label}
-              >
-                {item.icon && (
-                  <Icon
-                    name={item.icon}
-                    size={16}
-                    appearance="regular"
-                    className={`${BASE_CLASS}__item-icon`}
-                  />
-                )}
-                <span className={`${BASE_CLASS}__item-label`}>
-                  {item.label}
-                </span>
-                {item.shortcut && (
-                  <Key label={item.shortcut} appearance="light" className={`${BASE_CLASS}__item-shortcut`} />
-                )}
-              </button>
-            );
-          })}
-        </div>
-      )}
+                // Toggle item type
+                if (item.type === "toggle") {
+                  return (
+                    <div
+                      key={item.id || index}
+                      className={`${BASE_CLASS}__item ${BASE_CLASS}__item--toggle ${item.disabled ? `${BASE_CLASS}__item--disabled` : ""}`}
+                      role="menuitemcheckbox"
+                      aria-checked={!!item.checked}
+                      aria-label={item.label}
+                    >
+                      {item.icon && (
+                        <Icon
+                          name={item.icon}
+                          size={16}
+                          appearance="regular"
+                          className={`${BASE_CLASS}__item-icon`}
+                        />
+                      )}
+                      <span className={`${BASE_CLASS}__item-label`}>
+                        {renderHighlightedLabel(item.label, activeQuery, isAutosuggestVariant)}
+                      </span>
+                      <Toggle
+                        checked={!!item.checked}
+                        size="small"
+                        disabled={item.disabled}
+                        onChange={(checked) => {
+                          if (item.onChange) item.onChange(checked);
+                        }}
+                        className={`${BASE_CLASS}__item-toggle`}
+                      />
+                    </div>
+                  );
+                }
+
+                return (
+                  <button
+                    key={item.id || index}
+                    className={`${BASE_CLASS}__item ${item.disabled ? `${BASE_CLASS}__item--disabled` : ""} ${item.active ? `${BASE_CLASS}__item--active` : ""} ${item.destructive ? `${BASE_CLASS}__item--destructive` : ""}`}
+                    role="menuitem"
+                    disabled={item.disabled}
+                    onClick={(e) => handleItemClick(item, e)}
+                    aria-label={item.label}
+                  >
+                    {item.icon && (
+                      <Icon
+                        name={item.icon}
+                        size={16}
+                        appearance="regular"
+                        className={`${BASE_CLASS}__item-icon`}
+                      />
+                    )}
+                    <span className={`${BASE_CLASS}__item-label`}>
+                      {renderHighlightedLabel(item.label, activeQuery, isAutosuggestVariant)}
+                    </span>
+                    {item.shortcut && (
+                      <Key label={item.shortcut} appearance="light" className={`${BASE_CLASS}__item-shortcut`} />
+                    )}
+                  </button>
+                );
+              })}
+            </div>,
+            portalContainer
+          )
+        : null}
     </div>
   );
 }

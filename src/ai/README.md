@@ -24,17 +24,20 @@ For any model/tooling integration, read in this order:
 3. `@mich8060/unified-design-system/ai/schema`
 4. `@mich8060/unified-design-system/ai/icons`
 5. `@mich8060/unified-design-system/ai/icons.json`
-6. `@mich8060/unified-design-system/ai/figma-make.json`
-7. `@mich8060/unified-design-system/ai/figma-make`
-8. `@mich8060/unified-design-system/ai/prompts/figma-make`
-9. `@mich8060/unified-design-system/ai/prompts/system`
-10. `@mich8060/unified-design-system/ai/prompts/repair`
-11. `@mich8060/unified-design-system/ai/prompts/starter`
-12. `@mich8060/unified-design-system/ai/navigation`
-13. `@mich8060/unified-design-system/ai/templates`
-14. `@mich8060/unified-design-system/ai/examples`
-15. `@mich8060/unified-design-system/ai/validation`
-16. `@mich8060/unified-design-system/ai/sdk`
+6. `@mich8060/unified-design-system/ai/token-catalog`
+7. `@mich8060/unified-design-system/ai/figma-make.json`
+8. `@mich8060/unified-design-system/ai/figma-make`
+9. `@mich8060/unified-design-system/ai/prompts/figma-make`
+10. `@mich8060/unified-design-system/ai/prompts/system`
+11. `@mich8060/unified-design-system/ai/prompts/repair`
+12. `@mich8060/unified-design-system/ai/prompts/starter`
+13. `@mich8060/unified-design-system/ai/navigation`
+14. `@mich8060/unified-design-system/ai/layout-architecture`
+15. `@mich8060/unified-design-system/ai/templates`
+16. `@mich8060/unified-design-system/ai/examples`
+17. `@mich8060/unified-design-system/ai/examples/dataset`
+18. `@mich8060/unified-design-system/ai/validation`
+19. `@mich8060/unified-design-system/ai/sdk`
 
 ## Icon options for AI
 
@@ -104,5 +107,7 @@ Use the governed training set exported from runtime AI examples:
 
 - `src/design-system/ai/examples/training.examples.ts`
 - validate with `npm run ai:validate:examples`
+- Contract entrypoint: `@mich8060/unified-design-system/ai/examples/dataset`
 - Additional scenario dataset (JSONL):
   - `src/ai/examples/signin-flow-uds.jsonl`
+  - `src/ai/examples/uds-governed-training.jsonl` (canonical valid/invalid contract outputs with `audit.patternId`)

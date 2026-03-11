@@ -18,7 +18,10 @@ const componentApiPath = resolve(rootDir, "src", "design-system", "generated", "
 const manifestPath = resolve(rootDir, "src", "ai", "manifest", "manifest.json");
 const discoveryPath = resolve(rootDir, "src", "ai", "discovery.json");
 const iconCatalogPath = resolve(rootDir, "src", "ai", "icons", "catalog.json");
+const tokenCatalogPath = resolve(rootDir, "src", "ai", "tokens", "catalog.json");
+const layoutArchitecturePath = resolve(rootDir, "src", "ai", "layout", "architecture.json");
 const templatesPath = resolve(rootDir, "src", "ai", "templates", "layouts.json");
+const examplesDatasetPath = resolve(rootDir, "src", "ai", "examples", "dataset.index.json");
 const brandMenusPath = resolve(rootDir, "src", "ai", "navigation", "brand-menus.json");
 const governanceSourcePath = resolve(rootDir, "src", "ai", "manifest", "governance.manifest.ts");
 const figmaContractPath = resolve(rootDir, "src", "ai", "figma-make.contract.json");
@@ -30,7 +33,10 @@ const componentApi = readJson(componentApiPath);
 const aiManifest = readJson(manifestPath);
 const aiDiscovery = readJson(discoveryPath);
 const aiIconCatalog = readJson(iconCatalogPath);
+const aiTokenCatalog = readJson(tokenCatalogPath);
+const aiLayoutArchitecture = readJson(layoutArchitecturePath);
 const aiTemplates = readJson(templatesPath);
+const aiExamplesDataset = readJson(examplesDatasetPath);
 const aiBrandMenus = readJson(brandMenusPath);
 const governanceSource = readText(governanceSourcePath);
 const figmaContract = readJson(figmaContractPath);
@@ -59,8 +65,10 @@ const requiredAiExports = [
   "./ai/schema",
   "./ai/icons.json",
   "./ai/icons",
+  "./ai/token-catalog",
   "./ai/templates.json",
   "./ai/templates",
+  "./ai/layout-architecture",
   "./ai/figma-make.json",
   "./ai/figma-make",
   "./ai/prompts/figma-make",
@@ -76,6 +84,14 @@ const requiredAiExports = [
   "./ai/validation",
   "./ai/sdk",
   "./ai/examples",
+  "./ai/examples/dataset",
+  "./ai/examples/signin-flow-uds.jsonl",
+  "./ai/examples/dashboard-statistics-uds.jsonl",
+  "./ai/examples/settings-preferences-uds.jsonl",
+  "./ai/examples/calendar-events-layout-uds.jsonl",
+  "./ai/examples/admin-users-table-uds.jsonl",
+  "./ai/examples/kanban-board-uds.jsonl",
+  "./ai/examples/uds-governed-training.jsonl",
 ];
 
 for (const key of requiredAiExports) {
@@ -140,6 +156,9 @@ if (aiDiscovery.entrypoints?.schema !== `${pkg.name}/ai/schema`) {
 if (aiDiscovery.entrypoints?.iconCatalog !== `${pkg.name}/ai/icons`) {
   fail("ai discovery entrypoints.iconCatalog must point to package /ai/icons export.");
 }
+if (aiDiscovery.entrypoints?.tokenCatalog !== `${pkg.name}/ai/token-catalog`) {
+  fail("ai discovery entrypoints.tokenCatalog must point to package /ai/token-catalog export.");
+}
 if (aiDiscovery.entrypoints?.figmaMakeContractJson !== `${pkg.name}/ai/figma-make.json`) {
   fail("ai discovery entrypoints.figmaMakeContractJson must point to package /ai/figma-make.json export.");
 }
@@ -161,6 +180,9 @@ if (aiDiscovery.entrypoints?.starterPrompt !== `${pkg.name}/ai/prompts/starter`)
 if (aiDiscovery.entrypoints?.brandMenus !== `${pkg.name}/ai/navigation`) {
   fail("ai discovery entrypoints.brandMenus must point to package /ai/navigation export.");
 }
+if (aiDiscovery.entrypoints?.layoutArchitecture !== `${pkg.name}/ai/layout-architecture`) {
+  fail("ai discovery entrypoints.layoutArchitecture must point to package /ai/layout-architecture export.");
+}
 if (aiDiscovery.entrypoints?.templatesCatalog !== `${pkg.name}/ai/templates`) {
   fail("ai discovery entrypoints.templatesCatalog must point to package /ai/templates export.");
 }
@@ -169,6 +191,9 @@ if (aiDiscovery.entrypoints?.validationModule !== `${pkg.name}/ai/validation`) {
 }
 if (aiDiscovery.entrypoints?.helperSdk !== `${pkg.name}/ai/sdk`) {
   fail("ai discovery entrypoints.helperSdk must point to package /ai/sdk export.");
+}
+if (aiDiscovery.entrypoints?.examplesDataset !== `${pkg.name}/ai/examples/dataset`) {
+  fail("ai discovery entrypoints.examplesDataset must point to package /ai/examples/dataset export.");
 }
 
 if (aiTemplates.contractName !== "uds.ai.layout-templates") {
@@ -183,6 +208,34 @@ if (aiTemplates.schemaVersion !== contractSchemaVersion) {
 }
 if (!Array.isArray(aiTemplates.templates) || aiTemplates.templates.length === 0) {
   fail("ai templates must include a non-empty templates array.");
+}
+for (const template of aiTemplates.templates ?? []) {
+  if (typeof template?.patternId !== "string" || template.patternId.length === 0) {
+    fail(`template "${template?.id ?? "unknown"}" must include a non-empty patternId.`);
+  }
+}
+
+if (aiExamplesDataset.contractName !== "uds.ai.examples-dataset") {
+  fail(
+    `ai examples dataset contractName must be "uds.ai.examples-dataset", got "${aiExamplesDataset.contractName ?? "undefined"}".`
+  );
+}
+if (aiExamplesDataset.schemaVersion !== contractSchemaVersion) {
+  fail(
+    `ai examples dataset schemaVersion "${aiExamplesDataset.schemaVersion}" does not match AI_CONTRACT_SCHEMA_VERSION "${contractSchemaVersion}".`
+  );
+}
+if (!Array.isArray(aiExamplesDataset.files) || aiExamplesDataset.files.length === 0) {
+  fail("ai examples dataset must include a non-empty files array.");
+}
+for (const file of aiExamplesDataset.files ?? []) {
+  if (!file?.id || !file?.path) {
+    fail("ai examples dataset entries must include id and path.");
+    continue;
+  }
+  if (typeof file.path !== "string" || !file.path.startsWith(`${pkg.name}/ai/examples/`)) {
+    fail(`ai examples dataset path must use package ai/examples export namespace: ${file.path}`);
+  }
 }
 
 if (aiBrandMenus.contractName !== "uds.ai.brand-menus") {
@@ -214,6 +267,43 @@ if (!Array.isArray(aiIconCatalog.appearanceOptions) || aiIconCatalog.appearanceO
 }
 if (!aiIconCatalog.recommendedByIntent || typeof aiIconCatalog.recommendedByIntent !== "object") {
   fail("ai icon catalog must include recommendedByIntent mappings.");
+}
+
+if (aiTokenCatalog.contractName !== "uds.ai.token-catalog") {
+  fail(
+    `ai token catalog contractName must be "uds.ai.token-catalog", got "${aiTokenCatalog.contractName ?? "undefined"}".`
+  );
+}
+if (aiTokenCatalog.schemaVersion !== contractSchemaVersion) {
+  fail(
+    `ai token catalog schemaVersion "${aiTokenCatalog.schemaVersion}" does not match AI_CONTRACT_SCHEMA_VERSION "${contractSchemaVersion}".`
+  );
+}
+if (!aiTokenCatalog.groups || typeof aiTokenCatalog.groups !== "object") {
+  fail("ai token catalog must include token groups.");
+}
+const requiredTokenGroups = ["surface", "text", "border", "action", "state", "spacing"];
+for (const group of requiredTokenGroups) {
+  if (!Array.isArray(aiTokenCatalog.groups?.[group]) || aiTokenCatalog.groups[group].length === 0) {
+    fail(`ai token catalog must include a non-empty "${group}" token group.`);
+  }
+}
+
+if (aiLayoutArchitecture.contractName !== "uds.ai.layout-architecture") {
+  fail(
+    `ai layout architecture contractName must be "uds.ai.layout-architecture", got "${aiLayoutArchitecture.contractName ?? "undefined"}".`
+  );
+}
+if (aiLayoutArchitecture.schemaVersion !== contractSchemaVersion) {
+  fail(
+    `ai layout architecture schemaVersion "${aiLayoutArchitecture.schemaVersion}" does not match AI_CONTRACT_SCHEMA_VERSION "${contractSchemaVersion}".`
+  );
+}
+if (!aiLayoutArchitecture.rootPatterns?.application?.requiredRoot) {
+  fail("ai layout architecture must define rootPatterns.application.requiredRoot.");
+}
+if (!Array.isArray(aiLayoutArchitecture.blueprints) || aiLayoutArchitecture.blueprints.length === 0) {
+  fail("ai layout architecture must include at least one blueprint.");
 }
 
 if (!figmaContract.hardConstraints?.importRules?.allowPackageLevelImportsOnly) {

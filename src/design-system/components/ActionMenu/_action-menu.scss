@@ -81,6 +81,37 @@
         width: fit-content;
     }
 
+    &__search {
+        padding: var(--uds-spacing-0) var(--uds-spacing-8) var(--uds-spacing-8);
+        border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
+        margin-bottom: var(--uds-spacing-4);
+    }
+
+    &__search-input {
+        width: 100%;
+
+        .uds-input-wrapper {
+            width: 100%;
+        }
+    }
+
+    &__empty {
+        @include uds-body-14;
+        color: var(--uds-text-secondary);
+        padding: var(--uds-spacing-12) var(--uds-spacing-16);
+    }
+
+    &__match {
+        background: var(--uds-surface-brand-secondary);
+        color: inherit;
+        padding: 0;
+
+        &--weight {
+            background: none;
+            font-weight: var(--uds-font-weight-medium);
+        }
+    }
+
     &__item {
         @include uds-body-14-medium;
         display: flex;

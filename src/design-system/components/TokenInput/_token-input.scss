@@ -62,11 +62,21 @@
 
   &--focused,
   &:focus-within {
-    border-color: var(--uds-border-brand-primary);
+    border-color: var(--uds-system-action-primary);
+    outline: 3px solid var(--uds-system-action-tertiary);
+    outline-offset: 0;
   }
 
   &--error {
     border-color: var(--uds-system-destructive-primary);
+    outline: 3px solid var(--uds-system-destructive-tertiary);
+    outline-offset: 0;
+  }
+
+  &--error:focus-within {
+    border-color: var(--uds-system-destructive-primary);
+    outline: 3px solid var(--uds-system-destructive-tertiary);
+    outline-offset: 0;
   }
 
   &--disabled {

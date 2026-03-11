@@ -2,6 +2,13 @@
   "contractName": "uds.ai.brand-menus",
   "schemaVersion": "1.0.0",
   "brands": {
+    "default": [
+      { "label": "Dashboard", "icon": "Layout" },
+      { "label": "Requests", "icon": "Briefcase" },
+      { "label": "Providers", "icon": "Users" },
+      { "label": "Calendar", "icon": "CalendarBlank" },
+      { "label": "Reporting", "icon": "ChartBar" }
+    ],
     "comphealth": [
       { "label": "Dashboard", "icon": "Layout" },
       { "label": "Schedule", "icon": "CalendarBlank" },

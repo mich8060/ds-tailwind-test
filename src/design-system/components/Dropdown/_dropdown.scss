@@ -18,6 +18,8 @@
         flex-direction: column;
         gap: var(--uds-gap-32);
         width: 100%;
+        position: relative;
+        z-index: var(--uds-elevation-overlay);
     }
 
     &__trigger {

@@ -47,6 +47,7 @@
         "udsVersion": { "type": "string" },
         "manifestVersion": { "type": "string" },
         "policyVersion": { "type": "string" },
+        "patternId": { "type": "string" },
         "componentsUsed": { "type": "array", "items": { "type": "string" } },
         "tokensUsed": { "type": "array", "items": { "type": "string" } },
         "violationsCount": { "type": "number", "minimum": 0 },

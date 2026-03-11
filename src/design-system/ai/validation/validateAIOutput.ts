@@ -35,6 +35,20 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const readString = (value: unknown): string | undefined =>
   typeof value === "string" && value.trim().length > 0 ? value : undefined;
 
+function readPatternId(output: unknown): string | undefined {
+  const payload = isRecord(output) ? output : null;
+  if (!payload) return undefined;
+
+  const audit = isRecord(payload.audit) ? payload.audit : null;
+  const auditPatternId = readString(audit?.patternId);
+  if (auditPatternId) return auditPatternId;
+
+  const tree = isRecord(payload.tree) ? payload.tree : null;
+  const props = isRecord(tree?.props) ? tree?.props : null;
+  const propsPatternId = readString(props?.patternId ?? props?.pattern ?? props?.layoutPattern);
+  return propsPatternId;
+}
+
 function collectVersionViolations(
   output: unknown,
   governanceConfig: GovernanceConfig
@@ -76,7 +90,9 @@ export function validateAIOutput(
   violations.push(...collectVersionViolations(output, governanceConfig));
 
   if (schema.tree) {
-    const policyViolations = runPolicyEngine(schema.tree, governanceConfig);
+    const policyViolations = runPolicyEngine(schema.tree, governanceConfig, {
+      patternId: readPatternId(output),
+    });
     const driftViolations = detectDrift(schema.tree);
     for (const violation of [...policyViolations, ...driftViolations]) {
       if (violation.severity === "error") violations.push(violation);

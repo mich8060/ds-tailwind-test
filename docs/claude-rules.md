@@ -60,8 +60,8 @@ Use the CLI scaffold to generate this: `npm run generate:component -- ComponentN
 - `index.ts` exports only the component itself — never internal helpers
 - All public API types live in `ComponentName.types.ts`
 - Every component must have a `ComponentName.spec.ts` defining variants, states, tokens used, and accessibility info
-- Use the `as` prop pattern for polymorphic components (Text, Flex)
-- Use the **Flex component** for all layout needs — do not roll custom flex/grid wrappers
+- Use the `as` prop pattern for polymorphic components (Text, Layout)
+- Use the **Layout component** for all layout needs — do not roll custom flex/grid wrappers
 - Use the **icon component** for all icons — never inline SVGs directly
 - Reuse existing components to build new ones — do not duplicate primitives
 

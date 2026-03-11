@@ -22,6 +22,11 @@ const FORBIDDEN_PROPS_BY_COMPONENT: Record<string, Record<string, ForbiddenPropR
     justify: { replacement: "justifyContent", reason: "Flex alignment uses justifyContent canonical prop." },
     align: { replacement: "alignItems", reason: "Flex alignment uses alignItems canonical prop." },
   },
+  Layout: {
+    vertical: { replacement: "direction", reason: "Layout direction is governed by row/column direction prop." },
+    justify: { replacement: "justifyContent", reason: "Layout alignment uses justifyContent canonical prop." },
+    align: { replacement: "alignItems", reason: "Layout alignment uses alignItems canonical prop." },
+  },
   Text: {
     type: { replacement: "variant", reason: "Text semantics use UDS typography variant tokens." },
     strong: { replacement: "weight", reason: "Text weight should be controlled by weight prop." },

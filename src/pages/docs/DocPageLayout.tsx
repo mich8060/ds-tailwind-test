@@ -4,6 +4,7 @@ import { Code } from "../../design-system/components/Code";
 import { Divider } from "../../design-system/components/Divider";
 import { Flex } from "../../design-system/components/Flex";
 import { Text } from "../../design-system/components/Text";
+import { PageHeaderMeta } from "./PageHeaderMeta";
 
 interface DocPageLayoutProps {
   title: string;
@@ -39,12 +40,9 @@ export function DocPageLayout({ title, description, children }: DocPageLayoutPro
   return (
     <Flex className="app-shell__demo-page" direction="column" gap="0">
       <Flex className="app-shell__page-header" direction="column" gap="8">
-        <Text as="h1" variant="heading-32" weight="bold" leading="regular">
-          {title}
-        </Text>
-        <Text as="p" variant="body-16" leading="regular">
-          {description}
-        </Text>
+        <Flex className="app-shell__page-header-inner" direction="column" gap="8">
+          <PageHeaderMeta title={title} description={description} />
+        </Flex>
       </Flex>
       <Flex className="app-shell__contentInner" direction="column" gap="24">
         {children}

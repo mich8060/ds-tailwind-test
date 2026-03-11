@@ -1,0 +1,197 @@
+import React from "react";
+import "./_layout.scss";
+import type { FlexItemProps, FlexProps } from "./Layout.types";
+
+const GAP_TOKEN_VALUES = new Set([
+  "0",
+  "2",
+  "4",
+  "6",
+  "8",
+  "10",
+  "12",
+  "14",
+  "16",
+  "18",
+  "24",
+  "32",
+  "48",
+  "64",
+  "80",
+]);
+const warnedGapValues = new Set<string>();
+
+function normalizeWrap(wrap: FlexProps["wrap"]): "nowrap" | "wrap" | "wrap-reverse" {
+  if (wrap === true) return "wrap";
+  if (wrap === false || wrap == null) return "nowrap";
+  return wrap;
+}
+
+function toKebab(value: string): string {
+  return value.trim().toLowerCase().replace(/\s+/g, "-");
+}
+
+function normalizeAppearance(
+  appearance: FlexProps["appearance"]
+): NonNullable<FlexProps["appearance"]> {
+  if (appearance === "equal" || appearance === "right" || appearance === "left") {
+    return appearance;
+  }
+
+  // Backward-compatible mapping for older string variants.
+  if (appearance === ("2 Equal Column" as unknown as FlexProps["appearance"])) return "equal";
+  if (appearance === ("Content Right" as unknown as FlexProps["appearance"])) return "right";
+  if (appearance === ("Content Left" as unknown as FlexProps["appearance"])) return "left";
+  return "full";
+}
+
+function normalizeGap(gap: FlexProps["gap"]): string | number | undefined {
+  if (gap == null) return undefined;
+
+  const rawGap = String(gap).trim();
+  if (rawGap === "auto") {
+    return undefined;
+  }
+  const tokenSuffix = rawGap.match(/^spacing-(\d+)$/)?.[1] ?? rawGap;
+  if (GAP_TOKEN_VALUES.has(tokenSuffix)) {
+    return `var(--uds-spacing-${tokenSuffix})`;
+  }
+
+  return gap;
+}
+
+function normalizeItemsPerRow(value: unknown): number | undefined {
+  if (typeof value !== "number" || !Number.isFinite(value)) return undefined;
+  const normalized = Math.floor(value);
+  return normalized > 0 ? normalized : undefined;
+}
+
+function warnInvalidGap(gap: FlexProps["gap"]) {
+  if (
+    gap == null ||
+    typeof import.meta === "undefined" ||
+    !import.meta.env?.DEV
+  ) {
+    return;
+  }
+
+  const rawGap = String(gap).trim();
+  const tokenSuffix = rawGap.match(/^spacing-(\d+)$/)?.[1] ?? rawGap;
+  const isProbablyToken = /^\d+$/.test(tokenSuffix);
+
+  if (isProbablyToken && !GAP_TOKEN_VALUES.has(tokenSuffix)) {
+    const warningKey = `token:${tokenSuffix}`;
+    if (!warnedGapValues.has(warningKey)) {
+      warnedGapValues.add(warningKey);
+      console.warn(
+        `Flex gap "${gap}" is not a supported spacing token. Use one of: ${Array.from(
+          GAP_TOKEN_VALUES
+        ).join(", ")} or "spacing-<token>".`
+      );
+    }
+  }
+}
+
+const LayoutBase = React.forwardRef<HTMLElement, FlexProps>(function Layout(
+  {
+    as: Component = "div",
+    direction = "row",
+    justifyContent,
+    alignItems,
+    appearance = "full",
+    itemsPerRow,
+    wrap = false,
+    gap,
+    fullWidth = false,
+    inline = false,
+    className,
+    style,
+    children,
+    ...rest
+  },
+  ref
+) {
+  const resolvedItemsPerRow = normalizeItemsPerRow(itemsPerRow);
+  const shouldApplyItemsPerRow = direction === "row" && resolvedItemsPerRow !== undefined;
+  const wrapValue = normalizeWrap(shouldApplyItemsPerRow ? true : wrap);
+  const hasAutoGap = String(gap).trim() === "auto";
+  const resolvedAppearance = normalizeAppearance(appearance);
+
+  const classes = [
+    "uds-flex",
+    `uds-flex--direction-${direction}`,
+    `uds-flex--appearance-${toKebab(resolvedAppearance)}`,
+    justifyContent && `uds-flex--justify-${toKebab(justifyContent)}`,
+    alignItems && `uds-flex--align-${toKebab(alignItems)}`,
+    `uds-flex--wrap-${toKebab(wrapValue)}`,
+    inline && "uds-flex--inline",
+    fullWidth && "uds-flex--full-width",
+    fullWidth && "uds-flex--span",
+    shouldApplyItemsPerRow && "uds-flex--items-per-row",
+    hasAutoGap && "uds-flex--gap-auto",
+    className
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const computedStyle: React.CSSProperties & Record<string, string | number> = {};
+  const normalizedGap = normalizeGap(gap);
+  const hasStyleGap = style?.gap != null;
+
+  if (gap != null && !hasStyleGap) {
+    warnInvalidGap(gap);
+    computedStyle.gap = normalizedGap;
+  }
+
+  if (shouldApplyItemsPerRow) {
+    computedStyle["--uds-flex-items-per-row"] = String(resolvedItemsPerRow);
+  }
+
+  if (fullWidth && style?.width == null) {
+    computedStyle.width = "100%";
+  }
+
+  return (
+    <Component ref={ref} className={classes} style={{ ...computedStyle, ...style }} {...rest}>
+      {children}
+    </Component>
+  );
+});
+
+const FlexFill = React.forwardRef<HTMLElement, FlexItemProps>(function FlexFill(
+  {
+    as: Component = "div",
+    className,
+    children,
+    ...rest
+  },
+  ref
+) {
+  const classes = ["uds-flex__full", className].filter(Boolean).join(" ");
+
+  return (
+    <Component ref={ref} className={classes} {...rest}>
+      {children}
+    </Component>
+  );
+});
+
+type FlexCompound = typeof LayoutBase & {
+  Fill: typeof FlexFill;
+  Full: typeof FlexFill;
+};
+
+type LayoutCompound = typeof LayoutBase & {
+  Fill: typeof FlexFill;
+  Full: typeof FlexFill;
+};
+
+export const Layout = LayoutBase as LayoutCompound;
+Layout.Fill = FlexFill;
+// Backward-compatible alias for existing consumers.
+Layout.Full = FlexFill;
+
+// Backward-compatible alias for existing consumers.
+export const Flex = Layout as unknown as FlexCompound;
+Flex.Fill = FlexFill;
+Flex.Full = FlexFill;

@@ -4,6 +4,7 @@
   "templates": [
     {
       "id": "auth-form-card",
+      "patternId": "AuthForm",
       "intent": "Authentication form with one primary action and optional secondary action.",
       "tags": [
         "form",
@@ -97,6 +98,7 @@
     },
     {
       "id": "dashboard-table-summary",
+      "patternId": "DataTablePage",
       "intent": "Summary header with data table and row actions.",
       "tags": [
         "dashboard",
@@ -171,6 +173,7 @@
     },
     {
       "id": "settings-two-column",
+      "patternId": "SettingsWorkspace",
       "intent": "Two-column settings page with form area and contextual summary card.",
       "tags": [
         "settings",
@@ -267,6 +270,7 @@
     },
     {
       "id": "modal-confirmation",
+      "patternId": "ModalConfirmation",
       "intent": "Confirmation flow in modal with primary and dismissive actions.",
       "tags": [
         "modal",
@@ -328,6 +332,7 @@
     },
     {
       "id": "wizard-steps-form",
+      "patternId": "WizardChecklist",
       "intent": "Multi-step form shell with progress indicator and staged actions.",
       "tags": [
         "wizard",

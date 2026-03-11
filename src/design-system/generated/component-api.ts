@@ -54,6 +54,74 @@ export const COMPONENT_API = {
     },
     "antiPatterns": []
   },
+  "AppShell": {
+    "name": "AppShell",
+    "source": "src/design-system/components/AppShell/AppShell.spec.ts",
+    "tier": 1,
+    "purpose": "Top-level application shell that composes menu, content, and main regions for consistent page architecture.",
+    "props": {
+      "brand": {
+        "type": "enum",
+        "values": [
+          "default",
+          "comphealth",
+          "weatherby",
+          "connect",
+          "locumsmart",
+          "modio",
+          "gms",
+          "wireframe"
+        ],
+        "default": "default"
+      },
+      "theme": {
+        "type": "enum",
+        "values": [
+          "light",
+          "dark"
+        ],
+        "default": "light"
+      }
+    },
+    "defaults": {
+      "brand": "default",
+      "theme": "light"
+    },
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [
+      "--uds-surface-primary",
+      "--uds-text-primary",
+      "--uds-border-primary",
+      "--uds-spacing-24"
+    ],
+    "accessibility": {
+      "role": "application",
+      "keyboard": [
+        "Tab"
+      ]
+    },
+    "composition": {
+      "allowedChildren": [
+        "Menu",
+        "Container",
+        "Layout",
+        "Text",
+        "Button"
+      ],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
   "Avatar": {
     "name": "Avatar",
     "source": "src/design-system/components/Avatar/Avatar.spec.ts",
@@ -257,7 +325,7 @@ export const COMPONENT_API = {
       "allowedParents": [
         "AppShell",
         "Container",
-        "Flex",
+        "Layout",
         "Modal",
         "Table",
         "Tabs"
@@ -685,7 +753,7 @@ export const COMPONENT_API = {
     },
     "composition": {
       "allowedChildren": [
-        "Flex",
+        "Layout",
         "Table",
         "Text",
         "Button",
@@ -1219,36 +1287,72 @@ export const COMPONENT_API = {
   "Flex": {
     "name": "Flex",
     "source": "src/design-system/components/Flex/Flex.spec.ts",
-    "tier": 2,
-    "purpose": "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and width behavior.",
+    "tier": 1,
+    "purpose": "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and spacing.",
     "props": {
-      "fullWidth": {
-        "type": "boolean",
-        "default": false
+      "direction": {
+        "type": "enum",
+        "values": [
+          "row",
+          "column"
+        ],
+        "default": "row"
       },
-      "span": {
-        "type": "boolean",
-        "default": false
+      "justifyContent": {
+        "type": "enum",
+        "values": [
+          "flex-start",
+          "center",
+          "flex-end",
+          "space-between",
+          "space-around",
+          "space-evenly"
+        ],
+        "default": "flex-start"
+      },
+      "alignItems": {
+        "type": "enum",
+        "values": [
+          "stretch",
+          "flex-start",
+          "center",
+          "flex-end",
+          "baseline"
+        ],
+        "default": "stretch"
+      },
+      "wrap": {
+        "type": "enum",
+        "values": [
+          "nowrap",
+          "wrap",
+          "wrap-reverse"
+        ],
+        "default": "nowrap"
       }
     },
     "defaults": {
-      "fullWidth": false,
-      "span": false
+      "direction": "row",
+      "justifyContent": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap"
     },
     "states": [
       "default"
     ],
-    "tokensUsed": [],
+    "tokensUsed": [
+      "--uds-gap-*",
+      "--uds-spacing-*"
+    ],
     "accessibility": {
       "role": "generic",
-      "keyboard": []
+      "keyboard": [
+        "Tab"
+      ]
     },
     "composition": {
       "allowedChildren": [],
-      "allowedParents": [
-        "AppShell",
-        "Container"
-      ],
+      "allowedParents": [],
       "disallowedChildren": []
     },
     "aliases": {
@@ -1360,6 +1464,56 @@ export const COMPONENT_API = {
     "composition": {
       "allowedChildren": [],
       "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
+  },
+  "Layout": {
+    "name": "Layout",
+    "source": "src/design-system/components/Layout/Layout.spec.ts",
+    "tier": 2,
+    "purpose": "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and width behavior.",
+    "props": {
+      "fullWidth": {
+        "type": "boolean",
+        "default": false
+      },
+      "appearance": {
+        "type": "enum",
+        "values": [
+          "full",
+          "equal",
+          "right",
+          "left"
+        ],
+        "default": "full"
+      }
+    },
+    "defaults": {
+      "fullWidth": false,
+      "appearance": "full"
+    },
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [],
+    "accessibility": {
+      "role": "generic",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [
+        "AppShell",
+        "Container"
+      ],
       "disallowedChildren": []
     },
     "aliases": {
@@ -2425,7 +2579,7 @@ export const COMPONENT_API = {
       "allowedParents": [
         "AppShell",
         "Container",
-        "Flex",
+        "Layout",
         "Menu",
         "Modal",
         "Tabs"

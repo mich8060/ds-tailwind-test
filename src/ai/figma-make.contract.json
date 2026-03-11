@@ -73,11 +73,21 @@
                 "brands",
                 "showBrandSwitcher",
                 "showModeToggle",
+                "showSearch",
+                "accountMenuItems",
                 "activeMode",
                 "onBrandChange",
                 "onModeChange"
             ],
-            "iconInput": "Phosphor icon string names only"
+            "iconInput": "Phosphor icon string names only",
+            "defaults": {
+                "showSearch": false,
+                "accountMenuItems": [
+                    { "label": "Contact", "icon": "Phone" },
+                    { "label": "Feedback", "icon": "ChatCenteredText" },
+                    { "label": "Sign out", "icon": "SignOut", "destructive": true }
+                ]
+            }
         },
         "Badge": {
             "variant": [

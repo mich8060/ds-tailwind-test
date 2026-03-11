@@ -43,7 +43,7 @@ Use `BrowserRouter` from `react-router-dom`, not `react-router`.
 ## 4) Build with UDS Components
 
 ```tsx
-import { AppShell, Menu, Flex, Text, Button } from "@mich8060/unified-design-system";
+import { AppShell, Menu, Layout, Text, Button } from "@mich8060/unified-design-system";
 
 const navItems = [
   { label: "Home", icon: "House", path: "/" },
@@ -58,12 +58,12 @@ export default function App() {
       </AppShell.Menu>
       <AppShell.Content>
         <AppShell.Main>
-          <Flex direction="column" gap="16">
+          <Layout direction="column" gap="16">
             <Text as="h1" variant="heading-32" weight="bold" leading="regular">
               Welcome
             </Text>
             <Button label="Get Started" appearance="primary" />
-          </Flex>
+          </Layout>
         </AppShell.Main>
       </AppShell.Content>
     </AppShell>

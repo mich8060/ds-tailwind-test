@@ -15,7 +15,9 @@
     transition: border-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
 
     &:focus-within {
-        border-color: var(--uds-border-brand-primary);
+        border-color: var(--uds-system-action-primary);
+        outline: 3px solid var(--uds-system-action-tertiary);
+        outline-offset: 0;
     }
 
     &__input {
@@ -77,12 +79,22 @@
     }
 
     &--focused {
-        border-color: var(--uds-border-brand-primary);
+        border-color: var(--uds-system-action-primary);
+        outline: 3px solid var(--uds-system-action-tertiary);
+        outline-offset: 0;
     }
 
     &--error {
         border-color: var(--uds-system-destructive-primary);
+        outline: 3px solid var(--uds-system-destructive-tertiary);
+        outline-offset: 0;
         color: var(--uds-text-destructive-primary);
+    }
+
+    &--error:focus-within {
+        border-color: var(--uds-system-destructive-primary);
+        outline: 3px solid var(--uds-system-destructive-tertiary);
+        outline-offset: 0;
     }
 
     &--disabled {

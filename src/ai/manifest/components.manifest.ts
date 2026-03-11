@@ -187,6 +187,33 @@ export const ComponentRegistry = {
       },
     },
   },
+  CurrencyInput: {
+    category: "form",
+    intent: "Currency-aware monetary input",
+    description:
+      "A formatted amount input for monetary values with currency-friendly entry behavior.",
+    alsoKnownAs: ["Money Input", "Amount Field", "Currency Field"],
+    roles: ["textbox"],
+    preferredParent: ["Field", "Form"],
+  },
+  DateInput: {
+    category: "form",
+    intent: "Date value input control",
+    description:
+      "A single-field date input wrapper for capturing calendar dates.",
+    alsoKnownAs: ["Date Field", "Date Text Input"],
+    roles: ["textbox"],
+    preferredParent: ["Field", "Form"],
+  },
+  DateRangeInput: {
+    category: "form",
+    intent: "Start/end date range input",
+    description:
+      "A paired date input control for capturing start and end dates.",
+    alsoKnownAs: ["Date Range Picker", "Start End Date Input"],
+    roles: ["group"],
+    preferredParent: ["Field", "Form", "Card"],
+  },
   Datepicker: {
     category: "form",
     intent: "Date input and picker interaction",
@@ -310,7 +337,6 @@ export const ComponentRegistry = {
     roles: ["img"],
     preferredParent: ["Card", "Container"],
   },
-  Input: { category: "form", intent: "Alias of TextInput for text entry", roles: ["textbox"], preferredParent: ["Field", "Form"] },
   Key: {
     category: "data-display",
     intent: "Keyboard shortcut representation",
@@ -319,6 +345,15 @@ export const ComponentRegistry = {
     alsoKnownAs: ["KeyValue", "Property List", "Definition List", "Metadata Pair"],
     roles: ["note"],
     preferredParent: ["Tooltip", "Card", "Text"],
+  },
+  Layout: {
+    category: "layout",
+    intent: "Layout region composition primitive",
+    description:
+      "A structural layout component for arranging content regions and width behavior.",
+    alsoKnownAs: ["Layout Frame", "Page Layout"],
+    roles: ["region"],
+    preferredParent: ["AppShell", "Container", "root"],
   },
   Menu: {
     category: "navigation",
@@ -347,6 +382,15 @@ export const ComponentRegistry = {
     roles: ["dialog"],
     preferredParent: ["AppShell", "root"],
   },
+  NumberInput: {
+    category: "form",
+    intent: "Numeric input control",
+    description:
+      "A number-constrained text input for integer and decimal entry.",
+    alsoKnownAs: ["Numeric Field", "Number Field"],
+    roles: ["textbox"],
+    preferredParent: ["Field", "Form"],
+  },
   Pagination: {
     category: "navigation",
     intent: "Paged navigation controls",
@@ -374,6 +418,33 @@ export const ComponentRegistry = {
     roles: ["progressbar"],
     preferredParent: ["Card", "Container", "Table"],
   },
+  ProvidersCard: {
+    category: "data-display",
+    intent: "Provider summary card module",
+    description:
+      "A card surface for presenting provider-centric summary information and actions.",
+    alsoKnownAs: ["Provider Card", "Provider Tile"],
+    roles: ["region"],
+    preferredParent: ["Container", "Flex"],
+  },
+  PasswordInput: {
+    category: "form",
+    intent: "Masked password input control",
+    description:
+      "A secure text input for password entry with masking behavior.",
+    alsoKnownAs: ["Password Field", "Secure Input"],
+    roles: ["textbox"],
+    preferredParent: ["Field", "Form"],
+  },
+  PhoneInput: {
+    category: "form",
+    intent: "Telephone number input control",
+    description:
+      "A phone number input with formatting and validation-oriented behavior.",
+    alsoKnownAs: ["Telephone Input", "Phone Field"],
+    roles: ["textbox"],
+    preferredParent: ["Field", "Form"],
+  },
   Radio: {
     category: "form",
     intent: "Single-choice option input",
@@ -400,6 +471,33 @@ export const ComponentRegistry = {
         type: "boolean",
       },
     },
+  },
+  ScrollView: {
+    category: "layout",
+    intent: "Scrollable viewport container",
+    description:
+      "A constrained overflow region for content that requires vertical or horizontal scrolling.",
+    alsoKnownAs: ["Scrollable Container", "Scroll Region"],
+    roles: ["region"],
+    preferredParent: ["AppShell", "Container", "Card"],
+  },
+  SearchInput: {
+    category: "form",
+    intent: "Search query input control",
+    description:
+      "A query-focused input used for search and filter interactions.",
+    alsoKnownAs: ["Search Field", "Search Box"],
+    roles: ["searchbox"],
+    preferredParent: ["Field", "Form", "Menu"],
+  },
+  SectionHeader: {
+    category: "layout",
+    intent: "Section heading with supporting metadata/actions",
+    description:
+      "A heading row pattern for section title, supporting text, and optional actions.",
+    alsoKnownAs: ["Section Title Row", "Subheader"],
+    roles: ["heading"],
+    preferredParent: ["Container", "Card", "Flex"],
   },
   Slider: {
     category: "form",
@@ -511,6 +609,15 @@ export const ComponentRegistry = {
     description:
       "A multi-line text input for longer content such as descriptions, comments, and notes.",
     alsoKnownAs: ["Multi-line Input", "Text Area Field", "Long Text Input"],
+    roles: ["textbox"],
+    preferredParent: ["Field", "Form"],
+  },
+  TimeInput: {
+    category: "form",
+    intent: "Time value input control",
+    description:
+      "A time-specific input used for schedule and appointment entry.",
+    alsoKnownAs: ["Time Field", "Clock Input"],
     roles: ["textbox"],
     preferredParent: ["Field", "Form"],
   },

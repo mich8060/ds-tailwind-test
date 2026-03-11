@@ -22,15 +22,18 @@ body {
         padding: var(--uds-spacing-48);
     }
 
-    &.container-none .app-shell__contentInner {
+    &.container-none .app-shell__contentInner,
+    &.container-none .app-shell__page-header-inner {
         max-width: none;
     }
 
-    &.container-fluid .app-shell__contentInner {
+    &.container-fluid .app-shell__contentInner,
+    &.container-fluid .app-shell__page-header-inner {
         max-width: none;
     }
 
-    &.container-max .app-shell__contentInner {
+    &.container-max .app-shell__contentInner,
+    &.container-max .app-shell__page-header-inner {
         max-width: 1100px;
     }
 
@@ -75,6 +78,10 @@ body {
     align-items: stretch;
     width: 100%;
     min-height: 0;
+}
+
+.app-shell--standalone .app-shell__body {
+    --app-shell-menu-width: 0;
 }
 
 .app-shell__mobile-toolbar-wrap {
@@ -154,6 +161,37 @@ body {
     width: 100%;
 }
 
+.app-shell__page-header-inner {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.app-shell__page-header-description {
+    max-width: 720px;
+}
+
+.app-shell__page-header-meta {
+    min-width: 240px;
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.app-shell__page-header-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--uds-spacing-12);
+    padding-top: var(--uds-spacing-8);
+    margin-top: var(--uds-spacing-8);
+    border-top: 1px solid var(--uds-border-secondary);
+
+    &:first-child {
+        padding-top: 0;
+        margin-top: 0;
+        border-top: 0;
+    }
+}
+
 .app-shell__listview {
     width: 320px;
     border-right: 1px solid var(--uds-border-secondary);
@@ -164,6 +202,7 @@ body {
     background: var(--uds-surface-secondary);
     min-width: 0;
     flex: 1;
+    position: relative;
     overflow-x: hidden;
 }
 
@@ -196,12 +235,12 @@ body {
         display: block;
     }
 
-    .app-shell__body {
+    .app-shell--has-nav .app-shell__body {
         --app-shell-menu-width: 0;
         padding-top: var(--app-shell-mobile-toolbar-height);
     }
 
-    .app-shell__body:has(.uds-menu--expanded) {
+    .app-shell--has-nav .app-shell__body:has(.uds-menu--expanded) {
         --app-shell-menu-width: 0;
     }
 

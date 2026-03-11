@@ -1,7 +1,7 @@
 {
   "contractName": "uds.ai.contract",
   "schemaVersion": "1.0.0",
-  "systemVersion": "0.2.12",
+  "systemVersion": "0.2.35",
   "tokenVersion": "1.0.0",
   "manifestVersion": "1.0.0",
   "governanceVersion": "1.0.0",
@@ -12,7 +12,7 @@
     "governance": "1.0.0",
     "policy": "1.0.0",
     "token": "1.0.0",
-    "system": "0.2.12"
+    "system": "0.2.35"
   },
   "components": {
     "Accordion": {
@@ -86,16 +86,44 @@
       "name": "AppShell",
       "category": "layout",
       "intent": "Top-level application shell and page structure",
-      "purpose": null,
-      "tier": null,
+      "purpose": "Top-level application shell that composes menu, content, and main regions for consistent page architecture.",
+      "tier": 1,
       "description": "The structural application layout framework that governs global regions such as header, sidebar, breadcrumb, sub-navigation, and main content. It enforces consistent structure, theme/brand application, and layout configuration.",
       "roles": [
         "application"
       ],
       "slots": null,
-      "states": [],
-      "props": {},
-      "defaults": {},
+      "states": [
+        "default"
+      ],
+      "props": {
+        "brand": {
+          "type": "enum",
+          "values": [
+            "default",
+            "comphealth",
+            "weatherby",
+            "connect",
+            "locumsmart",
+            "modio",
+            "gms",
+            "wireframe"
+          ],
+          "default": "default"
+        },
+        "theme": {
+          "type": "enum",
+          "values": [
+            "light",
+            "dark"
+          ],
+          "default": "light"
+        }
+      },
+      "defaults": {
+        "brand": "default",
+        "theme": "light"
+      },
       "composition": {
         "preferredParents": [
           "root"
@@ -103,7 +131,7 @@
         "allowedChildren": [
           "Menu",
           "Container",
-          "Flex",
+          "Layout",
           "Text",
           "Button"
         ],
@@ -367,7 +395,7 @@
         "allowedParents": [
           "AppShell",
           "Container",
-          "Flex",
+          "Layout",
           "Modal",
           "Table",
           "Tabs"
@@ -818,7 +846,7 @@
           "root"
         ],
         "allowedChildren": [
-          "Flex",
+          "Layout",
           "Table",
           "Text",
           "Button",
@@ -839,6 +867,97 @@
           "--uds-spacing-24",
           "--uds-radius-8"
         ]
+      }
+    },
+    "CurrencyInput": {
+      "name": "CurrencyInput",
+      "category": "form",
+      "intent": "Currency-aware monetary input",
+      "purpose": "Describe purpose.",
+      "tier": 2,
+      "description": "A formatted amount input for monetary values with currency-friendly entry behavior.",
+      "roles": [
+        "textbox"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
+      }
+    },
+    "DateInput": {
+      "name": "DateInput",
+      "category": "form",
+      "intent": "Date value input control",
+      "purpose": "Describe purpose.",
+      "tier": 2,
+      "description": "A single-field date input wrapper for capturing calendar dates.",
+      "roles": [
+        "textbox"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
+      }
+    },
+    "DateRangeInput": {
+      "name": "DateRangeInput",
+      "category": "form",
+      "intent": "Start/end date range input",
+      "purpose": "Describe purpose.",
+      "tier": 2,
+      "description": "A paired date input control for capturing start and end dates.",
+      "roles": [
+        "group"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form",
+          "Card"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
       }
     },
     "Datepicker": {
@@ -1342,8 +1461,8 @@
       "name": "Flex",
       "category": "layout",
       "intent": "Primary flexbox layout primitive",
-      "purpose": "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and width behavior.",
-      "tier": 2,
+      "purpose": "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and spacing.",
+      "tier": 1,
       "description": "A flexbox-based layout primitive for direction, alignment, spacing, and wrapping using system tokens for predictable layout behavior.",
       "roles": [
         "group"
@@ -1353,18 +1472,52 @@
         "default"
       ],
       "props": {
-        "fullWidth": {
-          "type": "boolean",
-          "default": false
+        "direction": {
+          "type": "enum",
+          "values": [
+            "row",
+            "column"
+          ],
+          "default": "row"
         },
-        "span": {
-          "type": "boolean",
-          "default": false
+        "justifyContent": {
+          "type": "enum",
+          "values": [
+            "flex-start",
+            "center",
+            "flex-end",
+            "space-between",
+            "space-around",
+            "space-evenly"
+          ],
+          "default": "flex-start"
+        },
+        "alignItems": {
+          "type": "enum",
+          "values": [
+            "stretch",
+            "flex-start",
+            "center",
+            "flex-end",
+            "baseline"
+          ],
+          "default": "stretch"
+        },
+        "wrap": {
+          "type": "enum",
+          "values": [
+            "nowrap",
+            "wrap",
+            "wrap-reverse"
+          ],
+          "default": "nowrap"
         }
       },
       "defaults": {
-        "fullWidth": false,
-        "span": false
+        "direction": "row",
+        "justifyContent": "flex-start",
+        "alignItems": "stretch",
+        "wrap": "nowrap"
       },
       "composition": {
         "preferredParents": [
@@ -1373,10 +1526,7 @@
           "AppShell"
         ],
         "allowedChildren": [],
-        "allowedParents": [
-          "AppShell",
-          "Container"
-        ],
+        "allowedParents": [],
         "disallowedChildren": [],
         "constraints": null
       },
@@ -1481,41 +1631,6 @@
         ]
       }
     },
-    "Input": {
-      "name": "Input",
-      "category": "form",
-      "intent": "Alias of TextInput for text entry",
-      "purpose": null,
-      "tier": null,
-      "description": null,
-      "roles": [
-        "textbox"
-      ],
-      "slots": null,
-      "states": [],
-      "props": {},
-      "defaults": {},
-      "composition": {
-        "preferredParents": [
-          "Field",
-          "Form"
-        ],
-        "allowedChildren": [],
-        "allowedParents": [
-          "Field"
-        ],
-        "disallowedChildren": [],
-        "constraints": null
-      },
-      "tokens": {
-        "allowed": [
-          "--uds-spacing-8",
-          "--uds-spacing-12",
-          "--uds-color-neutral-700",
-          "--uds-color-blue-600"
-        ]
-      }
-    },
     "Key": {
       "name": "Key",
       "category": "data-display",
@@ -1558,6 +1673,58 @@
           "--uds-color-neutral-700",
           "--uds-radius-8"
         ]
+      }
+    },
+    "Layout": {
+      "name": "Layout",
+      "category": "layout",
+      "intent": "Layout region composition primitive",
+      "purpose": "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and width behavior.",
+      "tier": 2,
+      "description": "A structural layout component for arranging content regions and width behavior.",
+      "roles": [
+        "region"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {
+        "fullWidth": {
+          "type": "boolean",
+          "default": false
+        },
+        "appearance": {
+          "type": "enum",
+          "values": [
+            "full",
+            "equal",
+            "right",
+            "left"
+          ],
+          "default": "full"
+        }
+      },
+      "defaults": {
+        "fullWidth": false,
+        "appearance": "full"
+      },
+      "composition": {
+        "preferredParents": [
+          "AppShell",
+          "Container",
+          "root"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [
+          "AppShell",
+          "Container"
+        ],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
       }
     },
     "Menu": {
@@ -1704,6 +1871,66 @@
         ]
       }
     },
+    "NumberInput": {
+      "name": "NumberInput",
+      "category": "form",
+      "intent": "Numeric input control",
+      "purpose": null,
+      "tier": null,
+      "description": "A number-constrained text input for integer and decimal entry.",
+      "roles": [
+        "textbox"
+      ],
+      "slots": null,
+      "states": [
+        "default",
+        "focused",
+        "error",
+        "disabled"
+      ],
+      "props": {
+        "size": {
+          "type": "enum",
+          "values": [
+            "compact",
+            "default"
+          ],
+          "default": "default"
+        },
+        "state": {
+          "type": "enum",
+          "values": [
+            "default",
+            "focused",
+            "error",
+            "disabled"
+          ],
+          "default": "default"
+        },
+        "type": {
+          "type": "string",
+          "default": "number"
+        }
+      },
+      "defaults": {
+        "size": "default",
+        "state": "default",
+        "type": "number"
+      },
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
+      }
+    },
     "Pagination": {
       "name": "Pagination",
       "category": "navigation",
@@ -1741,6 +1968,66 @@
           "--uds-color-neutral-600",
           "--uds-color-blue-600"
         ]
+      }
+    },
+    "PasswordInput": {
+      "name": "PasswordInput",
+      "category": "form",
+      "intent": "Masked password input control",
+      "purpose": "Describe purpose.",
+      "tier": 2,
+      "description": "A secure text input for password entry with masking behavior.",
+      "roles": [
+        "textbox"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
+      }
+    },
+    "PhoneInput": {
+      "name": "PhoneInput",
+      "category": "form",
+      "intent": "Telephone number input control",
+      "purpose": "Describe purpose.",
+      "tier": 2,
+      "description": "A phone number input with formatting and validation-oriented behavior.",
+      "roles": [
+        "textbox"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
       }
     },
     "ProgressCircle": {
@@ -1873,6 +2160,57 @@
         ]
       }
     },
+    "ProvidersCard": {
+      "name": "ProvidersCard",
+      "category": "data-display",
+      "intent": "Provider summary card module",
+      "purpose": "Displays provider identity, status, metadata, tags, and quick actions in a compact card.",
+      "tier": 3,
+      "description": "A card surface for presenting provider-centric summary information and actions.",
+      "roles": [
+        "region"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {
+        "statusVariant": {
+          "type": "enum",
+          "values": [
+            "green",
+            "orange",
+            "red",
+            "blue",
+            "neutral"
+          ],
+          "default": "green"
+        }
+      },
+      "defaults": {
+        "statusVariant": "green"
+      },
+      "composition": {
+        "preferredParents": [
+          "Container",
+          "Flex"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": [
+          "--uds-spacing-16",
+          "--uds-spacing-12",
+          "--uds-border-width-1",
+          "--uds-border-primary",
+          "--uds-radius-8",
+          "--uds-surface-primary"
+        ]
+      }
+    },
     "Radio": {
       "name": "Radio",
       "category": "form",
@@ -1958,6 +2296,110 @@
           "--uds-color-neutral-700",
           "--uds-color-blue-600"
         ]
+      }
+    },
+    "ScrollView": {
+      "name": "ScrollView",
+      "category": "layout",
+      "intent": "Scrollable viewport container",
+      "purpose": "Provides a container with controlled scroll direction.",
+      "tier": 2,
+      "description": "A constrained overflow region for content that requires vertical or horizontal scrolling.",
+      "roles": [
+        "region"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {
+        "direction": {
+          "type": "enum",
+          "values": [
+            "vertical",
+            "horizontal"
+          ],
+          "default": "vertical"
+        }
+      },
+      "defaults": {
+        "direction": "vertical"
+      },
+      "composition": {
+        "preferredParents": [
+          "AppShell",
+          "Container",
+          "Card"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
+      }
+    },
+    "SearchInput": {
+      "name": "SearchInput",
+      "category": "form",
+      "intent": "Search query input control",
+      "purpose": "Describe purpose.",
+      "tier": 2,
+      "description": "A query-focused input used for search and filter interactions.",
+      "roles": [
+        "searchbox"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form",
+          "Menu"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
+      }
+    },
+    "SectionHeader": {
+      "name": "SectionHeader",
+      "category": "layout",
+      "intent": "Section heading with supporting metadata/actions",
+      "purpose": "Describe purpose.",
+      "tier": 2,
+      "description": "A heading row pattern for section title, supporting text, and optional actions.",
+      "roles": [
+        "heading"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "Container",
+          "Card",
+          "Flex"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
       }
     },
     "Slider": {
@@ -2459,7 +2901,7 @@
         "allowedParents": [
           "AppShell",
           "Container",
-          "Flex",
+          "Layout",
           "Menu",
           "Modal",
           "Tabs"
@@ -2609,6 +3051,36 @@
           "--uds-color-neutral-700",
           "--uds-color-blue-600"
         ]
+      }
+    },
+    "TimeInput": {
+      "name": "TimeInput",
+      "category": "form",
+      "intent": "Time value input control",
+      "purpose": "Describe purpose.",
+      "tier": 2,
+      "description": "A time-specific input used for schedule and appointment entry.",
+      "roles": [
+        "textbox"
+      ],
+      "slots": null,
+      "states": [
+        "default"
+      ],
+      "props": {},
+      "defaults": {},
+      "composition": {
+        "preferredParents": [
+          "Field",
+          "Form"
+        ],
+        "allowedChildren": [],
+        "allowedParents": [],
+        "disallowedChildren": [],
+        "constraints": null
+      },
+      "tokens": {
+        "allowed": []
       }
     },
     "Toast": {
@@ -2829,12 +3301,12 @@
       "AppShell": [
         "Menu",
         "Container",
-        "Flex",
+        "Layout",
         "Text",
         "Button"
       ],
       "Container": [
-        "Flex",
+        "Layout",
         "Table",
         "Text",
         "Button",
@@ -2900,7 +3372,7 @@
       "Button": [
         "AppShell",
         "Container",
-        "Flex",
+        "Layout",
         "Modal",
         "Table",
         "Tabs"
@@ -2936,7 +3408,7 @@
       "FileUpload": [
         "Field"
       ],
-      "Flex": [
+      "Layout": [
         "AppShell",
         "Container"
       ],
@@ -2980,7 +3452,7 @@
       "Text": [
         "AppShell",
         "Container",
-        "Flex",
+        "Layout",
         "Menu",
         "Modal",
         "Tabs"
@@ -3060,7 +3532,7 @@
       "notes": "Default section wrapper: transparent surface with 24px padding."
     },
     "contentStack": {
-      "component": "Flex",
+      "component": "Layout",
       "props": {
         "direction": "column",
         "gap": "--uds-spacing-16"

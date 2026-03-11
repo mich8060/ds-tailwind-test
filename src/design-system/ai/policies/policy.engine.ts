@@ -8,6 +8,7 @@ import { enforceAccessibilityRule } from "./rules/accessibility.rules";
 import { enforceCanonicalPropsRule } from "./rules/props.rules";
 import { enforceTokenVariableRule } from "./rules/token-variable.rules";
 import { enforceTailwindDisallowRule } from "./rules/tailwind.rules";
+import { enforcePatternStructureRule } from "./rules/pattern-structure.rules";
 
 const POLICY_RULES = [
   enforceCompositionRule,
@@ -17,11 +18,13 @@ const POLICY_RULES = [
   enforceTailwindDisallowRule,
   enforceAccessibilityRule,
   enforceCanonicalPropsRule,
+  enforcePatternStructureRule,
 ] as const;
 
 export function runPolicyEngine(
   tree: UINodeTree,
-  governanceConfig: GovernanceConfig = UDSGovernance
+  governanceConfig: GovernanceConfig = UDSGovernance,
+  options?: { patternId?: string }
 ): PolicyViolation[] {
-  return POLICY_RULES.flatMap((rule) => rule({ tree, governanceConfig }));
+  return POLICY_RULES.flatMap((rule) => rule({ tree, governanceConfig, patternId: options?.patternId }));
 }

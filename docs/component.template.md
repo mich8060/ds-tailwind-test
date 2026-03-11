@@ -28,7 +28,7 @@ Use this structure for every Tier 2 component.
 - Do not export internal helpers from `index.ts`
 - Never use outside frameworks like tailwind or bootstrap.
 - Use existing components if to build out aspects of new components.
-- Always use the Flex Component to achieve layouts.
+- Always use the Layout component to achieve layouts.
 - Always use the icon component for icons
 
 ## Notes

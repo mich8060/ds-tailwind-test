@@ -33,6 +33,8 @@ export interface AppShellProps {
     layout?: ShellLayoutConfig;
     slots?: AppShellSlots;
     children?: React.ReactNode;
+    /** Standalone mode: no navigation/menu spacing (desktop/mobile). */
+    standalone?: boolean;
     brand?: string;
     theme?: "light" | "dark";
     className?: string;
@@ -55,6 +57,7 @@ const AppShellMenuSlot = ({ children }: AppShellSectionProps) => <>{children}</>
 const AppShellContentSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
 const AppShellListviewSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
 const AppShellMainSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
+const AppShellFooterSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
 
 const hasRenderableContent = (node: React.ReactNode): boolean =>
     React.Children.toArray(node).some((child) => {
@@ -66,6 +69,7 @@ function AppShellComponent({
     layout,
     slots,
     children,
+    standalone = false,
     brand = "default",
     theme = "light",
     className = "",
@@ -109,29 +113,11 @@ function AppShellComponent({
         }
     }, [closeMobileMenu]);
 
-    const shellClass = [
-        "app-shell",
-        `brand-${brand}`,
-        `theme-${theme}`,
-        `density-${config.density}`,
-        `container-${config.container}`,
-        `padding-${config.padding}`,
-        isMobileMenuOpen ? "app-shell--mobile-menu-open" : "",
-        className,
-    ].join(" ");
-
-
-    const Footer = slots?.Footer ?? (
-        <footer className="app-shell__footer">
-            <span>© {new Date().getFullYear()} UDS Sample</span>
-            <span className="app-shell__footerRight">Brand: {brand} · Theme: {theme}</span>
-        </footer>
-    );
-
     let customMenu: React.ReactNode = null;
     let customContent: React.ReactNode = null;
     let customListview: React.ReactNode = null;
     let customMain: React.ReactNode = null;
+    let customFooter: React.ReactNode = null;
 
     const topLevelChildren = React.Children.toArray(children) as React.ReactElement<{ children?: React.ReactNode }>[];
     for (const child of topLevelChildren) {
@@ -141,6 +127,10 @@ function AppShellComponent({
         }
         if (child.type === AppShellContentSlot) {
             customContent = child.props.children;
+            continue;
+        }
+        if (child.type === AppShellFooterSlot) {
+            customFooter = child.props.children;
         }
     }
 
@@ -154,7 +144,20 @@ function AppShellComponent({
             customMain = child.props.children;
         }
     }
-    const hasSidebarMenu = config.sidebar && hasRenderableContent(customMenu);
+    const resolvedFooter = slots?.Footer ?? customFooter;
+    const hasSidebarMenu = !standalone && config.sidebar && hasRenderableContent(customMenu);
+
+    const shellClass = [
+        "app-shell",
+        `brand-${brand}`,
+        `theme-${theme}`,
+        `density-${config.density}`,
+        `container-${config.container}`,
+        `padding-${config.padding}`,
+        hasSidebarMenu ? "app-shell--has-nav" : "app-shell--standalone",
+        isMobileMenuOpen ? "app-shell--mobile-menu-open" : "",
+        className,
+    ].join(" ");
 
     return (
         <div className={shellClass}>
@@ -214,7 +217,7 @@ function AppShellComponent({
                             {customMain}
                         </section>
                     </main>
-                    {config.footer ? Footer : null}
+                    {config.footer && hasRenderableContent(resolvedFooter) ? resolvedFooter : null}
                 </div>
             </div>
             {hasSidebarMenu ? (
@@ -234,6 +237,7 @@ type AppShellCompound = React.FC<AppShellProps> & {
     Content: typeof AppShellContentSlot;
     Listview: typeof AppShellListviewSlot;
     Main: typeof AppShellMainSlot;
+    Footer: typeof AppShellFooterSlot;
 };
 
 export const AppShell = AppShellComponent as AppShellCompound;
@@ -241,3 +245,4 @@ AppShell.Menu = AppShellMenuSlot;
 AppShell.Content = AppShellContentSlot;
 AppShell.Listview = AppShellListviewSlot;
 AppShell.Main = AppShellMainSlot;
+AppShell.Footer = AppShellFooterSlot;

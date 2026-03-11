@@ -2,19 +2,31 @@ import type { ComponentSpec } from "../../specs/spec.types";
 
 export const FlexSpec: ComponentSpec = {
   name: "Flex",
-  tier: 2,
-  purpose: "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and width behavior.",
+  tier: 1,
+  purpose: "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and spacing.",
   variants: {
-    fullWidth: {
-      type: "boolean",
-      default: false
+    direction: {
+      type: "enum",
+      values: ["row", "column"],
+      default: "row",
     },
-    span: {
-      type: "boolean",
-      default: false
-    }
+    justifyContent: {
+      type: "enum",
+      values: ["flex-start", "center", "flex-end", "space-between", "space-around", "space-evenly"],
+      default: "flex-start",
+    },
+    alignItems: {
+      type: "enum",
+      values: ["stretch", "flex-start", "center", "flex-end", "baseline"],
+      default: "stretch",
+    },
+    wrap: {
+      type: "enum",
+      values: ["nowrap", "wrap", "wrap-reverse"],
+      default: "nowrap",
+    },
   },
   states: ["default"],
-  tokensUsed: [],
-  accessibility: { role: "generic", keyboard: [] }
+  tokensUsed: ["--uds-gap-*", "--uds-spacing-*"],
+  accessibility: { role: "generic", keyboard: ["Tab"] },
 };

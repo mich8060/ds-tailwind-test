@@ -4,6 +4,9 @@ export interface ActionMenuProps extends ButtonHTMLAttributes<HTMLButtonElement>
   trigger?: unknown;
   items?: unknown[];
   placement?: string;
+  variant?: "default" | "autosuggest" | "search";
+  searchPlaceholder?: string;
+  noResultsText?: string;
   fullWidth?: boolean;
   disabled?: boolean;
   onOpenChange?: (...args: unknown[]) => void;

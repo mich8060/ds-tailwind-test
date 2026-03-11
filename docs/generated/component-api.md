@@ -21,6 +21,20 @@ This file is generated from `src/design-system/components/*/*.spec.ts`.
 | --- | --- | --- | --- |
 | _none_ | - | - | - |
 
+### AppShell
+
+Top-level application shell that composes menu, content, and main regions for consistent page architecture.
+
+- Source: `src/design-system/components/AppShell/AppShell.spec.ts`
+- Tier: `1`
+- States: `default`
+- Allowed children: `Menu`, `Container`, `Layout`, `Text`, `Button`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| `brand` | `enum` | default, comphealth, weatherby, connect, locumsmart, modio, gms, wireframe | `default` |
+| `theme` | `enum` | light, dark | `light` |
+
 ### Avatar
 
 - Source: `src/design-system/components/Avatar/Avatar.spec.ts`
@@ -59,7 +73,7 @@ This file is generated from `src/design-system/components/*/*.spec.ts`.
 ### Button
 
 - Source: `src/design-system/components/Button/Button.spec.ts`
-- Allowed parents: `AppShell`, `Container`, `Flex`, `Modal`, `Table`, `Tabs`
+- Allowed parents: `AppShell`, `Container`, `Layout`, `Modal`, `Table`, `Tabs`
 - Disallowed children: `Button`
 
 | Prop | Type | Allowed Values | Default |
@@ -153,7 +167,7 @@ Provides a reusable content wrapper with optional filled or transparent surface 
 - Tier: `2`
 - States: `default`
 - Allowed parents: `AppShell`, `root`
-- Allowed children: `Flex`, `Table`, `Text`, `Button`, `Field`, `Divider`, `Tag`
+- Allowed children: `Layout`, `Table`, `Text`, `Button`, `Field`, `Divider`, `Tag`
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
@@ -295,17 +309,18 @@ Provide a clear, branded fallback when a section has no content, data, or search
 
 ### Flex
 
-Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and width behavior.
+Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and spacing.
 
 - Source: `src/design-system/components/Flex/Flex.spec.ts`
-- Tier: `2`
+- Tier: `1`
 - States: `default`
-- Allowed parents: `AppShell`, `Container`
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
-| `fullWidth` | `boolean` | - | `false` |
-| `span` | `boolean` | - | `false` |
+| `alignItems` | `enum` | stretch, flex-start, center, flex-end, baseline | `stretch` |
+| `direction` | `enum` | row, column | `row` |
+| `justifyContent` | `enum` | flex-start, center, flex-end, space-between, space-around, space-evenly | `flex-start` |
+| `wrap` | `enum` | nowrap, wrap, wrap-reverse | `nowrap` |
 
 ### Icon
 
@@ -332,6 +347,20 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
 | `appearance` | `enum` | light, dark | `light` |
+
+### Layout
+
+Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and width behavior.
+
+- Source: `src/design-system/components/Layout/Layout.spec.ts`
+- Tier: `2`
+- States: `default`
+- Allowed parents: `AppShell`, `Container`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| `appearance` | `enum` | full, equal, right, left | `full` |
+| `fullWidth` | `boolean` | - | `false` |
 
 ### Menu
 
@@ -579,7 +608,7 @@ Applies UDS typography variants with governed weight and leading options while p
 - Source: `src/design-system/components/Text/Text.spec.ts`
 - Tier: `2`
 - States: `default`
-- Allowed parents: `AppShell`, `Container`, `Flex`, `Menu`, `Modal`, `Tabs`
+- Allowed parents: `AppShell`, `Container`, `Layout`, `Menu`, `Modal`, `Tabs`
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |

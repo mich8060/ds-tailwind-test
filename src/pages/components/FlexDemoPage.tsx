@@ -1,29 +1,22 @@
 import type { CSSProperties } from "react";
 import { Code } from "../../design-system/components/Code";
 import { Divider } from "../../design-system/components/Divider";
-import { Flex } from "../../design-system/components/Flex";
+import { Layout } from "../../design-system/components/Layout";
+import { Statistics } from "../../design-system/components/Statistics";
 import { Text } from "../../design-system/components/Text";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 
 const FLEX_PROPS: ComponentPropRow[] = [
   { prop: "direction", type: '"row" | "column"', defaultValue: '"row"', description: "Sets the flex direction." },
+  { prop: "appearance", type: '"full" | "equal" | "right" | "left"', defaultValue: '"full"', description: "Applies preset two-column layout ratios for page/content composition." },
   { prop: "gap", type: "string", defaultValue: '"0"', description: "Spacing between children (supports UDS spacing tokens)." },
   { prop: "alignItems", type: "string", defaultValue: '"stretch"', description: "Cross-axis alignment for children." },
   { prop: "justifyContent", type: "string", defaultValue: '"flex-start"', description: "Main-axis alignment and distribution of children." },
-  { prop: "top", type: "boolean", defaultValue: "false", description: "Shorthand vertical start alignment (`alignItems` for row, `justifyContent` for column)." },
-  { prop: "bottom", type: "boolean", defaultValue: "false", description: "Shorthand vertical end alignment (`alignItems` for row, `justifyContent` for column)." },
-  { prop: "left", type: "boolean", defaultValue: "false", description: "Shorthand horizontal start alignment (`justifyContent` for row, `alignItems` for column)." },
-  { prop: "right", type: "boolean", defaultValue: "false", description: "Shorthand horizontal end alignment (`justifyContent` for row, `alignItems` for column)." },
   { prop: "itemsPerRow", type: "number", defaultValue: "-", description: "For row layouts, fixes how many items appear in each row and wraps the rest." },
-  { prop: "ItemsPerRow", type: "number", defaultValue: "-", description: "Alias of `itemsPerRow`." },
   { prop: "wrap", type: "boolean", defaultValue: "false", description: "Allows items to wrap onto multiple lines when true." },
-  { prop: "fullWidth", type: "boolean", defaultValue: "false", description: "Expands the flex container to span 100% width." },
-  { prop: "span", type: "boolean", defaultValue: "false", description: "Applies `flex: 1` to all first-level children." },
-  { prop: "Flex.Full", type: "compound child", defaultValue: "-", description: "Wrap a specific child to apply `flex: 1` selectively." },
-  { prop: "className", type: "string", defaultValue: '""', description: "Adds custom CSS classes to the root element." },
-  { prop: "style", type: "object", defaultValue: "{}", description: "Applies inline styles to the root element." },
-  { prop: "children", type: "ReactNode", defaultValue: "-", description: "Elements rendered inside the flex container." },
+  { prop: "fullWidth", type: "boolean", defaultValue: "false", description: "Expands the container to 100% width and applies `flex: 1` to first-level children." },
+  { prop: "Layout.Fill", type: "compound child", defaultValue: "-", description: "Wrap a specific child to apply `flex: 1` selectively." },
 ];
 
 const itemStyle: CSSProperties = {
@@ -35,35 +28,40 @@ const itemStyle: CSSProperties = {
 
 const item = (label: string) => <div style={itemStyle}>{label}</div>;
 
-const DIRECTION_SNIPPET = `<Flex direction="row" gap="8">
+const DIRECTION_SNIPPET = `<Layout direction="row" gap="8">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
-</Flex>
+</Layout>
 
-<Flex direction="column" gap="8">
+<Layout direction="column" gap="8">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
-</Flex>`;
+</Layout>`;
 
-const TOP_BOTTOM_LEFT_RIGHT_SNIPPET = `<Flex direction="row" top left gap="8" style={{ minHeight: "96px" }}>
-  <div>Top Left</div>
-  <div>Aligned</div>
-</Flex>
+const APPEARANCE_SNIPPET = `<Layout appearance="equal" gap="12">
+  <div>Column A</div>
+  <div>Column B</div>
+</Layout>
 
-<Flex direction="row" bottom right gap="8" style={{ minHeight: "96px" }}>
-  <div>Bottom Right</div>
-  <div>Aligned</div>
-</Flex>`;
+<Layout appearance="right" gap="12">
+  <div>Sidebar</div>
+  <div>Main content</div>
+</Layout>
 
-const GAP_SNIPPET = `<Flex direction="row" gap="16">
+<Layout appearance="left" gap="12">
+  <div>Main content</div>
+  <div>Sidebar</div>
+</Layout>`;
+
+const GAP_SNIPPET = `<Layout direction="row" gap="16">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
-</Flex>`;
+</Layout>`;
 
-const ALIGNMENT_SNIPPET = `<Flex
+const ALIGNMENT_SNIPPET = `<Layout
   direction="row"
   alignItems="center"
   justifyContent="space-between"
@@ -72,22 +70,22 @@ const ALIGNMENT_SNIPPET = `<Flex
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
-</Flex>`;
+</Layout>`;
 
-const SPAN_SNIPPET = `<Flex direction="row" gap="8" span>
+const FULL_WIDTH_SNIPPET = `<Layout direction="row" gap="8" fullWidth>
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
-</Flex>`;
+</Layout>`;
 
-const FLEX_FULL_SNIPPET = `<Flex direction="row" gap="8" style={{ width: "100%" }}>
-  <Flex.Full>
+const FLEX_FILL_SNIPPET = `<Layout direction="row" gap="8" style={{ width: "100%" }}>
+  <Layout.Fill>
     <div>Grows</div>
-  </Flex.Full>
+  </Layout.Fill>
   <div>Natural width</div>
-</Flex>`;
+</Layout>`;
 
-const BORDERED_LAYOUT_SNIPPET = `<Flex
+const BORDERED_LAYOUT_SNIPPET = `<Layout
   direction="column"
   gap="12"
   fullWidth
@@ -98,33 +96,42 @@ const BORDERED_LAYOUT_SNIPPET = `<Flex
   }}
 >
   <Text>Section title</Text>
-  <Flex direction="row" gap="8" wrap>
+  <Layout direction="row" gap="8" wrap>
     <div>Filter A</div>
     <div>Filter B</div>
     <div>Filter C</div>
-  </Flex>
-</Flex>`;
+  </Layout>
+</Layout>`;
 
-const WRAP_SNIPPET = `<Flex direction="row" gap="8" wrap style={{ maxWidth: "300px" }}>
+const WRAP_SNIPPET = `<Layout direction="row" gap="8" wrap style={{ maxWidth: "300px" }}>
   {[1, 2, 3, 4, 5, 6].map((num) => (
     <div key={num}>Item {num}</div>
   ))}
-</Flex>`;
+</Layout>`;
 
-const ITEMS_PER_ROW_SNIPPET = `<Flex direction="row" gap="8" itemsPerRow={3}>
+const ITEMS_PER_ROW_SNIPPET = `<Layout direction="row" gap="8" itemsPerRow={3}>
   {["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"].map((label) => (
     <div key={label}>{label}</div>
   ))}
-</Flex>`;
+</Layout>`;
 
-export function FlexDemoPage() {
+const ITEMS_PER_ROW_STATISTICS_SNIPPET = `<Layout direction="row" gap="8" itemsPerRow={3}>
+  <Statistics label="Total Placements" value="159" helperText="Year to date" icon="Briefcase" iconAccent="blue" />
+  <Statistics label="Total Revenue" value="$1.58M" helperText="Net billed" icon="CurrencyDollar" iconAccent="green" />
+  <Statistics label="Active Providers" value="138" helperText="Currently on assignment" icon="Users" iconAccent="indigo" />
+  <Statistics label="Avg. Fill Time" value="10.8 days" helperText="Across all specialties" icon="Timer" iconAccent="amber" />
+  <Statistics label="Renewal Rate" value="74%" helperText="Provider contract renewals" icon="ArrowsCounterClockwise" iconAccent="cyan" />
+  <Statistics label="Client Satisfaction" value="4.7 / 5" helperText="Average facility rating" icon="Star" iconAccent="yellow" />
+</Layout>`;
+
+export function LayoutDemoPage() {
   return (
     <DocPageLayout
-      title="Flex"
-      description="Flex is a layout utility for arranging items with direction, spacing, alignment, and wrapping."
+      title="Layout"
+      description="Layout is a utility for arranging items with direction, spacing, alignment, and wrapping."
     >
-      <Flex direction="column" gap="24">
-        <Flex direction="column" gap="12">
+      <Layout direction="column" gap="24">
+        <Layout direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
             Direction
           </Text>
@@ -135,70 +142,64 @@ export function FlexDemoPage() {
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">
             Row (default)
           </Text>
-          <Flex direction="row" gap="8">
+          <Layout direction="row" gap="8">
             {item("Item 1")}
             {item("Item 2")}
             {item("Item 3")}
-          </Flex>
+          </Layout>
 
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">
             Column
           </Text>
-          <Flex direction="column" gap="8">
+          <Layout direction="column" gap="8">
             {item("Item 1")}
             {item("Item 2")}
             {item("Item 3")}
-          </Flex>
+          </Layout>
 
           <Code language="tsx" code={DIRECTION_SNIPPET} />
-        </Flex>
+        </Layout>
 
         <Divider variant="solid" />
 
-        <Flex direction="column" gap="12">
+        <Layout direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
-            Top & Bottom / Left & Right
+            Appearance
           </Text>
           <Text as="p" variant="body-16" leading="regular">
-            Use <code>top</code>, <code>bottom</code>, <code>left</code>, and <code>right</code> as alignment shorthands.
+            Use <code>appearance</code> presets for common two-column page splits.
           </Text>
 
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">
-            Top Left
+            equal (50/50)
           </Text>
-          <Flex
-            direction="row"
-            top
-            left
-            gap="8"
-            style={{ minHeight: "96px", border: "var(--uds-border-width-1) dashed var(--uds-border-secondary)" }}
-          >
-            {item("Top")}
-            {item("Left")}
-            {item("Aligned")}
-          </Flex>
+          <Layout appearance="equal" gap="12">
+            {item("Column A")}
+            {item("Column B")}
+          </Layout>
 
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">
-            Bottom Right
+            right (33/66)
           </Text>
-          <Flex
-            direction="row"
-            bottom
-            right
-            gap="8"
-            style={{ minHeight: "96px", border: "var(--uds-border-width-1) dashed var(--uds-border-secondary)" }}
-          >
-            {item("Bottom")}
-            {item("Right")}
-            {item("Aligned")}
-          </Flex>
+          <Layout appearance="right" gap="12">
+            {item("Sidebar")}
+            {item("Main content")}
+          </Layout>
 
-          <Code language="tsx" code={TOP_BOTTOM_LEFT_RIGHT_SNIPPET} />
-        </Flex>
+          <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+            left (66/33)
+          </Text>
+          <Layout appearance="left" gap="12">
+            {item("Main content")}
+            {item("Sidebar")}
+          </Layout>
+
+          <Code language="tsx" code={APPEARANCE_SNIPPET} />
+        </Layout>
 
         <Divider variant="solid" />
 
-        <Flex direction="column" gap="12">
+        <Layout direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
             Gap
           </Text>
@@ -207,26 +208,26 @@ export function FlexDemoPage() {
           </Text>
 
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">Gap 4px</Text>
-          <Flex direction="row" gap="4">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Flex>
+          <Layout direction="row" gap="4">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Layout>
 
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">Gap 8px</Text>
-          <Flex direction="row" gap="8">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Flex>
+          <Layout direction="row" gap="8">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Layout>
 
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">Gap 16px</Text>
-          <Flex direction="row" gap="16">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Flex>
+          <Layout direction="row" gap="16">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Layout>
 
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">Gap 24px</Text>
-          <Flex direction="row" gap="24">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Flex>
+          <Layout direction="row" gap="24">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Layout>
 
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">Gap 32px</Text>
-          <Flex direction="row" gap="32">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Flex>
+          <Layout direction="row" gap="32">{item("Item 1")}{item("Item 2")}{item("Item 3")}</Layout>
 
           <Code language="tsx" code={GAP_SNIPPET} />
-        </Flex>
+        </Layout>
 
         <Divider variant="solid" />
 
-        <Flex direction="column" gap="12">
+        <Layout direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
             Alignment
           </Text>
@@ -237,64 +238,64 @@ export function FlexDemoPage() {
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">
             Align Items: Center
           </Text>
-          <Flex direction="row" alignItems="center" gap="8" style={{ minHeight: "64px" }}>
+          <Layout direction="row" alignItems="center" gap="8" style={{ minHeight: "64px" }}>
             {item("Item 1")}
             {item("Item 2")}
             {item("Item 3")}
-          </Flex>
+          </Layout>
 
           <Text as="h3" variant="body-16" weight="semibold" leading="regular">
             Justify Content: Space Between
           </Text>
-          <Flex direction="row" justifyContent="space-between" gap="8" style={{ width: "100%" }}>
+          <Layout direction="row" justifyContent="space-between" gap="8" style={{ width: "100%" }}>
             {item("Item 1")}
             {item("Item 2")}
             {item("Item 3")}
-          </Flex>
+          </Layout>
 
           <Code language="tsx" code={ALIGNMENT_SNIPPET} />
-        </Flex>
+        </Layout>
 
         <Divider variant="solid" />
 
-        <Flex direction="column" gap="12">
+        <Layout direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
-            Span
+            Full Width
           </Text>
           <Text as="p" variant="body-16" leading="regular">
-            Set <code>span</code> to apply <code>flex: 1</code> to all first-level children.
+            Use <code>fullWidth</code> to make the container 100% wide and have first-level children share available space.
           </Text>
 
-          <Flex direction="row" gap="8" span>
+          <Layout direction="row" gap="8" fullWidth>
             {item("Item 1")}
             {item("Item 2")}
             {item("Item 3")}
-          </Flex>
+          </Layout>
 
-          <Code language="tsx" code={SPAN_SNIPPET} />
-        </Flex>
+          <Code language="tsx" code={FULL_WIDTH_SNIPPET} />
+        </Layout>
 
         <Divider variant="solid" />
 
-        <Flex direction="column" gap="12">
+        <Layout direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
             Selective Full Child
           </Text>
           <Text as="p" variant="body-16" leading="regular">
-            Use <code>Flex.Full</code> when only specific children should grow with <code>flex: 1</code>.
+            Use <code>Layout.Fill</code> when only specific children should grow with <code>flex: 1</code>.
           </Text>
 
-          <Flex direction="row" gap="8" style={{ width: "100%" }}>
-            <Flex.Full>{item("Grows")}</Flex.Full>
+          <Layout direction="row" gap="8" style={{ width: "100%" }}>
+            <Layout.Fill>{item("Grows")}</Layout.Fill>
             {item("Natural width")}
-          </Flex>
+          </Layout>
 
-          <Code language="tsx" code={FLEX_FULL_SNIPPET} />
-        </Flex>
+          <Code language="tsx" code={FLEX_FILL_SNIPPET} />
+        </Layout>
 
         <Divider variant="solid" />
 
-        <Flex direction="column" gap="12">
+        <Layout direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
             Bordered Layout Example
           </Text>
@@ -302,7 +303,7 @@ export function FlexDemoPage() {
             Combine <code>fullWidth</code> with border tokens to create section wrappers and grouped content regions.
           </Text>
 
-          <Flex
+          <Layout
             direction="column"
             gap="12"
             fullWidth
@@ -313,19 +314,19 @@ export function FlexDemoPage() {
             }}
           >
             <Text as="p" variant="body-14" leading="regular">Section title</Text>
-            <Flex direction="row" gap="8" wrap>
+            <Layout direction="row" gap="8" wrap>
               {item("Filter A")}
               {item("Filter B")}
               {item("Filter C")}
-            </Flex>
-          </Flex>
+            </Layout>
+          </Layout>
 
           <Code language="tsx" code={BORDERED_LAYOUT_SNIPPET} />
-        </Flex>
+        </Layout>
 
         <Divider variant="solid" />
 
-        <Flex direction="column" gap="12">
+        <Layout direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
             Wrap
           </Text>
@@ -333,37 +334,54 @@ export function FlexDemoPage() {
             Allow flex items to wrap to the next line using the <code>wrap</code> prop.
           </Text>
 
-          <Flex direction="row" gap="8" wrap style={{ maxWidth: "300px" }}>
+          <Layout direction="row" gap="8" wrap style={{ maxWidth: "300px" }}>
             {[1, 2, 3, 4, 5, 6].map((num) => (
               <div key={num} style={itemStyle}>Item {num}</div>
             ))}
-          </Flex>
+          </Layout>
 
           <Code language="tsx" code={WRAP_SNIPPET} />
-        </Flex>
+        </Layout>
 
         <Divider variant="solid" />
 
-        <Flex direction="column" gap="12">
+        <Layout direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
             Items Per Row
           </Text>
           <Text as="p" variant="body-16" leading="regular">
-            Set <code>itemsPerRow</code> (or <code>ItemsPerRow</code>) to keep a fixed number of items per row and wrap the rest.
+            Set <code>itemsPerRow</code> to keep a fixed number of items per row and wrap the rest.
           </Text>
 
-          <Flex direction="row" gap="8" itemsPerRow={3}>
+          <Layout direction="row" gap="8" itemsPerRow={3}>
             {["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"].map((label) => (
               <div key={label} style={itemStyle}>{label}</div>
             ))}
-          </Flex>
+          </Layout>
 
           <Code language="tsx" code={ITEMS_PER_ROW_SNIPPET} />
-        </Flex>
+
+          <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+            Statistics Cards (3 Per Row)
+          </Text>
+          <Layout direction="row" gap="8" itemsPerRow={3}>
+            <Statistics label="Total Placements" value="159" helperText="Year to date" icon="Briefcase" iconAccent="blue" />
+            <Statistics label="Total Revenue" value="$1.58M" helperText="Net billed" icon="CurrencyDollar" iconAccent="green" />
+            <Statistics label="Active Providers" value="138" helperText="Currently on assignment" icon="Users" iconAccent="indigo" />
+            <Statistics label="Avg. Fill Time" value="10.8 days" helperText="Across all specialties" icon="Timer" iconAccent="amber" />
+            <Statistics label="Renewal Rate" value="74%" helperText="Provider contract renewals" icon="ArrowsCounterClockwise" iconAccent="cyan" />
+            <Statistics label="Client Satisfaction" value="4.7 / 5" helperText="Average facility rating" icon="Star" iconAccent="yellow" />
+          </Layout>
+
+          <Code language="tsx" code={ITEMS_PER_ROW_STATISTICS_SNIPPET} />
+        </Layout>
 
         <Divider variant="solid" />
-        <ComponentPropsTable rows={FLEX_PROPS} title="Flex Props" />
-      </Flex>
+        <ComponentPropsTable rows={FLEX_PROPS} title="Layout Props" />
+      </Layout>
     </DocPageLayout>
   );
 }
+
+// Backward-compatible page export.
+export const FlexDemoPage = LayoutDemoPage;

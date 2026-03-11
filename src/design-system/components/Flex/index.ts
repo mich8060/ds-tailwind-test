@@ -1,2 +1,2 @@
-export { Flex } from "./Flex";
-export type { FlexProps, FlexItemProps } from "./Flex.types";
+export { Layout, Flex } from "../Layout";
+export type { FlexProps, FlexItemProps } from "../Layout";

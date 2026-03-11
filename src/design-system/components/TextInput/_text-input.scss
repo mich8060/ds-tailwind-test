@@ -62,12 +62,16 @@
 
   // ── State: focused ──────────────────────────────────
   &--focused {
-    border-color: var(--uds-border-brand-primary);
+    border-color: var(--uds-system-action-primary);
+    outline: 3px solid var(--uds-system-action-tertiary);
+    outline-offset: 0;
   }
 
   // ── State: error ────────────────────────────────────
   &--error {
-    border-color: var(--uds-text-error, #ef4444);
+    border-color: var(--uds-system-destructive-primary);
+    outline: 3px solid var(--uds-system-destructive-tertiary);
+    outline-offset: 0;
   }
 
   // ── State: disabled ─────────────────────────────────
@@ -82,12 +86,21 @@
 
   // ── Focus ring ──────────────────────────────────────
   &:focus:not(:disabled) {
-    outline: none;
-    border-color: var(--uds-border-brand-primary);
+    outline: 3px solid var(--uds-system-action-tertiary);
+    outline-offset: 0;
+    border-color: var(--uds-system-action-primary);
   }
 
   &:focus-visible {
-    outline: none;
+    outline: 3px solid var(--uds-system-action-tertiary);
+    outline-offset: 0;
+  }
+
+  &--error:focus:not(:disabled),
+  &--error:focus-visible {
+    border-color: var(--uds-system-destructive-primary);
+    outline: 3px solid var(--uds-system-destructive-tertiary);
+    outline-offset: 0;
   }
 
   // ── Icon padding adjustments ────────────────────────

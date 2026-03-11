@@ -65,7 +65,7 @@
     max-height: 80vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
     animation: uds-modal-slide-up var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
     outline: none;
 
@@ -134,7 +134,7 @@
     // ── Body ─────────────────────────────────
     &__body {
         flex: 1;
-        overflow-y: auto;
+        overflow: visible;
         padding: var(--uds-spacing-24);
     }
 

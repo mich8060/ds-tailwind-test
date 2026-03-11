@@ -1,5 +1,5 @@
 import type { ButtonAppearance, ButtonLayout, ButtonSize } from "./components/Button/Button.types";
-import type { FlexAlignItems, FlexDirection, FlexGapToken, FlexJustifyContent, FlexWrap } from "./components/Flex/Flex.types";
+import type { FlexAlignItems, FlexDirection, FlexGapToken, FlexJustifyContent, FlexWrap } from "./components/Layout/Layout.types";
 import type { IconAppearance } from "./components/Icon/Icon.types";
 import type { TextLeading, TextVariant, TextWeight } from "./components/Text/Text.types";
 import type { TextInputIconPosition, TextInputSize, TextInputState } from "./components/TextInput/TextInput.types";

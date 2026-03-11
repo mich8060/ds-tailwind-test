@@ -13,10 +13,16 @@ Hard requirements:
 - Use canonical prop names only (reject Ant-style aliases like `Menu.items`, `Flex.vertical`, `Button.type`).
 - Default `Container` to `appearance=\"transparent\"` and `padding=\"large\"` (24px) unless a different requirement is explicit.
 - Default `Menu.showSearch` to `false` unless search is explicitly required.
+- In `Menu` account actions, default `accountMenuItems` to:
+  1. `Contact` with icon `Phone`
+  2. `Feedback` with icon `ChatCenteredText`
+  3. `Sign out` with icon `SignOut` (`destructive: true`)
 - Return deterministic JSON only.
 
 Preferred flow:
 1. Start from `@mich8060/unified-design-system/ai/templates`.
+1.0 Load `@mich8060/unified-design-system/ai/token-catalog` and `@mich8060/unified-design-system/ai/layout-architecture`.
+1.1 Copy the selected template `patternId` into `audit.patternId` in the output.
 2. Resolve remaining intent decisions using `@mich8060/unified-design-system/ai/manifest.json` -> `intentComponentMappings`.
 3. Load brand menu definitions from `@mich8060/unified-design-system/ai/navigation`.
 4. Fill template slots.
@@ -58,6 +64,7 @@ Starter scaffold:
   },
   "audit": {
     "source": "figma-make",
+    "patternId": "AuthForm",
     "notes": "UDS-only generation"
   }
 }

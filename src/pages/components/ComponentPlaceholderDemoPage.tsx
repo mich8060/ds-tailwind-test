@@ -23,6 +23,7 @@ const COMPONENT_VARIANTS: Record<string, VariantConfig> = {
   },
   Button: { layout: ["label-only", "icon-left", "icon-right", "icon-only", "only"], appearance: ["primary", "soft", "outline", "text", "ghost", "disabled", "destructive"], size: ["large", "default", "small", "xsmall"] },
   Chip: { selected: ["false", "true"], rounded: ["false", "true"], size: ["default", "compact"], iconplacement: ["both", "left", "right", "none"] },
+  Code: { inline: ["false", "true"], language: ["tsx", "javascript", "json", "bash"] },
   Container: {
     appearance: ["default", "transparent"],
     padding: ["none", "xsmall", "small", "default", "large", "xlarge"],
@@ -38,6 +39,7 @@ const COMPONENT_VARIANTS: Record<string, VariantConfig> = {
   Flex: { fullWidth: ["true", "false"] },
   ImageAspect: { aspectratio: ["square", "video", "4-3", "3-2", "21-9", "portrait", "auto"] },
   Key: { appearance: ["light", "dark"] },
+  Link: { appearance: ["primary", "secondary"], underline: ["always", "hover", "none"], disabled: ["false", "true"] },
   Modal: { size: ["small", "default", "large", "fullscreen"] },
   NumberInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
   PasswordInput: { size: ["compact", "default"], state: ["default", "focused", "error", "disabled"] },
@@ -73,6 +75,7 @@ const COMPONENTS: Record<string, React.ComponentType<Record<string, unknown>>> =
   Calendar: DesignSystem.Calendar as React.ComponentType<Record<string, unknown>>,
   Checkbox: DesignSystem.Checkbox as React.ComponentType<Record<string, unknown>>,
   Chip: DesignSystem.Chip as React.ComponentType<Record<string, unknown>>,
+  Code: DesignSystem.Code as React.ComponentType<Record<string, unknown>>,
   Container: DesignSystem.Container as React.ComponentType<Record<string, unknown>>,
   CurrencyInput: DesignSystem.CurrencyInput as React.ComponentType<Record<string, unknown>>,
   DateInput: DesignSystem.DateInput as React.ComponentType<Record<string, unknown>>,
@@ -88,6 +91,7 @@ const COMPONENTS: Record<string, React.ComponentType<Record<string, unknown>>> =
   Flex: DesignSystem.Flex as React.ComponentType<Record<string, unknown>>,
   ImageAspect: DesignSystem.ImageAspect as React.ComponentType<Record<string, unknown>>,
   Key: DesignSystem.Key as React.ComponentType<Record<string, unknown>>,
+  Link: DesignSystem.Link as React.ComponentType<Record<string, unknown>>,
   Menu: DesignSystem.Menu as React.ComponentType<Record<string, unknown>>,
   MicroCalendar: DesignSystem.MicroCalendar as React.ComponentType<Record<string, unknown>>,
   Modal: DesignSystem.Modal as React.ComponentType<Record<string, unknown>>,
@@ -118,10 +122,17 @@ const BASE_PROPS: Record<string, Record<string, unknown>> = {
     items: [{ label: "Edit", icon: "PencilSimple" }, { label: "Delete", icon: "Trash", destructive: true }],
   },
   Badge: { count: 8 },
-  Breadcrumb: { items: [{ label: "Home", href: "/" }, { label: "Components", href: "/components/button" }, { label: "Current Page" }] },
+  Breadcrumb: {
+    items: [
+      { label: "Unified Design System", href: "/" },
+      { label: "Components", href: "/components" },
+      { label: "Button" },
+    ],
+  },
   Calendar: { events: [{ id: "1", title: "Interview", date: new Date(), type: "assignment", status: "active" }], size: "compact" },
   Checkbox: { label: "Checkbox option" },
   Chip: { label: "Chip label", icon: "Star", badge: "2" },
+  Code: { language: "tsx", code: `<Button label="Save" appearance="primary" />` },
   Container: { children: <Text as="span" variant="body-14" leading="regular">Container content</Text> },
   CurrencyInput: { placeholder: "0.00" },
   DateInput: { placeholder: "Select date" },
@@ -150,6 +161,7 @@ const BASE_PROPS: Record<string, Record<string, unknown>> = {
   Flex: { direction: "row", gap: "8", children: <Text as="span" variant="body-14" leading="regular">Flex content</Text> },
   ImageAspect: { src: "https://picsum.photos/640/360", alt: "Example image", ratio: "video" },
   Key: { label: "Cmd+K" },
+  Link: { href: "#", children: "View details" },
   Menu: {
     navItems: [
       { label: "Overview", icon: "House", path: "/getting-started" },
@@ -375,6 +387,59 @@ const DROPDOWN_STATE_SNIPPET = `<Dropdown
   ]}
 />`;
 
+const CODE_INLINE_SNIPPET = `Use <Code inline language="tsx" code="<Button />" /> inside a sentence.`;
+
+const CODE_BLOCK_TSX_SNIPPET = `<Code
+  language="tsx"
+  code={\`<Layout direction="row" gap="8">
+  <Button label="Cancel" appearance="outline" />
+  <Button label="Save" appearance="primary" />
+</Layout>\`}
+/>`;
+
+const CODE_BLOCK_JSON_SNIPPET = `<Code
+  language="json"
+  code={\`{
+  "brand": "comphealth",
+  "theme": "light",
+  "layout": "default"
+}\`}
+/>`;
+
+const BREADCRUMB_TIERS_SNIPPET = `<Breadcrumb
+  items={[
+    // Tier 1
+    { label: "Unified Design System", href: "/" },
+    // Tier 2
+    { label: "Components", href: "/components" },
+    // Tier 3 (current page, no href)
+    { label: "Button" },
+  ]}
+/>\n// Tier depth comes from item order (index).`;
+
+const BREADCRUMB_DEEPER_TIERS_SNIPPET = `<Breadcrumb
+  items={[
+    // Tier 1
+    { label: "Unified Design System", href: "/" },
+    // Tier 2
+    { label: "Modules", href: "/modules" },
+    // Tier 3
+    { label: "Credentialing", href: "/modules/credentialing" },
+    // Tier 4 (current page)
+    { label: "Review & Sign" },
+  ]}
+/>\n// Last item is always the current page.`;
+
+const BREADCRUMB_PROP_ROWS: ComponentPropRow[] = [
+  {
+    prop: "items",
+    type: "Array<{ label: string; href?: string }>",
+    defaultValue: "-",
+    description:
+      "Ordered breadcrumb tiers. Tier depth is positional (index order), and the last item is rendered as the current page.",
+  },
+];
+
 class PreviewErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
@@ -581,7 +646,11 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
     description: `Variant values for ${aliasConfig[key] ?? key}.`,
   }));
   const bottomPropsRows =
-    componentName === "Dialog" ? DIALOG_PROP_ROWS : propsRows;
+    componentName === "Dialog"
+      ? DIALOG_PROP_ROWS
+      : componentName === "Breadcrumb"
+      ? BREADCRUMB_PROP_ROWS
+      : propsRows;
 
   const buildVariantProps = (key: string, value: string): Record<string, unknown> => {
     const resolvedProp = aliasConfig[key] ?? key;
@@ -676,7 +745,10 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
           {renderPreview(baseProps)}
         </Flex>
 
-        {(componentName === "Container" || componentName === "Dropdown") && (
+        {(componentName === "Container" ||
+          componentName === "Dropdown" ||
+          componentName === "Code" ||
+          componentName === "Breadcrumb") && (
           <>
             <Divider variant="solid" />
             <Flex direction="column" gap="12">
@@ -697,6 +769,19 @@ export function ComponentPlaceholderDemoPage({ componentName }: ComponentPlaceho
                   <Code language="tsx" code={DROPDOWN_PLACEHOLDER_SNIPPET} />
                   <Code language="tsx" code={DROPDOWN_CONTROLLED_SNIPPET} />
                   <Code language="tsx" code={DROPDOWN_STATE_SNIPPET} />
+                </>
+              )}
+              {componentName === "Code" && (
+                <>
+                  <Code language="tsx" code={CODE_INLINE_SNIPPET} />
+                  <Code language="tsx" code={CODE_BLOCK_TSX_SNIPPET} />
+                  <Code language="tsx" code={CODE_BLOCK_JSON_SNIPPET} />
+                </>
+              )}
+              {componentName === "Breadcrumb" && (
+                <>
+                  <Code language="tsx" code={BREADCRUMB_TIERS_SNIPPET} />
+                  <Code language="tsx" code={BREADCRUMB_DEEPER_TIERS_SNIPPET} />
                 </>
               )}
             </Flex>

@@ -1,6 +1,6 @@
 # Project Learnings Log
 
-Last updated: 2026-03-02
+Last updated: 2026-03-06
 
 Purpose:
 - Capture implementation learnings and constraints discovered while recreating the Candidate Profile experience with `@mich8060/unified-design-system`.
@@ -31,7 +31,7 @@ Purpose:
 - Apply brand/theme at shell level (via `AppShell`) rather than piecemeal overrides.
 
 4. Layout should favor UDS components before custom UI.
-- Prefer `Steps`, `Button`, `Tag`, `Icon`, `Card`, `Flex`, etc. over bespoke primitives.
+- Prefer `Steps`, `Button`, `Tag`, `Icon`, `Card`, `Layout`, etc. over bespoke primitives.
 
 5. Figma-derived spacing/sizing must be tokenized.
 - If Figma provides numeric spacing/radius/padding values, map to existing UDS tokens rather than hardcoded px values.

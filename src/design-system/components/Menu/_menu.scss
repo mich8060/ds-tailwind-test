@@ -217,6 +217,11 @@
                     color: var(--uds-text-primary);
 
                 }
+
+                &:focus-visible {
+                    outline: solid var(--uds-focus-ring-width) var(--uds-focus-ring-border);
+                    outline-offset: calc(var(--uds-focus-ring-offset) * -1);
+                }
             }
         }
 
@@ -229,7 +234,7 @@
             }
         }
 
-        &__item--open>.uds-menu_nav__item-link {
+        &__item--open > .uds-menu_nav__item-link {
             position: sticky;
             top: -24px;
             z-index: 1;
@@ -291,6 +296,11 @@
                 background-color: var(--uds-surface-tertiary);
             }
 
+            &:focus-visible {
+                outline: solid var(--uds-focus-ring-width) var(--uds-focus-ring-border);
+                outline-offset: calc(var(--uds-focus-ring-offset) * -1);
+            }
+
             &--active,
             &--active:visited {
                 border-left-color: var(--uds-text-primary);
@@ -299,8 +309,15 @@
         }
 
         &__item--active>.uds-menu_nav__item-link {
-            background-color: var(--uds-surface-brand-tertiary);
-            color: var(--uds-text-inverse);
+            background-color: var(--uds-button-surface-primary-default);
+            color: var(--uds-button-text-default);
+        }
+
+        // Keep active brand color for expanded/open accordion parents.
+        .uds-menu--expanded &__item.uds-menu_nav__item--open.uds-menu_nav__item--active > &__item-link {
+            background-color: var(--uds-button-surface-primary-default);
+            color: var(--uds-button-text-default);
+            border-bottom-color: transparent;
         }
     }
 

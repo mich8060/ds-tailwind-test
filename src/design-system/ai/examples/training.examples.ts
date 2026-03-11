@@ -10,6 +10,7 @@ export interface AITrainingExample {
     manifestVersion?: string;
     governanceVersion?: string;
     policyVersion?: string;
+    audit?: Record<string, unknown>;
   };
   expected: {
     status: "pass" | "fail";
@@ -26,27 +27,17 @@ export const UDS_TRAINING_EXAMPLES: readonly AITrainingExample[] = [
     id: "valid-auth-form",
     scenario: "Simple authentication container with semantic layout and one primary action.",
     kind: "valid",
-    tags: ["form", "auth", "field-wrapping"],
+    tags: ["form", "auth", "field-wrapping", "composition"],
     output: {
       tree: {
         type: "Container",
         props: { gap: "--uds-spacing-24" },
         children: [
-          {
-            type: "Container",
-            children: [
-              { type: "Text", props: { variant: "heading-24" } },
-              { type: "Field", children: [{ type: "TextInput", props: { type: "email", iconPosition: "left" } }] },
-              { type: "Field", children: [{ type: "TextInput", props: { type: "password" } }] },
-              {
-                type: "Flex",
-                children: [
-                  { type: "Button", props: { appearance: "primary", label: "Sign in" } },
-                  { type: "Button", props: { appearance: "text", label: "Forgot password?" } }
-                ]
-              }
-            ]
-          }
+          { type: "Text", props: { variant: "heading-24" } },
+          { type: "Field", children: [{ type: "TextInput", props: { type: "email", iconPosition: "left" } }] },
+          { type: "Field", children: [{ type: "TextInput", props: { type: "password" } }] },
+          { type: "Button", props: { appearance: "primary", label: "Sign in" } },
+          { type: "Button", props: { appearance: "text", label: "Forgot password?" } }
         ]
       }
     },
@@ -64,13 +55,8 @@ export const UDS_TRAINING_EXAMPLES: readonly AITrainingExample[] = [
       tree: {
         type: "Container",
         children: [
-          {
-            type: "Flex",
-            children: [
-              { type: "Text", props: { variant: "heading-24" } },
-              { type: "Button", props: { appearance: "primary", label: "Create row" } }
-            ]
-          },
+          { type: "Text", props: { variant: "heading-24" } },
+          { type: "Button", props: { appearance: "primary", label: "Create row" } },
           {
             type: "Table",
             children: [
@@ -86,6 +72,77 @@ export const UDS_TRAINING_EXAMPLES: readonly AITrainingExample[] = [
     expected: { status: "pass" },
     rationale: {
       why: "Uses allowed Table children and keeps primary action count within limit."
+    }
+  },
+  {
+    id: "valid-pattern-authform",
+    scenario: "Auth form output declares patternId and satisfies required structure components.",
+    kind: "valid",
+    tags: ["pattern", "auth", "deterministic"],
+    output: {
+      tree: {
+        type: "Container",
+        props: { gap: "--uds-spacing-24" },
+        children: [
+          { type: "Text", props: { variant: "heading-24", text: "Sign in" } },
+          { type: "Field", children: [{ type: "TextInput", props: { type: "email" } }] },
+          { type: "Field", children: [{ type: "TextInput", props: { type: "password" } }] },
+          { type: "Button", props: { appearance: "primary", label: "Sign in" } }
+        ]
+      },
+      audit: {
+        patternId: "AuthForm",
+        source: "training-example"
+      }
+    },
+    expected: { status: "pass" },
+    rationale: {
+      why: "Declares patternId and includes all required AuthForm components in canonical order."
+    }
+  },
+  {
+    id: "invalid-pattern-missing-required-component",
+    scenario: "Pattern-bound output omits a required component from declared pattern.",
+    kind: "invalid",
+    tags: ["pattern", "structure", "governance"],
+    output: {
+      tree: {
+        type: "Container",
+        children: [
+          { type: "Text", props: { variant: "heading-24", text: "Sign in" } },
+          { type: "Field", children: [{ type: "TextInput", props: { type: "email" } }] },
+          { type: "Field", children: [{ type: "TextInput", props: { type: "password" } }] }
+        ]
+      },
+      audit: {
+        patternId: "AuthForm",
+        source: "training-example"
+      }
+    },
+    expected: { status: "fail", violationCodes: ["RULE_PATTERN_REQUIRED_COMPONENT_MISSING"] },
+    rationale: {
+      why: "AuthForm requires a primary submit Button and it is missing.",
+      fix: "Add Button with appearance='primary' in the form action section."
+    }
+  },
+  {
+    id: "invalid-pattern-id-unknown",
+    scenario: "Output declares a patternId not present in the pattern registry.",
+    kind: "invalid",
+    tags: ["pattern", "contract"],
+    output: {
+      tree: {
+        type: "Container",
+        children: [{ type: "Text", props: { variant: "body-16", text: "Hello" } }]
+      },
+      audit: {
+        patternId: "UnknownPattern123",
+      }
+    },
+    expected: { status: "fail", violationCodes: ["RULE_UNKNOWN_PATTERN_ID"] },
+    rationale: {
+      why: "Pattern-bound generation must reference known patterns only.",
+      fix: "Use a valid patternId from PatternRegistry."
     }
   },
   {

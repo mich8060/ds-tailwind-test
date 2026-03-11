@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { ActionMenu } from "../../design-system/components/ActionMenu";
 import { Button } from "../../design-system/components/Button";
 import { Divider } from "../../design-system/components/Divider";
 import { Flex } from "../../design-system/components/Flex";
 import { Text } from "../../design-system/components/Text";
+import { TextInput } from "../../design-system/components/TextInput";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 
@@ -23,6 +25,9 @@ const ACTION_MENU_PROPS: ComponentPropRow[] = [
   { prop: "trigger", type: "ReactNode", defaultValue: "-", description: "Element that opens the menu (usually Button)." },
   { prop: "items", type: "ActionItem[]", defaultValue: "[]", description: "Menu item configuration including submenus and dividers." },
   { prop: "placement", type: '"bottom-start" | "bottom-end" | "top-start" | "top-end" | "left-start" | "left-end" | "right-start" | "right-end"', defaultValue: '"bottom-start"', description: "Where the menu opens relative to the trigger." },
+  { prop: "variant", type: '"default" | "autosuggest" | "search"', defaultValue: '"default"', description: "Adds input-driven autosuggest or embedded-search filtering." },
+  { prop: "searchPlaceholder", type: "string", defaultValue: '"Search..."', description: "Placeholder text for the embedded search field on the search variant." },
+  { prop: "noResultsText", type: "string", defaultValue: '"No results found"', description: "Message shown when filtering returns no items." },
   { prop: "fullWidth", type: "boolean", defaultValue: "false", description: "When true, menu width matches trigger width." },
   { prop: "disabled", type: "boolean", defaultValue: "false", description: "Disables trigger and menu interaction." },
   { prop: "onOpenChange", type: "(isOpen: boolean) => void", defaultValue: "-", description: "Fires when menu opens/closes." },
@@ -63,6 +68,24 @@ const SHORTCUT_ITEMS: ActionItem[] = [
   { id: "paste", label: "Paste", icon: "ClipboardText", shortcut: "Cmd+V" },
 ];
 
+const AUTOSUGGEST_ITEMS: ActionItem[] = [
+  { id: "appointment", label: "Appointment", icon: "CalendarDots" },
+  { id: "application", label: "Application", icon: "FileText" },
+  { id: "approval", label: "Approval", icon: "CheckCircle" },
+  { id: "archive", label: "Archive", icon: "ArchiveBox" },
+  { id: "assessment", label: "Assessment", icon: "ClipboardText" },
+];
+
+const SEARCH_ITEMS: ActionItem[] = [
+  { id: "cardiology", label: "Cardiology", icon: "Heartbeat" },
+  { id: "dermatology", label: "Dermatology", icon: "Stethoscope" },
+  { id: "emergency", label: "Emergency Medicine", icon: "FirstAid" },
+  { id: "family", label: "Family Medicine", icon: "UsersThree" },
+  { id: "neurology", label: "Neurology", icon: "Brain" },
+  { id: "orthopedics", label: "Orthopedics", icon: "Bone" },
+  { id: "pediatrics", label: "Pediatrics", icon: "Baby" },
+];
+
 const MULTILEVEL_ITEMS: ActionItem[] = [
   { id: "edit", label: "Edit", icon: "PencilSimple" },
   {
@@ -100,6 +123,8 @@ const PLACEMENTS = [
 ];
 
 export function ActionMenuDemoPage() {
+  const [autosuggestValue, setAutosuggestValue] = useState("");
+
   return (
     <DocPageLayout
       title="ActionMenu"
@@ -111,7 +136,7 @@ export function ActionMenuDemoPage() {
             Basic Usage
           </Text>
           <ActionMenu
-            trigger={<Button appearance="ghost" layout="icon-only" icon="DotsThree" aria-label="More actions" />}
+            trigger={<Button appearance="outline" layout="icon-only" icon="DotsThree" aria-label="More actions" />}
             items={BASIC_ITEMS as unknown[]}
           />
         </Flex>
@@ -163,6 +188,38 @@ export function ActionMenuDemoPage() {
 
         <Flex direction="column" gap="12">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+            Autosuggest Variant
+          </Text>
+          <ActionMenu
+            variant="autosuggest"
+            trigger={
+              <TextInput
+                value={autosuggestValue}
+                onChange={(event) => setAutosuggestValue(event.target.value)}
+                placeholder="Type a command..."
+                icon="MagnifyingGlass"
+              />
+            }
+            items={AUTOSUGGEST_ITEMS as unknown[]}
+          />
+        </Flex>
+        <Divider variant="solid" />
+
+        <Flex direction="column" gap="12">
+          <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+            Search Variant
+          </Text>
+          <ActionMenu
+            variant="search"
+            searchPlaceholder="Search specialties..."
+            trigger={<Button appearance="outline" label="Filter Specialties" layout="icon-right" icon="CaretDown" />}
+            items={SEARCH_ITEMS as unknown[]}
+          />
+        </Flex>
+        <Divider variant="solid" />
+
+        <Flex direction="column" gap="12">
+          <Text as="h2" variant="heading-24" weight="medium" leading="regular">
             Multilevel Menus
           </Text>
           <ActionMenu
@@ -178,7 +235,7 @@ export function ActionMenuDemoPage() {
           </Text>
           <Flex alignItems="center" gap="16" wrap>
             <ActionMenu
-              trigger={<Button appearance="ghost" layout="icon-only" icon="DotsThree" aria-label="More actions" />}
+              trigger={<Button appearance="outline" layout="icon-only" icon="DotsThree" aria-label="More actions" />}
               items={BASIC_ITEMS as unknown[]}
             />
             <ActionMenu

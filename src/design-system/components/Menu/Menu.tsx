@@ -24,6 +24,25 @@ interface MenuNavItem {
     children?: MenuChildItem[];
 }
 
+const normalizePath = (value: string): string => {
+    if (!value) return "/";
+    const trimmed = value.replace(/\/+$/, "");
+    return trimmed.length === 0 ? "/" : trimmed;
+};
+
+const isPathActive = (currentPath: string, candidatePath: string): boolean => {
+    const current = normalizePath(currentPath);
+    const candidate = normalizePath(candidatePath);
+    return current === candidate || current.startsWith(`${candidate}/`);
+};
+
+const toDomId = (value: string): string =>
+    value
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
 const isMenuChildItem = (value: unknown): value is MenuChildItem => {
     if (typeof value !== "object" || value === null) return false;
     const candidate = value as Record<string, unknown>;
@@ -166,15 +185,23 @@ function Menu({
                 const hasChildren = children.length > 0;
                 const isOpen = openAccordions[item.label];
                 const isExpanded = isMenuOpen && isOpen;
+                const isParentRouteActive =
+                    hasChildren && children.some((child: MenuChildItem) => isPathActive(pathname, child.path));
 
                 if (hasChildren) {
+                    const accordionId = `uds-menu-accordion-${toDomId(item.label)}`;
                     return (
-                        <div className={`uds-menu_nav__item uds-menu_nav__item--accordion${isOpen ? " uds-menu_nav__item--open" : ""}`} key={item.label}>
+                        <div
+                            className={`uds-menu_nav__item uds-menu_nav__item--accordion${isOpen ? " uds-menu_nav__item--open" : ""}${isParentRouteActive ? " uds-menu_nav__item--active" : ""}`}
+                            key={item.label}
+                        >
                             <button
                                 type="button"
                                 className="uds-menu_nav__item-link"
                                 onClick={() => handleAccordionClick(item.label)}
                                 title={item.label}
+                                aria-expanded={isExpanded}
+                                aria-controls={accordionId}
                             >
                                 <span className="uds-menu_nav__item-icon">
                                     <Icon name={item.icon} size={24} appearance="duotone" />
@@ -185,25 +212,30 @@ function Menu({
                                 </span>
                             </button>
                             {isExpanded ? (
-                                <div className="uds-menu_nav__children uds-menu_nav__children--open">
+                                <div
+                                    id={accordionId}
+                                    className="uds-menu_nav__children uds-menu_nav__children--open"
+                                >
                                     {children.map((child: MenuChildItem) => (
                                         isRouterAvailable ? (
                                             <Link
                                                 key={child.path}
-                                                className={`uds-menu_nav__child-link${pathname === child.path ? " uds-menu_nav__child-link--active" : ""}`}
+                                                className={`uds-menu_nav__child-link${isPathActive(pathname, child.path) ? " uds-menu_nav__child-link--active" : ""}`}
                                                 to={child.path}
                                                 onClick={handleNavItemClick}
                                                 title={child.label}
+                                                aria-current={isPathActive(pathname, child.path) ? "page" : undefined}
                                             >
                                                 {child.label}
                                             </Link>
                                         ) : (
                                             <a
                                                 key={child.path}
-                                                className={`uds-menu_nav__child-link${pathname === child.path ? " uds-menu_nav__child-link--active" : ""}`}
+                                                className={`uds-menu_nav__child-link${isPathActive(pathname, child.path) ? " uds-menu_nav__child-link--active" : ""}`}
                                                 href={child.path}
                                                 onClick={handleNavItemClick}
                                                 title={child.label}
+                                                aria-current={isPathActive(pathname, child.path) ? "page" : undefined}
                                             >
                                                 {child.label}
                                             </a>
@@ -216,16 +248,28 @@ function Menu({
                 }
 
                 return (
-                    <div className={`uds-menu_nav__item${pathname === item.path ? " uds-menu_nav__item--active" : ""}`} key={item.path ?? item.label}>
+                    <div className={`uds-menu_nav__item${typeof item.path === "string" && isPathActive(pathname, item.path) ? " uds-menu_nav__item--active" : ""}`} key={item.path ?? item.label}>
                         {isRouterAvailable ? (
-                            <Link className="uds-menu_nav__item-link" to={item.path ?? "/"} onClick={handleNavItemClick} title={item.label}>
+                            <Link
+                                className="uds-menu_nav__item-link"
+                                to={item.path ?? "/"}
+                                onClick={handleNavItemClick}
+                                title={item.label}
+                                aria-current={typeof item.path === "string" && isPathActive(pathname, item.path) ? "page" : undefined}
+                            >
                                 <span className="uds-menu_nav__item-icon">
                                     <Icon name={item.icon} size={24} appearance="duotone" />
                                 </span>
                                 <div className="uds-menu_nav__item-label">{item.label}</div>
                             </Link>
                         ) : (
-                            <a className="uds-menu_nav__item-link" href={item.path ?? "/"} onClick={handleNavItemClick} title={item.label}>
+                            <a
+                                className="uds-menu_nav__item-link"
+                                href={item.path ?? "/"}
+                                onClick={handleNavItemClick}
+                                title={item.label}
+                                aria-current={typeof item.path === "string" && isPathActive(pathname, item.path) ? "page" : undefined}
+                            >
                                 <span className="uds-menu_nav__item-icon">
                                     <Icon name={item.icon} size={24} appearance="duotone" />
                                 </span>

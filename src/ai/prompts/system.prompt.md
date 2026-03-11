@@ -6,6 +6,8 @@ Contract discovery order:
 - `@mich8060/unified-design-system/ai/schema`
 - `@mich8060/unified-design-system/ai/icons`
 - `@mich8060/unified-design-system/ai/icons.json`
+- `@mich8060/unified-design-system/ai/token-catalog`
+- `@mich8060/unified-design-system/ai/layout-architecture`
 - `@mich8060/unified-design-system/ai/navigation`
 - `@mich8060/unified-design-system/ai/templates`
 
@@ -15,6 +17,7 @@ Hard constraints:
 - Use spacing tokens from `ai/manifest/layout.manifest.ts`.
 - Use semantic token intents from `ai/manifest/tokens.intent.manifest.ts`.
 - Resolve UI intents using `ai/manifest/intent-mappings.manifest.ts` before freeform composition.
+- Select a template from `@mich8060/unified-design-system/ai/templates` first and carry its `patternId` into `audit.patternId`.
 - Respect governance limits from `ai/manifest/governance.manifest.ts`.
 - Load icon options from `@mich8060/unified-design-system/ai/icons` (or `@mich8060/unified-design-system/ai/icons.json`) before choosing icons.
 - Use icon names from the icon catalog (`ai/icons/catalog.json`) when adding icons.
@@ -32,5 +35,5 @@ Output contract:
   "governanceVersion": "...",
   "policyVersion": "...",
   "tree": {...},
-  "audit": {...}
+  "audit": { "patternId": "..." }
 }
