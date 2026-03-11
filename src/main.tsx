@@ -64,6 +64,8 @@ const NAV_ITEMS = [
     icon: "CodepenLogoIcon",
     children: [
       { label: "Colors & Primitives", path: "/foundations/colors-primitives" },
+      { label: "Primitive CSS Variables", path: "/foundations/primitive-css-variables" },
+      { label: "Semantic CSS Variables", path: "/foundations/semantic-css-variables" },
       { label: "Design Tokens", path: "/docs/tokens" },
       { label: "Layout", path: "/components/layout" },
     ],

@@ -240,6 +240,15 @@
     "jsx": "<Layout fullWidth={false} appearance=\"full\" />"
   },
   {
+    "component": "Link",
+    "props": {
+      "appearance": "primary",
+      "underline": "always",
+      "disabled": false
+    },
+    "jsx": "<Link appearance=\"primary\" underline=\"always\" disabled={false} />"
+  },
+  {
     "component": "Menu",
     "props": {
       "identity": "design-system"

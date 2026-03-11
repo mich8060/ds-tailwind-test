@@ -64,6 +64,22 @@ export const STATIC_PAGES: readonly StaticPageDefinition[] = [
     "FoundationsPage",
     "FoundationsPage"
   ),
+  staticPage(
+    "/foundations/primitive-css-variables",
+    "Primitive CSS Variables",
+    "foundations",
+    "docs",
+    "PrimitiveCssVariablesPage",
+    "PrimitiveCssVariablesPage"
+  ),
+  staticPage(
+    "/foundations/semantic-css-variables",
+    "Semantic CSS Variables",
+    "foundations",
+    "docs",
+    "SemanticCssVariablesPage",
+    "SemanticCssVariablesPage"
+  ),
   staticPage("/patterns/checklist", "Checklist", "patterns", "patterns", "ChecklistPatternPage", "ChecklistPatternPage"),
   staticPage(
     "/patterns/providers-card",

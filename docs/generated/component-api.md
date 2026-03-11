@@ -362,6 +362,20 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 | `appearance` | `enum` | full, equal, right, left | `full` |
 | `fullWidth` | `boolean` | - | `false` |
 
+### Link
+
+Provides inline navigation and action links using semantic text-link tokens.
+
+- Source: `src/design-system/components/Link/Link.spec.ts`
+- Tier: `1`
+- States: `default`, `hover`, `active`, `visited`, `focus`, `disabled`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| `appearance` | `enum` | primary, secondary | `primary` |
+| `disabled` | `boolean` | - | `false` |
+| `underline` | `enum` | always, hover, none | `always` |
+
 ### Menu
 
 - Source: `src/design-system/components/Menu/Menu.spec.ts`

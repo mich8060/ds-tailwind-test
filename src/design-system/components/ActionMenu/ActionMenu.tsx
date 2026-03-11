@@ -325,9 +325,14 @@ export default function ActionMenu({
 
   const updateMenuPosition = () => {
     if (!isOpen || !menuRef.current || !triggerRef.current) return;
+    const modalOverlayContainer = triggerRef.current.closest(".uds-modal__overlay");
     const shellMainContainer = triggerRef.current.closest(".app-shell__main-content");
     const nextPortalContainer =
-      shellMainContainer instanceof HTMLElement ? shellMainContainer : document.body;
+      modalOverlayContainer instanceof HTMLElement
+        ? modalOverlayContainer
+        : shellMainContainer instanceof HTMLElement
+          ? shellMainContainer
+          : document.body;
     setPortalContainer(nextPortalContainer);
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
@@ -441,6 +446,10 @@ export default function ActionMenu({
       top: `${clampedTop}px`,
       left: `${clampedLeft}px`,
       width: fullWidth ? `${triggerRect.width}px` : undefined,
+      zIndex:
+        nextPortalContainer === modalOverlayContainer
+          ? "calc(var(--uds-elevation-modal) + 1)"
+          : undefined,
     };
 
     setMenuStyle((prevStyle) => {
@@ -459,9 +468,14 @@ export default function ActionMenu({
   useLayoutEffect(() => {
     if (!isOpen) return;
     if (portalContainer === null) {
+      const modalOverlayContainer = triggerRef.current?.closest(".uds-modal__overlay");
       const shellMainContainer = triggerRef.current?.closest(".app-shell__main-content");
       setPortalContainer(
-        shellMainContainer instanceof HTMLElement ? shellMainContainer : document.body
+        modalOverlayContainer instanceof HTMLElement
+          ? modalOverlayContainer
+          : shellMainContainer instanceof HTMLElement
+            ? shellMainContainer
+            : document.body
       );
     }
     updateMenuPosition();
