@@ -551,6 +551,11 @@
     letter-spacing: 0em;
 }
 
+// Backward-compatible alias for older mixin naming.
+@mixin uds-body-14-regular {
+    @include uds-body-14;
+}
+
 @mixin uds-body-14-medium {
     @include uds-body-14;
     font-weight: var(--uds-font-weight-medium);
@@ -572,6 +577,11 @@
     font-family: var(--uds-font-family);
     font-weight: var(--uds-font-weight);
     letter-spacing: 0px;
+}
+
+// Backward-compatible alias for older mixin naming.
+@mixin uds-body-12-regular {
+    @include uds-body-12;
 }
 
 @mixin uds-body-12-medium {

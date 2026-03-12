@@ -155,14 +155,24 @@ function Modal({
                         <div className={`${BASE_CLASS}__header-content`}>
                             <div className={`${BASE_CLASS}__header-info`}>
                                 <div className={`${BASE_CLASS}__header-title-row`}>
-                                    {resolvedTitle && (
-                                        <h2 id={`${BASE_CLASS}-title`} className={`${BASE_CLASS}__title`}>
-                                            {resolvedTitle}
-                                        </h2>
-                                    )}
-                                    {resolvedBadge && (
-                                        <span className={`${BASE_CLASS}__badge`}>{resolvedBadge}</span>
-                                    )}
+                                    <div className={`${BASE_CLASS}__title-meta`}>
+                                        {resolvedTitle && (
+                                            <h2 id={`${BASE_CLASS}-title`} className={`${BASE_CLASS}__title`}>
+                                                {resolvedTitle}
+                                            </h2>
+                                        )}
+                                        {resolvedBadge && (
+                                            <span className={`${BASE_CLASS}__badge`}>{resolvedBadge}</span>
+                                        )}
+                                    </div>
+                                    <Button
+                                        appearance="text"
+                                        layout="icon-only"
+                                        size="default"
+                                        icon="X"
+                                        label="Close modal"
+                                        onClick={() => onClose?.()}
+                                    />
                                 </div>
                                 {resolvedSubtitle && (
                                     <p id={`${BASE_CLASS}-subtitle`} className={`${BASE_CLASS}__subtitle`}>
@@ -170,14 +180,6 @@ function Modal({
                                     </p>
                                 )}
                             </div>
-                            <Button
-                                appearance="text"
-                                layout="icon-only"
-                                size="default"
-                                icon="X"
-                                label="Close modal"
-                                onClick={() => onClose?.()}
-                            />
                         </div>
                     )}
                 </div>

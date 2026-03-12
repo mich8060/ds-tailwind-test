@@ -29,6 +29,7 @@ const BRAND_LOGOS: Record<string, BrandAsset> = {
     weatherby: { svg: WeatherbyLogo, alt: "Weatherby Healthcare" },
     modio: { svg: ModioLogo, alt: "modio" },
     locumsmart: { svg: LocumsmartLogo, alt: "Locumsmart" },
+    chg: { svg: WireframeLogo, alt: "CHG" },
     wireframe: { svg: WireframeLogo, alt: "Wireframe" },
 };
 
@@ -40,6 +41,7 @@ const BRAND_SYMBOLS: Record<string, BrandAsset> = {
     weatherby: { svg: WeatherbySymbol, alt: "Weatherby Healthcare" },
     modio: { svg: ModioSymbol, alt: "modio" },
     locumsmart: { svg: LocumsmartSymbol, alt: "Locumsmart" },
+    chg: { svg: WireframeSymbol, alt: "CHG" },
     wireframe: { svg: WireframeSymbol, alt: "Wireframe" },
 };
 
@@ -52,7 +54,7 @@ const BRAND_SYMBOLS: Record<string, BrandAsset> = {
  *   <Branding brand="connect" />
  *
  * @param {string}  brand   - Brand key: "design-system" | "connect" | "comphealth" |
- *                            "weatherby" | "modio" | "locumsmart" | "wireframe"
+ *                            "weatherby" | "modio" | "locumsmart" | "chg" | "wireframe"
  * @param {boolean} symbol  - When true, renders only the brand symbol/icon instead
  *                            of the full logo. Defaults to false (full logo).
  * @param {boolean} inherit - When true, ignores `brand` prop and automatically uses

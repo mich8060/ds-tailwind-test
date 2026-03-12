@@ -71,6 +71,13 @@
       { "label": "Invoices", "icon": "Invoice" },
       { "label": "Reporting", "icon": "ChartBar" }
     ],
+    "chg": [
+      { "label": "Dashboard", "icon": "Layout" },
+      { "label": "Requests", "icon": "Briefcase" },
+      { "label": "Providers", "icon": "Users" },
+      { "label": "Calendar", "icon": "CalendarBlank" },
+      { "label": "Reporting", "icon": "ChartBar" }
+    ],
     "wireframe": [
       { "label": "Menu Item" },
       { "label": "Menu Item" },

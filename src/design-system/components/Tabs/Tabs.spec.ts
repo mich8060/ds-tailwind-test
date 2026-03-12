@@ -5,6 +5,6 @@ export const TabsSpec = {
   defaults: {
   "appearance": "underline",
   "orientation": "horizontal",
-  "tagVariant": "red"
+  "tagVariant": "neutral"
 }
 } as const;

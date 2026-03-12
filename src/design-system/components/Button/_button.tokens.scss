@@ -34,6 +34,7 @@
 .brand-locumsmart,
 .brand-modio,
 .brand-gms,
+.brand-chg,
 .brand-weatherby,
 .brand-wireframe {
 
@@ -70,6 +71,7 @@
 .brand-locumsmart.theme-dark,
 .brand-modio.theme-dark,
 .brand-gms.theme-dark,
+.brand-chg.theme-dark,
 .brand-weatherby.theme-dark,
 .brand-wireframe.theme-dark {
     --uds-button-surface-primary-default: var(--uds-color-primary-200);
@@ -146,4 +148,13 @@
     --uds-button-surface-primary-hover: var(--uds-color-primary-400);
     --uds-button-border-primary-default: var(--uds-color-primary-200);
     --uds-button-border-primary-hover: var(--uds-color-primary-400);
+}
+
+.brand-chg {
+    --uds-button-surface-primary-default: var(--uds-color-primary-700);
+    --uds-button-surface-primary-hover: var(--uds-color-primary-900);
+    --uds-button-border-primary-default: var(--uds-color-primary-700);
+    --uds-button-border-primary-hover: var(--uds-color-primary-900);
+    --uds-button-text-default: var(--uds-color-white);
+    --uds-button-icons-primary: var(--uds-color-white);
 }

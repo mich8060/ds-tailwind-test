@@ -1,5 +1,6 @@
 import { Badge } from "../../design-system/components/Badge";
 import { Button } from "../../design-system/components/Button";
+import { Code } from "../../design-system/components/Code";
 import { Divider } from "../../design-system/components/Divider";
 import { Flex } from "../../design-system/components/Flex";
 import { Modal } from "../../design-system/components/Modal";
@@ -30,6 +31,66 @@ type ModalKey =
   | "no-backdrop-close"
   | "no-escape-close";
 
+const BASIC_MODAL_SNIPPET = `<Modal
+  open={activeModal === "basic"}
+  onClose={closeModal}
+  title="Basic Modal"
+  subtitle="Launched from a UDS button trigger."
+  badge={<Badge count={1} />}
+  footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}
+>
+  <Flex direction="column" gap="0">
+    <Text as="p" variant="body-14" leading="regular">
+      Use modals for focused tasks that require user attention before returning to the page.
+    </Text>
+    <Text as="p" variant="body-14" leading="regular">
+      Keep content concise and action-oriented.
+    </Text>
+  </Flex>
+</Modal>`;
+
+const SMALL_MODAL_SNIPPET = `<Modal size="small" open={activeModal === "small"} onClose={closeModal} title="Small Modal" subtitle="Compact width for simple confirmations." footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}>
+  <Flex direction="column" gap="0">
+    <Text as="p" variant="body-14" leading="regular">Small is ideal for brief prompts and short one-step actions.</Text>
+    <Text as="p" variant="body-14" leading="regular">Reserve it for compact flows with minimal content.</Text>
+  </Flex>
+</Modal>`;
+
+const DEFAULT_MODAL_SNIPPET = `<Modal size="default" open={activeModal === "default"} onClose={closeModal} title="Default Modal" subtitle="Balanced width for common tasks." footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}>
+  <Flex direction="column" gap="0">
+    <Text as="p" variant="body-14" leading="regular">Default is the standard size for most content and workflows.</Text>
+    <Text as="p" variant="body-14" leading="regular">Use this when users need a balanced amount of context and action.</Text>
+  </Flex>
+</Modal>`;
+
+const LARGE_MODAL_SNIPPET = `<Modal size="large" open={activeModal === "large"} onClose={closeModal} title="Large Modal" subtitle="Extra width for denser content." footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}>
+  <Flex direction="column" gap="0">
+    <Text as="p" variant="body-14" leading="regular">Large provides more horizontal room for detailed forms and layouts.</Text>
+    <Text as="p" variant="body-14" leading="regular">It works well for denser content and multi-column structures.</Text>
+  </Flex>
+</Modal>`;
+
+const FULLSCREEN_MODAL_SNIPPET = `<Modal size="fullscreen" open={activeModal === "fullscreen"} onClose={closeModal} title="Fullscreen Modal" subtitle="Uses the full viewport for immersive tasks." footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}>
+  <Flex direction="column" gap="0">
+    <Text as="p" variant="body-14" leading="regular">Fullscreen works well for multi-step workflows or content-heavy experiences.</Text>
+    <Text as="p" variant="body-14" leading="regular">Consider this for immersive tasks requiring maximum workspace.</Text>
+  </Flex>
+</Modal>`;
+
+const NO_BACKDROP_CLOSE_SNIPPET = `<Modal open={activeModal === "no-backdrop-close"} onClose={closeModal} title="Backdrop Close Disabled" subtitle="Clicking outside this modal will not close it." closeOnBackdrop={false} footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}>
+  <Flex direction="column" gap="0">
+    <Text as="p" variant="body-14" leading="regular">Use this when accidental dismissal could interrupt critical user actions.</Text>
+    <Text as="p" variant="body-14" leading="regular">The modal can still be closed with the close button or footer actions.</Text>
+  </Flex>
+</Modal>`;
+
+const NO_ESCAPE_CLOSE_SNIPPET = `<Modal open={activeModal === "no-escape-close"} onClose={closeModal} title="Escape Close Disabled" subtitle="Pressing Escape will not close this modal." closeOnEscape={false} footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}>
+  <Flex direction="column" gap="0">
+    <Text as="p" variant="body-14" leading="regular">Keep Escape disabled only for flows that must be explicitly completed or cancelled.</Text>
+    <Text as="p" variant="body-14" leading="regular">Always provide clear Cancel and Confirm actions when doing this.</Text>
+  </Flex>
+</Modal>`;
+
 function ModalFooter({ onCancel, onConfirm }: { onCancel: () => void; onConfirm: () => void }) {
   return (
     <Flex alignItems="center" gap="8">
@@ -57,6 +118,7 @@ export function ModalDemoPage() {
           <Flex alignItems="center" gap="12" wrap>
             <Button label="Open Basic Modal" onClick={() => setActiveModal("basic")} />
           </Flex>
+          <Code language="tsx" code={BASIC_MODAL_SNIPPET} />
         </Flex>
         <Divider variant="solid" />
 
@@ -70,6 +132,10 @@ export function ModalDemoPage() {
             <Button label="Large" appearance="outline" onClick={() => setActiveModal("large")} />
             <Button label="Fullscreen" appearance="outline" onClick={() => setActiveModal("fullscreen")} />
           </Flex>
+          <Code language="tsx" code={SMALL_MODAL_SNIPPET} />
+          <Code language="tsx" code={DEFAULT_MODAL_SNIPPET} />
+          <Code language="tsx" code={LARGE_MODAL_SNIPPET} />
+          <Code language="tsx" code={FULLSCREEN_MODAL_SNIPPET} />
         </Flex>
         <Divider variant="solid" />
 
@@ -89,6 +155,8 @@ export function ModalDemoPage() {
               onClick={() => setActiveModal("no-escape-close")}
             />
           </Flex>
+          <Code language="tsx" code={NO_BACKDROP_CLOSE_SNIPPET} />
+          <Code language="tsx" code={NO_ESCAPE_CLOSE_SNIPPET} />
         </Flex>
       </Flex>
 
@@ -100,9 +168,14 @@ export function ModalDemoPage() {
         badge={<Badge count={1} />}
         footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}
       >
-        <Text as="p" variant="body-14" leading="regular">
-          Use modals for focused tasks that require user attention before returning to the page.
-        </Text>
+        <Flex direction="column" gap="0">
+          <Text as="p" variant="body-14" leading="regular">
+            Use modals for focused tasks that require user attention before returning to the page.
+          </Text>
+          <Text as="p" variant="body-14" leading="regular">
+            Keep content concise and action-oriented.
+          </Text>
+        </Flex>
       </Modal>
 
       <Modal
@@ -113,9 +186,14 @@ export function ModalDemoPage() {
         size="small"
         footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}
       >
-        <Text as="p" variant="body-14" leading="regular">
-          Small is ideal for brief prompts and short one-step actions.
-        </Text>
+        <Flex direction="column" gap="0">
+          <Text as="p" variant="body-14" leading="regular">
+            Small is ideal for brief prompts and short one-step actions.
+          </Text>
+          <Text as="p" variant="body-14" leading="regular">
+            Reserve it for compact flows with minimal content.
+          </Text>
+        </Flex>
       </Modal>
 
       <Modal
@@ -126,9 +204,14 @@ export function ModalDemoPage() {
         size="default"
         footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}
       >
-        <Text as="p" variant="body-14" leading="regular">
-          Default is the standard size for most content and workflows.
-        </Text>
+        <Flex direction="column" gap="0">
+          <Text as="p" variant="body-14" leading="regular">
+            Default is the standard size for most content and workflows.
+          </Text>
+          <Text as="p" variant="body-14" leading="regular">
+            Use this when users need a balanced amount of context and action.
+          </Text>
+        </Flex>
       </Modal>
 
       <Modal
@@ -139,9 +222,14 @@ export function ModalDemoPage() {
         size="large"
         footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}
       >
-        <Text as="p" variant="body-14" leading="regular">
-          Large provides more horizontal room for detailed forms and layouts.
-        </Text>
+        <Flex direction="column" gap="0">
+          <Text as="p" variant="body-14" leading="regular">
+            Large provides more horizontal room for detailed forms and layouts.
+          </Text>
+          <Text as="p" variant="body-14" leading="regular">
+            It works well for denser content and multi-column structures.
+          </Text>
+        </Flex>
       </Modal>
 
       <Modal
@@ -152,9 +240,14 @@ export function ModalDemoPage() {
         size="fullscreen"
         footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}
       >
-        <Text as="p" variant="body-14" leading="regular">
-          Fullscreen works well for multi-step workflows or content-heavy experiences.
-        </Text>
+        <Flex direction="column" gap="0">
+          <Text as="p" variant="body-14" leading="regular">
+            Fullscreen works well for multi-step workflows or content-heavy experiences.
+          </Text>
+          <Text as="p" variant="body-14" leading="regular">
+            Consider this for immersive tasks requiring maximum workspace.
+          </Text>
+        </Flex>
       </Modal>
 
       <Modal
@@ -165,9 +258,14 @@ export function ModalDemoPage() {
         closeOnBackdrop={false}
         footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}
       >
-        <Text as="p" variant="body-14" leading="regular">
-          Use this when accidental dismissal could interrupt critical user actions.
-        </Text>
+        <Flex direction="column" gap="0">
+          <Text as="p" variant="body-14" leading="regular">
+            Use this when accidental dismissal could interrupt critical user actions.
+          </Text>
+          <Text as="p" variant="body-14" leading="regular">
+            The modal can still be closed with the close button or footer actions.
+          </Text>
+        </Flex>
       </Modal>
 
       <Modal
@@ -178,9 +276,14 @@ export function ModalDemoPage() {
         closeOnEscape={false}
         footer={<ModalFooter onCancel={closeModal} onConfirm={closeModal} />}
       >
-        <Text as="p" variant="body-14" leading="regular">
-          Keep Escape disabled only for flows that must be explicitly completed or cancelled.
-        </Text>
+        <Flex direction="column" gap="0">
+          <Text as="p" variant="body-14" leading="regular">
+            Keep Escape disabled only for flows that must be explicitly completed or cancelled.
+          </Text>
+          <Text as="p" variant="body-14" leading="regular">
+            Always provide clear Cancel and Confirm actions when doing this.
+          </Text>
+        </Flex>
       </Modal>
 
       <Divider variant="solid" />

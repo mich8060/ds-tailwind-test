@@ -12,7 +12,7 @@ type MenuExample = {
   props: Record<string, unknown>;
 };
 
-type DemoBrand = "default" | "comphealth" | "weatherby" | "connect" | "wireframe";
+type DemoBrand = "default" | "comphealth" | "weatherby" | "connect" | "chg" | "wireframe";
 type DemoMode = "light" | "dark";
 
 const MENU_PROPS: ComponentPropRow[] = [
@@ -59,7 +59,7 @@ const MENU_NAV_ITEMS = [
   },
 ];
 
-const MENU_BRANDS = ["default", "comphealth", "weatherby", "connect", "wireframe"];
+const MENU_BRANDS = ["default", "comphealth", "weatherby", "connect", "chg", "wireframe"];
 
 const ACCOUNT_ITEMS = [
   {

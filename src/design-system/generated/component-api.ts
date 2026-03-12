@@ -70,6 +70,7 @@ export const COMPONENT_API = {
           "locumsmart",
           "modio",
           "gms",
+          "chg",
           "wireframe"
         ],
         "default": "default"
@@ -2479,13 +2480,13 @@ export const COMPONENT_API = {
       },
       "tagVariant": {
         "type": "string",
-        "default": "red"
+        "default": "neutral"
       }
     },
     "defaults": {
       "orientation": "horizontal",
       "appearance": "underline",
-      "tagVariant": "red"
+      "tagVariant": "neutral"
     },
     "states": [],
     "tokensUsed": [],

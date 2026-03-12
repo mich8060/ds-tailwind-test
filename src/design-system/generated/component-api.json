@@ -276,6 +276,7 @@
             "locumsmart",
             "modio",
             "gms",
+            "chg",
             "wireframe"
           ],
           "default": "default"
@@ -2685,13 +2686,13 @@
         },
         "tagVariant": {
           "type": "string",
-          "default": "red"
+          "default": "neutral"
         }
       },
       "defaults": {
         "orientation": "horizontal",
         "appearance": "underline",
-        "tagVariant": "red"
+        "tagVariant": "neutral"
       },
       "states": [],
       "tokensUsed": [],

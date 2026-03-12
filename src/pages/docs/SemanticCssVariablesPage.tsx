@@ -6,7 +6,8 @@ import { DocPageLayout } from "./DocPageLayout";
 
 const TOKEN_COLUMNS = [
   { key: "token", label: "Variable" },
-  { key: "value", label: "Default Value" },
+  { key: "lightValue", label: "Light Value" },
+  { key: "darkValue", label: "Dark Value" },
 ];
 
 const SEMANTIC_PREFIXES = [
@@ -35,21 +36,34 @@ function extractTokenMap(cssSource: string): Map<string, string> {
   while (match) {
     const tokenName = match[1];
     const tokenValue = match[2].trim();
-    if (!tokenMap.has(tokenName)) {
-      tokenMap.set(tokenName, tokenValue);
-    }
+    tokenMap.set(tokenName, tokenValue);
     match = declarationPattern.exec(cssSource);
   }
 
   return tokenMap;
 }
 
-const tokenMap = extractTokenMap(tokensCss);
+function extractModeBlock(cssSource: string, selector: ":root" | ".theme-dark"): string {
+  const selectorPattern = new RegExp(`\\${selector}\\s*\\{([\\s\\S]*?)\\}`, "i");
+  const match = cssSource.match(selectorPattern);
+  return match?.[1] ?? "";
+}
+
+const lightTokenMap = extractTokenMap(extractModeBlock(tokensCss, ":root"));
+const darkTokenMap = extractTokenMap(extractModeBlock(tokensCss, ".theme-dark"));
 
 function rowsForPrefixes(prefixes: readonly string[]) {
-  return Array.from(tokenMap.entries())
-    .filter(([tokenName]) => prefixes.some((prefix) => tokenName.startsWith(prefix)))
-    .map(([token, value]) => ({ token, value }))
+  const allTokens = Array.from(
+    new Set([...lightTokenMap.keys(), ...darkTokenMap.keys()]),
+  );
+
+  return allTokens
+    .filter((tokenName) => prefixes.some((prefix) => tokenName.startsWith(prefix)))
+    .map((token) => ({
+      token,
+      lightValue: lightTokenMap.get(token) ?? "—",
+      darkValue: darkTokenMap.get(token) ?? "—",
+    }))
     .sort((left, right) => left.token.localeCompare(right.token));
 }
 
@@ -59,7 +73,7 @@ export function SemanticCssVariablesPage() {
   return (
     <DocPageLayout
       title="Semantic CSS Variables"
-      description="Semantic variables map design intent to implementable CSS properties for text, surface, borders, iconography, focus, and system feedback."
+      description="Semantic variables map design intent to implementable CSS properties for text, surface, borders, iconography, focus, and system feedback in both light and dark modes."
     >
       <Flex direction="column" gap="24">
         <Flex direction="column" gap="8">

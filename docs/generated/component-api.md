@@ -32,7 +32,7 @@ Top-level application shell that composes menu, content, and main regions for co
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
-| `brand` | `enum` | default, comphealth, weatherby, connect, locumsmart, modio, gms, wireframe | `default` |
+| `brand` | `enum` | default, comphealth, weatherby, connect, locumsmart, modio, gms, chg, wireframe | `default` |
 | `theme` | `enum` | light, dark | `light` |
 
 ### Avatar
@@ -601,7 +601,7 @@ Displays a KPI value with optional context, trend, and icon.
 | --- | --- | --- | --- |
 | `appearance` | `string` | - | `underline` |
 | `orientation` | `enum` | horizontal, vertical | `horizontal` |
-| `tagVariant` | `string` | - | `red` |
+| `tagVariant` | `string` | - | `neutral` |
 
 ### Tag
 

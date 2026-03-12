@@ -387,9 +387,9 @@
     "props": {
       "orientation": "horizontal",
       "appearance": "underline",
-      "tagVariant": "red"
+      "tagVariant": "neutral"
     },
-    "jsx": "<Tabs orientation=\"horizontal\" appearance=\"underline\" tagVariant=\"red\" />"
+    "jsx": "<Tabs orientation=\"horizontal\" appearance=\"underline\" tagVariant=\"neutral\" />"
   },
   {
     "component": "Tag",

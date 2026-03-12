@@ -1,3 +1,4 @@
+import { Code } from "../../design-system/components/Code";
 import { Divider } from "../../design-system/components/Divider";
 import { Flex } from "../../design-system/components/Flex";
 import { Tabs } from "../../design-system/components/Tabs";
@@ -7,7 +8,7 @@ import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 
 const TABS_PROPS: ComponentPropRow[] = [
-  { prop: "tabs", type: "Array<{ id?: string | number; label: string; icon?: string; tag?: string | number; tagVariant?: string }>", defaultValue: "[]", description: "Tab item definitions." },
+  { prop: "tabs", type: "Array<{ id?: string | number; label: string; icon?: string; tag?: string | number | boolean; tagVariant?: string }>", defaultValue: "[]", description: "Tab item definitions." },
   { prop: "appearance", type: '"underline" | "block" | "block-inverted"', defaultValue: '"underline"', description: "Visual style for the tab list." },
   { prop: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "Tab list layout direction." },
   { prop: "activeTab", type: "number", defaultValue: "0", description: "Index of the active tab (0-based)." },
@@ -24,9 +25,17 @@ const BASE_TABS = [
 ];
 
 const TABS_WITH_META = [
-  { id: "inbox", label: "Inbox", icon: "Tray", tag: 12, tagVariant: "red" },
-  { id: "assigned", label: "Assigned", icon: "UserCircle", tag: 4, tagVariant: "blue" },
-  { id: "resolved", label: "Resolved", icon: "CheckCircle", tag: 18, tagVariant: "green" },
+  { id: "inbox", label: "Inbox", icon: "Tray", tag: "Label", tagVariant: "neutral" },
+  { id: "assigned", label: "Assigned", icon: "UserCircle", tag: "Label", tagVariant: "neutral" },
+  { id: "resolved", label: "Resolved", icon: "CheckCircle", tag: "Label", tagVariant: "neutral" },
+  { id: "history", label: "History", icon: "ClockCounterClockwise", tag: "Label", tagVariant: "neutral" },
+  { id: "archive", label: "Archive", icon: "ArchiveBox", tag: "Label", tagVariant: "neutral" },
+];
+
+const VERTICAL_TABS = [
+  { id: "inbox", label: "Inbox", icon: "Tray", tag: "Label", tagVariant: "neutral" },
+  { id: "assigned", label: "Assigned", icon: "UserCircle", tag: "Label", tagVariant: "neutral" },
+  { id: "resolved", label: "Resolved", icon: "CheckCircle", tag: "Label", tagVariant: "neutral" },
 ];
 
 const SCROLLABLE_TABS = [
@@ -40,13 +49,91 @@ const SCROLLABLE_TABS = [
   { id: "history", label: "History" },
 ];
 
+const UNDERLINE_SNIPPET = `<Tabs
+  tabs={[
+    { id: "overview", label: "Overview" },
+    { id: "details", label: "Details" },
+    { id: "activity", label: "Activity" },
+  ]}
+  appearance="underline"
+  activeTab={activeTab}
+  onTabChange={(index) => setActiveTab(index as number)}
+/>`;
+
+const VERTICAL_UNDERLINE_SNIPPET = `<Tabs
+  tabs={[
+    { id: "inbox", label: "Inbox", icon: "Tray", tag: "Label", tagVariant: "neutral" },
+    { id: "assigned", label: "Assigned", icon: "UserCircle", tag: "Label", tagVariant: "neutral" },
+    { id: "resolved", label: "Resolved", icon: "CheckCircle", tag: "Label", tagVariant: "neutral" },
+  ]}
+  appearance="underline"
+  orientation="vertical"
+  activeTab={activeTab}
+  onTabChange={(index) => setActiveTab(index as number)}
+/>`;
+
+const VERTICAL_BLOCK_SNIPPET = `<Tabs
+  tabs={[
+    { id: "inbox", label: "Inbox", icon: "Tray", tag: "Label", tagVariant: "neutral" },
+    { id: "assigned", label: "Assigned", icon: "UserCircle", tag: "Label", tagVariant: "neutral" },
+    { id: "resolved", label: "Resolved", icon: "CheckCircle", tag: "Label", tagVariant: "neutral" },
+  ]}
+  appearance="block"
+  orientation="vertical"
+  activeTab={activeTab}
+  onTabChange={(index) => setActiveTab(index as number)}
+/>`;
+
+const VERTICAL_BLOCK_INVERTED_SNIPPET = `<Tabs
+  tabs={[
+    { id: "inbox", label: "Inbox", icon: "Tray", tag: "Label", tagVariant: "sky" },
+    { id: "assigned", label: "Assigned", icon: "UserCircle", tag: "Label", tagVariant: "neutral" },
+    { id: "resolved", label: "Resolved", icon: "CheckCircle", tag: "Label", tagVariant: "neutral" },
+  ]}
+  appearance="block-inverted"
+  orientation="vertical"
+  activeTab={activeTab}
+  onTabChange={(index) => setActiveTab(index as number)}
+/>`;
+
+const FILL_SNIPPET = `<Tabs
+  tabs={[
+    { id: "inbox", label: "Inbox", icon: "Tray", tag: "Label", tagVariant: "neutral" },
+    { id: "assigned", label: "Assigned", icon: "UserCircle", tag: "Label", tagVariant: "neutral" },
+    { id: "resolved", label: "Resolved", icon: "CheckCircle", tag: "Label", tagVariant: "neutral" },
+  ]}
+  appearance="underline"
+  fill
+  activeTab={activeTab}
+  onTabChange={(index) => setActiveTab(index as number)}
+/>`;
+
+const SCROLLABLE_SNIPPET = `<Tabs
+  tabs={[
+    { id: "all", label: "All" },
+    { id: "open", label: "Open Requests" },
+    { id: "pending", label: "Pending Review" },
+    { id: "approved", label: "Approved" },
+    { id: "denied", label: "Denied" },
+    { id: "archived", label: "Archived" },
+    { id: "drafts", label: "Drafts" },
+    { id: "history", label: "History" },
+  ]}
+  appearance="underline"
+  scrollable
+  activeTab={activeTab}
+  onTabChange={(index) => setActiveTab(index as number)}
+/>`;
+
 export function TabsDemoPage() {
   const [underlineActive, setUnderlineActive] = useState(0);
   const [blockActive, setBlockActive] = useState(0);
   const [blockInvertedActive, setBlockInvertedActive] = useState(0);
   const [fillActive, setFillActive] = useState(0);
   const [scrollableActive, setScrollableActive] = useState(0);
-  const [verticalActive, setVerticalActive] = useState(0);
+  const [verticalUnderlineActive, setVerticalUnderlineActive] = useState(0);
+  const [verticalBlockActive, setVerticalBlockActive] = useState(0);
+  const [verticalInvertedActive, setVerticalInvertedActive] = useState(0);
 
   return (
     <DocPageLayout
@@ -56,7 +143,7 @@ export function TabsDemoPage() {
       <Flex direction="column" gap="48">
         <Flex direction="column" gap="16">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
-            Appearance Variants
+            Horizontal Variants
           </Text>
 
           <Flex direction="column" gap="8">
@@ -69,24 +156,7 @@ export function TabsDemoPage() {
               activeTab={underlineActive}
               onTabChange={(index) => setUnderlineActive(index as number)}
             />
-          </Flex>
-
-          <Flex direction="column" gap="8">
-            <Text as="h3" variant="body-16" weight="semibold" leading="regular">
-              Underline Vertical
-            </Text>
-            <Flex alignItems="flex-start" gap="24" wrap>
-              <Tabs
-                tabs={TABS_WITH_META}
-                appearance="underline"
-                orientation="vertical"
-                activeTab={verticalActive}
-                onTabChange={(index) => setVerticalActive(index as number)}
-              />
-              <Text as="p" variant="body-16" leading="regular">
-                Active tab: {TABS_WITH_META[verticalActive]?.label}
-              </Text>
-            </Flex>
+            <Code language="tsx" code={UNDERLINE_SNIPPET} />
           </Flex>
 
           <Flex direction="column" gap="8">
@@ -112,6 +182,69 @@ export function TabsDemoPage() {
               onTabChange={(index) => setBlockInvertedActive(index as number)}
             />
           </Flex>
+          <Code
+            language="tsx"
+            code={`<Tabs tabs={tabs} appearance="block" activeTab={activeTab} onTabChange={onTabChange} />
+<Tabs tabs={tabs} appearance="block-inverted" activeTab={activeTab} onTabChange={onTabChange} />`}
+          />
+        </Flex>
+        <Divider variant="solid" />
+
+        <Flex direction="column" gap="16">
+          <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+            Vertical Tabs
+          </Text>
+          <Text as="p" variant="body-16" leading="regular">
+            Vertical examples match the latest design direction, including icon + tag composition.
+          </Text>
+
+          <Flex alignItems="flex-start" gap="24" wrap>
+            <Flex direction="column" gap="8">
+              <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+                Underline Vertical
+              </Text>
+              <Tabs
+                tabs={VERTICAL_TABS}
+                appearance="underline"
+                orientation="vertical"
+                activeTab={verticalUnderlineActive}
+                onTabChange={(index) => setVerticalUnderlineActive(index as number)}
+              />
+            </Flex>
+
+            <Flex direction="column" gap="8">
+              <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+                Block Vertical
+              </Text>
+              <Tabs
+                tabs={VERTICAL_TABS}
+                appearance="block"
+                orientation="vertical"
+                activeTab={verticalBlockActive}
+                onTabChange={(index) => setVerticalBlockActive(index as number)}
+              />
+            </Flex>
+
+            <Flex direction="column" gap="8">
+              <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+                Block Inverted Vertical
+              </Text>
+              <Tabs
+                tabs={VERTICAL_TABS.map((tab, idx) => ({
+                  ...tab,
+                  tagVariant: idx === 0 ? "sky" : "neutral",
+                }))}
+                appearance="block-inverted"
+                orientation="vertical"
+                activeTab={verticalInvertedActive}
+                onTabChange={(index) => setVerticalInvertedActive(index as number)}
+              />
+            </Flex>
+          </Flex>
+
+          <Code language="tsx" code={VERTICAL_UNDERLINE_SNIPPET} />
+          <Code language="tsx" code={VERTICAL_BLOCK_SNIPPET} />
+          <Code language="tsx" code={VERTICAL_BLOCK_INVERTED_SNIPPET} />
         </Flex>
         <Divider variant="solid" />
 
@@ -126,6 +259,7 @@ export function TabsDemoPage() {
             activeTab={fillActive}
             onTabChange={(index) => setFillActive(index as number)}
           />
+          <Code language="tsx" code={FILL_SNIPPET} />
         </Flex>
         <Divider variant="solid" />
 
@@ -140,8 +274,8 @@ export function TabsDemoPage() {
             activeTab={scrollableActive}
             onTabChange={(index) => setScrollableActive(index as number)}
           />
+          <Code language="tsx" code={SCROLLABLE_SNIPPET} />
         </Flex>
-
       </Flex>
 
       <Divider variant="solid" />

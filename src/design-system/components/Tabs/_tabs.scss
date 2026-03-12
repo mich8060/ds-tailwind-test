@@ -34,6 +34,7 @@
             .uds-tabs__list {
                 flex: 1;
                 min-width: 0; // Allows flex item to shrink below content size
+                overflow-x: auto;
             }
         }
 
@@ -45,12 +46,12 @@
 
         &-item {
             all: unset;
-            @include uds-body-14-semibold;
+            @include uds-body-14-medium;
             box-sizing: border-box;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: var(--uds-gap-32);
+            gap: var(--uds-gap-8);
             cursor: pointer;
             position: relative;
             user-select: none;
@@ -68,7 +69,7 @@
             border: var(--uds-border-width-1) solid var(--uds-border-primary);
             padding: var(--uds-spacing-4);
 
-            button {
+            .uds-tabs-item {
                 padding: var(--uds-spacing-8) var(--uds-spacing-12);
                 @include uds-body-14-medium;
 
@@ -86,7 +87,7 @@
             border: var(--uds-border-width-1) solid var(--uds-border-primary);
             padding: var(--uds-spacing-4);
 
-            button {
+            .uds-tabs-item {
                 padding: var(--uds-spacing-8) var(--uds-spacing-12);
                 @include uds-body-14-medium;
 
@@ -103,28 +104,35 @@
             border-bottom: solid var(--uds-border-width-1) var(--uds-border-primary);
             gap: var(--uds-gap-32);
 
-            button {
+            .uds-tabs-item {
                 margin-bottom: -1px;
                 padding: var(--uds-spacing-12) var(--uds-spacing-0);
 
                 &.active {
-                    &.active {
-                        &:after {
-                            content: "";
-                            display: block;
-                            height: 1px;
-                            position: absolute;
-                            bottom: 0;
-                            left: -2px;
-                            right: -2px;
-                            border-bottom: solid 3px var(--uds-border-brand-tertiary);
-                        }
+                    &:after {
+                        content: "";
+                        display: block;
+                        height: 1px;
+                        position: absolute;
+                        bottom: 0;
+                        left: -2px;
+                        right: -2px;
+                        border-bottom: solid 3px var(--uds-border-brand-tertiary);
                     }
+                }
+            }
+
+            &.uds-tabs--scrollable {
+                .uds-tabs__list {
+                    gap: var(--uds-gap-32);
                 }
             }
         }
 
         &--vertical {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: stretch;
             width: fit-content;
             max-width: 100%;
             overflow-y: auto;
@@ -134,39 +142,101 @@
         &--vertical &__list {
             flex-direction: column;
             width: auto;
-            min-width: 220px;
+            min-width: 186px;
             align-items: stretch;
         }
 
-        &--vertical button {
+        &--vertical .uds-tabs-item {
             width: 100%;
             justify-content: flex-start;
             text-align: left;
+            box-sizing: border-box;
         }
 
-        &--vertical#{&}--underline {
+        &--vertical .uds-tabs-item__label {
+            flex: 1;
+            min-width: 0;
+        }
+
+        &--vertical.uds-tabs--underline {
             border-bottom: none;
             border-right: solid var(--uds-border-width-1) var(--uds-border-primary);
             gap: 0;
         }
 
-        &--vertical#{&}--underline button {
+        &--vertical.uds-tabs--underline .uds-tabs-item {
             margin-bottom: 0;
-            padding: var(--uds-spacing-12) var(--uds-spacing-16);
+            padding: var(--uds-spacing-12) var(--uds-spacing-24);
+            border-right: 4px solid transparent;
 
             &.active {
+                border-right-color: var(--uds-border-brand-tertiary);
+
                 &:after {
-                    content: "";
-                    display: block;
-                    width: 3px;
-                    position: absolute;
-                    top: 6px;
-                    bottom: 6px;
-                    right: -1px;
-                    border-right: solid 3px var(--uds-border-brand-tertiary);
-                    border-bottom: none;
+                    content: none;
+                    display: none;
                 }
             }
+        }
+
+        &--vertical.uds-tabs--underline .uds-tabs-item {
+            @include uds-body-16-medium;
+            color: var(--uds-icon-primary);
+        }
+
+        &--vertical.uds-tabs--block,
+        &--vertical.uds-tabs--block-inverted {
+            background-color: var(--uds-surface-secondary);
+            border: var(--uds-border-width-1) solid var(--uds-border-primary);
+            border-radius: var(--uds-radius-4);
+            padding: var(--uds-gap-4);
+        }
+
+        &--vertical.uds-tabs--block .uds-tabs-item,
+        &--vertical.uds-tabs--block-inverted .uds-tabs-item {
+            padding: var(--uds-spacing-8) var(--uds-spacing-12);
+            @include uds-body-14-medium;
+            line-height: var(--uds-line-28);
+        }
+
+        &--vertical.uds-tabs--block .uds-tabs-item {
+            color: var(--uds-icon-primary);
+        }
+
+        &--vertical.uds-tabs--block .uds-tabs-item.active {
+            background-color: var(--uds-surface-brand-tertiary);
+            color: var(--uds-text-inverse);
+            border-radius: var(--uds-radius-4);
+            @include uds-body-14-semibold;
+            line-height: var(--uds-line-28);
+        }
+
+        &--vertical.uds-tabs--block-inverted .uds-tabs-item {
+            color: var(--uds-icon-brand-tertiary);
+        }
+
+        &--vertical.uds-tabs--block-inverted .uds-tabs-item.active {
+            background-color: var(--uds-surface-primary);
+            border: var(--uds-border-width-1) solid var(--uds-border-primary);
+            border-radius: var(--uds-radius-4);
+            color: var(--uds-icon-brand-tertiary);
+            @include uds-body-14-semibold;
+            line-height: var(--uds-line-28);
+        }
+
+        .uds-tabs-item__icon,
+        .uds-tabs-item__label {
+            color: inherit;
+        }
+
+        &--vertical .uds-tabs-item__tag.uds-tag {
+            margin-left: 0;
+        }
+
+        &--vertical.uds-tabs--block-inverted .uds-tabs-item.active .uds-tabs-item__tag.uds-tag {
+            background-color: var(--uds-color-accent-sky-600);
+            border-color: transparent;
+            color: var(--uds-text-inverse);
         }
 
         // Overflow menu container

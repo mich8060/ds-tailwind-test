@@ -184,7 +184,7 @@ const BASE_PROPS: Record<string, Record<string, unknown>> = {
         ],
       },
     ],
-    brands: ["default", "comphealth", "weatherby", "connect", "wireframe"],
+    brands: ["default", "comphealth", "weatherby", "connect", "chg", "wireframe"],
     activeBrand: "default",
     onBrandChange: () => {},
     showBrandSwitcher: true,

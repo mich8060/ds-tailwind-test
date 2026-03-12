@@ -8,7 +8,7 @@ export const AppShellSpec: ComponentSpec = {
   variants: {
     brand: {
       type: "enum",
-      values: ["default", "comphealth", "weatherby", "connect", "locumsmart", "modio", "gms", "wireframe"],
+      values: ["default", "comphealth", "weatherby", "connect", "locumsmart", "modio", "gms", "chg", "wireframe"],
       default: "default",
     },
     theme: {

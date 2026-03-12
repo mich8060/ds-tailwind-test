@@ -31,6 +31,7 @@ type Brand =
   | "locumsmart"
   | "modio"
   | "gms"
+  | "chg"
   | "wireframe";
 type Theme = "light" | "dark";
 
@@ -42,6 +43,7 @@ const BRAND_OPTIONS: Brand[] = [
   "locumsmart",
   "modio",
   "gms",
+  "chg",
   "wireframe",
 ];
 const BRAND_CLASS_NAMES = BRAND_OPTIONS.map((value) => `brand-${value}`);
@@ -119,7 +121,10 @@ function App() {
     }
   }, []);
 
-  const identity = React.useMemo(() => (brand === "default" ? "design-system" : brand), [brand]);
+  const identity = React.useMemo(
+    () => (brand === "default" ? "design-system" : brand),
+    [brand]
+  );
 
   React.useEffect(() => {
     document.documentElement.setAttribute("data-brand", identity);

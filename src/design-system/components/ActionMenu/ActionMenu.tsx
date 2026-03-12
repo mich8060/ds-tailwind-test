@@ -272,6 +272,7 @@ export default function ActionMenu({
   const menuRef = useRef(null);
   const triggerRef = useRef(null);
   const repositionRafRef = useRef(null);
+  const openMeasureRafRef = useRef(null);
   const resolvedSideRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [autosuggestQuery, setAutosuggestQuery] = useState("");
@@ -344,6 +345,9 @@ export default function ActionMenu({
     if (!isOpen || !menuRef.current || !triggerRef.current) return;
     const nextPortalContainer = resolvePortalContainer();
     setPortalContainer(nextPortalContainer);
+    const isModalPortal =
+      nextPortalContainer instanceof HTMLElement &&
+      nextPortalContainer.classList.contains("uds-modal__overlay");
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const menuRect = menuRef.current.getBoundingClientRect();
@@ -456,10 +460,7 @@ export default function ActionMenu({
       top: `${clampedTop}px`,
       left: `${clampedLeft}px`,
       width: fullWidth ? `${triggerRect.width}px` : undefined,
-      zIndex:
-        nextPortalContainer === modalOverlayContainer
-          ? "calc(var(--uds-elevation-modal) + 1)"
-          : undefined,
+      zIndex: isModalPortal ? "calc(var(--uds-elevation-modal) + 1)" : undefined,
     };
 
     setMenuStyle((prevStyle) => {
@@ -467,7 +468,8 @@ export default function ActionMenu({
         prevStyle.top === nextStyle.top &&
         prevStyle.left === nextStyle.left &&
         prevStyle.width === nextStyle.width &&
-        prevStyle.position === nextStyle.position
+        prevStyle.position === nextStyle.position &&
+        prevStyle.zIndex === nextStyle.zIndex
       ) {
         return prevStyle;
       }
@@ -496,6 +498,32 @@ export default function ActionMenu({
       if (repositionRafRef.current != null) {
         cancelAnimationFrame(repositionRafRef.current);
         repositionRafRef.current = null;
+      }
+    };
+  }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!isOpen) {
+      if (openMeasureRafRef.current != null) {
+        cancelAnimationFrame(openMeasureRafRef.current);
+        openMeasureRafRef.current = null;
+      }
+      return;
+    }
+
+    // First open can still race with portal mount + menu sizing.
+    // Run a second pass after paint and allow side resolution to recompute.
+    openMeasureRafRef.current = requestAnimationFrame(() => {
+      openMeasureRafRef.current = requestAnimationFrame(() => {
+        resolvedSideRef.current = null;
+        updateMenuPosition();
+      });
+    });
+
+    return () => {
+      if (openMeasureRafRef.current != null) {
+        cancelAnimationFrame(openMeasureRafRef.current);
+        openMeasureRafRef.current = null;
       }
     };
   }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
