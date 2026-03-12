@@ -141,6 +141,70 @@ export function TabsDemoPage() {
       description="Tabs organize related content into a single container and let users switch context without leaving the page."
     >
       <Flex direction="column" gap="48">
+        <Flex
+          direction="column"
+          gap="16"
+          className="tabs-figma-component-capture"
+          style={{
+            padding: "var(--uds-spacing-24)",
+            border: "var(--uds-border-width-1) solid var(--uds-border-primary)",
+            borderRadius: "var(--uds-radius-8)",
+            background: "var(--uds-surface-primary)",
+          }}
+        >
+          <Text as="h2" variant="heading-24" weight="medium" leading="regular">
+            Tabs Component Set
+          </Text>
+          <Text as="p" variant="body-14" leading="regular">
+            Component-focused layout for design handoff (horizontal + vertical variants).
+          </Text>
+          <Flex alignItems="flex-start" gap="24" wrap>
+            <Flex direction="column" gap="8" style={{ minWidth: "320px" }}>
+              <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+                Underline
+              </Text>
+              <Tabs tabs={BASE_TABS} appearance="underline" activeTab={0} />
+            </Flex>
+            <Flex direction="column" gap="8" style={{ minWidth: "320px" }}>
+              <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+                Block
+              </Text>
+              <Tabs tabs={BASE_TABS} appearance="block" activeTab={0} />
+            </Flex>
+            <Flex direction="column" gap="8" style={{ minWidth: "320px" }}>
+              <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+                Block Inverted
+              </Text>
+              <Tabs tabs={BASE_TABS} appearance="block-inverted" activeTab={0} />
+            </Flex>
+          </Flex>
+          <Flex alignItems="flex-start" gap="24" wrap>
+            <Flex direction="column" gap="8">
+              <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+                Vertical Underline
+              </Text>
+              <Tabs tabs={TABS_WITH_META} appearance="underline" orientation="vertical" activeTab={0} />
+            </Flex>
+            <Flex direction="column" gap="8">
+              <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+                Vertical Block
+              </Text>
+              <Tabs tabs={TABS_WITH_META} appearance="block" orientation="vertical" activeTab={0} />
+            </Flex>
+            <Flex direction="column" gap="8">
+              <Text as="h3" variant="body-16" weight="semibold" leading="regular">
+                Vertical Block Inverted
+              </Text>
+              <Tabs
+                tabs={TABS_WITH_META.map((tab, idx) => ({ ...tab, tagVariant: idx === 0 ? "sky" : "neutral" }))}
+                appearance="block-inverted"
+                orientation="vertical"
+                activeTab={0}
+              />
+            </Flex>
+          </Flex>
+        </Flex>
+
         <Flex direction="column" gap="16">
           <Text as="h2" variant="heading-24" weight="medium" leading="regular">
             Horizontal Variants

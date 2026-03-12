@@ -159,14 +159,14 @@
 
     // ── Footer ───────────────────────────────
     &__footer {
-        padding: var(--uds-spacing-16) var(--uds-spacing-24);
+        padding: var(--uds-spacing-16) var(--uds-modal-content-padding-x);
         border-top: var(--uds-border-width-1) solid var(--uds-border-primary);
         background: var(--uds-surface-primary);
         position: relative;
         z-index: 1;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-between;
         flex-wrap: wrap;
         gap: var(--uds-gap-32);
     }

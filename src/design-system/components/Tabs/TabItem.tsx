@@ -79,7 +79,7 @@ function TabItem({
       {hasTag && (
         <Tag
           label={typeof tag === "number" || typeof tag === "string" ? String(tag) : "Label"}
-          size="default"
+          size="compact"
           appearance="label-only"
           rounded
           solid
