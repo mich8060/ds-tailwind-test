@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Divider, Flex, SearchInput, Text } from "../../design-system";
+import { Code } from "../../design-system/components/Code";
 import { DocPageLayout } from "../docs/DocPageLayout";
 import { ComponentPropsTable, type ComponentPropRow } from "../docs/ComponentPropsTable";
 
@@ -16,6 +17,40 @@ const SEARCH_INPUT_PROPS: ComponentPropRow[] = [
   { prop: "onDropdownChange", type: "(value: string) => void", defaultValue: "-", description: "Called when inline dropdown selection changes." },
   { prop: "dropdownPlaceholder", type: "string", defaultValue: '"All"', description: "Placeholder shown in the inline dropdown." },
 ];
+
+const BASIC_SNIPPET = `<SearchInput
+  value={value}
+  onChange={(event) => setValue(event.target.value)}
+  label="Search components"
+  helperText="Try typing a component name."
+/>\n`;
+
+const SIZE_SNIPPET = `<SearchInput value="Button" readOnly size="default" />
+<SearchInput value="Button" readOnly size="compact" />\n`;
+
+const INLINE_DROPDOWN_SNIPPET = `<SearchInput
+  value={value}
+  onChange={(event) => setValue(event.target.value)}
+  placeholder="Search resources"
+  dropdownOptions={[
+    { label: "All", value: "all" },
+    { label: "Providers", value: "providers" },
+    { label: "Facilities", value: "facilities" },
+  ]}
+  dropdownValue={scope}
+  onDropdownChange={setScope}
+  dropdownPlaceholder="All"
+/>\n`;
+
+const STATE_SNIPPET = `<SearchInput value="Button" readOnly state="default" />
+<SearchInput value="Button" readOnly state="focused" />
+<SearchInput
+  value="Button"
+  readOnly
+  state="error"
+  errorText="Search query is required."
+/>
+<SearchInput value="Button" readOnly disabled />\n`;
 
 export function SearchInputDemoPage() {
   const [value, setValue] = useState("");
@@ -36,6 +71,7 @@ export function SearchInputDemoPage() {
           label="Search components"
           helperText="Try typing a component name."
         />
+        <Code language="tsx" code={BASIC_SNIPPET} />
       </Flex>
 
       <Divider variant="solid" />
@@ -46,6 +82,7 @@ export function SearchInputDemoPage() {
         </Text>
         <SearchInput value="Button" readOnly size="default" />
         <SearchInput value="Button" readOnly size="compact" />
+        <Code language="tsx" code={SIZE_SNIPPET} />
       </Flex>
 
       <Divider variant="solid" />
@@ -67,6 +104,7 @@ export function SearchInputDemoPage() {
           onDropdownChange={setScope}
           dropdownPlaceholder="All"
         />
+        <Code language="tsx" code={INLINE_DROPDOWN_SNIPPET} />
       </Flex>
 
       <Divider variant="solid" />
@@ -79,6 +117,7 @@ export function SearchInputDemoPage() {
         <SearchInput value="Button" readOnly state="focused" />
         <SearchInput value="Button" readOnly state="error" errorText="Search query is required." />
         <SearchInput value="Button" readOnly disabled />
+        <Code language="tsx" code={STATE_SNIPPET} />
       </Flex>
 
       <Divider variant="solid" />
