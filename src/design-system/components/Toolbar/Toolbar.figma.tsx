@@ -8,6 +8,6 @@ export default {
   figmaNodeUrl,
   component: Toolbar,
   props: {
-    title: "Page title",
+    center: "Page title",
   },
 };

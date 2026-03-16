@@ -55,12 +55,29 @@ export interface AppShellSectionProps {
     children?: React.ReactNode;
 }
 
-const AppShellMenuSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
-const AppShellContentSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
-const AppShellListviewSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
-const AppShellMainSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
-const AppShellSidePanelSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
-const AppShellFooterSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
+type AppShellSlotName = "Menu" | "Content" | "Listview" | "Main" | "SidePanel" | "Footer";
+type AppShellSlotComponent = React.FC<AppShellSectionProps> & { __appShellSlot?: AppShellSlotName };
+
+const createAppShellSlot = (slot: AppShellSlotName): AppShellSlotComponent => {
+    const Slot: AppShellSlotComponent = ({ children }) => <>{children}</>;
+    Slot.__appShellSlot = slot;
+    return Slot;
+};
+
+const getAppShellSlotName = (type: unknown): AppShellSlotName | undefined => {
+    if (!type) return undefined;
+    if (typeof type === "function" || (typeof type === "object" && type !== null)) {
+        return (type as { __appShellSlot?: AppShellSlotName }).__appShellSlot;
+    }
+    return undefined;
+};
+
+const AppShellMenuSlot = createAppShellSlot("Menu");
+const AppShellContentSlot = createAppShellSlot("Content");
+const AppShellListviewSlot = createAppShellSlot("Listview");
+const AppShellMainSlot = createAppShellSlot("Main");
+const AppShellSidePanelSlot = createAppShellSlot("SidePanel");
+const AppShellFooterSlot = createAppShellSlot("Footer");
 
 const hasRenderableContent = (node: React.ReactNode): boolean =>
     React.Children.toArray(node).some((child) => {
@@ -125,30 +142,32 @@ function AppShellComponent({
 
     const topLevelChildren = React.Children.toArray(children) as React.ReactElement<{ children?: React.ReactNode }>[];
     for (const child of topLevelChildren) {
-        if (child.type === AppShellMenuSlot) {
+        const slotName = getAppShellSlotName(child.type);
+        if (child.type === AppShellMenuSlot || slotName === "Menu") {
             customMenu = child.props.children;
             continue;
         }
-        if (child.type === AppShellContentSlot) {
+        if (child.type === AppShellContentSlot || slotName === "Content") {
             customContent = child.props.children;
             continue;
         }
-        if (child.type === AppShellFooterSlot) {
+        if (child.type === AppShellFooterSlot || slotName === "Footer") {
             customFooter = child.props.children;
         }
     }
 
     const contentChildren = React.Children.toArray(customContent) as React.ReactElement<{ children?: React.ReactNode }>[];
     for (const child of contentChildren) {
-        if (child.type === AppShellListviewSlot) {
+        const slotName = getAppShellSlotName(child.type);
+        if (child.type === AppShellListviewSlot || slotName === "Listview") {
             customListview = child.props.children;
             continue;
         }
-        if (child.type === AppShellMainSlot) {
+        if (child.type === AppShellMainSlot || slotName === "Main") {
             customMain = child.props.children;
             continue;
         }
-        if (child.type === AppShellSidePanelSlot) {
+        if (child.type === AppShellSidePanelSlot || slotName === "SidePanel") {
             customSidePanel = child.props.children;
         }
     }

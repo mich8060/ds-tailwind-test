@@ -14,7 +14,7 @@ type Story = StoryObj<typeof Toolbar>;
 export const Default: Story = {
   args: {
     left: <Button appearance="outline" label="Back" icon="ArrowLeft" layout="icon-left" />,
-    title: "Candidates",
+    center: "Candidates",
     right: <Button label="Add Candidate" />,
   },
 };
@@ -22,7 +22,7 @@ export const Default: Story = {
 export const WithBrandingCenter: Story = {
   args: {
     left: <Button appearance="outline" label="Menu" icon="List" layout="icon-left" />,
-    branding: <Branding brand="connect" symbol />,
+    center: <Branding brand="connect" symbol />,
     right: <Button appearance="soft" label="Export" icon="DownloadSimple" layout="icon-left" />,
   },
 };

@@ -21,7 +21,7 @@ export function TemplateCanvasPage() {
     <Container appearance="transparent" padding="large">
       <Flex direction="column" gap="16">
         <Toolbar
-          title="Template Canvas"
+          center="Template Canvas"
           right={<Button appearance="primary" label="Generate Layout" />}
         />
         <Text as="p" variant="body-16">

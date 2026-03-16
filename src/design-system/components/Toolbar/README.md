@@ -3,4 +3,4 @@
 Tier: 2
 
 Purpose:
-- Provide a top bar with left and right action regions and a centered title or branding area.
+- Provide a top bar with three flexible regions: left, center, and right.
