@@ -23,12 +23,12 @@ This file is generated from `src/design-system/components/*/*.spec.ts`.
 
 ### AppShell
 
-Top-level application shell that composes menu, content, and main regions for consistent page architecture.
+Top-level application shell that composes menu, listview, main, side panel, and footer regions for consistent page architecture.
 
 - Source: `src/design-system/components/AppShell/AppShell.spec.ts`
 - Tier: `1`
 - States: `default`
-- Allowed children: `Menu`, `Container`, `Layout`, `Text`, `Button`
+- Allowed children: `Menu`, `Listview`, `Main`, `SidePanel`, `Footer`, `Container`, `Layout`, `Text`, `Button`
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
@@ -375,6 +375,20 @@ Provides inline navigation and action links using semantic text-link tokens.
 | `appearance` | `enum` | primary, secondary | `primary` |
 | `disabled` | `boolean` | - | `false` |
 | `underline` | `enum` | always, hover, none | `always` |
+
+### Medallion
+
+Displays an icon inside a colorized shape for compact visual context.
+
+- Source: `src/design-system/components/Medallion/Medallion.spec.ts`
+- Tier: `2`
+- States: `default`
+
+| Prop | Type | Allowed Values | Default |
+| --- | --- | --- | --- |
+| `color` | `enum` | transparent, neutral, red, orange, yellow, emerald, green, sky, cyan, blue, indigo, purple, fuchsia, magenta, inverse | `neutral` |
+| `shape` | `enum` | circle, square, roundedSquare, diamond | `circle` |
+| `size` | `enum` | small, default, large, xl | `default` |
 
 ### Menu
 

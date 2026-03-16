@@ -103,7 +103,7 @@
 
     // On state
     &__input:checked+&__slider {
-        background-color: var(--uds-surface-brand-tertiary);
+        background-color: var(--uds-color-primary-700);
 
         .uds-toggle__thumb {
             transform: translateY(-50%) translateX(20px);
@@ -116,6 +116,6 @@
 
     // Indeterminate state — always blue regardless of checked value
     &--indeterminate &__input+&__slider {
-        background-color: var(--uds-surface-brand-tertiary);
+        background-color: var(--uds-color-primary-700);
     }
 }

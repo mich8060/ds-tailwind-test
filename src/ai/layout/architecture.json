@@ -5,11 +5,12 @@
     "application": {
       "requiredRoot": "AppShell",
       "requiredChildren": ["AppShell.Content", "AppShell.Main"],
-      "optionalChildren": ["AppShell.Menu", "AppShell.Header", "AppShell.Footer", "AppShell.SubNav"],
+      "optionalChildren": ["AppShell.Menu", "AppShell.Listview", "AppShell.SidePanel", "AppShell.Header", "AppShell.Footer", "AppShell.SubNav"],
       "rules": [
         "Wrap route-aware views in BrowserRouter or RouterProvider.",
         "Render AppShell.Menu only when nav data is present.",
-        "Attach page content routes under AppShell.Main."
+        "Attach page content routes under AppShell.Main.",
+        "Use AppShell.Listview and AppShell.SidePanel as optional contextual rails around AppShell.Main."
       ]
     }
   },

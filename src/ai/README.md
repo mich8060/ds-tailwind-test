@@ -110,4 +110,5 @@ Use the governed training set exported from runtime AI examples:
 - Contract entrypoint: `@mich8060/unified-design-system/ai/examples/dataset`
 - Additional scenario dataset (JSONL):
   - `src/ai/examples/signin-flow-uds.jsonl`
+  - `src/ai/examples/app-shell-regions-uds.jsonl`
   - `src/ai/examples/uds-governed-training.jsonl` (canonical valid/invalid contract outputs with `audit.patternId`)

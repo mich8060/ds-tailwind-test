@@ -58,7 +58,7 @@ export const COMPONENT_API = {
     "name": "AppShell",
     "source": "src/design-system/components/AppShell/AppShell.spec.ts",
     "tier": 1,
-    "purpose": "Top-level application shell that composes menu, content, and main regions for consistent page architecture.",
+    "purpose": "Top-level application shell that composes menu, listview, main, side panel, and footer regions for consistent page architecture.",
     "props": {
       "brand": {
         "type": "enum",
@@ -106,6 +106,10 @@ export const COMPONENT_API = {
     "composition": {
       "allowedChildren": [
         "Menu",
+        "Listview",
+        "Main",
+        "SidePanel",
+        "Footer",
         "Container",
         "Layout",
         "Text",
@@ -1603,6 +1607,86 @@ export const COMPONENT_API = {
       "Using Link for button-like actions that do not navigate.",
       "Relying on color only without visible text for meaning."
     ]
+  },
+  "Medallion": {
+    "name": "Medallion",
+    "source": "src/design-system/components/Medallion/Medallion.spec.ts",
+    "tier": 2,
+    "purpose": "Displays an icon inside a colorized shape for compact visual context.",
+    "props": {
+      "shape": {
+        "type": "enum",
+        "values": [
+          "circle",
+          "square",
+          "roundedSquare",
+          "diamond"
+        ],
+        "default": "circle"
+      },
+      "size": {
+        "type": "enum",
+        "values": [
+          "small",
+          "default",
+          "large",
+          "xl"
+        ],
+        "default": "default"
+      },
+      "color": {
+        "type": "enum",
+        "values": [
+          "transparent",
+          "neutral",
+          "red",
+          "orange",
+          "yellow",
+          "emerald",
+          "green",
+          "sky",
+          "cyan",
+          "blue",
+          "indigo",
+          "purple",
+          "fuchsia",
+          "magenta",
+          "inverse"
+        ],
+        "default": "neutral"
+      }
+    },
+    "defaults": {
+      "shape": "circle",
+      "size": "default",
+      "color": "neutral"
+    },
+    "states": [
+      "default"
+    ],
+    "tokensUsed": [
+      "--uds-color-accent-*-100",
+      "--uds-color-accent-*-700",
+      "--uds-surface-secondary",
+      "--uds-border-primary"
+    ],
+    "accessibility": {
+      "role": "img",
+      "keyboard": []
+    },
+    "composition": {
+      "allowedChildren": [],
+      "allowedParents": [],
+      "disallowedChildren": []
+    },
+    "aliases": {
+      "props": {}
+    },
+    "ambiguity": {
+      "propNameCollisions": [],
+      "hadAliasNormalization": false
+    },
+    "antiPatterns": []
   },
   "Menu": {
     "name": "Menu",

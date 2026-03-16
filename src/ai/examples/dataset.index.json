@@ -34,6 +34,11 @@
       "kind": "scenario-layout"
     },
     {
+      "id": "app-shell-regions",
+      "path": "@mich8060/unified-design-system/ai/examples/app-shell-regions-uds.jsonl",
+      "kind": "scenario-layout"
+    },
+    {
       "id": "uds-governed-training",
       "path": "@mich8060/unified-design-system/ai/examples/uds-governed-training.jsonl",
       "kind": "governed-valid-invalid"

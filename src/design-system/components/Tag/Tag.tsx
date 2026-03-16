@@ -44,7 +44,7 @@ const colorClassMap: Record<TagColor, string> = {
  * @param {boolean} solid - Whether to use solid background (default: false)
  * @param {boolean} outlined - Whether to use outlined treatment (default: false)
  * @param {boolean} pastel - Whether to use lighter pastel treatment (default: false)
- * @param {string|boolean} icon - Icon name to display (when appearance is 'icon-left')
+ * @param {string|ReactNode} icon - Icon name or custom node (when appearance is 'icon-left')
  * @param {string} className - Additional CSS classes
  * @param {function} onClick - Click handler function
  * @param {object} props - Additional props to pass to the tag element
@@ -81,9 +81,10 @@ export default function Tag({
 
   const Element = onClick ? "button" : "span";
   const hasIcon = appearance === "icon-left" && icon;
+  const interactiveProps = onClick ? { type: "button" as const } : {};
 
   return (
-    <Element className={classNames} onClick={onClick} {...props}>
+    <Element className={classNames} onClick={onClick} {...interactiveProps} {...props}>
       {hasIcon && typeof icon === "string" && (
         <Icon
           name={icon}

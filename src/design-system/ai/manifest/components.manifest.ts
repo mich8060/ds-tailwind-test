@@ -47,7 +47,26 @@ const buildItem = (seed: ComponentSeed): ComponentManifestItem => ({
 const componentSeeds: ComponentSeed[] = [
   { name: "Accordion", category: "layout", intent: "Progressive disclosure for grouped content.", preferredContexts: ["settings", "details"], accessibilityRole: "region" },
   { name: "ActionMenu", category: "navigation", intent: "Contextual action list for row/item actions.", preferredContexts: ["tables", "cards"], accessibilityRole: "menu", keyboardSupport: ["Tab", "Enter", "ArrowUp", "ArrowDown", "Escape"] },
-  { name: "AppShell", category: "layout", intent: "Top-level application shell composition.", preferredContexts: ["app-root"], maxPerSection: 1, tokenDependencies: ["--uds-spacing-16", "--uds-color-neutral-50", "--uds-elevation-overlay"], accessibilityRole: "application" },
+  {
+    name: "AppShell",
+    category: "layout",
+    intent: "Top-level application shell composition.",
+    preferredContexts: ["app-root"],
+    maxPerSection: 1,
+    tokenDependencies: ["--uds-spacing-16", "--uds-color-neutral-50", "--uds-elevation-overlay"],
+    accessibilityRole: "application",
+    slots: {
+      menu: { required: false, description: "Primary navigation region via AppShell.Menu." },
+      content: { required: true, description: "Primary layout body via AppShell.Content." },
+      listview: { required: false, description: "Optional left contextual rail via AppShell.Listview." },
+      main: { required: true, description: "Primary page/route content via AppShell.Main." },
+      sidePanel: { required: false, description: "Optional right contextual rail via AppShell.SidePanel." },
+      footer: { required: false, description: "Optional global footer via AppShell.Footer." },
+    },
+    constraints: {
+      allowedChildren: ["Menu", "Listview", "Main", "SidePanel", "Footer"],
+    },
+  },
   { name: "Avatar", category: "data-display", intent: "Represent people or entities with image/initials.", preferredContexts: ["lists", "tables", "headers"], accessibilityRole: "img" },
   { name: "Badge", category: "data-display", intent: "Small count/status indicator.", preferredContexts: ["notifications", "tabs"], maxPerSection: 6 },
   { name: "Branding", category: "branding", intent: "Brand identity lockup and context marker.", preferredContexts: ["navigation", "headers"], maxPerSection: 1 },

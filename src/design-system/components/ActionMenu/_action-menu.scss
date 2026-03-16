@@ -156,7 +156,7 @@
         }
 
         &--active {
-            background-color: var(--uds-surface-brand-tertiary);
+            background-color: var(--uds-color-primary-700);
             color: var(--uds-text-inverse);
 
             .uds-action-menu__item-icon {
@@ -168,7 +168,7 @@
             }
 
             &:hover:not(.uds-action-menu__item--disabled) {
-                background-color: var(--uds-surface-brand-tertiary);
+                background-color: var(--uds-color-primary-700);
             }
         }
 

@@ -86,13 +86,38 @@
       "name": "AppShell",
       "category": "layout",
       "intent": "Top-level application shell and page structure",
-      "purpose": "Top-level application shell that composes menu, content, and main regions for consistent page architecture.",
+      "purpose": "Top-level application shell that composes menu, listview, main, side panel, and footer regions for consistent page architecture.",
       "tier": 1,
       "description": "The structural application layout framework that governs global regions such as header, sidebar, breadcrumb, sub-navigation, and main content. It enforces consistent structure, theme/brand application, and layout configuration.",
       "roles": [
         "application"
       ],
-      "slots": null,
+      "slots": {
+        "menu": {
+          "required": false,
+          "description": "Primary navigation region via AppShell.Menu."
+        },
+        "content": {
+          "required": true,
+          "description": "Primary layout body via AppShell.Content."
+        },
+        "listview": {
+          "required": false,
+          "description": "Optional left contextual rail via AppShell.Listview."
+        },
+        "main": {
+          "required": true,
+          "description": "Primary page/route content via AppShell.Main."
+        },
+        "sidePanel": {
+          "required": false,
+          "description": "Optional right contextual rail via AppShell.SidePanel."
+        },
+        "footer": {
+          "required": false,
+          "description": "Optional global footer via AppShell.Footer."
+        }
+      },
       "states": [
         "default"
       ],
@@ -131,6 +156,10 @@
         ],
         "allowedChildren": [
           "Menu",
+          "Listview",
+          "Main",
+          "SidePanel",
+          "Footer",
           "Container",
           "Layout",
           "Text",
@@ -3319,6 +3348,10 @@
     "allowedComposition": {
       "AppShell": [
         "Menu",
+        "Listview",
+        "Main",
+        "SidePanel",
+        "Footer",
         "Container",
         "Layout",
         "Text",

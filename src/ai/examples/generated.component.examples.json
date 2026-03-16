@@ -15,7 +15,7 @@
       "brand": "default",
       "theme": "light"
     },
-    "jsx": "<AppShell brand=\"default\" theme=\"light\" />"
+    "jsx": "<AppShell brand=\"default\" theme=\"light\"><AppShell.Content><AppShell.Main /></AppShell.Content></AppShell>"
   },
   {
     "component": "Avatar",
@@ -247,6 +247,15 @@
       "disabled": false
     },
     "jsx": "<Link appearance=\"primary\" underline=\"always\" disabled={false} />"
+  },
+  {
+    "component": "Medallion",
+    "props": {
+      "shape": "circle",
+      "size": "default",
+      "color": "neutral"
+    },
+    "jsx": "<Medallion shape=\"circle\" size=\"default\" color=\"neutral\" />"
   },
   {
     "component": "Menu",

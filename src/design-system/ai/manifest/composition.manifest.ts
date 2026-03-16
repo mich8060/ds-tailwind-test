@@ -11,7 +11,7 @@ export interface CompositionConstraints {
 }
 
 const allowedChildrenByParent: Record<string, string[]> = {
-  AppShell: ["Menu", "Container", "Layout", "Text", "Button"],
+  AppShell: ["Menu", "Listview", "Main", "SidePanel", "Footer", "Container", "Layout", "Text", "Button"],
   Container: ["Layout", "Table", "Text", "Button", "Field", "Divider", "Tag"],
   Field: ["TextInput", "Input", "Dropdown", "Datepicker", "Textarea", "Checkbox", "Radio", "Toggle", "Slider", "FileUpload"],
   Modal: ["Text", "Button", "Divider", "Field", "TextInput", "Dropdown", "Datepicker", "Textarea", "Tag"],

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import TabItem from "./TabItem";
 import Button from "../Button/Button";
 import "./_tabs.scss";
@@ -42,6 +42,7 @@ function Tabs({
 }: TabsProps) {
   const tabsContainerRef = useRef<HTMLDivElement | null>(null);
   const tabsListRef = useRef<HTMLDivElement | null>(null);
+  const tabsGroupId = useId().replace(/[:]/g, "");
   const [showLeftScroll, setShowLeftScroll] = useState(false);
   const [showRightScroll, setShowRightScroll] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -74,6 +75,73 @@ function Tabs({
       onTabChange(index, tab);
     }
   }, [onTabChange]);
+
+  const focusTabAtIndex = useCallback((index: number) => {
+    if (!tabsListRef.current) return;
+    const tabElements = tabsListRef.current.querySelectorAll<HTMLElement>('[role="tab"]');
+    const target = tabElements[index];
+    if (target) {
+      target.focus();
+    }
+  }, []);
+
+  const getSafeTabObject = useCallback((tab: unknown): Record<string, unknown> | null => {
+    if (!tab || typeof tab !== "object") return null;
+    return tab as Record<string, unknown>;
+  }, []);
+
+  const handleTabKeyDown = useCallback(
+    (event: React.KeyboardEvent, index: number, tab: Record<string, unknown>) => {
+      if (!tabs.length) return;
+
+      let nextIndex = index;
+      const horizontal = orientation === "horizontal";
+
+      switch (event.key) {
+        case "ArrowRight":
+          if (!horizontal) return;
+          event.preventDefault();
+          nextIndex = (index + 1) % tabs.length;
+          break;
+        case "ArrowLeft":
+          if (!horizontal) return;
+          event.preventDefault();
+          nextIndex = (index - 1 + tabs.length) % tabs.length;
+          break;
+        case "ArrowDown":
+          if (horizontal) return;
+          event.preventDefault();
+          nextIndex = (index + 1) % tabs.length;
+          break;
+        case "ArrowUp":
+          if (horizontal) return;
+          event.preventDefault();
+          nextIndex = (index - 1 + tabs.length) % tabs.length;
+          break;
+        case "Home":
+          event.preventDefault();
+          nextIndex = 0;
+          break;
+        case "End":
+          event.preventDefault();
+          nextIndex = tabs.length - 1;
+          break;
+        case "Enter":
+        case " ":
+          event.preventDefault();
+          handleTabClick(index, tab);
+          return;
+        default:
+          return;
+      }
+
+      const nextTab = getSafeTabObject(tabs[nextIndex]);
+      if (!nextTab) return;
+      handleTabClick(nextIndex, nextTab);
+      requestAnimationFrame(() => focusTabAtIndex(nextIndex));
+    },
+    [focusTabAtIndex, getSafeTabObject, handleTabClick, orientation, tabs]
+  );
 
   // Check if scrolling is needed and update scroll button visibility
   const checkScrollButtons = useCallback(() => {
@@ -227,33 +295,34 @@ function Tabs({
       ref={tabsListRef}
       className={`${BASE_CLASS}__list`}
       role="tablist"
+      aria-orientation={orientation}
       {...props}
     >
       {tabs.map((tab, index) => {
-        // Ensure tab is an object and extract safe values
-        if (!tab || typeof tab !== "object") return null;
+        const safeTab = getSafeTabObject(tab);
+        if (!safeTab) return null;
         
         // Safely extract label - ensure it's a string, not an object
-        const label = (tab.label != null && typeof tab.label === "string")
-          ? tab.label
-          : (tab.label != null && typeof tab.label !== "object")
-          ? String(tab.label)
+        const label = (safeTab.label != null && typeof safeTab.label === "string")
+          ? safeTab.label
+          : (safeTab.label != null && typeof safeTab.label !== "object")
+          ? String(safeTab.label)
           : "";
         
         // Safely extract icon - only use if it's a string
-        const icon = typeof tab.icon === "string" ? tab.icon : undefined;
+        const icon = typeof safeTab.icon === "string" ? safeTab.icon : undefined;
         
         // Safely extract tag - only use if it's a number or string
-        const tag = (typeof tab.tag === "number" || typeof tab.tag === "string") 
-          ? tab.tag 
+        const tag = (typeof safeTab.tag === "number" || typeof safeTab.tag === "string") 
+          ? safeTab.tag 
           : undefined;
         
         // Safely extract tagVariant - only use if it's a string
-        const tagVariant = typeof tab.tagVariant === "string" ? tab.tagVariant : undefined;
+        const tagVariant = typeof safeTab.tagVariant === "string" ? safeTab.tagVariant : undefined;
         
         // Safely get key - ensure it's a string or number
-        const tabKey = (tab.id != null && typeof tab.id !== "object")
-          ? (typeof tab.id === "string" || typeof tab.id === "number" ? tab.id : String(tab.id))
+        const tabKey = (safeTab.id != null && typeof safeTab.id !== "object")
+          ? (typeof safeTab.id === "string" || typeof safeTab.id === "number" ? safeTab.id : String(safeTab.id))
           : index;
         
         return (
@@ -265,7 +334,10 @@ function Tabs({
             icon={icon}
             tag={tag}
             tagVariant={tagVariant}
-            onClick={() => handleTabClick(index, tab)}
+            id={`${BASE_CLASS}-tab-${tabsGroupId}-${index}`}
+            tabIndex={index === currentActiveTab ? 0 : -1}
+            onKeyDown={(event) => handleTabKeyDown(event, index, safeTab)}
+            onClick={() => handleTabClick(index, safeTab)}
           />
         );
       })}
@@ -301,32 +373,33 @@ function Tabs({
   }
 
   return (
-    <div className={classNames} role="tablist" {...props}>
+    <div className={classNames} {...props}>
+      <div ref={tabsListRef} className={`${BASE_CLASS}__list`} role="tablist" aria-orientation={orientation}>
       {tabs.map((tab, index) => {
-        // Ensure tab is an object and extract safe values
-        if (!tab || typeof tab !== "object") return null;
+        const safeTab = getSafeTabObject(tab);
+        if (!safeTab) return null;
         
         // Safely extract label - ensure it's a string, not an object
-        const label = (tab.label != null && typeof tab.label === "string")
-          ? tab.label
-          : (tab.label != null && typeof tab.label !== "object")
-          ? String(tab.label)
+        const label = (safeTab.label != null && typeof safeTab.label === "string")
+          ? safeTab.label
+          : (safeTab.label != null && typeof safeTab.label !== "object")
+          ? String(safeTab.label)
           : "";
         
         // Safely extract icon - only use if it's a string
-        const icon = typeof tab.icon === "string" ? tab.icon : undefined;
+        const icon = typeof safeTab.icon === "string" ? safeTab.icon : undefined;
         
         // Safely extract tag - only use if it's a number or string
-        const tag = (typeof tab.tag === "number" || typeof tab.tag === "string") 
-          ? tab.tag 
+        const tag = (typeof safeTab.tag === "number" || typeof safeTab.tag === "string") 
+          ? safeTab.tag 
           : undefined;
         
         // Safely extract tagVariant - only use if it's a string
-        const tagVariant = typeof tab.tagVariant === "string" ? tab.tagVariant : undefined;
+        const tagVariant = typeof safeTab.tagVariant === "string" ? safeTab.tagVariant : undefined;
         
         // Safely get key - ensure it's a string or number
-        const tabKey = (tab.id != null && typeof tab.id !== "object")
-          ? (typeof tab.id === "string" || typeof tab.id === "number" ? tab.id : String(tab.id))
+        const tabKey = (safeTab.id != null && typeof safeTab.id !== "object")
+          ? (typeof safeTab.id === "string" || typeof safeTab.id === "number" ? safeTab.id : String(safeTab.id))
           : index;
         
         return (
@@ -338,10 +411,14 @@ function Tabs({
             icon={icon}
             tag={tag}
             tagVariant={tagVariant}
-            onClick={() => handleTabClick(index, tab)}
+            id={`${BASE_CLASS}-tab-${tabsGroupId}-${index}`}
+            tabIndex={index === currentActiveTab ? 0 : -1}
+            onKeyDown={(event) => handleTabKeyDown(event, index, safeTab)}
+            onClick={() => handleTabClick(index, safeTab)}
           />
         );
       })}
+      </div>
     </div>
   );
 }

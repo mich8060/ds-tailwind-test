@@ -21,10 +21,11 @@ export const ComponentRegistry = {
     category: "layout",
     intent: "Top-level application shell and page structure",
     description:
-      "The structural application layout framework that governs global regions such as header, sidebar, breadcrumb, sub-navigation, and main content. It enforces consistent structure, theme/brand application, and layout configuration.",
+      "The structural application layout framework that governs global regions such as menu, listview, main content, side panel, and footer while enforcing consistent structure, theme/brand application, and layout configuration.",
     alsoKnownAs: ["Application Layout", "Shell Layout", "Root Layout", "Global Layout", "Framework Layout", "Layout Scaffold", "Layout Infrastructure"],
     roles: ["application"],
     preferredParent: ["root"],
+    compoundSlots: ["Menu", "Content", "Listview", "Main", "SidePanel", "Footer"],
   },
   Avatar: {
     category: "data-display",

@@ -4,7 +4,7 @@ export const AppShellSpec: ComponentSpec = {
   name: "AppShell",
   tier: 1,
   purpose:
-    "Top-level application shell that composes menu, content, and main regions for consistent page architecture.",
+    "Top-level application shell that composes menu, listview, main, side panel, and footer regions for consistent page architecture.",
   variants: {
     brand: {
       type: "enum",

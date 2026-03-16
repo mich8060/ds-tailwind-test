@@ -24,7 +24,9 @@ export interface AppShellSlots {
  * <AppShell brand="comphealth" theme="dark">
  *   <AppShell.Menu>...</AppShell.Menu>
  *   <AppShell.Content>
+ *     <AppShell.Listview>...</AppShell.Listview>
  *     <AppShell.Main>...</AppShell.Main>
+ *     <AppShell.SidePanel>...</AppShell.SidePanel>
  *   </AppShell.Content>
  * </AppShell>
  * ```
@@ -57,6 +59,7 @@ const AppShellMenuSlot = ({ children }: AppShellSectionProps) => <>{children}</>
 const AppShellContentSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
 const AppShellListviewSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
 const AppShellMainSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
+const AppShellSidePanelSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
 const AppShellFooterSlot = ({ children }: AppShellSectionProps) => <>{children}</>;
 
 const hasRenderableContent = (node: React.ReactNode): boolean =>
@@ -117,6 +120,7 @@ function AppShellComponent({
     let customContent: React.ReactNode = null;
     let customListview: React.ReactNode = null;
     let customMain: React.ReactNode = null;
+    let customSidePanel: React.ReactNode = null;
     let customFooter: React.ReactNode = null;
 
     const topLevelChildren = React.Children.toArray(children) as React.ReactElement<{ children?: React.ReactNode }>[];
@@ -142,10 +146,16 @@ function AppShellComponent({
         }
         if (child.type === AppShellMainSlot) {
             customMain = child.props.children;
+            continue;
+        }
+        if (child.type === AppShellSidePanelSlot) {
+            customSidePanel = child.props.children;
         }
     }
     const resolvedFooter = slots?.Footer ?? customFooter;
     const hasSidebarMenu = !standalone && config.sidebar && hasRenderableContent(customMenu);
+    const hasListview = hasRenderableContent(customListview);
+    const hasSidePanel = hasRenderableContent(customSidePanel);
 
     const shellClass = [
         "app-shell",
@@ -210,12 +220,15 @@ function AppShellComponent({
                 ) : null}
                 <div className="app-shell__main">
                     <main className="app-shell__content" id={resolvedMainContentId} tabIndex={-1}>
-                        {customListview ? (
+                        {hasListview ? (
                             <aside className="app-shell__listview">{customListview}</aside>
                         ) : null}
                         <section className="app-shell__main-content">
                             {customMain}
                         </section>
+                        {hasSidePanel ? (
+                            <aside className="app-shell__side-panel">{customSidePanel}</aside>
+                        ) : null}
                     </main>
                     {config.footer && hasRenderableContent(resolvedFooter) ? resolvedFooter : null}
                 </div>
@@ -237,6 +250,7 @@ type AppShellCompound = React.FC<AppShellProps> & {
     Content: typeof AppShellContentSlot;
     Listview: typeof AppShellListviewSlot;
     Main: typeof AppShellMainSlot;
+    SidePanel: typeof AppShellSidePanelSlot;
     Footer: typeof AppShellFooterSlot;
 };
 
@@ -245,4 +259,5 @@ AppShell.Menu = AppShellMenuSlot;
 AppShell.Content = AppShellContentSlot;
 AppShell.Listview = AppShellListviewSlot;
 AppShell.Main = AppShellMainSlot;
+AppShell.SidePanel = AppShellSidePanelSlot;
 AppShell.Footer = AppShellFooterSlot;

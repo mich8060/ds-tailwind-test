@@ -74,7 +74,7 @@
                 @include uds-body-14-medium;
 
                 &.active {
-                    background-color: var(--uds-surface-brand-tertiary);
+                    background-color: var(--uds-color-primary-700);
                     border-radius: var(--uds-radius-4);
                     color: var(--uds-text-inverse);
                     @include uds-body-14-semibold;
@@ -92,9 +92,9 @@
                 @include uds-body-14-medium;
 
                 &.active {
-                    background-color: var(--uds-surface-primary);
-                    border: var(--uds-border-width-1) solid var(--uds-border-primary);
-                    color: var(--uds-icon-brand-tertiary);
+                    background-color: var(--uds-color-primary-700);
+                    border: var(--uds-border-width-1) solid var(--uds-color-primary-700);
+                    color: var(--uds-text-inverse);
                     @include uds-body-14-semibold;
                 }
             }
@@ -117,7 +117,7 @@
                         bottom: 0;
                         left: -2px;
                         right: -2px;
-                        border-bottom: solid 3px var(--uds-border-brand-tertiary);
+                        border-bottom: solid 3px var(--uds-color-primary-700);
                     }
                 }
             }
@@ -173,7 +173,7 @@
             border-right: 4px solid transparent;
 
             &.active {
-                border-right-color: var(--uds-border-brand-tertiary);
+                border-right-color: var(--uds-color-primary-700);
 
                 &:after {
                     content: none;
@@ -208,7 +208,7 @@
         }
 
         &--vertical.uds-tabs--block .uds-tabs-item.active {
-            background-color: var(--uds-surface-brand-tertiary);
+            background-color: var(--uds-color-primary-700);
             color: var(--uds-text-inverse);
             border-radius: var(--uds-radius-4);
             @include uds-body-14-semibold;
@@ -220,10 +220,10 @@
         }
 
         &--vertical.uds-tabs--block-inverted .uds-tabs-item.active {
-            background-color: var(--uds-surface-primary);
-            border: var(--uds-border-width-1) solid var(--uds-border-primary);
+            background-color: var(--uds-color-primary-700);
+            border: var(--uds-border-width-1) solid var(--uds-color-primary-700);
             border-radius: var(--uds-radius-4);
-            color: var(--uds-icon-brand-tertiary);
+            color: var(--uds-text-inverse);
             @include uds-body-14-semibold;
             line-height: var(--uds-line-28);
         }
@@ -263,7 +263,7 @@
                 @include uds-body-16;
 
                 &.active {
-                    border-bottom: solid 2px var(--uds-border-brand-tertiary);
+                    border-bottom: solid 2px var(--uds-color-primary-700);
                     @include uds-body-14-semibold;
                 }
             }
@@ -276,7 +276,7 @@
                 @include uds-body-14-medium;
 
                 &.active {
-                    background-color: var(--uds-surface-brand-tertiary);
+                    background-color: var(--uds-color-primary-700);
                     border-radius: var(--uds-radius-4);
                     color: var(--uds-text-inverse);
                     @include uds-body-14-semibold;
@@ -291,9 +291,9 @@
                 @include uds-body-14-medium;
 
                 &.active {
-                    background-color: var(--uds-surface-primary);
-                    border: var(--uds-border-width-1) solid var(--uds-border-primary);
-                    color: var(--uds-icon-brand-tertiary);
+                    background-color: var(--uds-color-primary-700);
+                    border: var(--uds-border-width-1) solid var(--uds-color-primary-700);
+                    color: var(--uds-text-inverse);
                     @include uds-body-14-semibold;
                 }
             }

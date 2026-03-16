@@ -32,6 +32,7 @@ Run this setup flow before generating UI:
 5. Build required scaffold
 - Wrap app root with `BrowserRouter` (or `RouterProvider`) before any route-aware UDS components.
 - Use `AppShell > AppShell.Menu > AppShell.Content > AppShell.Main` as root layout.
+- When context rails are required, include `AppShell.Listview` (left) and/or `AppShell.SidePanel` (right) inside `AppShell.Content`.
 - Build `Menu.navItems` from selected brand in `brand-menus.json`.
 
 6. Validate

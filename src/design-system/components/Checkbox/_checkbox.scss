@@ -24,8 +24,8 @@
     // ── Modifier: indeterminate ─────────────────────────
     &--indeterminate {
         .checkbox__box {
-            background-color: var(--uds-surface-brand-tertiary, var(--uds-color-primary-700));
-            border-color: var(--uds-border-brand-tertiary, var(--uds-color-primary-700));
+            background-color: var(--uds-color-primary-700);
+            border-color: var(--uds-color-primary-700);
         }
 
         .checkbox__input:not(:disabled)+.checkbox__box:hover {
@@ -48,8 +48,8 @@
         }
 
         &:checked+.checkbox__box {
-            background-color: var(--uds-surface-brand-tertiary, var(--uds-color-primary-700));
-            border-color: var(--uds-border-brand-tertiary, var(--uds-color-primary-700));
+            background-color: var(--uds-color-primary-700);
+            border-color: var(--uds-color-primary-700);
             color: var(--uds-text-inverse);
         }
 

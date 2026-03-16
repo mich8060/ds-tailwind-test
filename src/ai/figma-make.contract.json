@@ -50,7 +50,9 @@
                 "Menu",
                 "Content",
                 "Listview",
-                "Main"
+                "Main",
+                "SidePanel",
+                "Footer"
             ],
             "namedSlots": [
                 "Header",
@@ -60,7 +62,7 @@
                 "SubNav"
             ],
             "requiredProps": {
-                "brand": "connect|comphealth|locumsmart|default|weatherby|modio|gms|wireframe",
+                "brand": "connect|comphealth|locumsmart|default|weatherby|modio|gms|chg|wireframe",
                 "theme": "light|dark"
             }
         },
@@ -179,7 +181,7 @@
     },
     "navigationLogic": {
         "router": "react-router-dom (^6.26.2 || ^7.0.0)",
-        "rootLayoutPattern": "AppShell with route outlet in AppShell.Main"
+        "rootLayoutPattern": "AppShell with route outlet in AppShell.Main (optional AppShell.Listview and AppShell.SidePanel rails)"
     },
     "iconMappings": {
         "dashboard": "House",

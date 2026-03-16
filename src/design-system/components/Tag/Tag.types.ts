@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, MouseEventHandler, ReactNode } from "react";
 
 export type TagAppearance = "label-only" | "icon-left";
 export type TagSize = "compact" | "default";
@@ -19,7 +19,7 @@ export type TagColor =
   | "magenta"
   | "inverse";
 
-export interface TagProps extends HTMLAttributes<HTMLDivElement> {
+export interface TagProps extends HTMLAttributes<HTMLElement> {
   label?: string;
   appearance?: TagAppearance;
   size?: TagSize;
@@ -30,5 +30,5 @@ export interface TagProps extends HTMLAttributes<HTMLDivElement> {
   pastel?: boolean;
   icon?: string | ReactNode;
   className?: string;
-  onClick?: (...args: unknown[]) => void;
+  onClick?: MouseEventHandler<HTMLElement>;
 }

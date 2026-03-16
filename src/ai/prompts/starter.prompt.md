@@ -22,7 +22,9 @@ Required layout scaffold:
   - `AppShell`
   - `AppShell.Menu`
   - `AppShell.Content`
+  - `AppShell.Listview` (optional)
   - `AppShell.Main`
+  - `AppShell.SidePanel` (optional)
 - Place route/page content in `AppShell.Main`.
 
 Brand menu requirements:

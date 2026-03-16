@@ -118,18 +118,18 @@
         }
 
         &--active {
-            background: var(--uds-button-surface-primary-default);
-            color: var(--uds-button-text-default);
+            background: var(--uds-color-primary-700);
+            color: var(--uds-text-inverse);
             font-weight: 600;
             cursor: default;
             border:none;
 
             &.uds-pagination__item--underline {
                 background: var(--uds-surface-primary);
-                border-top: var(--uds-border-width-4) solid var(--uds-button-border-primary-default);
+                border-top: var(--uds-border-width-4) solid var(--uds-color-primary-700);
                 border-left: none;
                 border-bottom: none;
-                color: var(--uds-button-border-primary-default);
+                color: var(--uds-color-primary-700);
                 font-weight: 600;
                 padding-top: calc(var(--uds-spacing-12) - 2px);
 

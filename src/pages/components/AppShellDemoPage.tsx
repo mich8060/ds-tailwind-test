@@ -23,7 +23,7 @@ const APP_SHELL_PROPS: ComponentPropRow[] = [
   { prop: "skipToContent", type: "boolean", defaultValue: "true", description: "Renders keyboard-accessible skip link that jumps to main content." },
   { prop: "skipToContentLabel", type: "string", defaultValue: '"Skip to content"', description: "Accessible label text shown for the skip link." },
   { prop: "mainContentId", type: "string", defaultValue: "generated", description: "Optional custom id for the main content target used by skip link." },
-  { prop: "children", type: "ReactNode", defaultValue: "-", description: "Compound regions using `AppShell.Menu`, `AppShell.Content`, `AppShell.Listview`, `AppShell.Main`." },
+  { prop: "children", type: "ReactNode", defaultValue: "-", description: "Compound regions using `AppShell.Menu`, `AppShell.Content`, `AppShell.Listview`, `AppShell.Main`, `AppShell.SidePanel`." },
   { prop: "className", type: "string", defaultValue: '""', description: "Additional CSS classes on shell root." },
 ];
 
@@ -39,6 +39,7 @@ const COMPOSITION_RULES = [
   "Use `AppShell` as the top-level wrapper for full app screens.",
   "Put primary navigation in `AppShell.Menu` and route content in `AppShell.Main`.",
   "Use `AppShell.Listview` for optional left-side contextual lists.",
+  "Use `AppShell.SidePanel` for optional right-side supplemental context and actions.",
   "Switch brand/theme at the shell root instead of hardcoding styles in components.",
 ];
 
@@ -67,6 +68,10 @@ const LISTVIEW_APP_SHELL_EXAMPLE = `<AppShell brand="comphealth" theme="dark">
     <AppShell.Main>
       <CandidateDetail />
     </AppShell.Main>
+
+    <AppShell.SidePanel>
+      <CandidateDocuments />
+    </AppShell.SidePanel>
   </AppShell.Content>
 </AppShell>`;
 
@@ -224,10 +229,13 @@ export function AppShellDemoPage() {
               `AppShell.Menu` renders the sidebar area.
             </Text>
             <Text as="p" variant="body-16" leading="regular">
-              `AppShell.Content` wraps content sections and can include `AppShell.Listview` and `AppShell.Main`.
+              `AppShell.Content` wraps content sections and can include `AppShell.Listview`, `AppShell.Main`, and `AppShell.SidePanel`.
             </Text>
             <Text as="p" variant="body-16" leading="regular">
               `AppShell.Main` is the primary route content surface.
+            </Text>
+            <Text as="p" variant="body-16" leading="regular">
+              `AppShell.SidePanel` is an optional right rail for contextual tools, documents, and secondary actions.
             </Text>
           </Flex>
         </Flex>
@@ -252,7 +260,7 @@ export function AppShellDemoPage() {
             Live Preview
           </Text>
           <Text as="p" variant="body-16" leading="regular">
-            Toggle regions to preview `Listview + Main` side-by-side, then slide a right-side panel in and out.
+            Toggle regions to preview built-in `Listview + Main + SidePanel` shell regions side-by-side.
           </Text>
           <Flex style={{ width: "100%", overflowX: "auto", paddingBottom: "var(--uds-spacing-4)" }}>
             <Flex
@@ -425,147 +433,133 @@ export function AppShellDemoPage() {
                   </Flex>
                 </Flex>
 
-                <Flex
-                  direction="column"
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    width: 280,
-                    transform: showSidePanel ? "translateX(0)" : "translateX(100%)",
-                    transition: "transform 220ms ease",
-                    borderLeft: "var(--uds-border-width-1) solid var(--uds-border-primary)",
-                    backgroundColor: "var(--uds-surface-secondary)",
-                    boxShadow: "var(--uds-shadow-lg)",
-                    zIndex: "var(--uds-elevation-overlay)",
-                  }}
-                >
-                  <Flex
-                    alignItems="center"
-                    justifyContent="space-between"
-                    style={{
-                      padding: "var(--uds-spacing-10) var(--uds-spacing-12)",
-                      borderBottom: "var(--uds-border-width-1) solid var(--uds-border-primary)",
-                      minWidth: 280,
-                    }}
-                  >
-                    <Text as="span" variant="body-14" weight="semibold" leading="regular">
-                      Side Panel
-                    </Text>
-                    <Button appearance="ghost" size="xsmall" label="Close" onClick={() => setShowSidePanel(false)} />
-                  </Flex>
-                  <Flex direction="column" gap="8" style={{ padding: "var(--uds-spacing-10)", minWidth: 280 }}>
-                    <SearchInput
-                      size="compact"
-                      placeholder="Search documents"
-                      value={panelQuery}
-                      onChange={(event) => setPanelQuery(event.target.value)}
-                      dropdownOptions={DOCUMENT_SCOPE_OPTIONS}
-                      dropdownValue={panelScope}
-                      onDropdownChange={(value) => setPanelScope(value)}
-                      dropdownPlaceholder="All"
-                    />
-                    <Flex alignItems="center" justifyContent="space-between">
-                      <Text as="span" variant="body-12" leading="regular">
-                        Showing {filteredDocuments.length} docs
+                {showSidePanel ? (
+                  <aside className="app-shell__side-panel">
+                    <Flex
+                      alignItems="center"
+                      justifyContent="space-between"
+                      style={{
+                        padding: "var(--uds-spacing-10) var(--uds-spacing-12)",
+                        borderBottom: "var(--uds-border-width-1) solid var(--uds-border-primary)",
+                      }}
+                    >
+                      <Text as="span" variant="body-14" weight="semibold" leading="regular">
+                        Side Panel
                       </Text>
-                      <Button
-                        appearance="text"
-                        size="xsmall"
-                        label="Clear"
-                        onClick={() => {
-                          setPanelQuery("");
-                          setPanelScope("all");
-                        }}
-                      />
+                      <Button appearance="ghost" size="xsmall" label="Close" onClick={() => setShowSidePanel(false)} />
                     </Flex>
-
-                    {(Object.keys(groupedDocuments) as DocumentUrgency[]).map((groupKey) => {
-                      const docs = groupedDocuments[groupKey];
-                      const isCollapsed = collapsedGroups[groupKey];
-                      const isExpanded = expandedGroups[groupKey];
-                      const visibleDocs =
-                        isExpanded || docs.length <= PANEL_SHOW_MORE_COUNT
-                          ? docs
-                          : docs.slice(0, PANEL_SHOW_MORE_COUNT);
-                      const hiddenCount = docs.length - visibleDocs.length;
-                      const meta = GROUP_META[groupKey];
-
-                      return (
-                        <Flex
-                          key={groupKey}
-                          direction="column"
-                          gap="6"
-                          style={{
-                            border: "var(--uds-border-width-1) solid var(--uds-border-primary)",
-                            borderRadius: "var(--uds-radius-6)",
-                            backgroundColor: "var(--uds-surface-primary)",
-                            padding: "var(--uds-spacing-8)",
+                    <Flex direction="column" gap="8" style={{ padding: "var(--uds-spacing-10)" }}>
+                      <SearchInput
+                        size="compact"
+                        placeholder="Search documents"
+                        value={panelQuery}
+                        onChange={(event) => setPanelQuery(event.target.value)}
+                        dropdownOptions={DOCUMENT_SCOPE_OPTIONS}
+                        dropdownValue={panelScope}
+                        onDropdownChange={(value) => setPanelScope(value)}
+                        dropdownPlaceholder="All"
+                      />
+                      <Flex alignItems="center" justifyContent="space-between">
+                        <Text as="span" variant="body-12" leading="regular">
+                          Showing {filteredDocuments.length} docs
+                        </Text>
+                        <Button
+                          appearance="text"
+                          size="xsmall"
+                          label="Clear"
+                          onClick={() => {
+                            setPanelQuery("");
+                            setPanelScope("all");
                           }}
-                        >
-                          <Flex alignItems="center" justifyContent="space-between">
-                            <Flex alignItems="center" gap="6">
-                              <Text as="span" variant="body-14" weight="semibold" leading="regular">
-                                {meta.label}
-                              </Text>
-                              <Tag label={String(docs.length)} color={meta.badgeColor} solid rounded />
-                            </Flex>
-                            <Button
-                              appearance="text"
-                              size="xsmall"
-                              label={isCollapsed ? "Expand" : "Collapse"}
-                              onClick={() => toggleGroup(groupKey)}
-                            />
-                          </Flex>
+                        />
+                      </Flex>
 
-                          {!isCollapsed ? (
-                            <>
-                              {visibleDocs.length > 0 ? (
-                                <Flex direction="column" gap="4">
-                                  {visibleDocs.map((doc) => (
-                                    <Flex
-                                      key={doc.id}
-                                      direction="column"
-                                      gap="2"
-                                      style={{
-                                        padding: "var(--uds-spacing-6)",
-                                        borderRadius: "var(--uds-radius-4)",
-                                        backgroundColor: "var(--uds-surface-secondary)",
-                                      }}
-                                    >
-                                      <Text as="span" variant="body-14" weight="semibold" leading="regular">
-                                        {doc.title}
-                                      </Text>
-                                      <Text as="span" variant="body-12" leading="regular">
-                                        {doc.owner} • {doc.updatedAt}
-                                      </Text>
-                                    </Flex>
-                                  ))}
-                                </Flex>
-                              ) : (
-                                <Text as="span" variant="body-12" leading="regular">
-                                  No matching documents.
+                      {(Object.keys(groupedDocuments) as DocumentUrgency[]).map((groupKey) => {
+                        const docs = groupedDocuments[groupKey];
+                        const isCollapsed = collapsedGroups[groupKey];
+                        const isExpanded = expandedGroups[groupKey];
+                        const visibleDocs =
+                          isExpanded || docs.length <= PANEL_SHOW_MORE_COUNT
+                            ? docs
+                            : docs.slice(0, PANEL_SHOW_MORE_COUNT);
+                        const hiddenCount = docs.length - visibleDocs.length;
+                        const meta = GROUP_META[groupKey];
+
+                        return (
+                          <Flex
+                            key={groupKey}
+                            direction="column"
+                            gap="6"
+                            style={{
+                              border: "var(--uds-border-width-1) solid var(--uds-border-primary)",
+                              borderRadius: "var(--uds-radius-6)",
+                              backgroundColor: "var(--uds-surface-primary)",
+                              padding: "var(--uds-spacing-8)",
+                            }}
+                          >
+                            <Flex alignItems="center" justifyContent="space-between">
+                              <Flex alignItems="center" gap="6">
+                                <Text as="span" variant="body-14" weight="semibold" leading="regular">
+                                  {meta.label}
                                 </Text>
-                              )}
+                                <Tag label={String(docs.length)} color={meta.badgeColor} solid rounded />
+                              </Flex>
+                              <Button
+                                appearance="text"
+                                size="xsmall"
+                                label={isCollapsed ? "Expand" : "Collapse"}
+                                onClick={() => toggleGroup(groupKey)}
+                              />
+                            </Flex>
 
-                              {hiddenCount > 0 ? (
-                                <Button
-                                  appearance="text"
-                                  size="xsmall"
-                                  label={`Show ${hiddenCount} more`}
-                                  onClick={() =>
-                                    setExpandedGroups((prev) => ({ ...prev, [groupKey]: true }))
-                                  }
-                                />
-                              ) : null}
-                            </>
-                          ) : null}
-                        </Flex>
-                      );
-                    })}
-                  </Flex>
-                </Flex>
+                            {!isCollapsed ? (
+                              <>
+                                {visibleDocs.length > 0 ? (
+                                  <Flex direction="column" gap="4">
+                                    {visibleDocs.map((doc) => (
+                                      <Flex
+                                        key={doc.id}
+                                        direction="column"
+                                        gap="2"
+                                        style={{
+                                          padding: "var(--uds-spacing-6)",
+                                          borderRadius: "var(--uds-radius-4)",
+                                          backgroundColor: "var(--uds-surface-secondary)",
+                                        }}
+                                      >
+                                        <Text as="span" variant="body-14" weight="semibold" leading="regular">
+                                          {doc.title}
+                                        </Text>
+                                        <Text as="span" variant="body-12" leading="regular">
+                                          {doc.owner} • {doc.updatedAt}
+                                        </Text>
+                                      </Flex>
+                                    ))}
+                                  </Flex>
+                                ) : (
+                                  <Text as="span" variant="body-12" leading="regular">
+                                    No matching documents.
+                                  </Text>
+                                )}
+
+                                {hiddenCount > 0 ? (
+                                  <Button
+                                    appearance="text"
+                                    size="xsmall"
+                                    label={`Show ${hiddenCount} more`}
+                                    onClick={() =>
+                                      setExpandedGroups((prev) => ({ ...prev, [groupKey]: true }))
+                                    }
+                                  />
+                                ) : null}
+                              </>
+                            ) : null}
+                          </Flex>
+                        );
+                      })}
+                    </Flex>
+                  </aside>
+                ) : null}
               </Flex>
             </Flex>
             </Flex>
@@ -621,7 +615,7 @@ export function AppShellDemoPage() {
 
         <Flex direction="column" gap="12">
           <Text as="h3" variant="heading-20" weight="medium" leading="regular">
-            Shell with Listview
+            Shell with Listview + SidePanel
           </Text>
           <Flex direction="column" gap="0" style={PREVIEW_FRAME}>
             <Flex style={PREVIEW_HEADER}>
@@ -654,6 +648,19 @@ export function AppShellDemoPage() {
                     AppShell.Main
                   </Text>
                 </Flex>
+              </Flex>
+              <Flex
+                direction="column"
+                style={{
+                  ...PREVIEW_REGION,
+                  width: 140,
+                  margin: "var(--uds-spacing-10) var(--uds-spacing-10) var(--uds-spacing-10) 0",
+                  backgroundColor: "var(--uds-surface-tertiary)",
+                }}
+              >
+                <Text as="span" variant="body-14" weight="semibold" leading="regular">
+                  AppShell.SidePanel
+                </Text>
               </Flex>
             </Flex>
           </Flex>
