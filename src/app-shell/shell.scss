@@ -213,6 +213,26 @@ body {
     background: var(--uds-surface-secondary);
     overflow-y: auto;
     overflow-x: hidden;
+    animation: app-shell-side-panel-enter var(--uds-animation-duration-300) var(--uds-animation-ease-standard);
+    will-change: transform, opacity;
+}
+
+@keyframes app-shell-side-panel-enter {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .app-shell__side-panel {
+        animation: none;
+    }
 }
 
 .app-shell__main-content {

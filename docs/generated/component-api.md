@@ -702,7 +702,7 @@ Describe purpose.
 
 ### Toolbar
 
-Top action bar with left and right action regions and centered title/branding.
+Top action bar with three composable slots: left, center, and right.
 
 - Source: `src/design-system/components/Toolbar/Toolbar.spec.ts`
 - Tier: `2`

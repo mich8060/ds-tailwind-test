@@ -3008,7 +3008,7 @@ export const COMPONENT_API = {
     "name": "Toolbar",
     "source": "src/design-system/components/Toolbar/Toolbar.spec.ts",
     "tier": 2,
-    "purpose": "Top action bar with left and right action regions and centered title/branding.",
+    "purpose": "Top action bar with three composable slots: left, center, and right.",
     "props": {},
     "defaults": {},
     "states": [

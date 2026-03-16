@@ -3244,7 +3244,7 @@
       "name": "Toolbar",
       "category": "layout",
       "intent": "Top bar with edge actions and centered identity/title",
-      "purpose": "Top action bar with left and right action regions and centered title/branding.",
+      "purpose": "Top action bar with three composable slots: left, center, and right.",
       "tier": 2,
       "description": "A horizontal application bar that reserves left and right action regions and a centered title or branding slot.",
       "roles": [
