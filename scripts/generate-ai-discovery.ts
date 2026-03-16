@@ -21,7 +21,7 @@ async function generate() {
 
   const packageJson = JSON.parse(await readFile(packageJsonPath, "utf8")) as { name?: string };
   const contractManifest = JSON.parse(await readFile(contractManifestPath, "utf8")) as AIContractManifest;
-  const packageName = packageJson.name ?? "@mich8060/unified-design-system";
+  const packageName = packageJson.name ?? "@chg-ds/unified-design-system";
 
   const discovery = {
     contractName: "uds.ai.discovery",

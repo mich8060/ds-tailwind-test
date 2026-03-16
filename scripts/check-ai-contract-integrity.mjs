@@ -338,7 +338,7 @@ if (!forbiddenPropsByComponent || typeof forbiddenPropsByComponent !== "object")
 
 const requiredPromptSnippets = [
   "Never deep import `@/.../components/*`.",
-  "@mich8060/unified-design-system/ai/navigation",
+  "@chg-ds/unified-design-system/ai/navigation",
   "Menu.items",
   "Flex.vertical",
   "Button.type",

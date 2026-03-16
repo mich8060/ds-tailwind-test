@@ -1,11 +1,11 @@
 # Consumer Project Setup (Getting Started)
 
-Use this guide when setting up a new app that consumes `@mich8060/unified-design-system`.
+Use this guide when setting up a new app that consumes `@chg-ds/unified-design-system`.
 
 ## 1) Install Dependencies
 
 ```bash
-npm i @mich8060/unified-design-system react react-dom react-router-dom @phosphor-icons/react
+npm i @chg-ds/unified-design-system react react-dom react-router-dom @phosphor-icons/react
 ```
 
 ## 2) Import UDS Styles Once
@@ -13,7 +13,7 @@ npm i @mich8060/unified-design-system react react-dom react-router-dom @phosphor
 In your app entry file (for example `src/main.tsx`), import styles one time:
 
 ```tsx
-import "@mich8060/unified-design-system/styles.css";
+import "@chg-ds/unified-design-system/styles.css";
 ```
 
 Without this import, components will render with major visual drift.
@@ -27,7 +27,7 @@ import { BrowserRouter } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "@mich8060/unified-design-system/styles.css";
+import "@chg-ds/unified-design-system/styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -43,7 +43,7 @@ Use `BrowserRouter` from `react-router-dom`, not `react-router`.
 ## 4) Build with UDS Components
 
 ```tsx
-import { AppShell, Menu, Layout, Text, Button } from "@mich8060/unified-design-system";
+import { AppShell, Menu, Layout, Text, Button } from "@chg-ds/unified-design-system";
 
 const navItems = [
   { label: "Home", icon: "House", path: "/" },
@@ -90,5 +90,5 @@ Cause: missing `@phosphor-icons/react` dependency or invalid icon name.
 
 ### Components look unstyled
 
-Cause: missing `@mich8060/unified-design-system/styles.css` import.
+Cause: missing `@chg-ds/unified-design-system/styles.css` import.
 

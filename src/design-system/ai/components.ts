@@ -2,7 +2,7 @@ import type { ComponentMetadata } from "./types";
 
 export const BUTTON_METADATA: ComponentMetadata = {
   name: "Button",
-  importPath: "@mich8060/unified-design-system/Button",
+  importPath: "@chg-ds/unified-design-system/Button",
   tier: 1,
   purpose: "Trigger user actions with clear semantic hierarchy.",
   variants: {
@@ -25,7 +25,7 @@ export const BUTTON_METADATA: ComponentMetadata = {
 
 export const TABLE_METADATA: ComponentMetadata = {
   name: "Table",
-  importPath: "@mich8060/unified-design-system/Table",
+  importPath: "@chg-ds/unified-design-system/Table",
   tier: 2,
   purpose: "Render structured, scan-friendly tabular datasets.",
   variants: {},
@@ -42,7 +42,7 @@ export const TABLE_METADATA: ComponentMetadata = {
 
 export const FIELD_METADATA: ComponentMetadata = {
   name: "Field",
-  importPath: "@mich8060/unified-design-system/Field",
+  importPath: "@chg-ds/unified-design-system/Field",
   tier: 1,
   purpose: "Standardize form label, helper, and validation messages.",
   variants: {},
@@ -60,7 +60,7 @@ export const FIELD_METADATA: ComponentMetadata = {
 
 export const MODAL_METADATA: ComponentMetadata = {
   name: "Modal",
-  importPath: "@mich8060/unified-design-system/Modal",
+  importPath: "@chg-ds/unified-design-system/Modal",
   tier: 2,
   purpose: "Capture focused user attention for high-priority flows.",
   variants: {},

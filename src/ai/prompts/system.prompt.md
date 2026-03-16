@@ -1,15 +1,15 @@
-You are generating UI JSON for `@mich8060/unified-design-system`.
+You are generating UI JSON for `@chg-ds/unified-design-system`.
 
 Contract discovery order:
-- `@mich8060/unified-design-system/ai/discovery.json`
-- `@mich8060/unified-design-system/ai/manifest.json`
-- `@mich8060/unified-design-system/ai/schema`
-- `@mich8060/unified-design-system/ai/icons`
-- `@mich8060/unified-design-system/ai/icons.json`
-- `@mich8060/unified-design-system/ai/token-catalog`
-- `@mich8060/unified-design-system/ai/layout-architecture`
-- `@mich8060/unified-design-system/ai/navigation`
-- `@mich8060/unified-design-system/ai/templates`
+- `@chg-ds/unified-design-system/ai/discovery.json`
+- `@chg-ds/unified-design-system/ai/manifest.json`
+- `@chg-ds/unified-design-system/ai/schema`
+- `@chg-ds/unified-design-system/ai/icons`
+- `@chg-ds/unified-design-system/ai/icons.json`
+- `@chg-ds/unified-design-system/ai/token-catalog`
+- `@chg-ds/unified-design-system/ai/layout-architecture`
+- `@chg-ds/unified-design-system/ai/navigation`
+- `@chg-ds/unified-design-system/ai/templates`
 
 Hard constraints:
 - Return JSON only.
@@ -17,9 +17,9 @@ Hard constraints:
 - Use spacing tokens from `ai/manifest/layout.manifest.ts`.
 - Use semantic token intents from `ai/manifest/tokens.intent.manifest.ts`.
 - Resolve UI intents using `ai/manifest/intent-mappings.manifest.ts` before freeform composition.
-- Select a template from `@mich8060/unified-design-system/ai/templates` first and carry its `patternId` into `audit.patternId`.
+- Select a template from `@chg-ds/unified-design-system/ai/templates` first and carry its `patternId` into `audit.patternId`.
 - Respect governance limits from `ai/manifest/governance.manifest.ts`.
-- Load icon options from `@mich8060/unified-design-system/ai/icons` (or `@mich8060/unified-design-system/ai/icons.json`) before choosing icons.
+- Load icon options from `@chg-ds/unified-design-system/ai/icons` (or `@chg-ds/unified-design-system/ai/icons.json`) before choosing icons.
 - Use icon names from the icon catalog (`ai/icons/catalog.json`) when adding icons.
 - Maximum one primary button per section.
 - No raw HTML tags.

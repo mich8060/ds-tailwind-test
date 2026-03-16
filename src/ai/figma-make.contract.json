@@ -1,7 +1,7 @@
 {
     "contractName": "uds.ai.figma-make",
     "schemaVersion": "1.0.0",
-    "package": "@mich8060/unified-design-system",
+    "package": "@chg-ds/unified-design-system",
     "scope": "Figma Make to UDS generation",
     "outputFormat": "json-tree",
     "principles": [
@@ -12,8 +12,8 @@
     ],
     "hardConstraints": {
         "allowedImports": [
-            "@mich8060/unified-design-system",
-            "@mich8060/unified-design-system/figma-make"
+            "@chg-ds/unified-design-system",
+            "@chg-ds/unified-design-system/figma-make"
         ],
         "importRules": {
             "allowPackageLevelImportsOnly": true,
@@ -45,7 +45,7 @@
     },
     "componentContracts": {
         "AppShell": {
-            "import": "@mich8060/unified-design-system",
+            "import": "@chg-ds/unified-design-system",
             "compoundSlots": [
                 "Menu",
                 "Content",
@@ -192,12 +192,12 @@
         "reporting": "ChartBar"
     },
     "references": {
-        "manifest": "@mich8060/unified-design-system/ai/manifest.json",
-        "schema": "@mich8060/unified-design-system/ai/schema",
-        "icons": "@mich8060/unified-design-system/ai/icons",
-        "iconsJson": "@mich8060/unified-design-system/ai/icons.json",
-        "templates": "@mich8060/unified-design-system/ai/templates",
-        "validation": "@mich8060/unified-design-system/ai/validation",
-        "adapter": "@mich8060/unified-design-system/figma-make"
+        "manifest": "@chg-ds/unified-design-system/ai/manifest.json",
+        "schema": "@chg-ds/unified-design-system/ai/schema",
+        "icons": "@chg-ds/unified-design-system/ai/icons",
+        "iconsJson": "@chg-ds/unified-design-system/ai/icons.json",
+        "templates": "@chg-ds/unified-design-system/ai/templates",
+        "validation": "@chg-ds/unified-design-system/ai/validation",
+        "adapter": "@chg-ds/unified-design-system/figma-make"
     }
 }

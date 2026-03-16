@@ -1,4 +1,4 @@
-import * as UDS from "@mich8060/unified-design-system"
+import * as UDS from "@chg-ds/unified-design-system"
 
 export function renderTree(node: any) {
   const Component = (UDS as any)[node.type]

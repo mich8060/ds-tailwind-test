@@ -1,6 +1,6 @@
 # Figma Make Contract (UDS Only)
 
-Use this contract when generating interfaces from Figma Make into code for `@mich8060/unified-design-system`.
+Use this contract when generating interfaces from Figma Make into code for `@chg-ds/unified-design-system`.
 
 ## Setup Instructions
 
@@ -22,12 +22,12 @@ Run this setup flow before generating UI:
 - Do not generate routes/menu until brand is selected.
 
 4. Load AI contracts in order
-- `@mich8060/unified-design-system/ai/discovery.json`
-- `@mich8060/unified-design-system/ai/manifest.json`
-- `@mich8060/unified-design-system/ai/schema`
-- `@mich8060/unified-design-system/ai/icons` (or `@mich8060/unified-design-system/ai/icons.json`)
-- `@mich8060/unified-design-system/ai/navigation`
-- `@mich8060/unified-design-system/ai/templates`
+- `@chg-ds/unified-design-system/ai/discovery.json`
+- `@chg-ds/unified-design-system/ai/manifest.json`
+- `@chg-ds/unified-design-system/ai/schema`
+- `@chg-ds/unified-design-system/ai/icons` (or `@chg-ds/unified-design-system/ai/icons.json`)
+- `@chg-ds/unified-design-system/ai/navigation`
+- `@chg-ds/unified-design-system/ai/templates`
 
 5. Build required scaffold
 - Wrap app root with `BrowserRouter` (or `RouterProvider`) before any route-aware UDS components.
@@ -41,7 +41,7 @@ Run this setup flow before generating UI:
 
 ## Required Stack
 
-- Use only imports from `@mich8060/unified-design-system` (or `@mich8060/unified-design-system/figma-make`).
+- Use only imports from `@chg-ds/unified-design-system` (or `@chg-ds/unified-design-system/figma-make`).
 - Do not deep import from internal paths (for example `@/.../components/Menu`).
 - Compose UI with UDS components.
 - Style only with `--uds-*` tokens or hardcoded literals when necessary.
@@ -87,12 +87,12 @@ Run this setup flow before generating UI:
 
 ## Icon Guidance
 
-- Choose icon names only from `@mich8060/unified-design-system/ai/icons` (alias: `@mich8060/unified-design-system/ai/icons.json`).
+- Choose icon names only from `@chg-ds/unified-design-system/ai/icons` (alias: `@chg-ds/unified-design-system/ai/icons.json`).
 - Prefer intent-aligned icons from catalog `recommendedByIntent`.
 
 ## Brand Navigation Guidance
 
-- Load brand menu definitions from `@mich8060/unified-design-system/ai/navigation`.
+- Load brand menu definitions from `@chg-ds/unified-design-system/ai/navigation`.
 - Do not hardcode brand nav links when this contract is available.
 - Build `Menu.navItems` directly from the brand entry in `brand-menus.json`.
 - Default `Menu.showSearch` to `false` unless explicitly requested.

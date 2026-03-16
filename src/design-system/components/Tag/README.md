@@ -5,7 +5,7 @@ Tag displays compact labels for status, metadata, and categorization.
 ## Usage
 
 ```tsx
-import { Tag } from "@mich8060/unified-design-system";
+import { Tag } from "@chg-ds/unified-design-system";
 ```
 
 ## Core Examples

@@ -5,42 +5,42 @@
   "files": [
     {
       "id": "signin-flow",
-      "path": "@mich8060/unified-design-system/ai/examples/signin-flow-uds.jsonl",
+      "path": "@chg-ds/unified-design-system/ai/examples/signin-flow-uds.jsonl",
       "kind": "scenario-flow"
     },
     {
       "id": "dashboard-statistics",
-      "path": "@mich8060/unified-design-system/ai/examples/dashboard-statistics-uds.jsonl",
+      "path": "@chg-ds/unified-design-system/ai/examples/dashboard-statistics-uds.jsonl",
       "kind": "scenario-layout"
     },
     {
       "id": "settings-preferences",
-      "path": "@mich8060/unified-design-system/ai/examples/settings-preferences-uds.jsonl",
+      "path": "@chg-ds/unified-design-system/ai/examples/settings-preferences-uds.jsonl",
       "kind": "scenario-layout"
     },
     {
       "id": "calendar-events",
-      "path": "@mich8060/unified-design-system/ai/examples/calendar-events-layout-uds.jsonl",
+      "path": "@chg-ds/unified-design-system/ai/examples/calendar-events-layout-uds.jsonl",
       "kind": "scenario-layout"
     },
     {
       "id": "admin-users-table",
-      "path": "@mich8060/unified-design-system/ai/examples/admin-users-table-uds.jsonl",
+      "path": "@chg-ds/unified-design-system/ai/examples/admin-users-table-uds.jsonl",
       "kind": "scenario-layout"
     },
     {
       "id": "kanban-board",
-      "path": "@mich8060/unified-design-system/ai/examples/kanban-board-uds.jsonl",
+      "path": "@chg-ds/unified-design-system/ai/examples/kanban-board-uds.jsonl",
       "kind": "scenario-layout"
     },
     {
       "id": "app-shell-regions",
-      "path": "@mich8060/unified-design-system/ai/examples/app-shell-regions-uds.jsonl",
+      "path": "@chg-ds/unified-design-system/ai/examples/app-shell-regions-uds.jsonl",
       "kind": "scenario-layout"
     },
     {
       "id": "uds-governed-training",
-      "path": "@mich8060/unified-design-system/ai/examples/uds-governed-training.jsonl",
+      "path": "@chg-ds/unified-design-system/ai/examples/uds-governed-training.jsonl",
       "kind": "governed-valid-invalid"
     }
   ]

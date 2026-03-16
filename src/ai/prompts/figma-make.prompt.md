@@ -1,13 +1,13 @@
-You are implementing UI from Figma Make using `@mich8060/unified-design-system`.
+You are implementing UI from Figma Make using `@chg-ds/unified-design-system`.
 
 Hard requirements:
 - Use only UDS components and UDS exports.
-- Use only package-level imports from `@mich8060/unified-design-system` (or `/figma-make`).
+- Use only package-level imports from `@chg-ds/unified-design-system` (or `/figma-make`).
 - Never deep import `@/.../components/*`.
 - Do not use Tailwind classes or utility CSS.
 - Do not use ad-hoc `className` styling.
 - Ensure app root is wrapped in `BrowserRouter` (or `RouterProvider`) before rendering route-aware UDS components.
-- Load icons from `@mich8060/unified-design-system/ai/icons` (alias `@mich8060/unified-design-system/ai/icons.json`) before assigning icon props.
+- Load icons from `@chg-ds/unified-design-system/ai/icons` (alias `@chg-ds/unified-design-system/ai/icons.json`) before assigning icon props.
 - Do not create custom CSS variables.
 - Use only `--uds-*` variables or hardcoded literals.
 - Use canonical prop names only (reject Ant-style aliases like `Menu.items`, `Flex.vertical`, `Button.type`).
@@ -20,14 +20,14 @@ Hard requirements:
 - Return deterministic JSON only.
 
 Preferred flow:
-1. Start from `@mich8060/unified-design-system/ai/templates`.
-1.0 Load `@mich8060/unified-design-system/ai/token-catalog` and `@mich8060/unified-design-system/ai/layout-architecture`.
+1. Start from `@chg-ds/unified-design-system/ai/templates`.
+1.0 Load `@chg-ds/unified-design-system/ai/token-catalog` and `@chg-ds/unified-design-system/ai/layout-architecture`.
 1.1 Copy the selected template `patternId` into `audit.patternId` in the output.
-2. Resolve remaining intent decisions using `@mich8060/unified-design-system/ai/manifest.json` -> `intentComponentMappings`.
-3. Load brand menu definitions from `@mich8060/unified-design-system/ai/navigation`.
+2. Resolve remaining intent decisions using `@chg-ds/unified-design-system/ai/manifest.json` -> `intentComponentMappings`.
+3. Load brand menu definitions from `@chg-ds/unified-design-system/ai/navigation`.
 4. Fill template slots.
 5. Keep canonical prop names.
-6. Validate against `@mich8060/unified-design-system/ai/validation`.
+6. Validate against `@chg-ds/unified-design-system/ai/validation`.
 
 Invalid to valid prop examples:
 - `Menu.items` -> `Menu.navItems`

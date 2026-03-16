@@ -1,4 +1,4 @@
-Set up this repository from scratch so `@mich8060/unified-design-system` is used end-to-end with no Tailwind fallback.
+Set up this repository from scratch so `@chg-ds/unified-design-system` is used end-to-end with no Tailwind fallback.
 
 Execution order:
 1. Install and verify toolchain.
@@ -7,12 +7,12 @@ Execution order:
 4. Ensure root layout uses `AppShell`.
 
 Hard rules:
-- Use package exports from `@mich8060/unified-design-system`.
+- Use package exports from `@chg-ds/unified-design-system`.
 - Never deep import component internals.
 - Never use Tailwind classes/utilities.
 - Never invent CSS variables. Use `--uds-*` tokens or hardcoded literals.
 - Prefer canonical props from the AI manifest and component contracts.
-- Load icon options from `@mich8060/unified-design-system/ai/icons` (alias: `@mich8060/unified-design-system/ai/icons.json`) before assigning any icon prop.
+- Load icon options from `@chg-ds/unified-design-system/ai/icons` (alias: `@chg-ds/unified-design-system/ai/icons.json`) before assigning any icon prop.
 - Default `Container` to `appearance=\"transparent\"` and `padding=\"large\"` (24px) unless overridden by explicit requirements.
 - Default `Menu.showSearch` to `false` unless search is explicitly required.
 
@@ -29,8 +29,8 @@ Required layout scaffold:
 
 Brand menu requirements:
 - Load and apply the canonical menu map from:
-  - `@mich8060/unified-design-system/ai/navigation`
-  - (alias) `@mich8060/unified-design-system/ai/navigation/brand-menus.json`
+  - `@chg-ds/unified-design-system/ai/navigation`
+  - (alias) `@chg-ds/unified-design-system/ai/navigation/brand-menus.json`
 - Never inline or invent brand navigation when this contract is available.
 - Build `Menu.navItems` from the selected brand entry in the JSON contract.
 

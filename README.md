@@ -45,28 +45,28 @@ See `/docs` for the full methodology and governance model.
 Install the package and required peer dependencies:
 
 ```bash
-npm i @mich8060/unified-design-system react react-dom react-router-dom @phosphor-icons/react
+npm i @chg-ds/unified-design-system react react-dom react-router-dom @phosphor-icons/react
 ```
 
 Import components and styles:
 
 ```tsx
-import { AppShell, Button, Flex, Menu, Text, TextInput } from "@mich8060/unified-design-system";
-import "@mich8060/unified-design-system/styles.css";
+import { AppShell, Button, Flex, Menu, Text, TextInput } from "@chg-ds/unified-design-system";
+import "@chg-ds/unified-design-system/styles.css";
 ```
 
 Runtime token primitives are also available as typed exports:
 
 ```ts
-import { spacingTokens } from "@mich8060/unified-design-system/tokens/spacing";
-import { runtimeTokens } from "@mich8060/unified-design-system/tokens";
-import "@mich8060/unified-design-system/tokens.css";
+import { spacingTokens } from "@chg-ds/unified-design-system/tokens/spacing";
+import { runtimeTokens } from "@chg-ds/unified-design-system/tokens";
+import "@chg-ds/unified-design-system/tokens.css";
 ```
 
 AI metadata is available from a dedicated subpath:
 
 ```ts
-import { UDS_AI_MANIFEST, UDS_FLOW_PATTERNS } from "@mich8060/unified-design-system/ai";
+import { UDS_AI_MANIFEST, UDS_FLOW_PATTERNS } from "@chg-ds/unified-design-system/ai";
 ```
 
 ## Common prop pitfalls
@@ -88,5 +88,5 @@ import {
   TEXT_WEIGHTS,
   TEXT_INPUT_STATES,
   ICON_APPEARANCES
-} from "@mich8060/unified-design-system";
+} from "@chg-ds/unified-design-system";
 ```

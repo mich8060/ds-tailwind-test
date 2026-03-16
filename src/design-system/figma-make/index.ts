@@ -42,5 +42,5 @@ export { ThemeProvider, createBrand, createTheme, useTheme, useThemeController }
 export { createUDSRuntimeHelperSDK } from "../ai/sdk";
 export { validateAIOutput } from "../ai/validation/validateAIOutput";
 
-export const FIGMA_MAKE_CONTRACT_ENTRYPOINT = "@mich8060/unified-design-system/ai/figma-make";
-export const FIGMA_MAKE_PROMPT_ENTRYPOINT = "@mich8060/unified-design-system/ai/prompts/figma-make";
+export const FIGMA_MAKE_CONTRACT_ENTRYPOINT = "@chg-ds/unified-design-system/ai/figma-make";
+export const FIGMA_MAKE_PROMPT_ENTRYPOINT = "@chg-ds/unified-design-system/ai/prompts/figma-make";

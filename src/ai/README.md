@@ -19,29 +19,29 @@ This folder is the **authoring workspace** for Claude/Cursor AI generation, sepa
 
 For any model/tooling integration, read in this order:
 
-1. `@mich8060/unified-design-system/ai/discovery.json`
-2. `@mich8060/unified-design-system/ai/manifest.json`
-3. `@mich8060/unified-design-system/ai/schema`
-4. `@mich8060/unified-design-system/ai/icons`
-5. `@mich8060/unified-design-system/ai/icons.json`
-6. `@mich8060/unified-design-system/ai/token-catalog`
-7. `@mich8060/unified-design-system/ai/figma-make.json`
-8. `@mich8060/unified-design-system/ai/figma-make`
-9. `@mich8060/unified-design-system/ai/prompts/figma-make`
-10. `@mich8060/unified-design-system/ai/prompts/system`
-11. `@mich8060/unified-design-system/ai/prompts/repair`
-12. `@mich8060/unified-design-system/ai/prompts/starter`
-13. `@mich8060/unified-design-system/ai/navigation`
-14. `@mich8060/unified-design-system/ai/layout-architecture`
-15. `@mich8060/unified-design-system/ai/templates`
-16. `@mich8060/unified-design-system/ai/examples`
-17. `@mich8060/unified-design-system/ai/examples/dataset`
-18. `@mich8060/unified-design-system/ai/validation`
-19. `@mich8060/unified-design-system/ai/sdk`
+1. `@chg-ds/unified-design-system/ai/discovery.json`
+2. `@chg-ds/unified-design-system/ai/manifest.json`
+3. `@chg-ds/unified-design-system/ai/schema`
+4. `@chg-ds/unified-design-system/ai/icons`
+5. `@chg-ds/unified-design-system/ai/icons.json`
+6. `@chg-ds/unified-design-system/ai/token-catalog`
+7. `@chg-ds/unified-design-system/ai/figma-make.json`
+8. `@chg-ds/unified-design-system/ai/figma-make`
+9. `@chg-ds/unified-design-system/ai/prompts/figma-make`
+10. `@chg-ds/unified-design-system/ai/prompts/system`
+11. `@chg-ds/unified-design-system/ai/prompts/repair`
+12. `@chg-ds/unified-design-system/ai/prompts/starter`
+13. `@chg-ds/unified-design-system/ai/navigation`
+14. `@chg-ds/unified-design-system/ai/layout-architecture`
+15. `@chg-ds/unified-design-system/ai/templates`
+16. `@chg-ds/unified-design-system/ai/examples`
+17. `@chg-ds/unified-design-system/ai/examples/dataset`
+18. `@chg-ds/unified-design-system/ai/validation`
+19. `@chg-ds/unified-design-system/ai/sdk`
 
 ## Icon options for AI
 
-Use `@mich8060/unified-design-system/ai/icons` (or alias `@mich8060/unified-design-system/ai/icons.json`) for:
+Use `@chg-ds/unified-design-system/ai/icons` (or alias `@chg-ds/unified-design-system/ai/icons.json`) for:
 
 - Allowed icon naming format and normalization rules
 - Recommended icon choices by UI intent
@@ -50,7 +50,7 @@ Use `@mich8060/unified-design-system/ai/icons` (or alias `@mich8060/unified-desi
 
 ## Layout templates
 
-Use `@mich8060/unified-design-system/ai/templates` as starter structure for common screens.
+Use `@chg-ds/unified-design-system/ai/templates` as starter structure for common screens.
 
 - Template IDs:
   - `auth-form-card`
@@ -65,7 +65,7 @@ Use `@mich8060/unified-design-system/ai/templates` as starter structure for comm
 Use the SDK when you want one stable runtime entrypoint for validation + prop canonicalization.
 
 ```ts
-import { createUDSRuntimeHelperSDK } from "@mich8060/unified-design-system/ai/sdk";
+import { createUDSRuntimeHelperSDK } from "@chg-ds/unified-design-system/ai/sdk";
 
 const sdk = createUDSRuntimeHelperSDK();
 const normalized = sdk.canonicalizeProps("Button", { variant: "primary", kind: "soft" });
@@ -107,7 +107,7 @@ Use the governed training set exported from runtime AI examples:
 
 - `src/design-system/ai/examples/training.examples.ts`
 - validate with `npm run ai:validate:examples`
-- Contract entrypoint: `@mich8060/unified-design-system/ai/examples/dataset`
+- Contract entrypoint: `@chg-ds/unified-design-system/ai/examples/dataset`
 - Additional scenario dataset (JSONL):
   - `src/ai/examples/signin-flow-uds.jsonl`
   - `src/ai/examples/app-shell-regions-uds.jsonl`

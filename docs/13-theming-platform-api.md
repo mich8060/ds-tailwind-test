@@ -10,7 +10,7 @@ import {
   createBrand,
   ThemeProvider,
   type Theme,
-} from "@mich8060/unified-design-system";
+} from "@chg-ds/unified-design-system";
 ```
 
 - `createTheme()` creates a strongly typed theme engine.
@@ -69,7 +69,7 @@ import {
   createBrand,
   ThemeProvider,
   type Theme,
-} from "@mich8060/unified-design-system";
+} from "@chg-ds/unified-design-system";
 
 const defaultBrand = createBrand("default", {
   tokens: {

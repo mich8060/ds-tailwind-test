@@ -1,7 +1,7 @@
 // @ts-nocheck
 import fs from "fs";
 import path from "path";
-import { validateAIOutput, UDSGovernance } from "@mich8060/unified-design-system/ai";
+import { validateAIOutput, UDSGovernance } from "@chg-ds/unified-design-system/ai";
 
 let callCount = 0;
 

@@ -3,7 +3,7 @@
 Last updated: 2026-03-06
 
 Purpose:
-- Capture implementation learnings and constraints discovered while recreating the Candidate Profile experience with `@mich8060/unified-design-system`.
+- Capture implementation learnings and constraints discovered while recreating the Candidate Profile experience with `@chg-ds/unified-design-system`.
 - Provide AI agents a persistent, practical checklist for future prompts in this project thread.
 
 ## Scope Notes
@@ -18,13 +18,13 @@ Purpose:
 ## Core Learnings (Chronological)
 
 1. Source-of-truth alignment is non-negotiable.
-- `@mich8060/unified-design-system` and `chghealthcare/unified-design-system` should drive component and token decisions.
+- `@chg-ds/unified-design-system` and `chghealthcare/unified-design-system` should drive component and token decisions.
 - Figma should be mirrored, but implementation should move back toward UDS when conflicts arise.
 
 2. Peer dependencies are required for correct UDS runtime behavior.
 - `Menu` requires router context; `BrowserRouter` from `react-router-dom` must wrap the app.
 - Icon rendering depends on `@phosphor-icons/react`.
-- UDS styles must be imported via `@mich8060/unified-design-system/styles.css`.
+- UDS styles must be imported via `@chg-ds/unified-design-system/styles.css`.
 
 3. Brand + theme context matters for visual parity.
 - Candidate Profile target context: `brand="comphealth"` with `theme="light"`.
@@ -73,7 +73,7 @@ Purpose:
 ## Learnings: Implementing the UDS Package
 
 - Import contract:
-  - Import styles once at app entry: `@mich8060/unified-design-system/styles.css`.
+  - Import styles once at app entry: `@chg-ds/unified-design-system/styles.css`.
   - Missing this import causes major visual drift.
 
 - Runtime dependencies:

@@ -1,6 +1,6 @@
 # UDS AI-Native Architecture
 
-This document defines the current AI contract architecture for `@mich8060/unified-design-system`.
+This document defines the current AI contract architecture for `@chg-ds/unified-design-system`.
 
 ## Goals
 
@@ -21,11 +21,11 @@ This document defines the current AI contract architecture for `@mich8060/unifie
 
 - Source: `src/design-system/ai/**`
 - Core exports:
-  - `@mich8060/unified-design-system/ai`
-  - `@mich8060/unified-design-system/ai/manifest`
-  - `@mich8060/unified-design-system/ai/validation`
-  - `@mich8060/unified-design-system/ai/examples`
-  - `@mich8060/unified-design-system/ai/sdk`
+  - `@chg-ds/unified-design-system/ai`
+  - `@chg-ds/unified-design-system/ai/manifest`
+  - `@chg-ds/unified-design-system/ai/validation`
+  - `@chg-ds/unified-design-system/ai/examples`
+  - `@chg-ds/unified-design-system/ai/sdk`
 - Key capabilities:
   - governed manifest registries (`ComponentRegistry`, `LayoutRules`, `PatternRegistry`, governance lineage)
   - policy engine + schema/composition validation
@@ -36,12 +36,12 @@ This document defines the current AI contract architecture for `@mich8060/unifie
 
 - Source: `src/ai/**`
 - Published machine-readable artifacts:
-  - `@mich8060/unified-design-system/ai/discovery.json`
-  - `@mich8060/unified-design-system/ai/manifest.json`
-  - `@mich8060/unified-design-system/ai/schema`
-  - `@mich8060/unified-design-system/ai/icons`
-  - `@mich8060/unified-design-system/ai/icons.json`
-  - `@mich8060/unified-design-system/ai/templates`
+  - `@chg-ds/unified-design-system/ai/discovery.json`
+  - `@chg-ds/unified-design-system/ai/manifest.json`
+  - `@chg-ds/unified-design-system/ai/schema`
+  - `@chg-ds/unified-design-system/ai/icons`
+  - `@chg-ds/unified-design-system/ai/icons.json`
+  - `@chg-ds/unified-design-system/ai/templates`
 - Authoring utilities:
   - `src/ai/prompts/*` for generation/repair prompts
   - `src/ai/examples/*` for generated examples

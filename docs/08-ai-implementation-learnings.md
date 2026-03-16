@@ -1,6 +1,6 @@
 # AI Implementation Learnings (Validated)
 
-This document captures validated integration guidance for `@mich8060/unified-design-system`, including corrections to common AI-generated assumptions.
+This document captures validated integration guidance for `@chg-ds/unified-design-system`, including corrections to common AI-generated assumptions.
 
 ## Critical Runtime Requirement
 
@@ -93,8 +93,8 @@ import {
   Text,
   Layout,
   Accordion,
-} from "@mich8060/unified-design-system";
-import "@mich8060/unified-design-system/styles.css";
+} from "@chg-ds/unified-design-system";
+import "@chg-ds/unified-design-system/styles.css";
 ```
 
 ## AI Checklist (Before Finalizing Output)

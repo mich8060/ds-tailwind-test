@@ -44,7 +44,7 @@ import {
   createTheme,
   useTheme,
   useThemeController,
-} from "@mich8060/unified-design-system";
+} from "@chg-ds/unified-design-system";
 
 const theme = createTheme({
   defaultBrand: "default",
