@@ -1,5 +1,6 @@
 :root,
-.brand-default {
+.brand-default,
+[data-brand="default"] {
 
     --brand-primary-25: #F7F7F7;
     --brand-primary-50: #EFEFEF;

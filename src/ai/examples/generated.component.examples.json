@@ -15,7 +15,7 @@
       "brand": "default",
       "theme": "light"
     },
-    "jsx": "<AppShell brand=\"default\" theme=\"light\"><AppShell.Content><AppShell.Main /></AppShell.Content></AppShell>"
+    "jsx": "<AppShell brand=\"default\" theme=\"light\" />"
   },
   {
     "component": "Avatar",

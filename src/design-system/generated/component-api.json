@@ -5,6 +5,10 @@
     "allowedChildrenByParent": {
       "AppShell": [
         "Menu",
+        "Listview",
+        "Main",
+        "SidePanel",
+        "Footer",
         "Container",
         "Layout",
         "Text",

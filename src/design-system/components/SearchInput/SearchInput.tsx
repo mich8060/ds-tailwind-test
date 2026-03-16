@@ -18,6 +18,14 @@ export function SearchInput({
   ...props
 }: SearchInputProps) {
   const hasDropdown = Boolean(dropdownOptions && dropdownOptions.length > 0);
+  const wrapperClassName = [
+    BASE_CLASS,
+    hasDropdown && `${BASE_CLASS}--with-dropdown`,
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   const dropdownControl = hasDropdown ? (
     <Dropdown
       options={dropdownOptions}
@@ -43,7 +51,7 @@ export function SearchInput({
       icon="MagnifyingGlass"
       iconPosition="left"
       placeholder={props.placeholder ?? "Search"}
-      className={className}
+      className={wrapperClassName}
       disabled={disabled}
       size={size}
       endAdornment={dropdownControl}

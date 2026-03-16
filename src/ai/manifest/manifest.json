@@ -88,7 +88,7 @@
       "intent": "Top-level application shell and page structure",
       "purpose": "Top-level application shell that composes menu, listview, main, side panel, and footer regions for consistent page architecture.",
       "tier": 1,
-      "description": "The structural application layout framework that governs global regions such as header, sidebar, breadcrumb, sub-navigation, and main content. It enforces consistent structure, theme/brand application, and layout configuration.",
+      "description": "The structural application layout framework that governs global regions such as menu, listview, main content, side panel, and footer while enforcing consistent structure, theme/brand application, and layout configuration.",
       "roles": [
         "application"
       ],
@@ -167,7 +167,15 @@
         ],
         "allowedParents": [],
         "disallowedChildren": [],
-        "constraints": null
+        "constraints": {
+          "allowedChildren": [
+            "Menu",
+            "Listview",
+            "Main",
+            "SidePanel",
+            "Footer"
+          ]
+        }
       },
       "tokens": {
         "allowed": [

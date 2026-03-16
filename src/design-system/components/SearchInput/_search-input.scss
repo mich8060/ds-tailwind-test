@@ -27,4 +27,15 @@
       margin-left: var(--uds-spacing-8);
     }
   }
+
+  &--with-dropdown {
+    // Keep the native search clear control visible when the inline dropdown is present.
+    .uds-input[type="search"]::-webkit-search-cancel-button {
+      margin-right: 108px;
+    }
+
+    .uds-input.uds-input--compact[type="search"]::-webkit-search-cancel-button {
+      margin-right: 96px;
+    }
+  }
 }
