@@ -8,8 +8,8 @@ export const ContainerSpec: ComponentSpec = {
   variants: {
     appearance: {
       type: "enum",
-      values: ["default", "transparent"],
-      default: "transparent",
+      values: ["default", "secondary", "transparent"],
+      default: "default",
     },
     padding: {
       type: "enum",

@@ -9,7 +9,7 @@ const meta = {
   argTypes: {
     appearance: {
       control: "inline-radio",
-      options: ["default", "transparent"],
+      options: ["default", "secondary", "transparent"],
     },
     padding: {
       control: "select",
@@ -25,7 +25,7 @@ const meta = {
     },
   },
   args: {
-    appearance: "transparent",
+    appearance: "default",
     padding: "large",
     children: (
       <Text as="p" variant="body-14" leading="regular">

@@ -14,7 +14,6 @@ const PADDING_TOKEN_MAP: Record<ContainerPadding, string> = {
 export function Container({
   appearance = "default",
   rounded = true,
-  surface,
   border = "default",
   radius = "md",
   overflow = "visible",
@@ -26,18 +25,12 @@ export function Container({
   children,
   ...rest
 }: ContainerProps) {
-  const resolvedSurface =
-    surface ??
-    (appearance === "secondary"
-      ? "secondary"
-      : appearance === "transparent"
-        ? "transparent"
-        : "default");
+  const resolvedBorder = appearance === "transparent" ? "none" : border;
   const resolvedRadius = rounded ? radius : "none";
   const classNames = [
     "uds-container",
-    `uds-container--surface-${resolvedSurface}`,
-    `uds-container--border-${border}`,
+    `uds-container--appearance-${appearance}`,
+    `uds-container--border-${resolvedBorder}`,
     `uds-container--radius-${resolvedRadius}`,
     `uds-container--overflow-${overflow}`,
     `uds-container--padding-${padding}`,

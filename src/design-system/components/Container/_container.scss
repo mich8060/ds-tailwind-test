@@ -6,20 +6,15 @@
     border-radius: var(--uds-radius-8);
     display: block;
 
-    &--surface-default,
-    &--surface-panel,
-    &--surface-list {
+    &--appearance-default {
         background-color: var(--uds-surface-primary);
     }
 
-    &--surface-secondary,
-    &--surface-subtle-panel,
-    &--surface-card-selectable,
-    &--surface-scroll-region {
+    &--appearance-secondary {
         background-color: var(--uds-surface-secondary);
     }
 
-    &--surface-transparent {
+    &--appearance-transparent {
         background-color: var(--uds-surface-transparent);
     }
 
