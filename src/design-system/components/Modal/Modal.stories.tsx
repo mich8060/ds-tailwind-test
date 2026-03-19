@@ -20,14 +20,6 @@ const meta = {
       options: ["small", "default", "large", "fullscreen"],
       description: "Controls the maximum width of the modal panel.",
     },
-    title: {
-      control: { type: "text" },
-      description: "Header title text.",
-    },
-    subtitle: {
-      control: { type: "text" },
-      description: "Header subtitle text rendered below the title.",
-    },
     dismissible: {
       control: { type: "boolean" },
       description: "When true, renders a close (X) button in the header.",
@@ -40,21 +32,6 @@ const meta = {
       control: { type: "boolean" },
       description: "Close the modal when pressing the Escape key.",
     },
-    headerAlign: {
-      control: { type: "inline-radio" },
-      options: ["start", "center", "space-between"],
-      description: "Horizontal alignment of the header content.",
-    },
-    footerAlign: {
-      control: { type: "inline-radio" },
-      options: ["start", "center", "end", "space-between"],
-      description: "Horizontal alignment of the footer content.",
-    },
-    bodyPadding: {
-      control: { type: "inline-radio" },
-      options: ["none", "compact", "default"],
-      description: "Padding applied to the modal body.",
-    },
     onClose: { action: "closed" },
   },
   args: {
@@ -63,11 +40,6 @@ const meta = {
     dismissible: true,
     closeOnBackdrop: true,
     closeOnEscape: true,
-    headerAlign: "start",
-    footerAlign: "space-between",
-    bodyPadding: "default",
-    title: "Modal title",
-    subtitle: "Optional supporting subtitle",
   },
 } satisfies Meta<typeof Modal>;
 
@@ -87,18 +59,27 @@ export const Playground: Story = {
           {...args}
           open={open}
           onClose={() => setOpen(false)}
+          header={
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <div style={{ fontSize: "20px", fontWeight: 600, lineHeight: "28px" }}>Modal title</div>
+              <div style={{ fontSize: "14px", color: "var(--uds-text-secondary)", lineHeight: "20px" }}>
+                Optional supporting subtitle
+              </div>
+            </div>
+          }
           footer={
             <>
               <Button label="Cancel" appearance="outline" onClick={() => setOpen(false)} />
               <Button label="Save changes" appearance="primary" onClick={() => setOpen(false)} />
             </>
           }
-        >
-          <p style={{ margin: 0 }}>
-            This is the modal body content. You can place any React content here — forms,
-            descriptions, tables, or anything else your workflow requires.
-          </p>
-        </Modal>
+          body={
+            <p style={{ margin: 0 }}>
+              This is the modal body content. You can place any React content here — forms,
+              descriptions, tables, or anything else your workflow requires.
+            </p>
+          }
+        />
       </div>
     );
   },
@@ -118,7 +99,7 @@ export const SmallSize: Story = {
           open={open}
           onClose={() => setOpen(false)}
           size="small"
-          title="Confirm action"
+          header={<div style={{ fontSize: "20px", fontWeight: 600, lineHeight: "28px" }}>Confirm action</div>}
           dismissible
           footer={
             <>
@@ -147,8 +128,14 @@ export const LargeSize: Story = {
           open={open}
           onClose={() => setOpen(false)}
           size="large"
-          title="Review provider profile"
-          subtitle="Check all details before submitting for approval"
+          header={
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <div style={{ fontSize: "20px", fontWeight: 600, lineHeight: "28px" }}>Review provider profile</div>
+              <div style={{ fontSize: "14px", color: "var(--uds-text-secondary)", lineHeight: "20px" }}>
+                Check all details before submitting for approval
+              </div>
+            </div>
+          }
           dismissible
           footer={
             <>
@@ -191,8 +178,14 @@ export const FullscreenSize: Story = {
           open={open}
           onClose={() => setOpen(false)}
           size="fullscreen"
-          title="Contract editor"
-          subtitle="Review and edit the locum tenens agreement"
+          header={
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <div style={{ fontSize: "20px", fontWeight: 600, lineHeight: "28px" }}>Contract editor</div>
+              <div style={{ fontSize: "14px", color: "var(--uds-text-secondary)", lineHeight: "20px" }}>
+                Review and edit the locum tenens agreement
+              </div>
+            </div>
+          }
           dismissible
           footer={
             <>
@@ -224,8 +217,14 @@ export const WithDismissButton: Story = {
         <Modal
           open={open}
           onClose={() => setOpen(false)}
-          title="Edit contact details"
-          subtitle="Changes are saved automatically"
+          header={
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <div style={{ fontSize: "20px", fontWeight: 600, lineHeight: "28px" }}>Edit contact details</div>
+              <div style={{ fontSize: "14px", color: "var(--uds-text-secondary)", lineHeight: "20px" }}>
+                Changes are saved automatically
+              </div>
+            </div>
+          }
           dismissible
           footer={
             <Button label="Done" appearance="primary" onClick={() => setOpen(false)} />
@@ -254,8 +253,14 @@ export const NoBackdropClose: Story = {
         <Modal
           open={open}
           onClose={() => setOpen(false)}
-          title="Unsaved changes"
-          subtitle="You must choose an action to continue"
+          header={
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <div style={{ fontSize: "20px", fontWeight: 600, lineHeight: "28px" }}>Unsaved changes</div>
+              <div style={{ fontSize: "14px", color: "var(--uds-text-secondary)", lineHeight: "20px" }}>
+                You must choose an action to continue
+              </div>
+            </div>
+          }
           closeOnBackdrop={false}
           closeOnEscape={false}
           dismissible={false}
@@ -271,54 +276,6 @@ export const NoBackdropClose: Story = {
             modal — you must explicitly choose to save or discard.
           </p>
         </Modal>
-      </div>
-    );
-  },
-};
-
-// ---------------------------------------------------------------------------
-// Footer alignment variants
-// ---------------------------------------------------------------------------
-export const FooterAlignments: Story = {
-  name: "Footer Alignments",
-  render: (_args) => {
-    const [openModal, setOpenModal] = React.useState<string | null>(null);
-    const alignments: Array<"start" | "center" | "end" | "space-between"> = [
-      "start",
-      "center",
-      "end",
-      "space-between",
-    ];
-    return (
-      <div style={{ padding: "48px", display: "flex", flexWrap: "wrap", gap: "12px" }}>
-        {alignments.map((align) => (
-          <Button
-            key={align}
-            label={`Footer: ${align}`}
-            appearance="outline"
-            onClick={() => setOpenModal(align)}
-          />
-        ))}
-        {alignments.map((align) => (
-          <Modal
-            key={align}
-            open={openModal === align}
-            onClose={() => setOpenModal(null)}
-            title={`Footer alignment: ${align}`}
-            dismissible
-            footerAlign={align}
-            footer={
-              <>
-                <Button label="Cancel" appearance="outline" onClick={() => setOpenModal(null)} />
-                <Button label="Confirm" appearance="primary" onClick={() => setOpenModal(null)} />
-              </>
-            }
-          >
-            <p style={{ margin: 0 }}>
-              The footer action buttons are aligned to the <strong>{align}</strong> position.
-            </p>
-          </Modal>
-        ))}
       </div>
     );
   },
@@ -354,8 +311,7 @@ export const CustomHeader: Story = {
           }
         >
           <p style={{ margin: 0 }}>
-            The <code>header</code> prop accepts any ReactNode and replaces the default
-            title/subtitle/badge rendering with fully custom content.
+            The <code>header</code> prop accepts any ReactNode so consumers can fully control modal header content.
           </p>
         </Modal>
       </div>

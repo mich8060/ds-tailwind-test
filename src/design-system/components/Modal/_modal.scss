@@ -72,7 +72,7 @@
 
     // ── Size variants ────────────────────────
     &--small {
-        max-width: 480px;
+        max-width: 400px;
     }
 
     &--default {
@@ -97,10 +97,13 @@
         align-items: center;
         display: flex;
         gap: var(--uds-spacing-12);
+        justify-content: flex-start;
         min-height: 0;
+        padding: var(--uds-spacing-24);
     }
 
     &__header-content {
+        flex: 1;
         min-width: 0;
     }
 
@@ -110,34 +113,11 @@
         margin-left: auto;
     }
 
-    &__header--align-start {
-        justify-content: flex-start;
-    }
-
-    &__header--align-center {
-        justify-content: center;
-    }
-
-    &__header--align-space-between {
-        justify-content: space-between;
-    }
-
     &__body {
         min-height: 0;
         overflow-x: hidden;
         overflow-y: auto;
         overscroll-behavior: contain;
-    }
-
-    &__body--padding-none {
-        padding: 0;
-    }
-
-    &__body--padding-compact {
-        padding: var(--uds-spacing-16);
-    }
-
-    &__body--padding-default {
         padding: var(--uds-spacing-24);
     }
 
@@ -149,24 +129,9 @@
         display: flex;
         flex-wrap: wrap;
         gap: var(--uds-gap-32);
-        justify-content: space-between;
+        justify-content: flex-end;
+        padding: var(--uds-spacing-16) var(--uds-spacing-24);
         position: relative;
         z-index: 1;
-    }
-
-    &__footer--align-start {
-        justify-content: flex-start;
-    }
-
-    &__footer--align-center {
-        justify-content: center;
-    }
-
-    &__footer--align-end {
-        justify-content: flex-end;
-    }
-
-    &__footer--align-space-between {
-        justify-content: space-between;
     }
 }

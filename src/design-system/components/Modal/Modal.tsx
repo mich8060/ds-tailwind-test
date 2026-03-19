@@ -25,40 +25,33 @@ function toReactNode(value: unknown): React.ReactNode {
  * Modal component — Accessible dialog overlay
  *
  * A standalone, controlled modal that renders via a portal.
- * Supports title/subtitle/badge header, scrollable content, footer actions,
+ * Supports custom header/footer slots, scrollable content,
  * size variants, backdrop click dismissal, and Escape key dismissal.
  *
  * @param {boolean}       open             - Whether the modal is visible
  * @param {function}      onClose          - Called when the user requests close (Escape, backdrop, X button)
- * @param {string}        title            - Header title text
- * @param {string}        subtitle         - Header subtitle text
- * @param {React.ReactNode} badge          - Optional badge element next to the title
- * @param {React.ReactNode} header         - Custom header override (replaces title/subtitle/badge)
+ * @param {React.ReactNode} header         - Header content slot
+ * @param {React.ReactNode} body           - Body content slot
  * @param {React.ReactNode} footer         - Footer content (typically action buttons)
  * @param {string}        size             - "small" (480px) | "default" (640px) | "large" (800px) | "fullscreen"
  * @param {boolean}       closeOnBackdrop  - Close when clicking the overlay backdrop (default true)
  * @param {boolean}       closeOnEscape    - Close on Escape key press (default true)
  * @param {HTMLElement}   container        - Portal target element (default document.body)
  * @param {string}        className        - Additional CSS classes for the dialog panel
- * @param {React.ReactNode} children       - Modal body content
+ * @param {React.ReactNode} children       - Legacy body content fallback when body is not provided
  * @param {object}        props            - Additional props spread onto the dialog element
  */
 function Modal({
     open = false,
     onClose,
-    title,
-    subtitle,
-    badge,
     header,
+    body,
     footer,
     size = "default",
     closeOnBackdrop = true,
     closeOnEscape = true,
     dismissible = false,
     headerActions,
-    headerAlign = "start",
-    footerAlign = "space-between",
-    bodyPadding = "none",
     container,
     className = "",
     children,
@@ -66,20 +59,9 @@ function Modal({
 }: ModalProps) {
     const dialogRef = useRef<HTMLDivElement | null>(null);
     const previousActiveElement = useRef<HTMLElement | null>(null);
-    const resolvedTitle = toReactNode(title);
-    const resolvedSubtitle = toReactNode(subtitle);
-    const resolvedBadge = toReactNode(badge);
-    const resolvedHeader =
-        toReactNode(header) ??
-        (resolvedTitle || resolvedSubtitle || resolvedBadge ? (
-            <>
-                {resolvedTitle}
-                {resolvedSubtitle}
-                {resolvedBadge}
-            </>
-        ) : null);
+    const resolvedHeader = toReactNode(header);
     const resolvedFooter = toReactNode(footer);
-    const resolvedChildren = toReactNode(children);
+    const resolvedBody = toReactNode(body) ?? toReactNode(children);
     const resolvedHeaderActions = toReactNode(headerActions);
     const dialogProps = props as React.HTMLAttributes<HTMLDivElement>;
 
@@ -139,24 +121,9 @@ function Modal({
         .filter(Boolean)
         .join(" ");
 
-    const headerClasses = [
-        `${BASE_CLASS}__header`,
-        `${BASE_CLASS}__header--align-${headerAlign}`,
-    ]
-        .filter(Boolean)
-        .join(" ");
-    const bodyClasses = [
-        `${BASE_CLASS}__body`,
-        `${BASE_CLASS}__body--padding-${bodyPadding}`,
-    ]
-        .filter(Boolean)
-        .join(" ");
-    const footerClasses = [
-        `${BASE_CLASS}__footer`,
-        `${BASE_CLASS}__footer--align-${footerAlign}`,
-    ]
-        .filter(Boolean)
-        .join(" ");
+    const headerClasses = `${BASE_CLASS}__header`;
+    const bodyClasses = `${BASE_CLASS}__body`;
+    const footerClasses = `${BASE_CLASS}__footer`;
 
     const overlayClasses = [
         `${BASE_CLASS}__overlay`,
@@ -200,7 +167,7 @@ function Modal({
                 ) : null}
 
                 {/* Body */}
-                <div className={bodyClasses}>{resolvedChildren}</div>
+                <div className={bodyClasses}>{resolvedBody}</div>
 
                 {/* Footer */}
                 {resolvedFooter && <div className={footerClasses}>{resolvedFooter}</div>}

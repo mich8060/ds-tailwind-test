@@ -14,6 +14,7 @@ export interface AppShellSlots {
     Breadcrumb?: React.ReactNode;
     Footer?: React.ReactNode;
     SubNav?: React.ReactNode;
+    Toast?: React.ReactNode;
 }
 
 /**
@@ -67,7 +68,7 @@ export interface AppShellSidePanelSectionProps extends React.HTMLAttributes<HTML
     children?: React.ReactNode;
 }
 
-type AppShellSlotName = "Menu" | "Content" | "Listview" | "Main" | "SidePanel" | "Footer";
+type AppShellSlotName = "Menu" | "Content" | "Listview" | "Main" | "SidePanel" | "Footer" | "Toast";
 type AppShellSlotComponent = React.FC<AppShellSectionProps> & { __appShellSlot?: AppShellSlotName };
 
 const createAppShellSlot = (slot: AppShellSlotName): AppShellSlotComponent => {
@@ -90,6 +91,7 @@ const AppShellListviewSlot = createAppShellSlot("Listview");
 const AppShellMainSlot = createAppShellSlot("Main");
 const AppShellSidePanelSlot = createAppShellSlot("SidePanel");
 const AppShellFooterSlot = createAppShellSlot("Footer");
+const AppShellToastSlot = createAppShellSlot("Toast");
 const AppShellSidePanelSection = ({ children, className = "", ...rest }: AppShellSidePanelSectionProps) => {
     const sectionClassName = ["app-shell__side-panel-section", className].filter(Boolean).join(" ");
     return (
@@ -159,6 +161,7 @@ function AppShellComponent({
     let customMain: React.ReactNode = null;
     let customSidePanel: React.ReactNode = null;
     let customFooter: React.ReactNode = null;
+    let customToast: React.ReactNode = null;
     let sidePanelWidth: number | string | undefined;
     let sidePanelMaxWidth: number | string | undefined;
     let mainSurface: "primary" | "secondary" = "secondary";
@@ -177,6 +180,10 @@ function AppShellComponent({
         }
         if (child.type === AppShellFooterSlot || slotName === "Footer") {
             customFooter = child.props.children;
+            continue;
+        }
+        if (child.type === AppShellToastSlot || slotName === "Toast") {
+            customToast = child.props.children;
         }
     }
 
@@ -215,6 +222,7 @@ function AppShellComponent({
             : undefined;
 
     const resolvedFooter = slots?.Footer ?? customFooter;
+    const resolvedToast = slots?.Toast ?? customToast;
     const hasSidebarMenu = !standalone && config.sidebar && hasRenderableContent(customMenu);
     const hasListview = hasRenderableContent(customListview);
     const hasSidePanel = hasRenderableContent(customSidePanel);
@@ -295,6 +303,11 @@ function AppShellComponent({
                     {config.footer && hasRenderableContent(resolvedFooter) ? resolvedFooter : null}
                 </div>
             </div>
+            {hasRenderableContent(resolvedToast) ? (
+                <div className="app-shell__toast-slot" aria-live="polite" aria-atomic="true">
+                    {resolvedToast}
+                </div>
+            ) : null}
             {hasSidebarMenu ? (
                 <button
                     type="button"
@@ -315,6 +328,7 @@ type AppShellCompound = React.FC<AppShellProps> & {
     SidePanel: typeof AppShellSidePanelSlot;
     SidePanelSection: typeof AppShellSidePanelSection;
     Footer: typeof AppShellFooterSlot;
+    Toast: typeof AppShellToastSlot;
 };
 
 export const AppShell = AppShellComponent as AppShellCompound;
@@ -325,3 +339,4 @@ AppShell.Main = AppShellMainSlot;
 AppShell.SidePanel = AppShellSidePanelSlot;
 AppShell.SidePanelSection = AppShellSidePanelSection;
 AppShell.Footer = AppShellFooterSlot;
+AppShell.Toast = AppShellToastSlot;

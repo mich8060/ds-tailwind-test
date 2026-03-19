@@ -14,17 +14,15 @@ A standalone, accessible dialog overlay component. Renders via a portal so it al
 |------|------|---------|--------|-------------|
 | `open` | `boolean` | `false` | — | Whether the modal is visible |
 | `onClose` | `function` | — | `() => void` | Called when close is requested (X button, Escape, backdrop) |
-| `title` | `string` | — | — | Header title text |
-| `subtitle` | `string` | — | — | Header subtitle text |
-| `badge` | `ReactNode` | — | — | Badge element rendered next to the title |
-| `header` | `ReactNode` | — | — | Fully custom header (replaces title/subtitle/badge) |
+| `header` | `ReactNode` | — | — | Header slot content |
+| `body` | `ReactNode` | — | — | Body slot content |
 | `footer` | `ReactNode` | — | — | Footer content, typically action buttons |
 | `size` | `string` | `"default"` | `"small"` (480px), `"default"` (640px), `"large"` (800px), `"fullscreen"` | Dialog width |
 | `closeOnBackdrop` | `boolean` | `true` | — | Whether clicking the backdrop calls `onClose` |
 | `closeOnEscape` | `boolean` | `true` | — | Whether pressing Escape calls `onClose` |
 | `container` | `HTMLElement` | `document.body` | — | Portal target element. Pass a ref's `.current` to contain the modal within a specific element. |
 | `className` | `string` | `""` | — | Additional CSS classes on the dialog panel |
-| `children` | `ReactNode` | — | — | Modal body content |
+| `children` | `ReactNode` | — | — | Legacy body fallback used when `body` is not provided |
 
 ## Examples
 
@@ -37,8 +35,15 @@ const [open, setOpen] = useState(false);
 <Modal
   open={open}
   onClose={() => setOpen(false)}
-  title="Confirm Deletion"
-  subtitle="This action cannot be undone."
+  header={
+    <div>
+      <h3>Confirm Deletion</h3>
+      <p>This action cannot be undone.</p>
+    </div>
+  }
+  body={
+    <p>Are you sure you want to delete this item?</p>
+  }
   size="small"
   footer={
     <>
@@ -46,9 +51,7 @@ const [open, setOpen] = useState(false);
       <Button appearance="danger" onClick={handleDelete}>Delete</Button>
     </>
   }
->
-  <p>Are you sure you want to delete this item?</p>
-</Modal>
+/>
 ```
 
 ### Form modal
@@ -56,7 +59,7 @@ const [open, setOpen] = useState(false);
 <Modal
   open={formOpen}
   onClose={() => setFormOpen(false)}
-  title="Create Project"
+  header={<h3>Create Project</h3>}
   size="default"
   footer={
     <>
@@ -79,8 +82,7 @@ const [open, setOpen] = useState(false);
 <Modal
   open={infoOpen}
   onClose={() => setInfoOpen(false)}
-  title="Release Notes"
-  badge="v2.0"
+  header={<h3>Release Notes</h3>}
   size="large"
 >
   <h3>What's New</h3>
@@ -96,7 +98,7 @@ const [open, setOpen] = useState(false);
 <Modal
   open={fullOpen}
   onClose={() => setFullOpen(false)}
-  title="Document Editor"
+  header={<h3>Document Editor</h3>}
   size="fullscreen"
 >
   <Editor document={doc} />
@@ -108,7 +110,7 @@ const [open, setOpen] = useState(false);
 <Modal
   open={wizardOpen}
   onClose={() => setWizardOpen(false)}
-  title="Setup Wizard"
+  header={<h3>Setup Wizard</h3>}
   closeOnBackdrop={false}
   closeOnEscape={false}
   footer={
@@ -128,7 +130,6 @@ const [open, setOpen] = useState(false);
 ## Accessibility
 
 - Uses `role="dialog"` and `aria-modal="true"`
-- `aria-labelledby` points to the title, `aria-describedby` points to the subtitle
 - Body scroll is locked while the modal is open
 - Focus is trapped within the modal panel
 - Rendered via `createPortal` to avoid z-index stacking issues
