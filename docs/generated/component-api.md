@@ -324,21 +324,6 @@ Provide a clear, branded fallback when a section has no content, data, or search
 | --- | --- | --- | --- |
 | `instructionText` | `string` | - | `Drop files here or click to upload` |
 
-### Flex
-
-Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and spacing.
-
-- Source: `src/design-system/components/Flex/Flex.spec.ts`
-- Tier: `1`
-- States: `default`
-
-| Prop | Type | Allowed Values | Default |
-| --- | --- | --- | --- |
-| `alignItems` | `enum` | stretch, flex-start, center, flex-end, baseline | `stretch` |
-| `direction` | `enum` | row, column | `row` |
-| `justifyContent` | `enum` | flex-start, center, flex-end, space-between, space-around, space-evenly | `flex-start` |
-| `wrap` | `enum` | nowrap, wrap, wrap-reverse | `nowrap` |
-
 ### Icon
 
 - Source: `src/design-system/components/Icon/Icon.spec.ts`

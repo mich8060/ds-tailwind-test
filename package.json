@@ -206,12 +206,6 @@
       "require": "./dist/components/FileUpload/FileUpload.cjs",
       "default": "./dist/components/FileUpload/FileUpload.js"
     },
-    "./Flex": {
-      "types": "./dist/design-system/components/Flex/Flex.d.ts",
-      "import": "./dist/components/Flex/Flex.js",
-      "require": "./dist/components/Flex/Flex.cjs",
-      "default": "./dist/components/Flex/Flex.js"
-    },
     "./Icon": {
       "types": "./dist/design-system/components/Icon/Icon.d.ts",
       "import": "./dist/components/Icon/Icon.js",

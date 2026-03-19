@@ -211,22 +211,11 @@ const FlexFill = React.forwardRef<HTMLElement, FlexItemProps>(function FlexFill(
   );
 });
 
-type FlexCompound = typeof LayoutBase & {
-  Fill: typeof FlexFill;
-  Full: typeof FlexFill;
-};
-
 type LayoutCompound = typeof LayoutBase & {
   Fill: typeof FlexFill;
   Full: typeof FlexFill;
 };
 
 export const Layout = LayoutBase as LayoutCompound;
-Layout.Fill = FlexFill;
-// Backward-compatible alias for existing consumers.
-Layout.Full = FlexFill;
-
-// Backward-compatible alias for existing consumers.
-export const Flex = Layout as unknown as FlexCompound;
 Layout.Fill = FlexFill;
 Layout.Full = FlexFill;

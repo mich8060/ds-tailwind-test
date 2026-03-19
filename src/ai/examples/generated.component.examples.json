@@ -212,16 +212,6 @@
     "jsx": "<FileUpload instructionText=\"Drop files here or click to upload\" />"
   },
   {
-    "component": "Flex",
-    "props": {
-      "direction": "row",
-      "justifyContent": "flex-start",
-      "alignItems": "stretch",
-      "wrap": "nowrap"
-    },
-    "jsx": "<Flex direction=\"row\" justifyContent=\"flex-start\" alignItems=\"stretch\" wrap=\"nowrap\" />"
-  },
-  {
     "component": "Icon",
     "props": {
       "appearance": "regular"

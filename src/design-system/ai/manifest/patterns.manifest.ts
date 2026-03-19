@@ -45,7 +45,7 @@ export const PatternRegistry: PatternRegistryType = {
     requiredComponents: ["Container", "Text", "Table", "Pagination", "Button"],
     structure: [
       { type: "Container", role: "page-shell" },
-      { type: "Flex", role: "header-row" },
+      { type: "Layout", role: "header-row" },
       { type: "Text", role: "title", props: { variant: "heading-24" } },
       { type: "Button", role: "primary-page-action", props: { appearance: "primary" } },
       { type: "Table", role: "data-table" },
@@ -83,7 +83,7 @@ export const PatternRegistry: PatternRegistryType = {
     requiredComponents: ["Container", "Text", "Tag", "ProgressIndicator"],
     structure: [
       { type: "Container", role: "dashboard-container" },
-      { type: "Flex", role: "section-header" },
+      { type: "Layout", role: "section-header" },
       { type: "Text", role: "section-title", props: { variant: "heading-20" } },
       { type: "Container", role: "metric-card" },
       { type: "Tag", role: "metric-status" },

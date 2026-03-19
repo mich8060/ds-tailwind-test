@@ -109,7 +109,7 @@ const componentSeeds: ComponentSeed[] = [
   { name: "EventCard", category: "data-display", intent: "Event summary card with key metadata.", preferredContexts: ["scheduling", "timelines"] },
   { name: "Field", category: "form", intent: "Label/helper/error wrapper for form controls.", preferredContexts: ["forms"], slots: { control: { required: true, description: "Input-like child control." }, helper: { required: false }, error: { required: false } }, tokenDependencies: ["--uds-spacing-8", "--uds-spacing-12", "--uds-color-neutral-700", "--uds-color-red-600"], accessibilityRole: "group" },
   { name: "FileUpload", category: "form", intent: "Upload surface for file selection/drop.", preferredContexts: ["forms", "document-intake"] },
-  { name: "Flex", category: "layout", intent: "Primary layout utility for component composition.", preferredContexts: ["all-layouts"], maxPerSection: 999, tokenDependencies: ["--uds-spacing-8", "--uds-spacing-16", "--uds-spacing-24"] },
+  { name: "Layout", category: "layout", intent: "Primary layout utility for component composition.", preferredContexts: ["all-layouts"], maxPerSection: 999, tokenDependencies: ["--uds-spacing-8", "--uds-spacing-16", "--uds-spacing-24"] },
   { name: "Icon", category: "data-display", intent: "Consistent icon rendering wrapper.", preferredContexts: ["buttons", "status", "navigation"], tokenDependencies: ["--uds-color-neutral-700", "--uds-color-blue-600"], accessibilityRole: "img" },
   { name: "ImageAspect", category: "layout", intent: "Image with deterministic aspect ratio.", preferredContexts: ["cards", "media"] },
   { name: "Input", category: "form", intent: "Alias for TextInput control.", preferredContexts: ["forms"], accessibilityRole: "textbox", keyboardSupport: ["Tab"] },

@@ -16,7 +16,7 @@ export { Divider } from "../components/Divider";
 export { Dropdown } from "../components/Dropdown";
 export { Field } from "../components/Field";
 export { FileUpload } from "../components/FileUpload";
-export { Layout, Flex } from "../components/Layout";
+export { Layout } from "../components/Layout";
 export { Icon } from "../components/Icon";
 export { Menu } from "../components/Menu";
 export { Modal } from "../components/Modal";
