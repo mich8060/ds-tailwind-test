@@ -26,6 +26,7 @@
 .uds-dialog {
 
     all: unset;
+    box-sizing: border-box;
     align-items: center;
     animation: uds-dialog-slide-up var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
     background: var(--uds-surface-primary);

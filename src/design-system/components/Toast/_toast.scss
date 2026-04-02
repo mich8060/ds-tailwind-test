@@ -3,6 +3,7 @@
 
 .uds-toast {
     all: unset;
+    box-sizing: border-box;
     @include uds-body-16;
     align-items: flex-start;
     background: var(--uds-surface-primary);

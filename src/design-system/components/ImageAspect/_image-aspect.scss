@@ -2,6 +2,7 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-image-aspect {
   all: unset;
+  box-sizing: border-box;
   background-color: var(--uds-surface-tertiary);
   border-radius: var(--uds-radius-4);
   overflow: hidden;

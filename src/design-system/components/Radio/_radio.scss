@@ -4,6 +4,7 @@
 .radio {
     align-items: center;
     all: unset;
+    box-sizing: border-box;
     cursor: pointer;
     display: inline-flex;
     gap: var(--uds-gap-8);

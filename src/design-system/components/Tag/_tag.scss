@@ -3,10 +3,10 @@
 
 .uds-tag {
     all: unset;
+    box-sizing: border-box;
     align-items: center;
     border: var(--uds-border-width-1) solid transparent;
     border-radius: var(--uds-radius-2);
-    box-sizing: border-box;
     display: inline-flex;
     gap: 0;
     height: fit-content;

@@ -3,11 +3,11 @@
 
 .uds-status {
     all: unset;
+    box-sizing: border-box;
     @include uds-body-14-medium;
     align-items: center;
     background-color: var(--uds-surface-secondary);
     border: var(--uds-border-width-1) solid var(--uds-border-primary);
-    box-sizing: border-box;
     color: var(--uds-text-primary);
     cursor: pointer;
     display: inline-flex;
@@ -99,6 +99,7 @@
     // When used as button, remove default button styles
     &:is(button) {
         all: unset;
+        box-sizing: border-box;
         display: inline-flex;
     }
 }

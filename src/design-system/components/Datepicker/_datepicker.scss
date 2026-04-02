@@ -2,10 +2,10 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-datepicker {
   all: unset;
+  box-sizing: border-box;
   background: var(--uds-surface-primary);
   border: var(--uds-border-width-1) solid var(--uds-border-primary);
   border-radius: var(--uds-radius-8);
-  box-sizing: border-box;
   display: inline-flex;
   flex-direction: column;
   gap: 0px;
@@ -56,13 +56,13 @@
 
   &__day {
     all: unset;
+    box-sizing: border-box;
     @include uds-body-14;
     align-items: center;
     aspect-ratio: 1;
     background: var(--uds-surface-primary);
     border-bottom: var(--uds-border-width-1) solid var(--uds-border-primary);
     border-right: var(--uds-border-width-1) solid var(--uds-border-primary);
-    box-sizing: border-box;
     color: var(--uds-text-primary);
     cursor: pointer;
     display: flex;

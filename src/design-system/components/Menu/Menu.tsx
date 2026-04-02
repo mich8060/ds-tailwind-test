@@ -64,7 +64,7 @@ const isMenuNavItem = (value: unknown): value is MenuNavItem => {
 const toMenuMode = (value: unknown): MenuMode => (value === "dark" ? "dark" : "light");
 
 function Menu({
-    title,
+    title = "Menu",
     className = "",
     navItems = [],
     brands = [],
@@ -419,9 +419,5 @@ function Menu({
         </aside>
     );
 }
-
-Menu.defaultProps = {
-    title: "Menu",
-};
 
 export default React.memo(Menu);

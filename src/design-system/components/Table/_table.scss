@@ -2,6 +2,7 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-table {
   all: unset;
+  box-sizing: border-box;
   border-collapse: collapse;
   border-spacing: 0;
   display: table;
@@ -88,6 +89,7 @@
 
   &__header-button {
     all: unset;
+    box-sizing: border-box;
     cursor: pointer;
     display: block;
     width: 100%;

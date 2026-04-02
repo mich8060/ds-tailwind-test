@@ -39,6 +39,7 @@
 // ── Overlay ──────────────────────────────────
 .uds-modal {
     all: unset;
+    box-sizing: border-box;
     &__overlay {
         align-items: center;
         animation: uds-modal-fade-in var(--uds-animation-duration-200) var(--uds-animation-ease-standard);

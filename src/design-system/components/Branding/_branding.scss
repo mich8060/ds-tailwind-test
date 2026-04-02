@@ -2,6 +2,7 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-branding {
   all: unset;
+  box-sizing: border-box;
   align-items: center;
   display: inline-flex;
 

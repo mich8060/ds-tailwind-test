@@ -3,6 +3,7 @@
 
 .uds-menu {
     all: unset;
+    box-sizing: border-box;
     background-color: var(--uds-surface-primary);
     border-right: var(--uds-border-width-1) solid var(--uds-border-primary);
     @include uds-body-16;
@@ -491,12 +492,17 @@
             flex-shrink: 0;
         }
 
-        &__name {
+        &__name.uds-text {
             color: var(--uds-text-primary);
             flex: 1;
+            min-width: 0;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+
+        .uds-action-menu {
+            flex-shrink: 0;
         }
     }
 }

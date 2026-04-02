@@ -5,12 +5,12 @@
 
 .uds-button {
     all: unset;
+    box-sizing: border-box;
     @include uds-body-16-semibold;
     align-items: center;
     background: var(--uds-button-surface-primary-default);
     border: var(--uds-border-width-1) solid var(--uds-button-border-primary-default);
     border-radius: var(--uds-radius-4);
-    box-sizing: border-box;
     color: var(--uds-button-text-default);
     cursor: pointer;
     display: inline-flex;

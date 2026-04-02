@@ -2,6 +2,7 @@
 
 .uds-section-header {
   all: unset;
+  box-sizing: border-box;
   align-items: flex-start;
   display: flex;
   gap: var(--uds-spacing-16);

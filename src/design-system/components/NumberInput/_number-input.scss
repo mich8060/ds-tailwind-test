@@ -42,10 +42,10 @@
   }
 
   &__step {
-    align-items: center;
-    align-self: stretch;
     all: unset;
     box-sizing: border-box;
+    align-items: center;
+    align-self: stretch;
     color: var(--uds-icon-primary);
     cursor: pointer;
     display: inline-flex;
@@ -71,8 +71,8 @@
 
   &__input {
     all: unset;
-    @include uds-body-16;
     box-sizing: border-box;
+    @include uds-body-16;
     color: var(--uds-icon-primary);
     flex: 1 1 auto;
     min-width: 0;

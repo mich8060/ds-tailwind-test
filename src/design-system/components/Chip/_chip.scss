@@ -3,11 +3,11 @@
 
 .uds-chip {
     all: unset;
+    box-sizing: border-box;
     @include uds-body-16-medium;
     align-items: center;
     background-color: var(--uds-surface-primary);
     border: var(--uds-border-width-1) solid;
-    box-sizing: border-box;
     color: var(--uds-text-primary);
     cursor: pointer;
     display: inline-flex;

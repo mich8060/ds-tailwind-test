@@ -2,6 +2,7 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-slider {
   all: unset;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: var(--uds-gap-12);

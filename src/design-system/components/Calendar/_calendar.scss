@@ -2,6 +2,7 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-calendar {
   all: unset;
+  box-sizing: border-box;
   background: var(--uds-surface-primary);
   border: var(--uds-border-width-1) solid var(--uds-border-primary);
   border-radius: var(--uds-radius-8);
@@ -248,10 +249,10 @@
   // ════════════════════════════════════════════════════════════════
 
   &__event-bar {
-    align-items: center;
     all: unset;
-    border-radius: var(--uds-radius-4);
     box-sizing: border-box;
+    align-items: center;
+    border-radius: var(--uds-radius-4);
     cursor: default;
     display: flex;
     height: 20px;

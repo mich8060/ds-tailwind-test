@@ -7,7 +7,6 @@ body {
 
 .app-shell {
     position: relative;
-    --app-shell-mobile-toolbar-height: 64px;
     background: var(--uds-surface-primary);
     color: var(--uds-text-primary);
     height: 100vh;
@@ -351,6 +350,10 @@ body {
 }
 
 @media (max-width: 960px) {
+    .app-shell {
+        --app-shell-mobile-toolbar-height: 72px;
+    }
+
     .app-shell__mobile-toolbar-wrap {
         position: fixed;
         top: 0;
@@ -362,7 +365,7 @@ body {
 
     .app-shell--has-nav .app-shell__body {
         --app-shell-menu-width: 0;
-        padding-top: var(--app-shell-mobile-toolbar-height);
+        padding-top: 72px;
     }
 
     .app-shell--has-nav .app-shell__body:has(.uds-menu--expanded) {

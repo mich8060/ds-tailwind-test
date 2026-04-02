@@ -3,9 +3,9 @@
 
 .uds-medallion {
   all: unset;
+  box-sizing: border-box;
   align-items: center;
   border: $medallion-border;
-  box-sizing: border-box;
   display: inline-flex;
   flex-shrink: 0;
   justify-content: center;

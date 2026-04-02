@@ -3,10 +3,10 @@
 
 .uds-badge {
     all: unset;
+    box-sizing: border-box;
     @include uds-body-12-semibold;
     align-items: center;
     border: var(--uds-border-width-1) solid transparent;
-    box-sizing: border-box;
     display: inline-flex;
     flex: 0 0 auto;
     flex-shrink: 0;

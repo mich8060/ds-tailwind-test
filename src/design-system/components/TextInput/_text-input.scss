@@ -4,6 +4,7 @@
 
 .uds-input {
   all: unset;
+  box-sizing: border-box;
   &-field {
     display: flex;
     flex-direction: column;
@@ -38,7 +39,6 @@
     border-color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
     color var(--uds-animation-duration-200) var(--uds-animation-ease-standard),
     box-shadow var(--uds-animation-duration-200) var(--uds-animation-ease-standard);
-  box-sizing: border-box;
   height: 44px;
 
   // Default state (border color)

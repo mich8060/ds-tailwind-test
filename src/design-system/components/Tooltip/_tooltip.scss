@@ -2,6 +2,7 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-tooltip {
   all: unset;
+  box-sizing: border-box;
   display: inline-block;
   position: relative;
 

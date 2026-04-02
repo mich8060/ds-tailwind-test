@@ -4,6 +4,7 @@
 
 .uds-text {
   all: unset;
+  box-sizing: border-box;
   font-family: $text-family;
   font-weight: $text-weight-regular;
   margin: 0;

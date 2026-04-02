@@ -2,6 +2,7 @@
 
 .uds-container {
     all: unset;
+    box-sizing: border-box;
     border: var(--uds-border-width-1) solid var(--uds-border-primary);
     border-radius: var(--uds-radius-8);
     display: block;

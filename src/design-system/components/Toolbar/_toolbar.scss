@@ -1,9 +1,9 @@
 .uds-toolbar {
     all: unset;
+    box-sizing: border-box;
     align-items: center;
     background: var(--uds-surface-primary);
     border-bottom: 1px solid var(--uds-border-primary);
-    box-sizing: border-box;
     display: flex;
     gap: var(--uds-spacing-12);
     justify-content: space-between;

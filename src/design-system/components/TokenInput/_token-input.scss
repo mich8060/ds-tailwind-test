@@ -29,6 +29,7 @@
 
   &__input {
     all: unset;
+    box-sizing: border-box;
     @include uds-body-14;
     color: var(--uds-text-primary);
     flex: 1 1 140px;

@@ -2,6 +2,7 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-event-card {
   all: unset;
+  box-sizing: border-box;
   --uds-event-card-active-bg: var(--uds-color-primary-500);
   --uds-event-card-active-fg: var(--uds-text-inverse);
   --uds-event-card-past-bg: var(--uds-color-neutrals-100);
@@ -12,7 +13,6 @@
   --uds-event-card-pending-stripe: var(--uds-color-accent-cyan-200);
 
   align-items: center;
-  box-sizing: border-box;
   cursor: default;
   display: flex;
   justify-content: center;

@@ -1,5 +1,6 @@
 .uds-code {
   all: unset;
+  box-sizing: border-box;
   --uds-code-token-class: var(--uds-code-class);
   --uds-code-token-comment: var(--uds-code-comment);
   --uds-code-token-function: var(--uds-code-function);

@@ -4,6 +4,7 @@
 
 .uds-link {
   all: unset;
+  box-sizing: border-box;
   align-items: center;
   display: inline-flex;
   gap: var(--uds-spacing-4);

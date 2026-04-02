@@ -2,6 +2,7 @@
 
 .uds-description-list {
     all: unset;
+    box-sizing: border-box;
     background: $description-list-surface;
     border-radius: $description-list-radius;
     display: flex;

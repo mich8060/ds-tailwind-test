@@ -2,6 +2,7 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-file-upload {
   all: unset;
+  box-sizing: border-box;
   align-items: center;
   background: var(--uds-surface-primary, #ffffff);
   border: var(--uds-border-width-2) dashed var(--uds-border-primary, #d1d5db);

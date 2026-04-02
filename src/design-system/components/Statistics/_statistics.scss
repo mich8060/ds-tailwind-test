@@ -1,5 +1,6 @@
 .uds-statistics {
     all: unset;
+    box-sizing: border-box;
     background: var(--uds-surface-primary);
     border: var(--uds-border-width-1) solid var(--uds-border-primary);
     border-radius: var(--uds-radius-8);

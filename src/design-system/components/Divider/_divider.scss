@@ -3,6 +3,7 @@
 
 .uds-divider {
     all: unset;
+    box-sizing: border-box;
     align-items: center;
     display: flex;
     margin: var(--uds-gap-8) 0;

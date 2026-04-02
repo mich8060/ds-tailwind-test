@@ -4,6 +4,7 @@
 .uds {
     &-tabs {
         all: unset;
+        box-sizing: border-box;
         display: flex;
         gap: 0;
         overflow-y: hidden;
@@ -12,6 +13,7 @@
 
         &__list {
             all: unset;
+            box-sizing: border-box;
             display: flex;
             gap: 0;
             overflow-y: hidden;
@@ -33,6 +35,7 @@
 
             .uds-tabs__list {
                 all: unset;
+                box-sizing: border-box;
                 flex: 1;
                 min-width: 0; // Allows flex item to shrink below content size
                 overflow-x: auto;
@@ -47,9 +50,9 @@
 
         &-item {
             all: unset;
+            box-sizing: border-box;
             @include uds-body-14-medium;
             align-items: center;
-            box-sizing: border-box;
             cursor: pointer;
             display: inline-flex;
             gap: var(--uds-gap-8);

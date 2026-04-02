@@ -2,12 +2,12 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-textarea {
   all: unset;
+  box-sizing: border-box;
   @include uds-body-16;
   align-self: stretch;
   background-color: var(--uds-input-surface);
   border: var(--uds-border-width-1) solid var(--uds-input-border);
   border-radius: var(--uds-radius-4);
-  box-sizing: border-box;
   color: var(--uds-text-primary);
   font-family: var(--uds-font-family);
   overflow-y: auto;

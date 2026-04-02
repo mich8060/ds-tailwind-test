@@ -3,6 +3,7 @@
 
 .uds-providers-card {
     all: unset;
+    box-sizing: border-box;
     background-color: var(--uds-surface-secondary);
     border: var(--uds-border-width-1) solid var(--uds-border-primary);
     border-radius: var(--uds-radius-12);

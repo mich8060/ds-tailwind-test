@@ -2,6 +2,7 @@
 
 .uds-selectable-card {
   all: unset;
+  box-sizing: border-box;
   align-items: center;
   background: $selectable-card-surface;
   border: var(--uds-border-width-1) solid $selectable-card-border-color;

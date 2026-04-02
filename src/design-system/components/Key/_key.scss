@@ -3,10 +3,10 @@
 
 .uds-key {
     all: unset;
+    box-sizing: border-box;
     @include uds-body-12;
     align-items: center;
     border-radius: var(--uds-radius-4);
-    box-sizing: border-box;
     display: inline-flex;
     height: 24px;
     justify-content: center;

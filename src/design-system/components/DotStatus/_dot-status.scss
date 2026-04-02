@@ -2,6 +2,7 @@
 @use "../../tokens/primitives/typography.primitives" as *;
 .uds-dot-status {
   all: unset;
+  box-sizing: border-box;
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
