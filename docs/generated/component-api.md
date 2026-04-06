@@ -75,11 +75,12 @@ Top-level application shell that composes menu, listview, main, side panel, and 
 - Source: `src/design-system/components/Button/Button.spec.ts`
 - Allowed parents: `AppShell`, `Container`, `Layout`, `Modal`, `Table`, `Tabs`
 - Disallowed children: `Button`
+- Canonical prop aliases: `icononly -> icon-only`, `only -> icon-only`
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
-| `appearance` | `enum` | primary, soft, outline, text, ghost, disabled, destructive | `primary` |
-| `layout` | `enum` | label-only, icon-left, icon-right, icon-only, only | `label-only` |
+| `appearance` | `enum` | primary, soft, outline, text, ghost, destructive | `primary` |
+| `layout` | `enum` | label-only, icon-left, icon-right, icon-only | `label-only` |
 | `size` | `enum` | large, default, small, xsmall | `default` |
 
 ### ButtonGroup
@@ -140,14 +141,14 @@ Sidebar checklist for multi-step flows with completion status.
 ### Chip
 
 - Source: `src/design-system/components/Chip/Chip.spec.ts`
-- Canonical prop aliases: `iconplacement -> iconPlacement`
+- Canonical prop aliases: `iconplacement -> iconPosition`, `iconPlacement -> iconPosition`, `shape -> rounded`
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
 | `badgeVariant` | `string` | - | `sky` |
-| `iconPlacement` | `enum` | both, left, right, none | `none` |
+| `iconPosition` | `enum` | both, left, right, none | `none` |
+| `rounded` | `boolean` | - | `true` |
 | `selected` | `boolean` | - | `false` |
-| `shape` | `enum` | pill, rounded | `pill` |
 | `size` | `enum` | default, compact, mini | `default` |
 
 ### Code
@@ -156,6 +157,7 @@ Sidebar checklist for multi-step flows with completion status.
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
+| `code` | `string` | - | `const example = true;` |
 | `inline` | `enum` | true, false | `false` |
 | `language` | `enum` | markup, css, clike, javascript, typescript, tsx, jsx, json, bash, sql | `javascript` |
 
@@ -172,9 +174,13 @@ Provides a reusable content wrapper with optional filled or transparent surface 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
 | `appearance` | `enum` | default, secondary, transparent | `default` |
+| `border` | `enum` | default, subtle, none | `default` |
+| `overflow` | `enum` | visible, hidden, auto, clip | `visible` |
 | `padding` | `enum` | none, xsmall, small, default, large, xlarge | `large` |
 | `paddingX` | `enum` | none, xsmall, small, default, large, xlarge | `large` |
 | `paddingY` | `enum` | none, xsmall, small, default, large, xlarge | `large` |
+| `radius` | `enum` | none, sm, md, lg | `md` |
+| `rounded` | `boolean` | - | `true` |
 
 ### CurrencyInput
 
@@ -228,10 +234,11 @@ Compact key-value metadata layout for detail and summary views.
 - Source: `src/design-system/components/DescriptionList/DescriptionList.spec.ts`
 - Tier: `2`
 - States: `default`
+- Canonical prop aliases: `bordered -> border`
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
-| `bordered` | `boolean` | - | `true` |
+| `border` | `boolean` | - | `true` |
 | `density` | `enum` | default, compact | `default` |
 | `fullWidth` | `boolean` | - | `true` |
 | `labelWidth` | `enum` | sm, md, lg | `md` |
@@ -361,8 +368,15 @@ Creates token-driven flexbox layouts with controlled direction, alignment, wrapp
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
+| `alignItems` | `enum` | stretch, flex-start, center, flex-end, baseline | `stretch` |
 | `appearance` | `enum` | full, equal, right, left | `full` |
+| `direction` | `enum` | row, column | `row` |
+| `fullHeight` | `boolean` | - | `false` |
 | `fullWidth` | `boolean` | - | `false` |
+| `gap` | `enum` | 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 24, 32, 48, 64, 80, spacing-0, spacing-2, spacing-4, spacing-6, spacing-8, spacing-10, spacing-12, spacing-14, spacing-16, spacing-18, spacing-24, spacing-32, spacing-48, spacing-64, spacing-80, auto | `0` |
+| `inline` | `boolean` | - | `false` |
+| `justifyContent` | `enum` | flex-start, center, flex-end, space-between, space-around, space-evenly | `flex-start` |
+| `wrap` | `enum` | nowrap, wrap, wrap-reverse | `nowrap` |
 
 ### Link
 
@@ -374,7 +388,7 @@ Provides inline navigation and action links using semantic text-link tokens.
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
-| `appearance` | `enum` | primary, secondary | `primary` |
+| `appearance` | `enum` | primary, secondary, prominent, external | `primary` |
 | `disabled` | `boolean` | - | `false` |
 | `underline` | `enum` | always, hover, none | `always` |
 
@@ -400,7 +414,15 @@ Displays an icon inside a colorized shape for compact visual context.
 
 | Prop | Type | Allowed Values | Default |
 | --- | --- | --- | --- |
+| `activeMode` | `enum` | light, dark | `-` |
+| `defaultExpanded` | `boolean` | - | `true` |
 | `identity` | `string` | - | `design-system` |
+| `showBrand` | `boolean` | - | `true` |
+| `showBrandSwitcher` | `boolean` | - | `true` |
+| `showModeToggle` | `boolean` | - | `true` |
+| `showNav` | `boolean` | - | `true` |
+| `showSearch` | `boolean` | - | `false` |
+| `showUser` | `boolean` | - | `true` |
 
 ### MicroCalendar
 
@@ -598,7 +620,7 @@ Displays a KPI value with optional context, trend, and icon.
 | --- | --- | --- | --- |
 | `appearance` | `enum` | light-gray, white, transparent | `light-gray` |
 | `shape` | `enum` | pill, rounded | `pill` |
-| `variant` | `string` | - | `blue` |
+| `variant` | `enum` | red, blue, inverse, orange, sky, indigo, rose, neutral, celery, lime, yellow, green, cyan, purple, fuchsia | `blue` |
 
 ### Steps
 

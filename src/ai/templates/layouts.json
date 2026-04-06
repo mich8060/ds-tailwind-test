@@ -123,55 +123,108 @@
         "props": {
           "appearance": "transparent",
           "padding": "large",
-          "gap": "--uds-spacing-16"
+          "gap": "--uds-spacing-24"
         },
         "children": [
           {
-            "type": "Layout",
+            "type": "Toolbar",
             "props": {
-              "justifyContent": "space-between",
-              "alignItems": "center",
+              "title": "{{heading}}"
+            }
+          },
+          {
+            "type": "Container",
+            "props": {
+              "appearance": "default",
+              "padding": "large",
               "gap": "--uds-spacing-16"
             },
             "children": [
               {
-                "type": "Text",
+                "type": "Layout",
                 "props": {
-                  "variant": "heading-24",
-                  "text": "{{heading}}"
-                }
-              },
-              {
-                "type": "Button",
-                "props": {
-                  "appearance": "primary",
-                  "label": "{{primaryActionLabel}}"
-                }
+                  "direction": "row",
+                  "gap": "--uds-spacing-16"
+                },
+                "children": [
+                  {
+                    "type": "Statistics",
+                    "props": {
+                      "label": "Open Requests",
+                      "value": "24",
+                      "icon": "Briefcase",
+                      "iconAccent": "blue"
+                    }
+                  },
+                  {
+                    "type": "Statistics",
+                    "props": {
+                      "label": "Pending Review",
+                      "value": "7",
+                      "icon": "WarningCircle",
+                      "iconAccent": "orange"
+                    }
+                  }
+                ]
               }
             ]
           },
           {
-            "type": "Table",
+            "type": "Container",
+            "props": {
+              "appearance": "secondary",
+              "padding": "large",
+              "gap": "--uds-spacing-12"
+            },
             "children": [
               {
-                "type": "Status",
+                "type": "Layout",
                 "props": {
-                  "variant": "success",
-                  "text": "Ready"
-                }
+                  "justifyContent": "space-between",
+                  "alignItems": "center",
+                  "gap": "--uds-spacing-16"
+                },
+                "children": [
+                  {
+                    "type": "Status",
+                    "props": {
+                      "label": "Queue status",
+                      "variant": "orange"
+                    }
+                  },
+                  {
+                    "type": "Button",
+                    "props": {
+                      "appearance": "primary",
+                      "label": "{{primaryActionLabel}}"
+                    }
+                  }
+                ]
               },
               {
-                "type": "Tag",
-                "props": {
-                  "color": "blue",
-                  "label": "Active"
-                }
-              },
-              {
-                "type": "ActionMenu",
-                "props": {
-                  "triggerLabel": "Row actions"
-                }
+                "type": "Table",
+                "children": [
+                  {
+                    "type": "Status",
+                    "props": {
+                      "label": "Ready",
+                      "variant": "green"
+                    }
+                  },
+                  {
+                    "type": "Tag",
+                    "props": {
+                      "label": "Active",
+                      "variant": "blue"
+                    }
+                  },
+                  {
+                    "type": "ActionMenu",
+                    "props": {
+                      "triggerLabel": "Row actions"
+                    }
+                  }
+                ]
               }
             ]
           }
@@ -183,7 +236,8 @@
       "priority": "first-choice",
       "recommendedFor": [
         "figma-make"
-      ]
+      ],
+      "visualDirection": "commandCenter"
     },
     {
       "id": "settings-two-column",
@@ -207,10 +261,10 @@
         },
         "children": [
           {
-            "type": "Text",
+            "type": "SectionHeader",
             "props": {
-              "variant": "heading-24",
-              "text": "{{pageTitle}}"
+              "title": "{{pageTitle}}",
+              "description": "Adjust operational preferences and review context before saving."
             }
           },
           {
@@ -277,6 +331,13 @@
                       "color": "neutral",
                       "label": "Profile"
                     }
+                  },
+                  {
+                    "type": "Status",
+                    "props": {
+                      "label": "Last synced 2h ago",
+                      "variant": "green"
+                    }
                   }
                 ]
               }
@@ -291,7 +352,8 @@
       "priority": "first-choice",
       "recommendedFor": [
         "figma-make"
-      ]
+      ],
+      "visualDirection": "splitFocus"
     },
     {
       "id": "modal-confirmation",
@@ -382,63 +444,79 @@
         },
         "children": [
           {
-            "type": "Text",
+            "type": "SectionHeader",
             "props": {
-              "variant": "heading-24",
-              "text": "{{title}}"
+              "title": "{{title}}",
+              "description": "Complete each step before moving forward."
             }
           },
           {
-            "type": "Steps"
-          },
-          {
-            "type": "Container",
+            "type": "Layout",
             "props": {
-              "appearance": "default",
-              "padding": "large",
-              "gap": "--uds-spacing-16"
+              "direction": "row",
+              "gap": "--uds-spacing-24"
             },
             "children": [
               {
-                "type": "Field",
-                "children": [
-                  {
-                    "type": "TextInput",
-                    "props": {
-                      "type": "text"
-                    }
-                  }
-                ]
+                "type": "Checklist"
               },
               {
-                "type": "Field",
-                "children": [
-                  {
-                    "type": "Textarea"
-                  }
-                ]
-              },
-              {
-                "type": "Layout",
+                "type": "Container",
                 "props": {
-                  "justifyContent": "space-between",
-                  "alignItems": "center",
-                  "gap": "--uds-spacing-12"
+                  "appearance": "default",
+                  "padding": "large",
+                  "gap": "--uds-spacing-16"
                 },
                 "children": [
                   {
-                    "type": "Button",
+                    "type": "Status",
                     "props": {
-                      "appearance": "text",
-                      "label": "{{backLabel}}"
+                      "label": "Step 2 of 5",
+                      "variant": "blue"
                     }
                   },
                   {
-                    "type": "Button",
+                    "type": "Field",
+                    "children": [
+                      {
+                        "type": "TextInput",
+                        "props": {
+                          "type": "text"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Field",
+                    "children": [
+                      {
+                        "type": "Textarea"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Layout",
                     "props": {
-                      "appearance": "primary",
-                      "label": "{{nextLabel}}"
-                    }
+                      "justifyContent": "space-between",
+                      "alignItems": "center",
+                      "gap": "--uds-spacing-12"
+                    },
+                    "children": [
+                      {
+                        "type": "Button",
+                        "props": {
+                          "appearance": "text",
+                          "label": "{{backLabel}}"
+                        }
+                      },
+                      {
+                        "type": "Button",
+                        "props": {
+                          "appearance": "primary",
+                          "label": "{{nextLabel}}"
+                        }
+                      }
+                    ]
                   }
                 ]
               }
@@ -453,7 +531,8 @@
       "priority": "first-choice",
       "recommendedFor": [
         "figma-make"
-      ]
+      ],
+      "visualDirection": "guidedWorkflow"
     }
   ],
   "selectionPolicy": {
@@ -466,6 +545,24 @@
       "Use UDS components only.",
       "Do not use Tailwind utilities or className styling.",
       "Use --uds-* tokens or hardcoded literals only."
+    ]
+  },
+  "visualPolicy": {
+    "densePagesRequireVisualAnchors": 3,
+    "preferredAnchors": [
+      "Toolbar",
+      "SectionHeader",
+      "Statistics",
+      "Status",
+      "Tag",
+      "Avatar",
+      "Checklist",
+      "EmptyState",
+      "Table"
+    ],
+    "antiPatterns": [
+      "Avoid template output that is only Text, Button, and transparent Containers.",
+      "Use surfaced Containers to create separation between summary and detail regions."
     ]
   }
 }

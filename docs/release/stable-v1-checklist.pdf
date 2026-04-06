@@ -1,0 +1,91 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 3615 >>
+stream
+BT /F1 20 Tf 1 0 0 1 50 742 Tm (Design System Stable v1 Launch Checklist) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 716 Tm (Reusable checklist for deciding whether a design system is ready for a stable v1 launch.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 690 Tm (1. Freeze public API) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 670 Tm (- Finalize component names, prop names, defaults, and exports.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 654 Tm (- Remove or deprecate aliases before launch.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 638 Tm (2. Stabilize design tokens) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 618 Tm (- Freeze semantic token names and document token usage rules.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 602 Tm (- Eliminate ambiguous token paths.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 586 Tm (3. Complete component documentation) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 566 Tm (- Every component needs purpose, usage guidance, props, accessibility notes, examples, and composition guidance.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 550 Tm (- Remove stale docs and outdated examples.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 534 Tm (4. Complete machine-readable contracts) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 514 Tm (- Keep manifests, discovery, schemas, examples, templates, prompts, and provider overlays current.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 498 Tm (- Keep package, runtime, manifest, and example versions aligned.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 482 Tm (5. Lock composition rules) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 462 Tm (- Define allowed parent/child relationships and enforce them in validation.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 446 Tm (- Prevent ad hoc layout patterns where primitives already exist.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 430 Tm (6. Fix remaining component API gaps) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 410 Tm (- Audit every component spec and move legacy specs to one consistent format.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 394 Tm (- Ensure generated component API is complete enough for AI and docs.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 378 Tm (7. Accessibility readiness) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 358 Tm (- Verify keyboard interaction, focus states, labeling, and ARIA behavior.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 342 Tm (- Run automated checks and manual keyboard testing.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 326 Tm (8. Routing and host integration stability) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 306 Tm (- Ensure navigation components do not depend on one specific host runtime.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 290 Tm (- Support controlled routing props where needed.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 274 Tm (- Verify behavior in product apps, demo pages, and AI-generated hosts like Figma Make.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 258 Tm (9. Performance readiness) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 238 Tm (- Audit bundle size, CSS size, and demo-page or inspector performance.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 222 Tm (- Remove expensive patterns or eager rendering where possible.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 206 Tm (10. Testing baseline) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 186 Tm (- Typecheck, unit tests, integration tests, and AI governance checks must pass.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 170 Tm (- Add regression tests for recent bug fixes.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 154 Tm (11. Visual regression coverage) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 134 Tm (- Snapshot or screenshot core components, states, responsive layouts, and brand/theme differences.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 118 Tm (12. Package publish hygiene) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 98 Tm (- Validate exports, CSS entrypoints, and npm pack contents.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 82 Tm (- Ensure tests, stories, and internal-only docs do not ship unless intentional.) Tj ET
+endstream
+endobj
+3 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+4 0 obj
+<< /Length 1365 >>
+stream
+BT /F1 13 Tf 1 0 0 1 50 742 Tm (13. Consumer install verification) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 722 Tm (- Test in a clean Vite app and a React Router app.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 706 Tm (- Verify styles import cleanly and app shell, menu, and scaffolds work from package install.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 690 Tm (14. AI readiness for launch) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 670 Tm (- Ensure layout recipes, Figma Make contract, provider overlays, and deterministic examples are current.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 654 Tm (15. Migration and deprecation policy) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 634 Tm (- Write migration notes, mark deprecated APIs clearly, and define support timelines.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 618 Tm (16. Release operations) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 598 Tm (- Create a release checklist, changelog, rollback procedure, and post-release triage path.) Tj ET
+BT /F1 13 Tf 1 0 0 1 50 582 Tm (17. Governance) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 562 Tm (- Decide who approves API changes after v1 and separate stable vs experimental components.) Tj ET
+BT /F1 11 Tf 1 0 0 1 50 536 Tm (Launch gate: do not call it v1 until API is frozen, docs and contracts are current, package installs cleanly, accessibility baseline is met, performance is acceptable, tests and validation are green, and consumers can build with it predictably.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+7 0 obj
+<< /Type /Catalog /Pages 6 0 R >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000003746 00000 n 
+0000003872 00000 n 
+0000005289 00000 n 
+0000005415 00000 n 
+0000005478 00000 n 
+trailer
+<< /Size 8 /Root 7 0 R >>
+startxref
+5527
+%%EOF

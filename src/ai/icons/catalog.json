@@ -62,9 +62,9 @@
       "component": "Chip",
       "props": {
         "icon": "Phosphor icon name",
-        "iconPlacement": "left | right | both | none"
+        "iconPosition": "left | right | both | none"
       },
-      "examples": ["<Chip label=\"Messages\" icon=\"ChatCircle\" iconPlacement=\"left\" />"]
+      "examples": ["<Chip label=\"Messages\" icon=\"ChatCircle\" iconPosition=\"left\" />"]
     }
   ],
   "rules": [

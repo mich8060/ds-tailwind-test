@@ -10,6 +10,18 @@ const copies = [
     destination: `${rootDir}/dist/ai/examples/layout-recipes.json`,
   },
   {
+    source: `${rootDir}/src/ai/visual-fixtures/manifest.json`,
+    destination: `${rootDir}/dist/ai/visual-fixtures/manifest.json`,
+  },
+  {
+    source: `${rootDir}/src/ai/visual-fixtures/schema.json`,
+    destination: `${rootDir}/dist/ai/visual-fixtures/schema.json`,
+  },
+  {
+    source: `${rootDir}/src/ai/visual-fixtures/README.md`,
+    destination: `${rootDir}/dist/ai/visual-fixtures/README.md`,
+  },
+  {
     source: `${rootDir}/src/ai/examples/dataset.index.json`,
     destination: `${rootDir}/dist/ai/examples/dataset.index.json`,
   },
@@ -36,6 +48,10 @@ const copies = [
   {
     source: `${rootDir}/src/ai/examples/kanban-board-uds.jsonl`,
     destination: `${rootDir}/dist/ai/examples/kanban-board-uds.jsonl`,
+  },
+  {
+    source: `${rootDir}/src/ai/examples/visual-page-patterns-uds.jsonl`,
+    destination: `${rootDir}/dist/ai/examples/visual-page-patterns-uds.jsonl`,
   },
   {
     source: `${rootDir}/src/ai/examples/uds-governed-training.jsonl`,

@@ -9,6 +9,7 @@ import { enforceCanonicalPropsRule } from "./rules/props.rules";
 import { enforceTokenVariableRule } from "./rules/token-variable.rules";
 import { enforceTailwindDisallowRule } from "./rules/tailwind.rules";
 import { enforcePatternStructureRule } from "./rules/pattern-structure.rules";
+import { enforceVisualHierarchyRule } from "./rules/visual-hierarchy.rules";
 
 const POLICY_RULES = [
   enforceCompositionRule,
@@ -19,6 +20,7 @@ const POLICY_RULES = [
   enforceAccessibilityRule,
   enforceCanonicalPropsRule,
   enforcePatternStructureRule,
+  enforceVisualHierarchyRule,
 ] as const;
 
 export function runPolicyEngine(

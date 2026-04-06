@@ -15,6 +15,10 @@ This folder is the **authoring workspace** for Claude/Cursor AI generation, sepa
 - `prompts/` — reusable prompt templates for generation and repair flows
 - `examples/` — curated valid/invalid generation examples for model guidance
 - `examples/layout-recipes.json` — canonical starter recipes for common page layouts
+- `visual-fixtures/manifest.json` — approved screenshot-derived visual references for hierarchy, density, and interaction states
+- `examples/visual-page-patterns-uds.jsonl` — high-signal page examples with stronger hierarchy and richer component composition
+- `USE-FIRST.md` — provider-neutral first read for any AI system
+- `providers/` — provider-specific overlays for Claude, OpenAI, Cursor, and Figma Make
 
 ## Model Discoverability (Start Here)
 
@@ -37,9 +41,11 @@ For any model/tooling integration, read in this order:
 15. `@chg-ds/unified-design-system/ai/templates`
 16. `@chg-ds/unified-design-system/ai/examples`
 17. `@chg-ds/unified-design-system/ai/examples/layout-recipes`
-18. `@chg-ds/unified-design-system/ai/examples/dataset`
-19. `@chg-ds/unified-design-system/ai/validation`
-20. `@chg-ds/unified-design-system/ai/sdk`
+18. `@chg-ds/unified-design-system/ai/visual-fixtures`
+19. `@chg-ds/unified-design-system/ai/examples/visual-page-patterns-uds.jsonl`
+20. `@chg-ds/unified-design-system/ai/examples/dataset`
+21. `@chg-ds/unified-design-system/ai/validation`
+22. `@chg-ds/unified-design-system/ai/sdk`
 
 ## Icon options for AI
 
@@ -61,6 +67,8 @@ Use `@chg-ds/unified-design-system/ai/templates` as starter structure for common
   - `modal-confirmation`
   - `wizard-steps-form`
 - Fill placeholder slot values (for example `{{title}}`, `{{primaryActionLabel}}`) before validation.
+- Pair templates with `@chg-ds/unified-design-system/ai/examples/visual-page-patterns-uds.jsonl` when the prompt expects a more polished, higher-contrast interface.
+- Use `@chg-ds/unified-design-system/ai/visual-fixtures` when the prompt needs approved visual hierarchy or interaction-state references from real product examples.
 
 ## Runtime helper SDK (small integration surface)
 
@@ -100,6 +108,9 @@ Generation policy also requires:
 - Use only `--uds-*` variable references or hardcoded literal values.
 - Never use deep imports like `@/.../components/*`; stick to package exports.
 - Avoid non-UDS prop APIs (for example `Menu.items`, `Layout.vertical`, `Button.type`).
+- Prefer controlled navigation props for `Menu` when router context is not guaranteed:
+  - `currentPath`
+  - `onNavigate`
 
 See `schemas/ai-output.schema.json` and `ai-generated/screens/template.screen.json`.
 
@@ -111,7 +122,9 @@ Use the governed training set exported from runtime AI examples:
 - validate with `npm run ai:validate:examples`
 - Contract entrypoint: `@chg-ds/unified-design-system/ai/examples/dataset`
 - Canonical layout recipe entrypoint: `@chg-ds/unified-design-system/ai/examples/layout-recipes`
+- Canonical visual fixture entrypoint: `@chg-ds/unified-design-system/ai/visual-fixtures`
 - Additional scenario dataset (JSONL):
   - `src/ai/examples/signin-flow-uds.jsonl`
   - `src/ai/examples/app-shell-regions-uds.jsonl`
+  - `src/ai/examples/visual-page-patterns-uds.jsonl`
   - `src/ai/examples/uds-governed-training.jsonl` (canonical valid/invalid contract outputs with `audit.patternId`)

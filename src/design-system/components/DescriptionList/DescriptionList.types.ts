@@ -15,6 +15,8 @@ export interface DescriptionListProps extends HTMLAttributes<HTMLDListElement> {
   density?: DescriptionListDensity;
   labelWidth?: DescriptionListLabelWidth;
   variant?: DescriptionListVariant;
+  border?: boolean;
+  /** @deprecated Use border. */
   bordered?: boolean;
   fullWidth?: boolean;
 }

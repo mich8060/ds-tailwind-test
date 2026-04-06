@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 import Chip from "./Chip";
-import type { ChipSize, ChipIconPlacement } from "./Chip.types";
+import type { ChipIconPosition, ChipSize } from "./Chip.types";
 
 const meta = {
   title: "Components/Chip",
@@ -25,9 +25,9 @@ const meta = {
       options: ["default", "compact", "mini"] satisfies ChipSize[],
       description: "Size of the chip.",
     },
-    iconPlacement: {
+    iconPosition: {
       control: "select",
-      options: ["none", "left", "right", "both"] satisfies ChipIconPlacement[],
+      options: ["none", "left", "right", "both"] satisfies ChipIconPosition[],
       description: "Where to display the icon relative to the label.",
     },
     icon: {
@@ -60,7 +60,7 @@ const meta = {
     label: "Filter",
     rounded: true,
     size: "default",
-    iconPlacement: "none",
+    iconPosition: "none",
     disabled: false,
     badgeVariant: "sky",
     className: "",
@@ -79,7 +79,7 @@ export const DefaultUnselected: Story = {
   args: {
     label: "All Specialties",
     selected: false,
-    iconPlacement: "none",
+    iconPosition: "none",
   },
 };
 
@@ -88,7 +88,7 @@ export const Selected: Story = {
   args: {
     label: "Emergency Medicine",
     selected: true,
-    iconPlacement: "none",
+    iconPosition: "none",
   },
 };
 
@@ -138,7 +138,7 @@ export const IconLeft: Story = {
   args: {
     label: "Calendar",
     icon: "Calendar",
-    iconPlacement: "left",
+    iconPosition: "left",
   },
 };
 
@@ -147,7 +147,7 @@ export const IconRight: Story = {
   args: {
     label: "Dropdown",
     icon: "CaretDown",
-    iconPlacement: "right",
+    iconPosition: "right",
   },
 };
 
@@ -156,7 +156,7 @@ export const IconBoth: Story = {
   args: {
     label: "Filter",
     icon: "Funnel",
-    iconPlacement: "both",
+    iconPosition: "both",
   },
 };
 
@@ -166,7 +166,7 @@ export const WithBadge: Story = {
     label: "Messages",
     badge: 12,
     badgeVariant: "red",
-    iconPlacement: "none",
+    iconPosition: "none",
   },
 };
 
@@ -175,7 +175,7 @@ export const WithBadgeAndIcon: Story = {
   args: {
     label: "Notifications",
     icon: "Bell",
-    iconPlacement: "left",
+    iconPosition: "left",
     badge: 5,
     badgeVariant: "red",
   },
@@ -205,9 +205,9 @@ export const AllSizes: Story = {
   name: "All Sizes with Icons",
   render: () => (
     <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-      <Chip label="Default" size="default" icon="Star" iconPlacement="left" selected />
-      <Chip label="Compact" size="compact" icon="Star" iconPlacement="left" selected />
-      <Chip label="Mini" size="mini" icon="Star" iconPlacement="left" selected />
+      <Chip label="Default" size="default" icon="Star" iconPosition="left" selected />
+      <Chip label="Compact" size="compact" icon="Star" iconPosition="left" selected />
+      <Chip label="Mini" size="mini" icon="Star" iconPosition="left" selected />
     </div>
   ),
 };

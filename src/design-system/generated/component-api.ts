@@ -286,8 +286,7 @@ export const COMPONENT_API = {
           "label-only",
           "icon-left",
           "icon-right",
-          "icon-only",
-          "only"
+          "icon-only"
         ],
         "default": "label-only"
       },
@@ -299,7 +298,6 @@ export const COMPONENT_API = {
           "outline",
           "text",
           "ghost",
-          "disabled",
           "destructive"
         ],
         "default": "primary"
@@ -340,7 +338,10 @@ export const COMPONENT_API = {
       ]
     },
     "aliases": {
-      "props": {}
+      "props": {
+        "icononly": "icon-only",
+        "only": "icon-only"
+      }
     },
     "ambiguity": {
       "propNameCollisions": [],
@@ -568,13 +569,9 @@ export const COMPONENT_API = {
         "type": "boolean",
         "default": false
       },
-      "shape": {
-        "type": "enum",
-        "values": [
-          "pill",
-          "rounded"
-        ],
-        "default": "pill"
+      "rounded": {
+        "type": "boolean",
+        "default": true
       },
       "size": {
         "type": "enum",
@@ -585,7 +582,7 @@ export const COMPONENT_API = {
         ],
         "default": "default"
       },
-      "iconPlacement": {
+      "iconPosition": {
         "type": "enum",
         "values": [
           "both",
@@ -602,9 +599,9 @@ export const COMPONENT_API = {
     },
     "defaults": {
       "selected": false,
-      "shape": "pill",
+      "rounded": true,
       "size": "default",
-      "iconPlacement": "none",
+      "iconPosition": "none",
       "badgeVariant": "sky"
     },
     "states": [],
@@ -619,7 +616,9 @@ export const COMPONENT_API = {
     },
     "aliases": {
       "props": {
-        "iconplacement": "iconPlacement"
+        "iconplacement": "iconPosition",
+        "iconPlacement": "iconPosition",
+        "shape": "rounded"
       }
     },
     "ambiguity": {
@@ -655,11 +654,16 @@ export const COMPONENT_API = {
           false
         ],
         "default": false
+      },
+      "code": {
+        "type": "string",
+        "default": "const example = true;"
       }
     },
     "defaults": {
       "language": "javascript",
-      "inline": false
+      "inline": false,
+      "code": "const example = true;"
     },
     "states": [],
     "tokensUsed": [],
@@ -730,13 +734,50 @@ export const COMPONENT_API = {
           "xlarge"
         ],
         "default": "large"
+      },
+      "rounded": {
+        "type": "boolean",
+        "default": true
+      },
+      "border": {
+        "type": "enum",
+        "values": [
+          "default",
+          "subtle",
+          "none"
+        ],
+        "default": "default"
+      },
+      "radius": {
+        "type": "enum",
+        "values": [
+          "none",
+          "sm",
+          "md",
+          "lg"
+        ],
+        "default": "md"
+      },
+      "overflow": {
+        "type": "enum",
+        "values": [
+          "visible",
+          "hidden",
+          "auto",
+          "clip"
+        ],
+        "default": "visible"
       }
     },
     "defaults": {
       "appearance": "default",
       "padding": "large",
       "paddingX": "large",
-      "paddingY": "large"
+      "paddingY": "large",
+      "rounded": true,
+      "border": "default",
+      "radius": "md",
+      "overflow": "visible"
     },
     "states": [
       "default"
@@ -782,7 +823,8 @@ export const COMPONENT_API = {
     },
     "antiPatterns": [
       "Do not use Container for semantic landmarks where <section>, <article>, or <aside> is required.",
-      "Do not hardcode spacing values on top of Container padding variants."
+      "Do not hardcode spacing values on top of Container padding variants.",
+      "Do not create custom panel wrappers when Container appearance, border, radius, and padding can express the structure."
     ]
   },
   "CurrencyInput": {
@@ -937,7 +979,7 @@ export const COMPONENT_API = {
         ],
         "default": "default"
       },
-      "bordered": {
+      "border": {
         "type": "boolean",
         "default": true
       },
@@ -950,7 +992,7 @@ export const COMPONENT_API = {
       "density": "default",
       "labelWidth": "md",
       "variant": "default",
-      "bordered": true,
+      "border": true,
       "fullWidth": true
     },
     "states": [
@@ -978,7 +1020,9 @@ export const COMPONENT_API = {
       "disallowedChildren": []
     },
     "aliases": {
-      "props": {}
+      "props": {
+        "bordered": "border"
+      }
     },
     "ambiguity": {
       "propNameCollisions": [],
@@ -1517,7 +1561,92 @@ export const COMPONENT_API = {
     "tier": 2,
     "purpose": "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and width behavior.",
     "props": {
+      "direction": {
+        "type": "enum",
+        "values": [
+          "row",
+          "column"
+        ],
+        "default": "row"
+      },
+      "justifyContent": {
+        "type": "enum",
+        "values": [
+          "flex-start",
+          "center",
+          "flex-end",
+          "space-between",
+          "space-around",
+          "space-evenly"
+        ],
+        "default": "flex-start"
+      },
+      "alignItems": {
+        "type": "enum",
+        "values": [
+          "stretch",
+          "flex-start",
+          "center",
+          "flex-end",
+          "baseline"
+        ],
+        "default": "stretch"
+      },
+      "wrap": {
+        "type": "enum",
+        "values": [
+          "nowrap",
+          "wrap",
+          "wrap-reverse"
+        ],
+        "default": "nowrap"
+      },
+      "gap": {
+        "type": "enum",
+        "values": [
+          "0",
+          "2",
+          "4",
+          "6",
+          "8",
+          "10",
+          "12",
+          "14",
+          "16",
+          "18",
+          "24",
+          "32",
+          "48",
+          "64",
+          "80",
+          "spacing-0",
+          "spacing-2",
+          "spacing-4",
+          "spacing-6",
+          "spacing-8",
+          "spacing-10",
+          "spacing-12",
+          "spacing-14",
+          "spacing-16",
+          "spacing-18",
+          "spacing-24",
+          "spacing-32",
+          "spacing-48",
+          "spacing-64",
+          "spacing-80",
+          "auto"
+        ],
+        "default": "0"
+      },
       "fullWidth": {
+        "type": "boolean",
+        "default": false
+      },
+      "fullHeight": {
+        "type": "boolean",
+        "default": false
+      },
+      "inline": {
         "type": "boolean",
         "default": false
       },
@@ -1533,13 +1662,36 @@ export const COMPONENT_API = {
       }
     },
     "defaults": {
+      "direction": "row",
+      "justifyContent": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "gap": "0",
       "fullWidth": false,
+      "fullHeight": false,
+      "inline": false,
       "appearance": "full"
     },
     "states": [
       "default"
     ],
-    "tokensUsed": [],
+    "tokensUsed": [
+      "--uds-spacing-0",
+      "--uds-spacing-2",
+      "--uds-spacing-4",
+      "--uds-spacing-6",
+      "--uds-spacing-8",
+      "--uds-spacing-10",
+      "--uds-spacing-12",
+      "--uds-spacing-14",
+      "--uds-spacing-16",
+      "--uds-spacing-18",
+      "--uds-spacing-24",
+      "--uds-spacing-32",
+      "--uds-spacing-48",
+      "--uds-spacing-64",
+      "--uds-spacing-80"
+    ],
     "accessibility": {
       "role": "generic",
       "keyboard": []
@@ -1559,7 +1711,11 @@ export const COMPONENT_API = {
       "propNameCollisions": [],
       "hadAliasNormalization": false
     },
-    "antiPatterns": []
+    "antiPatterns": [
+      "Do not use custom row or column wrappers when Layout can express the structure directly.",
+      "Do not use legacy prop aliases like vertical, justify, or align.",
+      "Do not omit direction, gap, or alignment when they are important to the structure."
+    ]
   },
   "Link": {
     "name": "Link",
@@ -1571,7 +1727,9 @@ export const COMPONENT_API = {
         "type": "enum",
         "values": [
           "primary",
-          "secondary"
+          "secondary",
+          "prominent",
+          "external"
         ],
         "default": "primary"
       },
@@ -1723,12 +1881,54 @@ export const COMPONENT_API = {
     "name": "Menu",
     "source": "src/design-system/components/Menu/Menu.spec.ts",
     "props": {
+      "activeMode": {
+        "type": "enum",
+        "values": [
+          "light",
+          "dark"
+        ]
+      },
+      "showBrand": {
+        "type": "boolean",
+        "default": true
+      },
+      "showSearch": {
+        "type": "boolean",
+        "default": false
+      },
+      "showBrandSwitcher": {
+        "type": "boolean",
+        "default": true
+      },
+      "showNav": {
+        "type": "boolean",
+        "default": true
+      },
+      "showModeToggle": {
+        "type": "boolean",
+        "default": true
+      },
+      "showUser": {
+        "type": "boolean",
+        "default": true
+      },
+      "defaultExpanded": {
+        "type": "boolean",
+        "default": true
+      },
       "identity": {
         "type": "string",
         "default": "design-system"
       }
     },
     "defaults": {
+      "showBrand": true,
+      "showSearch": false,
+      "showBrandSwitcher": true,
+      "showNav": true,
+      "showModeToggle": true,
+      "showUser": true,
+      "defaultExpanded": true,
       "identity": "design-system"
     },
     "states": [],
@@ -2498,6 +2698,27 @@ export const COMPONENT_API = {
     "name": "Status",
     "source": "src/design-system/components/Status/Status.spec.ts",
     "props": {
+      "variant": {
+        "type": "enum",
+        "values": [
+          "red",
+          "blue",
+          "inverse",
+          "orange",
+          "sky",
+          "indigo",
+          "rose",
+          "neutral",
+          "celery",
+          "lime",
+          "yellow",
+          "green",
+          "cyan",
+          "purple",
+          "fuchsia"
+        ],
+        "default": "blue"
+      },
       "appearance": {
         "type": "enum",
         "values": [
@@ -2514,16 +2735,12 @@ export const COMPONENT_API = {
           "rounded"
         ],
         "default": "pill"
-      },
-      "variant": {
-        "type": "string",
-        "default": "blue"
       }
     },
     "defaults": {
+      "variant": "blue",
       "appearance": "light-gray",
-      "shape": "pill",
-      "variant": "blue"
+      "shape": "pill"
     },
     "states": [],
     "tokensUsed": [],

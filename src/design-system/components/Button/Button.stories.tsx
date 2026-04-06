@@ -9,12 +9,12 @@ const meta = {
   argTypes: {
     appearance: {
       control: { type: "inline-radio" },
-      options: ["primary", "soft", "outline", "text", "ghost", "disabled", "destructive"],
+      options: ["primary", "soft", "outline", "text", "ghost", "destructive"],
       description: "Visual style variant of the button.",
     },
     layout: {
       control: { type: "inline-radio" },
-      options: ["label-only", "icon-left", "icon-right", "icon-only", "only"],
+      options: ["label-only", "icon-left", "icon-right", "icon-only"],
       description: "Controls label placement and whether start/end slot content is rendered around it.",
     },
     size: {
@@ -86,7 +86,7 @@ export const AllAppearances: Story = {
       <Button appearance="text" label="Text" />
       <Button appearance="ghost" label="Ghost" />
       <Button appearance="destructive" label="Destructive" />
-      <Button appearance="disabled" label="Disabled" />
+      <Button appearance="primary" label="Disabled" disabled />
     </div>
   ),
 };
@@ -117,7 +117,7 @@ export const IconLayouts: Story = {
       <Button layout="icon-left" icon="ArrowLeft" label="Back to results" />
       <Button layout="icon-right" icon="ArrowRight" label="Continue" />
       <Button layout="icon-only" icon="MagnifyingGlass" label="Search" aria-label="Search" />
-      <Button layout="only" icon="Plus" aria-label="Add item" />
+      <Button layout="icon-only" icon="Plus" aria-label="Add item" />
     </div>
   ),
 };

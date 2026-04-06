@@ -50,6 +50,7 @@
     "./ai/manifest.json": "./dist/ai/manifest.json",
     "./ai/discovery.json": "./dist/ai/discovery.json",
     "./ai/discovery": "./dist/ai/discovery.json",
+    "./ai/USE-FIRST": "./dist/ai/USE-FIRST.md",
     "./figma-make": {
       "types": "./dist/design-system/figma-make/index.d.ts",
       "import": "./dist/figma-make/index.js",
@@ -398,8 +399,15 @@
       "require": "./dist/ai/examples/index.cjs",
       "default": "./dist/ai/examples/index.js"
     },
+    "./ai/providers/claude": "./dist/ai/providers/claude.md",
+    "./ai/providers/openai": "./dist/ai/providers/openai.md",
+    "./ai/providers/cursor": "./dist/ai/providers/cursor.md",
+    "./ai/providers/figma-make": "./dist/ai/providers/figma-make.md",
     "./ai/examples/layout-recipes": "./dist/ai/examples/layout-recipes.json",
+    "./ai/visual-fixtures": "./dist/ai/visual-fixtures/manifest.json",
+    "./ai/visual-fixtures/schema": "./dist/ai/visual-fixtures/schema.json",
     "./ai/examples/dataset": "./dist/ai/examples/dataset.index.json",
+    "./ai/examples/visual-page-patterns-uds.jsonl": "./dist/ai/examples/visual-page-patterns-uds.jsonl",
     "./ai/examples/signin-flow-uds.jsonl": "./dist/ai/examples/signin-flow-uds.jsonl",
     "./ai/examples/dashboard-statistics-uds.jsonl": "./dist/ai/examples/dashboard-statistics-uds.jsonl",
     "./ai/examples/settings-preferences-uds.jsonl": "./dist/ai/examples/settings-preferences-uds.jsonl",

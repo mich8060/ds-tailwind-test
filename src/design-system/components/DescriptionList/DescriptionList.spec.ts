@@ -8,7 +8,7 @@ export const DescriptionListSpec: ComponentSpec = {
     density: { type: "enum", values: ["default", "compact"], default: "default" },
     labelWidth: { type: "enum", values: ["sm", "md", "lg"], default: "md" },
     variant: { type: "enum", values: ["default", "separators"], default: "default" },
-    bordered: { type: "boolean", default: true },
+    border: { type: "boolean", default: true },
     fullWidth: { type: "boolean", default: true },
   },
   states: ["default"],

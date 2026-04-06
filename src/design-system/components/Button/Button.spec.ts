@@ -4,8 +4,7 @@ export const ButtonSpec = {
     "label-only",
     "icon-left",
     "icon-right",
-    "icon-only",
-    "only"
+    "icon-only"
   ],
   "appearance": [
     "primary",
@@ -13,7 +12,6 @@ export const ButtonSpec = {
     "outline",
     "text",
     "ghost",
-    "disabled",
     "destructive"
   ],
   "size": [

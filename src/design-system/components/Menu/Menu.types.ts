@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from "react";
+import type React from "react";
 
 /** Menu visual mode. */
 export type MenuMode = "light" | "dark";
@@ -15,6 +16,12 @@ export interface MenuNavItem {
   icon: string;
   path?: string;
   children?: MenuChildItem[];
+}
+
+export interface MenuNavigateDetail {
+  path: string;
+  label: string;
+  parentLabel?: string;
 }
 
 /**
@@ -38,6 +45,10 @@ export interface MenuProps extends Omit<HTMLAttributes<HTMLElement>, "onChange">
   onBrandChange?: (brand: string) => void;
   activeMode?: MenuMode;
   onModeChange?: (mode: MenuMode) => void;
+  /** Controlled current path for active-state resolution without relying on router context. */
+  currentPath?: string;
+  /** Optional navigation callback. When provided, Menu will call this instead of relying on router links. */
+  onNavigate?: (detail: MenuNavigateDetail, event: React.MouseEvent<HTMLElement>) => void;
   showBrand?: boolean;
   showSearch?: boolean;
   showBrandSwitcher?: boolean;

@@ -35,6 +35,12 @@ export type PatternDefinition = {
   widthConstraint?: string;
 };
 
+export type VisualHierarchyDefinition = {
+  minVisualAnchorsForDensePages: number;
+  preferredAnchorComponents: string[];
+  antiPatterns: string[];
+};
+
 export type GovernanceManifest = {
   systemVersion: string;
   tokenVersion: string;

@@ -89,20 +89,21 @@
     "component": "Chip",
     "props": {
       "selected": false,
-      "shape": "pill",
+      "rounded": true,
       "size": "default",
-      "iconPlacement": "none",
+      "iconPosition": "none",
       "badgeVariant": "sky"
     },
-    "jsx": "<Chip selected={false} shape=\"pill\" size=\"default\" iconPlacement=\"none\" badgeVariant=\"sky\" />"
+    "jsx": "<Chip selected={false} rounded size=\"default\" iconPosition=\"none\" badgeVariant=\"sky\" />"
   },
   {
     "component": "Code",
     "props": {
       "language": "javascript",
-      "inline": false
+      "inline": false,
+      "code": "const example = true;"
     },
-    "jsx": "<Code language=\"javascript\" inline={false} />"
+    "jsx": "<Code language=\"javascript\" inline={false} code=\"const example = true;\" />"
   },
   {
     "component": "Container",
@@ -110,9 +111,13 @@
       "appearance": "default",
       "padding": "large",
       "paddingX": "large",
-      "paddingY": "large"
+      "paddingY": "large",
+      "rounded": true,
+      "border": "default",
+      "radius": "md",
+      "overflow": "visible"
     },
-    "jsx": "<Container appearance=\"default\" padding=\"large\" paddingX=\"large\" paddingY=\"large\" />"
+    "jsx": "<Container appearance=\"default\" padding=\"large\" paddingX=\"large\" paddingY=\"large\" rounded border=\"default\" radius=\"md\" overflow=\"visible\" />"
   },
   {
     "component": "CurrencyInput",
@@ -142,10 +147,10 @@
       "density": "default",
       "labelWidth": "md",
       "variant": "default",
-      "bordered": true,
+      "border": true,
       "fullWidth": true
     },
-    "jsx": "<DescriptionList density=\"default\" labelWidth=\"md\" variant=\"default\" bordered fullWidth />"
+    "jsx": "<DescriptionList density=\"default\" labelWidth=\"md\" variant=\"default\" border fullWidth />"
   },
   {
     "component": "Dialog",
@@ -235,10 +240,17 @@
   {
     "component": "Layout",
     "props": {
+      "direction": "row",
+      "justifyContent": "flex-start",
+      "alignItems": "stretch",
+      "wrap": "nowrap",
+      "gap": "0",
       "fullWidth": false,
+      "fullHeight": false,
+      "inline": false,
       "appearance": "full"
     },
-    "jsx": "<Layout fullWidth={false} appearance=\"full\" />"
+    "jsx": "<Layout direction=\"row\" justifyContent=\"flex-start\" alignItems=\"stretch\" wrap=\"nowrap\" gap=\"0\" fullWidth={false} fullHeight={false} inline={false} appearance=\"full\" />"
   },
   {
     "component": "Link",
@@ -261,9 +273,16 @@
   {
     "component": "Menu",
     "props": {
+      "showBrand": true,
+      "showSearch": false,
+      "showBrandSwitcher": true,
+      "showNav": true,
+      "showModeToggle": true,
+      "showUser": true,
+      "defaultExpanded": true,
       "identity": "design-system"
     },
-    "jsx": "<Menu identity=\"design-system\" />"
+    "jsx": "<Menu showBrand showSearch={false} showBrandSwitcher showNav showModeToggle showUser defaultExpanded identity=\"design-system\" />"
   },
   {
     "component": "MicroCalendar",
@@ -381,11 +400,11 @@
   {
     "component": "Status",
     "props": {
+      "variant": "blue",
       "appearance": "light-gray",
-      "shape": "pill",
-      "variant": "blue"
+      "shape": "pill"
     },
-    "jsx": "<Status appearance=\"light-gray\" shape=\"pill\" variant=\"blue\" />"
+    "jsx": "<Status variant=\"blue\" appearance=\"light-gray\" shape=\"pill\" />"
   },
   {
     "component": "Steps",

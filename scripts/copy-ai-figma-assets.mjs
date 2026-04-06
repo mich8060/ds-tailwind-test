@@ -33,6 +33,26 @@ const copies = [
     source: `${rootDir}/src/ai/navigation/brand-menus.json`,
     destination: `${rootDir}/dist/ai/navigation/brand-menus.json`,
   },
+  {
+    source: `${rootDir}/src/ai/USE-FIRST.md`,
+    destination: `${rootDir}/dist/ai/USE-FIRST.md`,
+  },
+  {
+    source: `${rootDir}/src/ai/providers/claude.md`,
+    destination: `${rootDir}/dist/ai/providers/claude.md`,
+  },
+  {
+    source: `${rootDir}/src/ai/providers/openai.md`,
+    destination: `${rootDir}/dist/ai/providers/openai.md`,
+  },
+  {
+    source: `${rootDir}/src/ai/providers/cursor.md`,
+    destination: `${rootDir}/dist/ai/providers/cursor.md`,
+  },
+  {
+    source: `${rootDir}/src/ai/providers/figma-make.md`,
+    destination: `${rootDir}/dist/ai/providers/figma-make.md`,
+  },
 ];
 
 for (const item of copies) {

@@ -4,6 +4,7 @@ export const CodeSpec = {
     inline: [true, false],
   },
   defaults: {
+    code: "const example = true;",
     language: "javascript",
     inline: false,
   },

@@ -4,10 +4,21 @@ export interface PropAliasManifest {
 }
 
 export const PropAliasRules: PropAliasManifest = {
-  global: {},
+  global: {
+    bordered: "border",
+  },
   byComponent: {
+    Button: {
+      icononly: "icon-only",
+      only: "icon-only",
+    },
     Chip: {
-      iconplacement: "iconPlacement",
+      iconplacement: "iconPosition",
+      iconPlacement: "iconPosition",
+      shape: "rounded",
+    },
+    DescriptionList: {
+      bordered: "border",
     },
   },
 };
@@ -22,4 +33,3 @@ export function getAliasEntries(componentName: string): Array<{ alias: string; c
   const entries = Object.entries(componentRules).map(([alias, canonical]) => ({ alias, canonical }));
   return entries.sort((a, b) => a.alias.localeCompare(b.alias));
 }
-

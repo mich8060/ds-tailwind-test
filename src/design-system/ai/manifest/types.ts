@@ -77,6 +77,11 @@ export interface LayoutManifestRules {
     secondaryActionPosition: "start" | "end";
     maxPrimaryActionsPerSection: number;
   };
+  visualHierarchy?: {
+    minVisualAnchorsForDensePages: number;
+    preferredAnchorComponents: string[];
+    antiPatterns: string[];
+  };
 }
 
 export interface TokenIntentMapType {

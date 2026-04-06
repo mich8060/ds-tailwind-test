@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stable v1 Launch Checklist</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 48px; color: #1f2937; line-height: 1.45; }
+    h1 { font-size: 28px; margin: 0 0 8px; }
+    h2 { font-size: 18px; margin: 28px 0 8px; border-bottom: 1px solid #d1d5db; padding-bottom: 6px; }
+    p { margin: 0 0 14px; }
+    ol { margin: 0; padding-left: 22px; }
+    li { margin: 0 0 14px; }
+    .item-title { font-weight: 700; display: block; margin-bottom: 4px; }
+    .sub { margin: 4px 0 0; padding-left: 18px; }
+    .sub li { margin: 2px 0; }
+    .gate { margin-top: 32px; padding: 16px 18px; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Design System Stable v1 Launch Checklist</h1>
+  <p>Reusable checklist for deciding whether a design system is ready for a stable <code>v1</code> launch.</p>
+
+  <ol>
+    <li><span class="item-title">Freeze public API</span>
+      <ul class="sub">
+        <li>Finalize component names.</li>
+        <li>Finalize prop names and defaults.</li>
+        <li>Remove or deprecate aliases before launch.</li>
+        <li>Ensure exports are stable and intentional.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Stabilize design tokens</span>
+      <ul class="sub">
+        <li>Freeze semantic token names.</li>
+        <li>Audit raw vs semantic token usage.</li>
+        <li>Eliminate ambiguous token paths.</li>
+        <li>Document token usage rules clearly.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Complete component documentation</span>
+      <ul class="sub">
+        <li>Every component needs purpose, usage guidance, props, accessibility notes, examples, and composition guidance.</li>
+        <li>Remove stale docs and outdated examples.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Complete machine-readable contracts</span>
+      <ul class="sub">
+        <li>Keep manifests, discovery, schemas, examples, templates, prompts, and provider overlays current.</li>
+        <li>Keep package version, runtime version, manifest versioning, and example versions aligned.</li>
+        <li>Ensure critical components have full prop metadata.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Lock composition rules</span>
+      <ul class="sub">
+        <li>Define allowed parent/child relationships for all major components.</li>
+        <li>Enforce them in validation.</li>
+        <li>Prevent ad hoc layout patterns when primitives exist.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Fix remaining component API gaps</span>
+      <ul class="sub">
+        <li>Audit every component spec.</li>
+        <li>Move old or legacy spec files to one consistent schema format.</li>
+        <li>Ensure generated component API is complete enough for AI and docs.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Accessibility readiness</span>
+      <ul class="sub">
+        <li>Verify keyboard interaction across all interactive components.</li>
+        <li>Verify focus states and visible focus.</li>
+        <li>Verify labeling and ARIA behavior.</li>
+        <li>Run automated checks and manual keyboard testing.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Routing and host integration stability</span>
+      <ul class="sub">
+        <li>Ensure navigation components do not depend on one specific host runtime.</li>
+        <li>Support controlled routing props where needed.</li>
+        <li>Verify behavior in product apps, Storybook or demo pages, and AI-generated hosts like Figma Make.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Performance readiness</span>
+      <ul class="sub">
+        <li>Audit bundle size.</li>
+        <li>Audit CSS size.</li>
+        <li>Verify demo pages and inspector performance.</li>
+        <li>Remove expensive patterns or eager rendering where possible.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Testing baseline</span>
+      <ul class="sub">
+        <li>Typecheck passes.</li>
+        <li>Unit and integration tests pass.</li>
+        <li>AI governance checks pass.</li>
+        <li>Critical components have regression coverage.</li>
+        <li>Add tests for recent bug fixes.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Visual regression coverage</span>
+      <ul class="sub">
+        <li>Snapshot or screenshot core components.</li>
+        <li>Cover primary variants, states, responsive layouts, and brand or theme differences where supported.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Package publish hygiene</span>
+      <ul class="sub">
+        <li>Validate exports.</li>
+        <li>Validate CSS entrypoints.</li>
+        <li>Run <code>npm pack --dry-run --json</code>.</li>
+        <li>Ensure no tests, stories, or internal-only AI docs ship unless intentional.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Consumer install verification</span>
+      <ul class="sub">
+        <li>Test in a clean Vite app.</li>
+        <li>Test in a React Router app.</li>
+        <li>Verify styles import cleanly.</li>
+        <li>Verify app shell, menu, and page scaffolds work from package install.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">AI readiness for launch</span>
+      <ul class="sub">
+        <li>Ensure layout recipes are stable and recommended.</li>
+        <li>Ensure Figma Make contract is current.</li>
+        <li>Ensure provider overlays are current.</li>
+        <li>Ensure examples are deterministic and high quality.</li>
+        <li>Ensure failure feedback is deterministic.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Migration and deprecation policy</span>
+      <ul class="sub">
+        <li>Write v1 migration notes if any API changed recently.</li>
+        <li>Mark deprecated APIs clearly.</li>
+        <li>Decide what remains supported post-v1 and for how long.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Release operations</span>
+      <ul class="sub">
+        <li>Create a release checklist.</li>
+        <li>Write changelog and release notes.</li>
+        <li>Tag the release.</li>
+        <li>Define rollback procedure.</li>
+        <li>Decide post-release bug triage path.</li>
+      </ul>
+    </li>
+    <li><span class="item-title">Governance</span>
+      <ul class="sub">
+        <li>Decide who approves API changes after v1.</li>
+        <li>Define what requires major vs minor release.</li>
+        <li>Separate stable vs experimental components.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <div class="gate">
+    <strong>Launch gate:</strong> do not call it <code>v1</code> until API is frozen, docs and contracts are current, package installs cleanly, accessibility baseline is met, performance is acceptable, tests and validation are green, and consumers can build with it predictably.
+  </div>
+</body>
+</html>

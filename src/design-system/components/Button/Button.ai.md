@@ -12,8 +12,8 @@ Primary action trigger component supporting multiple visual styles, sizes, and i
 | Prop | Type | Default | Values | Description |
 |------|------|---------|--------|-------------|
 | `label` | `string` | — | Any text | Button text label |
-| `appearance` | `string` | `"primary"` | `"primary"`, `"soft"`, `"outline"`, `"text"`, `"ghost"`, `"disabled"`, `"destructive"` | Visual style variant |
-| `layout` | `string` | `"label-only"` | `"label-only"`, `"icon-left"`, `"icon-right"`, `"icon-only"`, `"only"` | Content arrangement |
+| `appearance` | `string` | `"primary"` | `"primary"`, `"soft"`, `"outline"`, `"text"`, `"ghost"`, `"destructive"` | Visual style variant |
+| `layout` | `string` | `"label-only"` | `"label-only"`, `"icon-left"`, `"icon-right"`, `"icon-only"` | Content arrangement |
 | `size` | `string` | `"default"` | `"large"`, `"default"`, `"small"`, `"xsmall"` | Button size |
 | `icon` | `string` or `ReactNode` | — | Phosphor icon name (e.g., `"ArrowRight"`, `"Plus"`, `"Trash"`) or JSX | Icon to display |
 | `iconSize` | `number` | — | Any number | Override icon size in px |
@@ -56,7 +56,7 @@ Primary action trigger component supporting multiple visual styles, sizes, and i
 <Button label="Text" appearance="text" />
 <Button label="Ghost" appearance="ghost" />
 <Button label="Destructive" appearance="destructive" />
-<Button label="Disabled" appearance="disabled" />
+<Button label="Disabled" disabled />
 ```
 
 ### Action bar pattern

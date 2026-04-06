@@ -4,6 +4,7 @@
   "package": "@chg-ds/unified-design-system",
   "recommendedReadOrder": [
     "@chg-ds/unified-design-system/ai/discovery.json",
+    "@chg-ds/unified-design-system/ai/USE-FIRST",
     "@chg-ds/unified-design-system/ai/manifest.json",
     "@chg-ds/unified-design-system/ai/schema",
     "@chg-ds/unified-design-system/ai/icons",
@@ -20,12 +21,19 @@
     "@chg-ds/unified-design-system/ai/templates",
     "@chg-ds/unified-design-system/ai/examples",
     "@chg-ds/unified-design-system/ai/examples/layout-recipes",
+    "@chg-ds/unified-design-system/ai/visual-fixtures",
+    "@chg-ds/unified-design-system/ai/examples/visual-page-patterns-uds.jsonl",
     "@chg-ds/unified-design-system/ai/examples/dataset",
     "@chg-ds/unified-design-system/ai/validation",
-    "@chg-ds/unified-design-system/ai/sdk"
+    "@chg-ds/unified-design-system/ai/sdk",
+    "@chg-ds/unified-design-system/ai/providers/claude",
+    "@chg-ds/unified-design-system/ai/providers/openai",
+    "@chg-ds/unified-design-system/ai/providers/cursor",
+    "@chg-ds/unified-design-system/ai/providers/figma-make"
   ],
   "entrypoints": {
     "discovery": "@chg-ds/unified-design-system/ai/discovery.json",
+    "useFirst": "@chg-ds/unified-design-system/ai/USE-FIRST",
     "contractManifest": "@chg-ds/unified-design-system/ai/manifest.json",
     "schema": "@chg-ds/unified-design-system/ai/schema",
     "iconCatalog": "@chg-ds/unified-design-system/ai/icons",
@@ -46,7 +54,14 @@
     "helperSdk": "@chg-ds/unified-design-system/ai/sdk",
     "examplesModule": "@chg-ds/unified-design-system/ai/examples",
     "layoutRecipes": "@chg-ds/unified-design-system/ai/examples/layout-recipes",
+    "visualFixtures": "@chg-ds/unified-design-system/ai/visual-fixtures",
+    "visualFixtureSchema": "@chg-ds/unified-design-system/ai/visual-fixtures/schema",
+    "visualExamples": "@chg-ds/unified-design-system/ai/examples/visual-page-patterns-uds.jsonl",
     "examplesDataset": "@chg-ds/unified-design-system/ai/examples/dataset",
+    "providerClaude": "@chg-ds/unified-design-system/ai/providers/claude",
+    "providerOpenAI": "@chg-ds/unified-design-system/ai/providers/openai",
+    "providerCursor": "@chg-ds/unified-design-system/ai/providers/cursor",
+    "providerFigmaMake": "@chg-ds/unified-design-system/ai/providers/figma-make",
     "validateAlias": "@chg-ds/unified-design-system/ai/validate"
   },
   "versioning": {

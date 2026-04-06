@@ -10,6 +10,7 @@ Contract discovery order:
 - `@chg-ds/unified-design-system/ai/layout-architecture`
 - `@chg-ds/unified-design-system/ai/navigation`
 - `@chg-ds/unified-design-system/ai/examples/layout-recipes`
+- `@chg-ds/unified-design-system/ai/visual-fixtures`
 - `@chg-ds/unified-design-system/ai/templates`
 
 Hard constraints:
@@ -19,7 +20,10 @@ Hard constraints:
 - Use semantic token intents from `ai/manifest/tokens.intent.manifest.ts`.
 - Resolve UI intents using `ai/manifest/intent-mappings.manifest.ts` before freeform composition.
 - Load `@chg-ds/unified-design-system/ai/examples/layout-recipes` before freeform composition.
+- Load `@chg-ds/unified-design-system/ai/visual-fixtures` before polishing any non-trivial page or interaction workflow.
+- Load `@chg-ds/unified-design-system/ai/examples/visual-page-patterns-uds.jsonl` before freeform composition for any non-trivial page.
 - Use `recommendedByIntent` and `intentSynonyms` from `ai/examples/layout-recipes` to select a recipe family first.
+- After selecting a recipe, choose a matching visual fixture by `brand`, `routeIntent`, and `interactionState` before refining hierarchy.
 - Start from the selected recipe `firstChoice` unless the prompt explicitly requires an alternate layout variation.
 - Select a template from `@chg-ds/unified-design-system/ai/templates` first and carry its `patternId` into `audit.patternId`.
 - Respect governance limits from `ai/manifest/governance.manifest.ts`.
@@ -33,6 +37,15 @@ Hard constraints:
 - Never use deep component imports (`@/.../components/*`) in generated guidance/output.
 - Reject non-UDS prop APIs (for example `Menu.items`, `Layout.vertical`, `Button.type`).
 - Carry the selected recipe id into `audit.recipeId` when available.
+
+Visual composition rules:
+- Do not produce text-only or mostly-text layouts for dashboards, workspaces, reporting pages, settings pages, or admin pages.
+- Every non-trivial page must include at least 3 visual anchors chosen from: `Toolbar`, `SectionHeader`, `Statistics`, `Status`, `Tag`, `Badge`, `Avatar`, `Checklist`, `EmptyState`, `Table`, `ProvidersCard`, `Calendar`, `EventCard`, `ProgressIndicator`.
+- Establish a heading region with `Toolbar`, `SectionHeader`, or heading/display `Text`.
+- Use at least one surfaced `Container` (`appearance="default"` or `appearance="secondary"`) on non-trivial pages to create depth.
+- Prefer icons in navigation, KPI summaries, action bars, empty states, and status-heavy rows unless the prompt explicitly forbids icons.
+- Avoid pages composed only of `Container`, `Layout`, `Text`, `Field`, and `Button`.
+- Vary hierarchy: combine a strong heading region, one summary/metric/status region, and one detailed content region.
 
 Output contract:
 {

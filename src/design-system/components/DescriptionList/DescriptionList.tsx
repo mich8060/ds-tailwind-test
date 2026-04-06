@@ -8,18 +8,20 @@ export function DescriptionList({
   density = "default",
   labelWidth = "md",
   variant = "default",
-  bordered = true,
+  border,
+  bordered,
   fullWidth = true,
   className = "",
   ...rest
 }: DescriptionListProps) {
+  const hasBorder = border ?? bordered ?? true;
   const classNames = [
     "uds-description-list",
     `uds-description-list--density-${density}`,
     `uds-description-list--label-width-${labelWidth}`,
     `uds-description-list--variant-${variant}`,
     fullWidth && "uds-description-list--full-width",
-    bordered && variant === "default" && "uds-description-list--bordered",
+    hasBorder && variant === "default" && "uds-description-list--bordered",
     className,
   ]
     .filter(Boolean)

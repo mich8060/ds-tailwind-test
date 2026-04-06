@@ -26,6 +26,30 @@ export const LayoutRules = {
     primaryActionPosition: "end",
     maxPrimaryActionsPerSection: 1,
   },
+  visualHierarchy: {
+    minVisualAnchorsForDensePages: 3,
+    preferredAnchorComponents: [
+      "Toolbar",
+      "SectionHeader",
+      "Statistics",
+      "Status",
+      "Tag",
+      "Badge",
+      "Avatar",
+      "Checklist",
+      "EmptyState",
+      "Table",
+      "ProvidersCard",
+      "Calendar",
+      "EventCard",
+      "ProgressIndicator"
+    ],
+    antiPatterns: [
+      "Do not compose dense product pages with only Text, Layout, Button, and transparent Container wrappers.",
+      "Do not omit a heading region on non-trivial pages.",
+      "Do not skip surfaced regions entirely on dashboards, workspaces, settings pages, or reporting pages."
+    ]
+  },
   disallowedNesting: [
     { parent: "Modal", child: "Modal" },
     { parent: "Button", child: "Button" },

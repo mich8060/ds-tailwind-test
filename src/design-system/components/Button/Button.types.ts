@@ -6,15 +6,13 @@ export type ButtonAppearance =
   | "outline"
   | "text"
   | "ghost"
-  | "disabled"
   | "destructive";
 
 export type ButtonLayout =
   | "label-only"
   | "icon-left"
   | "icon-right"
-  | "icon-only"
-  | "only";
+  | "icon-only";
 
 export type ButtonSize = "large" | "default" | "small" | "xsmall";
 

@@ -10,7 +10,6 @@ const layoutClassMap: Record<NonNullable<ButtonProps["layout"]>, string> = {
   "icon-left": `${BASE_CLASS}--icon-left`,
   "icon-right": `${BASE_CLASS}--icon-right`,
   "icon-only": `${BASE_CLASS}--icon-only`,
-  only: `${BASE_CLASS}--only`,
 };
 
 const appearanceClassMap: Record<NonNullable<ButtonProps["appearance"]>, string> = {
@@ -19,7 +18,6 @@ const appearanceClassMap: Record<NonNullable<ButtonProps["appearance"]>, string>
   outline: `${BASE_CLASS}--outline`,
   text: `${BASE_CLASS}--text`,
   ghost: `${BASE_CLASS}--ghost`,
-  disabled: `${BASE_CLASS}--disabled`,
   destructive: `${BASE_CLASS}--destructive`,
 };
 
@@ -49,10 +47,16 @@ export default function Button({
   "aria-label": ariaLabel,
   ...rest
 }: ButtonProps) {
+  const legacyAppearance = appearance as string;
+  const normalizedAppearance: NonNullable<ButtonProps["appearance"]> =
+    legacyAppearance === "disabled" ? "primary" : appearance;
+  const legacyLayout = layout as string;
+  const normalizedLayout: NonNullable<ButtonProps["layout"]> =
+    legacyLayout === "only" ? "icon-only" : layout;
   const classNames = [
     BASE_CLASS,
-    appearanceClassMap[appearance],
-    layoutClassMap[layout],
+    appearanceClassMap[normalizedAppearance],
+    layoutClassMap[normalizedLayout],
     sizeClassMap[size],
     loading && `${BASE_CLASS}--loading`,
     className,
@@ -60,7 +64,7 @@ export default function Button({
     .filter(Boolean)
     .join(" ");
 
-  const isIconOnly = layout === "icon-only" || layout === "only";
+  const isIconOnly = normalizedLayout === "icon-only";
   const hasVisibleLabel = Boolean(label) && !isIconOnly;
 
   const iconComponent =
@@ -92,13 +96,13 @@ export default function Button({
   ) : null;
 
   const renderContent = () => {
-    if (layout === "icon-left") return <>{startSlotNode ?? iconNode}{labelNode}{endSlotNode}</>;
-    if (layout === "icon-right") return <>{startSlotNode}{labelNode}{endSlotNode ?? iconNode}</>;
+    if (normalizedLayout === "icon-left") return <>{startSlotNode ?? iconNode}{labelNode}{endSlotNode}</>;
+    if (normalizedLayout === "icon-right") return <>{startSlotNode}{labelNode}{endSlotNode ?? iconNode}</>;
     if (isIconOnly) return startSlotNode || endSlotNode || iconNode || labelNode;
     return <>{startSlotNode}{labelNode || iconNode}{endSlotNode}</>;
   };
 
-  const isDisabled = appearance === "disabled" || Boolean(disabled) || loading;
+  const isDisabled = legacyAppearance === "disabled" || Boolean(disabled) || loading;
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     if (tracking) {

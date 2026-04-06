@@ -26,6 +26,25 @@ export const ContainerSpec: ComponentSpec = {
       values: ["none", "xsmall", "small", "default", "large", "xlarge"],
       default: "large",
     },
+    rounded: {
+      type: "boolean",
+      default: true,
+    },
+    border: {
+      type: "enum",
+      values: ["default", "subtle", "none"],
+      default: "default",
+    },
+    radius: {
+      type: "enum",
+      values: ["none", "sm", "md", "lg"],
+      default: "md",
+    },
+    overflow: {
+      type: "enum",
+      values: ["visible", "hidden", "auto", "clip"],
+      default: "visible",
+    },
   },
   states: ["default"],
   tokensUsed: [
@@ -44,5 +63,6 @@ export const ContainerSpec: ComponentSpec = {
   antiPatterns: [
     "Do not use Container for semantic landmarks where <section>, <article>, or <aside> is required.",
     "Do not hardcode spacing values on top of Container padding variants.",
+    "Do not create custom panel wrappers when Container appearance, border, radius, and padding can express the structure.",
   ],
 };

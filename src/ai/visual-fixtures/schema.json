@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "uds.ai.visual-fixtures.schema",
+  "title": "UDS Visual Fixtures",
+  "type": "object",
+  "required": [
+    "contractName",
+    "schemaVersion",
+    "fixtures"
+  ],
+  "properties": {
+    "contractName": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "usageRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selectionRules": {
+      "type": "object"
+    },
+    "fixtures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "trustTier",
+          "brand",
+          "pageType",
+          "interactionState",
+          "routeIntent",
+          "recipeIds",
+          "visualDirection",
+          "requiredAnchors",
+          "mustNotMiss"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "metadata-only",
+              "asset-backed",
+              "draft"
+            ]
+          },
+          "brand": {
+            "type": "string"
+          },
+          "pageType": {
+            "type": "string"
+          },
+          "interactionState": {
+            "type": "string"
+          },
+          "routeIntent": {
+            "type": "string"
+          },
+          "recipeIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "visualDirection": {
+            "type": "string"
+          },
+          "requiredAnchors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mustNotMiss": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "componentHints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "imagePath": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "trustTier": {
+            "type": "string",
+            "enum": [
+              "product-canonical",
+              "product-adjacent",
+              "generic-inspiration",
+              "incomplete-placeholder"
+            ]
+          }
+        }
+      }
+    },
+    "trustTierDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -10,7 +10,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import Toggle from "../Toggle/Toggle";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import { Text } from "../Text/Text";
-import type { MenuProps, MenuMode } from "./Menu.types";
+import type { MenuNavigateDetail, MenuProps, MenuMode } from "./Menu.types";
 
 interface MenuChildItem {
     label: string;
@@ -72,6 +72,8 @@ function Menu({
     onBrandChange,
     activeMode,
     onModeChange,
+    currentPath,
+    onNavigate,
     showBrand = true,
     showSearch = false,
     showBrandSwitcher = true,
@@ -88,6 +90,7 @@ function Menu({
     const locationContext = React.useContext(UNSAFE_LocationContext);
     const isRouterAvailable = Boolean(locationContext);
     const pathname =
+        currentPath ??
         locationContext?.location?.pathname ??
         (typeof window !== "undefined" ? window.location.pathname : "/");
     const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({});
@@ -177,6 +180,16 @@ function Menu({
             expandMenu();
         }
     }, [expandMenu, isMenuOpen]);
+    const handleNavigate = useCallback(
+        (detail: MenuNavigateDetail, event: React.MouseEvent<HTMLElement>) => {
+            if (onNavigate) {
+                event.preventDefault();
+                onNavigate(detail, event);
+            }
+            handleNavItemClick();
+        },
+        [handleNavItemClick, onNavigate]
+    );
     const handleModeChange = useCallback((mode: MenuMode) => onModeChange?.(mode), [onModeChange]);
     const renderedNavItems = useMemo(
         () =>
@@ -222,7 +235,7 @@ function Menu({
                                                 key={child.path}
                                                 className={`uds-menu_nav__child-link${isPathActive(pathname, child.path) ? " uds-menu_nav__child-link--active" : ""}`}
                                                 to={child.path}
-                                                onClick={handleNavItemClick}
+                                                onClick={(event) => handleNavigate({ path: child.path, label: child.label, parentLabel: item.label }, event)}
                                                 title={child.label}
                                                 aria-current={isPathActive(pathname, child.path) ? "page" : undefined}
                                             >
@@ -233,7 +246,7 @@ function Menu({
                                                 key={child.path}
                                                 className={`uds-menu_nav__child-link${isPathActive(pathname, child.path) ? " uds-menu_nav__child-link--active" : ""}`}
                                                 href={child.path}
-                                                onClick={handleNavItemClick}
+                                                onClick={(event) => handleNavigate({ path: child.path, label: child.label, parentLabel: item.label }, event)}
                                                 title={child.label}
                                                 aria-current={isPathActive(pathname, child.path) ? "page" : undefined}
                                             >
@@ -253,7 +266,7 @@ function Menu({
                             <Link
                                 className="uds-menu_nav__item-link"
                                 to={item.path ?? "/"}
-                                onClick={handleNavItemClick}
+                                onClick={(event) => handleNavigate({ path: item.path ?? "/", label: item.label }, event)}
                                 title={item.label}
                                 aria-current={typeof item.path === "string" && isPathActive(pathname, item.path) ? "page" : undefined}
                             >
@@ -266,7 +279,7 @@ function Menu({
                             <a
                                 className="uds-menu_nav__item-link"
                                 href={item.path ?? "/"}
-                                onClick={handleNavItemClick}
+                                onClick={(event) => handleNavigate({ path: item.path ?? "/", label: item.label }, event)}
                                 title={item.label}
                                 aria-current={typeof item.path === "string" && isPathActive(pathname, item.path) ? "page" : undefined}
                             >

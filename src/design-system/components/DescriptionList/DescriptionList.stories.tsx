@@ -9,7 +9,7 @@ const meta = {
     density: "default",
     labelWidth: "md",
     variant: "default",
-    bordered: true,
+    border: true,
     fullWidth: true,
     items: [
       { label: "Provider", value: "Dr. Jane Smith" },
@@ -39,7 +39,7 @@ export const AutoWidth: Story = {
 
 export const SeparatorsOnly: Story = {
   args: {
-    bordered: false,
+    border: false,
     variant: "separators",
   },
 };

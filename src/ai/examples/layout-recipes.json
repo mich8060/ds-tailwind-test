@@ -116,7 +116,8 @@
   "adaptationRules": [
     "All recipes are adapted to UDS components, props, AppShell regions, and token rules.",
     "These are inspired by public web examples and patterns; they are not copied verbatim from source implementations.",
-    "Prefer these recipes before freeform composition for common page scaffolds."
+    "Prefer these recipes before freeform composition for common page scaffolds.",
+    "When visual fixtures exist for a recipe, prefer recommendedFixtures before searching the wider fixture library."
   ],
   "recipes": [
     {
@@ -238,7 +239,9 @@
       "allowedVariations": [
         "Menu may be omitted when nav data is absent.",
         "Statistics row may contain between 2 and 4 KPI items.",
-        "Table may include ActionMenu for row-level actions."
+        "Table may include ActionMenu for row-level actions.",
+        "Use a surfaced KPI band before the main table.",
+        "Pair queue/status messaging with Tag or Status for quick scanning."
       ],
       "forbiddenSubstitutions": [
         "Do not render route content outside AppShell.Main.",
@@ -266,21 +269,112 @@
                 "type": "AppShell.Main",
                 "children": [
                   {
-                    "type": "Toolbar"
+                    "type": "Toolbar",
+                    "props": {
+                      "title": "Operations overview"
+                    }
                   },
                   {
                     "type": "Container",
                     "props": {
-                      "appearance": "transparent",
-                      "padding": "large",
-                      "gap": "--uds-spacing-24"
+                      "appearance": "default",
+                      "padding": "large"
                     },
                     "children": [
                       {
-                        "type": "Statistics"
+                        "type": "Layout",
+                        "props": {
+                          "direction": "row",
+                          "gap": "--uds-spacing-16"
+                        },
+                        "children": [
+                          {
+                            "type": "Statistics",
+                            "props": {
+                              "label": "Open Requests",
+                              "value": "24",
+                              "icon": "Briefcase",
+                              "iconAccent": "blue"
+                            }
+                          },
+                          {
+                            "type": "Statistics",
+                            "props": {
+                              "label": "Urgent Reviews",
+                              "value": "7",
+                              "icon": "WarningCircle",
+                              "iconAccent": "orange"
+                            }
+                          },
+                          {
+                            "type": "Statistics",
+                            "props": {
+                              "label": "Available Providers",
+                              "value": "142",
+                              "icon": "Users",
+                              "iconAccent": "green"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Container",
+                    "props": {
+                      "appearance": "secondary",
+                      "padding": "large"
+                    },
+                    "children": [
+                      {
+                        "type": "Layout",
+                        "props": {
+                          "direction": "row",
+                          "justifyContent": "space-between",
+                          "alignItems": "center",
+                          "gap": "--uds-spacing-12"
+                        },
+                        "children": [
+                          {
+                            "type": "Status",
+                            "props": {
+                              "label": "Queue needs attention",
+                              "variant": "orange"
+                            }
+                          },
+                          {
+                            "type": "Tag",
+                            "props": {
+                              "label": "7 urgent",
+                              "variant": "orange"
+                            }
+                          }
+                        ]
                       },
                       {
-                        "type": "Table"
+                        "type": "Table",
+                        "children": [
+                          {
+                            "type": "Status",
+                            "props": {
+                              "label": "Ready",
+                              "variant": "green"
+                            }
+                          },
+                          {
+                            "type": "Tag",
+                            "props": {
+                              "label": "Active",
+                              "variant": "blue"
+                            }
+                          },
+                          {
+                            "type": "ActionMenu",
+                            "props": {
+                              "triggerLabel": "Row actions"
+                            }
+                          }
+                        ]
                       }
                     ]
                   }
@@ -289,7 +383,19 @@
             ]
           }
         ]
-      }
+      },
+      "visualDirection": "commandCenter",
+      "visualAnchors": [
+        "Toolbar",
+        "Statistics",
+        "Status",
+        "Table"
+      ],
+      "recommendedFixtures": [
+        "connect-dashboard-overview",
+        "comphealth-overview-dashboard",
+        "modio-team-dashboard"
+      ]
     },
     {
       "id": "table-page",
@@ -351,7 +457,12 @@
             "type": "Pagination"
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "connect-reporting-table-view",
+        "connect-assignment-requests-grid",
+        "modio-providers-table"
+      ]
     },
     {
       "id": "settings-two-column",
@@ -449,7 +560,17 @@
             ]
           }
         ]
-      }
+      },
+      "visualDirection": "splitFocus",
+      "visualAnchors": [
+        "SectionHeader",
+        "Tag",
+        "Status"
+      ],
+      "recommendedFixtures": [
+        "comphealth-profile-settings",
+        "comphealth-work-preferences"
+      ]
     },
     {
       "id": "wizard-with-checklist",
@@ -538,7 +659,16 @@
             ]
           }
         ]
-      }
+      },
+      "visualDirection": "guidedWorkflow",
+      "visualAnchors": [
+        "Checklist",
+        "SectionHeader",
+        "Status"
+      ],
+      "recommendedFixtures": [
+        "comphealth-work-preferences"
+      ]
     },
     {
       "id": "detail-page-with-sidepanel",
@@ -616,7 +746,12 @@
             ]
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "connect-dashboard-provider-details-sidepanel",
+        "connect-dashboard-documents-sidepanel",
+        "modio-provider-reporting-rail"
+      ]
     },
     {
       "id": "ops-command-center",
@@ -834,7 +969,12 @@
             ]
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "connect-dashboard-overview-with-calendar",
+        "modio-team-dashboard",
+        "modio-facility-dashboard"
+      ]
     },
     {
       "id": "request-queue-dashboard",
@@ -921,7 +1061,11 @@
             ]
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "connect-assignment-requests-grid",
+        "connect-requests-dashboard-activity"
+      ]
     },
     {
       "id": "analytics-overview-dashboard",
@@ -1011,7 +1155,11 @@
             ]
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "connect-reporting-overview",
+        "modio-reporting-coverage"
+      ]
     },
     {
       "id": "reporting-home-dashboard",
@@ -1104,7 +1252,12 @@
             ]
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "connect-reporting-overview",
+        "connect-reporting-filter-rail",
+        "modio-reporting-coverage"
+      ]
     },
     {
       "id": "finance-overview-dashboard",
@@ -3151,7 +3304,10 @@
             "type": "Pagination"
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "modio-providers-table"
+      ]
     },
     {
       "id": "documents-review-table",
@@ -6493,7 +6649,11 @@
             ]
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "connect-provider-details-shell",
+        "modio-provider-reporting-rail"
+      ]
     },
     {
       "id": "request-detail-page",
@@ -7032,7 +7192,10 @@
             ]
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "comphealth-work-preferences"
+      ]
     },
     {
       "id": "profile-detail-page",
@@ -8637,7 +8800,11 @@
             ]
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "connect-calendar-month-shell",
+        "connect-calendar-month-with-filters"
+      ]
     },
     {
       "id": "provider-schedule-page",
@@ -10937,7 +11104,11 @@
             ]
           }
         ]
-      }
+      },
+      "recommendedFixtures": [
+        "modio-team-dashboard",
+        "modio-facility-dashboard"
+      ]
     },
     {
       "id": "inbox-list-detail-page",
@@ -11871,9 +12042,83 @@
     "workspace": "utilityWorkspace"
   },
   "selectionWorkflow": [
-    "Map the user request to a high-level intent using recommendedByIntent and intentSynonyms.",
-    "Load the firstChoice recipe for that intent before freeform composition.",
-    "Only switch to an alternate recipe when the request explicitly requires a side panel, list/detail rail, calendar, pricing, wizard, or table-heavy variation.",
-    "Carry the selected recipe id into audit.recipeId when possible, and carry patternId into audit.patternId when defined."
-  ]
+    "Classify page intent.",
+    "Select firstChoice recipe from recommendedByIntent.",
+    "Apply the recipe visualDirection before filling slots.",
+    "Ensure at least three visual anchors for non-trivial pages.",
+    "Borrow additional hierarchy cues from visual-page-patterns before freeform composition."
+  ],
+  "visualPrinciples": {
+    "headingRegionRequiredForDensePages": true,
+    "minimumVisualAnchorsForDensePages": 3,
+    "preferredVisualAnchors": [
+      "Toolbar",
+      "SectionHeader",
+      "Statistics",
+      "Status",
+      "Tag",
+      "Badge",
+      "Avatar",
+      "Checklist",
+      "EmptyState",
+      "Table",
+      "ProvidersCard",
+      "Calendar",
+      "EventCard",
+      "ProgressIndicator"
+    ],
+    "antiBlandRules": [
+      "Do not compose dashboards or workspaces as plain stacks of Text, Layout, and Button only.",
+      "Use at least one surfaced Container with appearance default or secondary on non-trivial pages.",
+      "Prefer icons in navigation, KPI summaries, status rows, and empty states unless explicitly forbidden.",
+      "Combine a heading region, a summary/status region, and a detailed work/content region."
+    ]
+  },
+  "visualDirections": {
+    "commandCenter": {
+      "emphasis": "High-density operational scanning with KPI cards, status markers, and clear action hierarchy.",
+      "preferredComponents": [
+        "Toolbar",
+        "Statistics",
+        "Status",
+        "Table",
+        "ActionMenu",
+        "Tag"
+      ],
+      "containerStrategy": "One transparent page wrapper plus one default and one secondary surfaced region."
+    },
+    "executiveSummary": {
+      "emphasis": "Clean reporting hierarchy with strong title, a concise KPI row, and a highlighted insight band.",
+      "preferredComponents": [
+        "SectionHeader",
+        "Statistics",
+        "Tag",
+        "Status",
+        "Container"
+      ],
+      "containerStrategy": "Use surfaced panels to separate summary from detail."
+    },
+    "guidedWorkflow": {
+      "emphasis": "Step-by-step guidance with explicit progress, surfaced step content, and obvious next actions.",
+      "preferredComponents": [
+        "Checklist",
+        "SectionHeader",
+        "Status",
+        "Container",
+        "Button"
+      ],
+      "containerStrategy": "Pair a checklist/sidebar with a default surfaced content panel."
+    },
+    "splitFocus": {
+      "emphasis": "Two-column layouts with a dominant work panel and a lighter contextual summary rail.",
+      "preferredComponents": [
+        "SectionHeader",
+        "Container",
+        "Tag",
+        "Status",
+        "DescriptionList"
+      ],
+      "containerStrategy": "Use default surface for the primary task panel and secondary surface for the contextual rail."
+    }
+  }
 }

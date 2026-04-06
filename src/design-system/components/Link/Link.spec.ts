@@ -7,7 +7,7 @@ export const LinkSpec: ComponentSpec = {
   variants: {
     appearance: {
       type: "enum",
-      values: ["primary", "secondary"],
+      values: ["primary", "secondary", "prominent", "external"],
       default: "primary",
     },
     underline: {

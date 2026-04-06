@@ -31,7 +31,7 @@ export const ComponentRegistry = {
     category: "data-display",
     intent: "Visual identity for people or entities",
     description:
-      "A visual identity component representing a person, organization, or system entity via image, initials, or fallback icon. It manages size, shape, and status indicators but not profile interactions.",
+      "A visual identity component representing a person, organization, or system entity via image, initials, or fallback icon. It also acts as a high-signal visual anchor in profile summaries, dense rows, and contextual headers.",
     alsoKnownAs: ["Profile Image", "User Icon", "Identity Badge", "User Thumbnail"],
     roles: ["img"],
     preferredParent: ["Table", "Container", "Layout"],
@@ -80,7 +80,11 @@ export const ComponentRegistry = {
     props: {
       appearance: {
         type: "enum",
-        values: ["primary", "soft", "outline", "text", "ghost", "disabled", "destructive"],
+        values: ["primary", "soft", "outline", "text", "ghost", "destructive"],
+      },
+      layout: {
+        type: "enum",
+        values: ["label-only", "icon-left", "icon-right", "icon-only"],
       },
       size: {
         type: "enum",
@@ -158,7 +162,7 @@ export const ComponentRegistry = {
     category: "navigation",
     intent: "Sidebar step checklist with completion progress",
     description:
-      "A vertical step checklist used as a sidebar to track progress through multi-step workflows and forms.",
+      "A vertical step checklist used as a sidebar to track progress through multi-step workflows and forms while making long flows feel guided instead of flat.",
     alsoKnownAs: ["Progress Checklist", "Step Checklist", "Application Checklist", "Sidebar Progress"],
     roles: ["navigation"],
     preferredParent: ["AppShell", "Container"],
@@ -177,14 +181,14 @@ export const ComponentRegistry = {
     category: "layout",
     intent: "Width-constrained page/content wrapper",
     description:
-      "A structural layout wrapper that enforces width constraints, horizontal padding, and alignment rhythm for consistent page sections.",
+      "A structural layout wrapper that enforces width constraints, horizontal padding, and alignment rhythm for consistent page sections. It is also the primary surface component for creating depth, contrast, and visual grouping.",
     alsoKnownAs: ["Wrapper", "Layout Container", "Section Wrapper", "Content Wrapper"],
     roles: ["region"],
     preferredParent: ["AppShell", "root"],
     props: {
       appearance: {
         type: "enum",
-        values: ["default", "transparent"],
+        values: ["default", "secondary", "transparent"],
       },
     },
   },
@@ -282,7 +286,7 @@ export const ComponentRegistry = {
     category: "feedback",
     intent: "Guidance for empty data scenarios",
     description:
-      "A structured placeholder pattern shown when no data exists, providing context and guidance so users can move forward instead of seeing a blank interface.",
+      "A structured placeholder pattern shown when no data exists, providing context and guidance so users can move forward instead of seeing a blank interface. Use it instead of flat text-only fallback sections.",
     alsoKnownAs: ["Blank State", "Zero State", "No Data State", "First Use State"],
     roles: ["status"],
     preferredParent: ["Container", "Table"],
@@ -351,7 +355,7 @@ export const ComponentRegistry = {
     category: "layout",
     intent: "Layout region composition primitive",
     description:
-      "A structural layout component for arranging content regions and width behavior.",
+      "A structural layout component for arranging content regions, summary bands, split panels, and responsive rows/columns.",
     alsoKnownAs: ["Layout Frame", "Page Layout"],
     roles: ["region"],
     preferredParent: ["AppShell", "Container", "root"],
@@ -495,7 +499,7 @@ export const ComponentRegistry = {
     category: "layout",
     intent: "Section heading with supporting metadata/actions",
     description:
-      "A heading row pattern for section title, supporting text, and optional actions.",
+      "A heading row pattern for section title, supporting text, and optional actions. Use it to establish hierarchy before detailed content begins.",
     alsoKnownAs: ["Section Title Row", "Subheader"],
     roles: ["heading"],
     preferredParent: ["Container", "Layout"],
@@ -522,7 +526,7 @@ export const ComponentRegistry = {
     category: "data-display",
     intent: "Status label with semantic tone",
     description:
-      "A semantic indicator communicating system, object, or process condition with color, iconography, and text.",
+      "A semantic indicator communicating system, object, or process condition with color, iconography, and text. Use it to improve scanability in rows, panels, and summary regions.",
     alsoKnownAs: ["Status Indicator", "State Indicator", "System Status"],
     roles: ["status"],
     preferredParent: ["Table", "Container", "Layout"],
@@ -531,7 +535,7 @@ export const ComponentRegistry = {
     category: "data-display",
     intent: "KPI and metric summary display",
     description:
-      "A metric display component for KPI values with optional trend indication, helper context, and icon.",
+      "A metric display component for KPI values with optional trend indication, helper context, and icon. It should act as a primary visual anchor on dashboards and reporting pages.",
     alsoKnownAs: ["Stat Card", "KPI Tile", "Metric Card", "KPI Summary"],
     roles: ["status"],
     preferredParent: ["Container", "Layout"],
@@ -581,7 +585,7 @@ export const ComponentRegistry = {
     category: "data-display",
     intent: "Categorical metadata label",
     description:
-      "A compact metadata label for categorization, filtering, and visual grouping of related elements.",
+      "A compact metadata label for categorization, filtering, and visual grouping of related elements. It is useful for adding quick secondary emphasis in dense layouts.",
     alsoKnownAs: ["Label", "Category Tag", "Metadata Tag", "Pill", "Capsule Label", "Rounded Tag"],
     roles: ["status"],
     preferredParent: ["Table", "Container", "Layout"],
@@ -635,7 +639,7 @@ export const ComponentRegistry = {
     category: "layout",
     intent: "Top bar with edge actions and centered identity/title",
     description:
-      "A horizontal application bar that reserves left and right action regions and a centered title or branding slot.",
+      "A horizontal application bar that reserves left and right action regions and a centered title or branding slot. Use it as the default page heading region for dashboards and operational workspaces.",
     alsoKnownAs: ["Top Bar", "Header Bar", "Action Bar", "Title Bar"],
     roles: ["toolbar"],
     preferredParent: ["AppShell", "Container", "root"],

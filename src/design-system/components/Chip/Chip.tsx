@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Icon from "../Icon/Icon";
 import Badge from "../Badge/Badge";
 import "./_chip.scss";
-import type { ChipProps } from "./Chip.types";
+import type { ChipIconPosition, ChipProps } from "./Chip.types";
 
 const BASE_CLASS = "uds-chip";
 
@@ -12,7 +12,7 @@ const sizeClassMap: Record<string, string> = {
   mini: "mini",
 };
 
-const iconPlacementClassMap: Record<string, string> = {
+const iconPositionClassMap: Record<ChipIconPosition, string> = {
   both: "icon-both",
   left: "icon-left",
   right: "icon-right",
@@ -24,9 +24,10 @@ const iconPlacementClassMap: Record<string, string> = {
  * @param {string} label - The text content of the chip
  * @param {boolean} selected - Selected state (unselected by default)
  * @param {boolean} rounded - Shape toggle: true (fully rounded), false (less rounded)
+ * @param {string} shape - Legacy shape alias: 'pill' maps to rounded=true, 'rounded' maps to rounded=false
  * @param {string} size - Size variant: 'default', 'compact', or 'mini'
- * @param {string} iconPlacement - Icon placement: 'both', 'left', 'right', or 'none'
- * @param {string} icon - Icon name to display (when iconPlacement is not 'none')
+ * @param {string} iconPosition - Icon position: 'both', 'left', 'right', or 'none'
+ * @param {string} icon - Icon name to display (when iconPosition is not 'none')
  * @param {number|string} badge - Badge count to display
  * @param {string} badgeVariant - Badge color variant (default: 'red')
  * @param {string} className - Additional CSS classes
@@ -38,8 +39,10 @@ export default function Chip({
   label,
   selected,
   rounded = true,
+  shape,
   size = "default",
-  iconPlacement = "none",
+  iconPosition,
+  iconPlacement,
   icon,
   badge,
   badgeVariant = "sky",
@@ -51,7 +54,8 @@ export default function Chip({
   const isControlled = typeof selected === "boolean";
   const [internalSelected, setInternalSelected] = useState<boolean>(selected ?? false);
   const isOn = isControlled ? selected : internalSelected;
-  const isRounded = rounded;
+  const resolvedIconPosition = (iconPosition ?? iconPlacement ?? "none") as ChipIconPosition;
+  const isRounded = shape ? shape === "pill" : rounded;
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     if (disabled) {
@@ -70,16 +74,15 @@ export default function Chip({
     isOn && `${BASE_CLASS}--selected`,
     `${BASE_CLASS}--rounded-${isRounded ? "true" : "false"}`,
     sizeClassMap[size] && `${BASE_CLASS}--${sizeClassMap[size]}`,
-    iconPlacementClassMap[iconPlacement] &&
-      `${BASE_CLASS}--${iconPlacementClassMap[iconPlacement]}`,
+    `${BASE_CLASS}--${iconPositionClassMap[resolvedIconPosition]}`,
     disabled && `${BASE_CLASS}--disabled`,
     className,
   ]
     .filter(Boolean)
     .join(" ");
 
-  const hasLeftIcon = iconPlacement === "both" || iconPlacement === "left";
-  const hasRightIcon = iconPlacement === "both" || iconPlacement === "right";
+  const hasLeftIcon = resolvedIconPosition === "both" || resolvedIconPosition === "left";
+  const hasRightIcon = resolvedIconPosition === "both" || resolvedIconPosition === "right";
   const iconSize = size === "mini" ? 12 : size === "compact" ? 14 : 16;
   const isIconName = typeof icon === "string";
 

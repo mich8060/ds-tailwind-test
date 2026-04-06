@@ -6,4 +6,8 @@ describe("Code", () => {
   it("renders highlighted block code", () => {
     render(<Code code={"const value = 1;"} language="javascript" />);
   });
+
+  it("renders without throwing when code is omitted (Prism-safe)", () => {
+    render(<Code language="javascript" inline={false} />);
+  });
 });

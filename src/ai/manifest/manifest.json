@@ -190,7 +190,7 @@
       "intent": "Visual identity for people or entities",
       "purpose": null,
       "tier": null,
-      "description": "A visual identity component representing a person, organization, or system entity via image, initials, or fallback icon. It manages size, shape, and status indicators but not profile interactions.",
+      "description": "A visual identity component representing a person, organization, or system entity via image, initials, or fallback icon. It also acts as a high-signal visual anchor in profile summaries, dense rows, and contextual headers.",
       "roles": [
         "img"
       ],
@@ -385,8 +385,7 @@
             "label-only",
             "icon-left",
             "icon-right",
-            "icon-only",
-            "only"
+            "icon-only"
           ],
           "default": "label-only"
         },
@@ -398,7 +397,6 @@
             "outline",
             "text",
             "ghost",
-            "disabled",
             "destructive"
           ],
           "default": "primary"
@@ -635,7 +633,7 @@
       "intent": "Sidebar step checklist with completion progress",
       "purpose": "Sidebar checklist for multi-step flows with completion status.",
       "tier": 2,
-      "description": "A vertical step checklist used as a sidebar to track progress through multi-step workflows and forms.",
+      "description": "A vertical step checklist used as a sidebar to track progress through multi-step workflows and forms while making long flows feel guided instead of flat.",
       "roles": [
         "navigation"
       ],
@@ -689,13 +687,9 @@
           "type": "boolean",
           "default": false
         },
-        "shape": {
-          "type": "enum",
-          "values": [
-            "pill",
-            "rounded"
-          ],
-          "default": "pill"
+        "rounded": {
+          "type": "boolean",
+          "default": true
         },
         "size": {
           "type": "enum",
@@ -706,7 +700,7 @@
           ],
           "default": "default"
         },
-        "iconPlacement": {
+        "iconPosition": {
           "type": "enum",
           "values": [
             "both",
@@ -723,9 +717,9 @@
       },
       "defaults": {
         "selected": false,
-        "shape": "pill",
+        "rounded": true,
         "size": "default",
-        "iconPlacement": "none",
+        "iconPosition": "none",
         "badgeVariant": "sky"
       },
       "composition": {
@@ -783,11 +777,16 @@
             false
           ],
           "default": false
+        },
+        "code": {
+          "type": "string",
+          "default": "const example = true;"
         }
       },
       "defaults": {
         "language": "javascript",
-        "inline": false
+        "inline": false,
+        "code": "const example = true;"
       },
       "composition": {
         "preferredParents": [
@@ -812,7 +811,7 @@
       "intent": "Width-constrained page/content wrapper",
       "purpose": "Provides a reusable content wrapper with optional filled or transparent surface styles and standardized padding.",
       "tier": 2,
-      "description": "A structural layout wrapper that enforces width constraints, horizontal padding, and alignment rhythm for consistent page sections.",
+      "description": "A structural layout wrapper that enforces width constraints, horizontal padding, and alignment rhythm for consistent page sections. It is also the primary surface component for creating depth, contrast, and visual grouping.",
       "roles": [
         "region"
       ],
@@ -865,13 +864,50 @@
             "xlarge"
           ],
           "default": "large"
+        },
+        "rounded": {
+          "type": "boolean",
+          "default": true
+        },
+        "border": {
+          "type": "enum",
+          "values": [
+            "default",
+            "subtle",
+            "none"
+          ],
+          "default": "default"
+        },
+        "radius": {
+          "type": "enum",
+          "values": [
+            "none",
+            "sm",
+            "md",
+            "lg"
+          ],
+          "default": "md"
+        },
+        "overflow": {
+          "type": "enum",
+          "values": [
+            "visible",
+            "hidden",
+            "auto",
+            "clip"
+          ],
+          "default": "visible"
         }
       },
       "defaults": {
         "appearance": "default",
         "padding": "large",
         "paddingX": "large",
-        "paddingY": "large"
+        "paddingY": "large",
+        "rounded": true,
+        "border": "default",
+        "radius": "md",
+        "overflow": "visible"
       },
       "composition": {
         "preferredParents": [
@@ -1075,7 +1111,7 @@
           ],
           "default": "default"
         },
-        "bordered": {
+        "border": {
           "type": "boolean",
           "default": true
         },
@@ -1088,7 +1124,7 @@
         "density": "default",
         "labelWidth": "md",
         "variant": "default",
-        "bordered": true,
+        "border": true,
         "fullWidth": true
       },
       "composition": {
@@ -1370,7 +1406,7 @@
       "intent": "Guidance for empty data scenarios",
       "purpose": "Provide a clear, branded fallback when a section has no content, data, or search results.",
       "tier": 2,
-      "description": "A structured placeholder pattern shown when no data exists, providing context and guidance so users can move forward instead of seeing a blank interface.",
+      "description": "A structured placeholder pattern shown when no data exists, providing context and guidance so users can move forward instead of seeing a blank interface. Use it instead of flat text-only fallback sections.",
       "roles": [
         "status"
       ],
@@ -1730,7 +1766,7 @@
       "intent": "Layout region composition primitive",
       "purpose": "Creates token-driven flexbox layouts with controlled direction, alignment, wrapping, and width behavior.",
       "tier": 2,
-      "description": "A structural layout component for arranging content regions and width behavior.",
+      "description": "A structural layout component for arranging content regions, summary bands, split panels, and responsive rows/columns.",
       "roles": [
         "region"
       ],
@@ -1739,7 +1775,92 @@
         "default"
       ],
       "props": {
+        "direction": {
+          "type": "enum",
+          "values": [
+            "row",
+            "column"
+          ],
+          "default": "row"
+        },
+        "justifyContent": {
+          "type": "enum",
+          "values": [
+            "flex-start",
+            "center",
+            "flex-end",
+            "space-between",
+            "space-around",
+            "space-evenly"
+          ],
+          "default": "flex-start"
+        },
+        "alignItems": {
+          "type": "enum",
+          "values": [
+            "stretch",
+            "flex-start",
+            "center",
+            "flex-end",
+            "baseline"
+          ],
+          "default": "stretch"
+        },
+        "wrap": {
+          "type": "enum",
+          "values": [
+            "nowrap",
+            "wrap",
+            "wrap-reverse"
+          ],
+          "default": "nowrap"
+        },
+        "gap": {
+          "type": "enum",
+          "values": [
+            "0",
+            "2",
+            "4",
+            "6",
+            "8",
+            "10",
+            "12",
+            "14",
+            "16",
+            "18",
+            "24",
+            "32",
+            "48",
+            "64",
+            "80",
+            "spacing-0",
+            "spacing-2",
+            "spacing-4",
+            "spacing-6",
+            "spacing-8",
+            "spacing-10",
+            "spacing-12",
+            "spacing-14",
+            "spacing-16",
+            "spacing-18",
+            "spacing-24",
+            "spacing-32",
+            "spacing-48",
+            "spacing-64",
+            "spacing-80",
+            "auto"
+          ],
+          "default": "0"
+        },
         "fullWidth": {
+          "type": "boolean",
+          "default": false
+        },
+        "fullHeight": {
+          "type": "boolean",
+          "default": false
+        },
+        "inline": {
           "type": "boolean",
           "default": false
         },
@@ -1755,7 +1876,14 @@
         }
       },
       "defaults": {
+        "direction": "row",
+        "justifyContent": "flex-start",
+        "alignItems": "stretch",
+        "wrap": "nowrap",
+        "gap": "0",
         "fullWidth": false,
+        "fullHeight": false,
+        "inline": false,
         "appearance": "full"
       },
       "composition": {
@@ -1793,12 +1921,54 @@
       "slots": null,
       "states": [],
       "props": {
+        "activeMode": {
+          "type": "enum",
+          "values": [
+            "light",
+            "dark"
+          ]
+        },
+        "showBrand": {
+          "type": "boolean",
+          "default": true
+        },
+        "showSearch": {
+          "type": "boolean",
+          "default": false
+        },
+        "showBrandSwitcher": {
+          "type": "boolean",
+          "default": true
+        },
+        "showNav": {
+          "type": "boolean",
+          "default": true
+        },
+        "showModeToggle": {
+          "type": "boolean",
+          "default": true
+        },
+        "showUser": {
+          "type": "boolean",
+          "default": true
+        },
+        "defaultExpanded": {
+          "type": "boolean",
+          "default": true
+        },
         "identity": {
           "type": "string",
           "default": "design-system"
         }
       },
       "defaults": {
+        "showBrand": true,
+        "showSearch": false,
+        "showBrandSwitcher": true,
+        "showNav": true,
+        "showModeToggle": true,
+        "showUser": true,
+        "defaultExpanded": true,
         "identity": "design-system"
       },
       "composition": {
@@ -2425,7 +2595,7 @@
       "intent": "Section heading with supporting metadata/actions",
       "purpose": "Describe purpose.",
       "tier": 2,
-      "description": "A heading row pattern for section title, supporting text, and optional actions.",
+      "description": "A heading row pattern for section title, supporting text, and optional actions. Use it to establish hierarchy before detailed content begins.",
       "roles": [
         "heading"
       ],
@@ -2541,7 +2711,7 @@
       "intent": "KPI and metric summary display",
       "purpose": "Displays a KPI value with optional context, trend, and icon.",
       "tier": 2,
-      "description": "A metric display component for KPI values with optional trend indication, helper context, and icon.",
+      "description": "A metric display component for KPI values with optional trend indication, helper context, and icon. It should act as a primary visual anchor on dashboards and reporting pages.",
       "roles": [
         "status"
       ],
@@ -2611,13 +2781,34 @@
       "intent": "Status label with semantic tone",
       "purpose": null,
       "tier": null,
-      "description": "A semantic indicator communicating system, object, or process condition with color, iconography, and text.",
+      "description": "A semantic indicator communicating system, object, or process condition with color, iconography, and text. Use it to improve scanability in rows, panels, and summary regions.",
       "roles": [
         "status"
       ],
       "slots": null,
       "states": [],
       "props": {
+        "variant": {
+          "type": "enum",
+          "values": [
+            "red",
+            "blue",
+            "inverse",
+            "orange",
+            "sky",
+            "indigo",
+            "rose",
+            "neutral",
+            "celery",
+            "lime",
+            "yellow",
+            "green",
+            "cyan",
+            "purple",
+            "fuchsia"
+          ],
+          "default": "blue"
+        },
         "appearance": {
           "type": "enum",
           "values": [
@@ -2634,16 +2825,12 @@
             "rounded"
           ],
           "default": "pill"
-        },
-        "variant": {
-          "type": "string",
-          "default": "blue"
         }
       },
       "defaults": {
+        "variant": "blue",
         "appearance": "light-gray",
-        "shape": "pill",
-        "variant": "blue"
+        "shape": "pill"
       },
       "composition": {
         "preferredParents": [
@@ -2846,7 +3033,7 @@
       "intent": "Categorical metadata label",
       "purpose": null,
       "tier": null,
-      "description": "A compact metadata label for categorization, filtering, and visual grouping of related elements.",
+      "description": "A compact metadata label for categorization, filtering, and visual grouping of related elements. It is useful for adding quick secondary emphasis in dense layouts.",
       "roles": [
         "status"
       ],
@@ -3321,7 +3508,7 @@
       "intent": "Top bar with edge actions and centered identity/title",
       "purpose": "Top action bar with three composable slots: left, center, and right.",
       "tier": 2,
-      "description": "A horizontal application bar that reserves left and right action regions and a centered title or branding slot.",
+      "description": "A horizontal application bar that reserves left and right action regions and a centered title or branding slot. Use it as the default page heading region for dashboards and operational workspaces.",
       "roles": [
         "toolbar"
       ],

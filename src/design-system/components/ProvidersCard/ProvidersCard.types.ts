@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react";
+import type { DotStatusVariant } from "../DotStatus/DotStatus.types";
 
 export interface ProvidersCardTag {
   label: string;
@@ -12,7 +13,7 @@ export interface ProvidersCardProps extends HTMLAttributes<HTMLDivElement> {
   availability?: ReactNode;
   startDate?: ReactNode;
   statusLabel?: ReactNode;
-  statusVariant?: string;
+  statusVariant?: DotStatusVariant;
   avatarSrc?: string;
   avatarInitials?: string;
   tags?: ProvidersCardTag[];

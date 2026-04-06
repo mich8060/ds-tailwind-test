@@ -76,6 +76,8 @@
                 "showBrandSwitcher",
                 "showModeToggle",
                 "showSearch",
+                "currentPath",
+                "onNavigate",
                 "accountMenuItems",
                 "activeMode",
                 "onBrandChange",
@@ -89,7 +91,12 @@
                     { "label": "Feedback", "icon": "ChatCenteredText" },
                     { "label": "Sign out", "icon": "SignOut", "destructive": true }
                 ]
-            }
+            },
+            "usageRules": [
+                "Use currentPath for active-state resolution when router context is not guaranteed.",
+                "Use onNavigate for host-managed navigation when the design system should not own routing behavior.",
+                "Use navItems as the source of truth for paths and labels."
+            ]
         },
         "Badge": {
             "variant": [
@@ -156,6 +163,67 @@
                 "loose"
             ]
         },
+        "Container": {
+            "appearance": [
+                "default",
+                "secondary",
+                "transparent"
+            ],
+            "padding": [
+                "none",
+                "xsmall",
+                "small",
+                "default",
+                "large",
+                "xlarge"
+            ],
+            "paddingX": [
+                "none",
+                "xsmall",
+                "small",
+                "default",
+                "large",
+                "xlarge"
+            ],
+            "paddingY": [
+                "none",
+                "xsmall",
+                "small",
+                "default",
+                "large",
+                "xlarge"
+            ],
+            "border": [
+                "default",
+                "subtle",
+                "none"
+            ],
+            "radius": [
+                "none",
+                "sm",
+                "md",
+                "lg"
+            ],
+            "overflow": [
+                "visible",
+                "hidden",
+                "auto",
+                "clip"
+            ],
+            "defaults": {
+                "appearance": "transparent",
+                "padding": "large",
+                "rounded": true,
+                "border": "default",
+                "radius": "md",
+                "overflow": "visible"
+            },
+            "usageRules": [
+                "Use Container as the default page and panel wrapper before inventing custom surfaces.",
+                "Use appearance='transparent' for page sections and appearance='default' or 'secondary' for surfaced panels.",
+                "Use padding, paddingX, and paddingY instead of inline spacing styles."
+            ]
+        },
         "Layout": {
             "direction": [
                 "row",
@@ -176,7 +244,67 @@
                 "flex-end",
                 "baseline"
             ],
-            "gapRule": "Use --uds-spacing-* token values only."
+            "wrap": [
+                "nowrap",
+                "wrap",
+                "wrap-reverse"
+            ],
+            "gap": [
+                "0",
+                "2",
+                "4",
+                "6",
+                "8",
+                "10",
+                "12",
+                "14",
+                "16",
+                "18",
+                "24",
+                "32",
+                "48",
+                "64",
+                "80",
+                "spacing-0",
+                "spacing-2",
+                "spacing-4",
+                "spacing-6",
+                "spacing-8",
+                "spacing-10",
+                "spacing-12",
+                "spacing-14",
+                "spacing-16",
+                "spacing-18",
+                "spacing-24",
+                "spacing-32",
+                "spacing-48",
+                "spacing-64",
+                "spacing-80",
+                "auto"
+            ],
+            "appearance": [
+                "full",
+                "equal",
+                "right",
+                "left"
+            ],
+            "defaults": {
+                "direction": "row",
+                "justifyContent": "flex-start",
+                "alignItems": "stretch",
+                "wrap": "nowrap",
+                "gap": "0",
+                "appearance": "full",
+                "fullWidth": false,
+                "fullHeight": false,
+                "inline": false
+            },
+            "gapRule": "Use supported Layout gap token values only.",
+            "usageRules": [
+                "Use Layout for all row and column alignment before creating custom wrappers.",
+                "Set direction explicitly whenever the intended axis matters.",
+                "Set gap explicitly for repeated child spacing instead of margin hacks."
+            ]
         }
     },
     "navigationLogic": {

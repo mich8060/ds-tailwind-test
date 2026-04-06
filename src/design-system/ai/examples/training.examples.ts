@@ -39,6 +39,9 @@ export const UDS_TRAINING_EXAMPLES: readonly AITrainingExample[] = [
           { type: "Button", props: { appearance: "primary", label: "Sign in" } },
           { type: "Button", props: { appearance: "text", label: "Forgot password?" } }
         ]
+      },
+      audit: {
+        patternId: "AuthForm",
       }
     },
     expected: { status: "pass" },
@@ -250,6 +253,72 @@ export const UDS_TRAINING_EXAMPLES: readonly AITrainingExample[] = [
     rationale: {
       why: "Figma Make output must not fall back to Tailwind utility classes.",
       fix: "Use UDS components and governed tokenized props instead of className utilities."
+    }
+  },
+  {
+    id: "valid-visual-dashboard-hierarchy",
+    scenario: "Dashboard page uses multiple visual anchors, surfaced regions, icons, and a clear heading region.",
+    kind: "valid",
+    tags: ["dashboard", "visual-hierarchy", "kpi", "table"],
+    output: {
+      tree: {
+        type: "Container",
+        children: [
+          { type: "Text", props: { variant: "heading-24", text: "Operations overview" } },
+          { type: "Tag", props: { label: "Priority queue", variant: "orange" } },
+          {
+            type: "Layout",
+            children: [
+              {
+                type: "Text",
+                props: { variant: "body-16", text: "Open requests: 24" }
+              },
+              {
+                type: "Button",
+                props: { appearance: "primary", label: "Review queue" }
+              },
+            ]
+          },
+          {
+            type: "Table",
+            children: [
+              { type: "Status", props: { label: "Ready", variant: "green" } },
+              { type: "Tag", props: { label: "Active", variant: "blue" } },
+              { type: "ActionMenu", props: { triggerLabel: "Row actions" } }
+            ]
+          }
+        ]
+      }
+    },
+    expected: { status: "pass" },
+    rationale: {
+      why: "Includes a heading region plus multiple visual anchors while staying inside current governed composition rules."
+    }
+  },
+  {
+    id: "invalid-flat-text-stack",
+    scenario: "Non-trivial page is composed mostly of text and generic structure with no meaningful visual anchors.",
+    kind: "invalid",
+    tags: ["visual-hierarchy", "flat-layout", "bland"],
+    output: {
+      tree: {
+        type: "Container",
+        children: [
+          { type: "Layout", children: [{ type: "Text", props: { variant: "body-16", text: "Dashboard" } }] },
+          { type: "Layout", children: [{ type: "Text", props: { variant: "body-16", text: "Summary line" } }] },
+          { type: "Layout", children: [{ type: "Text", props: { variant: "body-16", text: "Another paragraph" } }] },
+          { type: "Layout", children: [{ type: "Button", props: { appearance: "text", label: "View more" } }] },
+          { type: "Layout", children: [{ type: "Text", props: { variant: "body-16", text: "More notes" } }] },
+          { type: "Layout", children: [{ type: "Text", props: { variant: "body-16", text: "Even more notes" } }] },
+          { type: "Layout", children: [{ type: "Button", props: { appearance: "text", label: "Details" } }] },
+          { type: "Layout", children: [{ type: "Text", props: { variant: "body-16", text: "Last section" } }] }
+        ]
+      }
+    },
+    expected: { status: "fail", violationCodes: ["RULE_LOW_VISUAL_HIERARCHY", "RULE_MISSING_HEADING_REGION"] },
+    rationale: {
+      why: "Dense pages cannot be composed only of low-signal text/layout structure.",
+      fix: "Introduce a heading region plus visual anchors such as Toolbar, SectionHeader, Statistics, Status, Table, Tag, EmptyState, or Checklist."
     }
   },
   {

@@ -4,16 +4,16 @@ export const ChipSpec = {
     "false",
     "true"
   ],
-  "shape": [
-    "pill",
-    "rounded"
+  "rounded": [
+    "false",
+    "true"
   ],
   "size": [
     "default",
     "compact",
     "mini"
   ],
-  "iconPlacement": [
+  "iconPosition": [
     "both",
     "left",
     "right",
@@ -22,9 +22,9 @@ export const ChipSpec = {
 },
   defaults: {
   "selected": "false",
-  "shape": "pill",
+  "rounded": "true",
   "size": "default",
-  "iconPlacement": "none",
+  "iconPosition": "none",
   "badgeVariant": "sky"
 }
 } as const;

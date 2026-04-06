@@ -44,6 +44,11 @@
       "kind": "scenario-layout"
     },
     {
+      "id": "visual-page-patterns",
+      "path": "@chg-ds/unified-design-system/ai/examples/visual-page-patterns-uds.jsonl",
+      "kind": "scenario-visual-layout"
+    },
+    {
       "id": "uds-governed-training",
       "path": "@chg-ds/unified-design-system/ai/examples/uds-governed-training.jsonl",
       "kind": "governed-valid-invalid"

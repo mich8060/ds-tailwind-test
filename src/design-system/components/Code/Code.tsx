@@ -23,21 +23,22 @@ const normalizeLanguage = (language?: string): string =>
   (language ?? "javascript").trim().toLowerCase();
 
 export default function Code({
-  code,
+  code = "",
   language = "javascript",
   inline = false,
   className = "",
   ...rest
 }: CodeProps) {
   const normalizedLanguage = normalizeLanguage(language);
+  const source = typeof code === "string" ? code : "";
 
   const highlightedCode = useMemo(() => {
     const grammar = Prism.languages[normalizedLanguage] || Prism.languages.javascript;
     if (!grammar) {
-      return escapeHtml(code);
+      return escapeHtml(source);
     }
-    return Prism.highlight(code, grammar, normalizedLanguage);
-  }, [code, normalizedLanguage]);
+    return Prism.highlight(source, grammar, normalizedLanguage);
+  }, [source, normalizedLanguage]);
 
   const classes = [
     BASE_CLASS,
