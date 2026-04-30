@@ -1,544 +1,110 @@
 {
   "name": "@chg-ds/unified-design-system",
-  "private": false,
-  "version": "0.2.58",
-  "type": "module",
+  "version": "0.3.9",
+  "description": "React UI primitives and styles built with Tailwind CSS v4 and shadcn-style components (UDS).",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chghealthcare/unified-design-system.git"
+    "url": "https://github.com/chghealthcare/unified-design-system.git"
   },
   "bugs": {
     "url": "https://github.com/chghealthcare/unified-design-system/issues"
   },
   "homepage": "https://github.com/chghealthcare/unified-design-system#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "style": "./dist/style.css",
-  "types": "./dist/design-system/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/design-system/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
-    },
-    "./ai": {
-      "types": "./dist/design-system/ai/index.d.ts",
-      "import": "./dist/ai/index.js",
-      "require": "./dist/ai/index.cjs",
-      "default": "./dist/ai/index.js"
-    },
-    "./ai/schema": "./dist/ai/schemas/ai-output.schema.json",
-    "./ai/icons.json": "./dist/ai/icons/catalog.json",
-    "./ai/icons": "./dist/ai/icons/catalog.json",
-    "./ai/token-catalog": "./dist/ai/tokens/catalog.json",
-    "./ai/templates.json": "./dist/ai/templates/layouts.json",
-    "./ai/templates": "./dist/ai/templates/layouts.json",
-    "./ai/layout-architecture": "./dist/ai/layout/architecture.json",
-    "./ai/figma-make.json": "./dist/ai/figma-make.contract.json",
-    "./ai/figma-make": "./dist/ai/figma-make.md",
-    "./ai/prompts/figma-make": "./dist/ai/prompts/figma-make.prompt.md",
-    "./ai/prompts/system": "./dist/ai/prompts/system.prompt.md",
-    "./ai/prompts/repair": "./dist/ai/prompts/repair.prompt.md",
-    "./ai/prompts/starter": "./dist/ai/prompts/starter.prompt.md",
-    "./ai/navigation": "./dist/ai/navigation/brand-menus.json",
-    "./ai/navigation/brand-menus.json": "./dist/ai/navigation/brand-menus.json",
-    "./ai/manifest.json": "./dist/ai/manifest.json",
-    "./ai/discovery.json": "./dist/ai/discovery.json",
-    "./ai/discovery": "./dist/ai/discovery.json",
-    "./ai/USE-FIRST": "./dist/ai/USE-FIRST.md",
-    "./figma-make": {
-      "types": "./dist/design-system/figma-make/index.d.ts",
-      "import": "./dist/figma-make/index.js",
-      "require": "./dist/figma-make/index.cjs",
-      "default": "./dist/figma-make/index.js"
-    },
-    "./Accordion": {
-      "types": "./dist/design-system/components/Accordion/Accordion.d.ts",
-      "import": "./dist/components/Accordion/Accordion.js",
-      "require": "./dist/components/Accordion/Accordion.cjs",
-      "default": "./dist/components/Accordion/Accordion.js"
-    },
-    "./ActionMenu": {
-      "types": "./dist/design-system/components/ActionMenu/ActionMenu.d.ts",
-      "import": "./dist/components/ActionMenu/ActionMenu.js",
-      "require": "./dist/components/ActionMenu/ActionMenu.cjs",
-      "default": "./dist/components/ActionMenu/ActionMenu.js"
-    },
-    "./AppShell": {
-      "types": "./dist/app-shell/AppShell.d.ts",
-      "import": "./dist/src/app-shell/AppShell.js",
-      "require": "./dist/src/app-shell/AppShell.cjs",
-      "default": "./dist/src/app-shell/AppShell.js"
-    },
-    "./Avatar": {
-      "types": "./dist/design-system/components/Avatar/Avatar.d.ts",
-      "import": "./dist/components/Avatar/Avatar.js",
-      "require": "./dist/components/Avatar/Avatar.cjs",
-      "default": "./dist/components/Avatar/Avatar.js"
-    },
-    "./Badge": {
-      "types": "./dist/design-system/components/Badge/Badge.d.ts",
-      "import": "./dist/components/Badge/Badge.js",
-      "require": "./dist/components/Badge/Badge.cjs",
-      "default": "./dist/components/Badge/Badge.js"
-    },
-    "./Branding": {
-      "types": "./dist/design-system/components/Branding/Branding.d.ts",
-      "import": "./dist/components/Branding/Branding.js",
-      "require": "./dist/components/Branding/Branding.cjs",
-      "default": "./dist/components/Branding/Branding.js"
-    },
-    "./Breadcrumb": {
-      "types": "./dist/design-system/components/Breadcrumb/Breadcrumb.d.ts",
-      "import": "./dist/components/Breadcrumb/Breadcrumb.js",
-      "require": "./dist/components/Breadcrumb/Breadcrumb.cjs",
-      "default": "./dist/components/Breadcrumb/Breadcrumb.js"
-    },
-    "./Button": {
-      "types": "./dist/design-system/components/Button/Button.d.ts",
-      "import": "./dist/components/Button/Button.js",
-      "require": "./dist/components/Button/Button.cjs",
-      "default": "./dist/components/Button/Button.js"
-    },
-    "./ButtonGroup": {
-      "types": "./dist/design-system/components/ButtonGroup/ButtonGroup.d.ts",
-      "import": "./dist/components/ButtonGroup/ButtonGroup.js",
-      "require": "./dist/components/ButtonGroup/ButtonGroup.cjs",
-      "default": "./dist/components/ButtonGroup/ButtonGroup.js"
-    },
-    "./Calendar": {
-      "types": "./dist/design-system/components/Calendar/Calendar.d.ts",
-      "import": "./dist/components/Calendar/Calendar.js",
-      "require": "./dist/components/Calendar/Calendar.cjs",
-      "default": "./dist/components/Calendar/Calendar.js"
-    },
-    "./Checkbox": {
-      "types": "./dist/design-system/components/Checkbox/Checkbox.d.ts",
-      "import": "./dist/components/Checkbox/Checkbox.js",
-      "require": "./dist/components/Checkbox/Checkbox.cjs",
-      "default": "./dist/components/Checkbox/Checkbox.js"
-    },
-    "./CheckboxGroup": {
-      "types": "./dist/design-system/components/CheckboxGroup/CheckboxGroup.d.ts",
-      "import": "./dist/components/CheckboxGroup/CheckboxGroup.js",
-      "require": "./dist/components/CheckboxGroup/CheckboxGroup.cjs",
-      "default": "./dist/components/CheckboxGroup/CheckboxGroup.js"
-    },
-    "./Chip": {
-      "types": "./dist/design-system/components/Chip/Chip.d.ts",
-      "import": "./dist/components/Chip/Chip.js",
-      "require": "./dist/components/Chip/Chip.cjs",
-      "default": "./dist/components/Chip/Chip.js"
-    },
-    "./Code": {
-      "types": "./dist/design-system/components/Code/Code.d.ts",
-      "import": "./dist/components/Code/Code.js",
-      "require": "./dist/components/Code/Code.cjs",
-      "default": "./dist/components/Code/Code.js"
-    },
-    "./Container": {
-      "types": "./dist/design-system/components/Container/Container.d.ts",
-      "import": "./dist/components/Container/Container.js",
-      "require": "./dist/components/Container/Container.cjs",
-      "default": "./dist/components/Container/Container.js"
-    },
-    "./DescriptionList": {
-      "types": "./dist/design-system/components/DescriptionList/DescriptionList.d.ts",
-      "import": "./dist/components/DescriptionList/DescriptionList.js",
-      "require": "./dist/components/DescriptionList/DescriptionList.cjs",
-      "default": "./dist/components/DescriptionList/DescriptionList.js"
-    },
-    "./Datepicker": {
-      "types": "./dist/design-system/components/Datepicker/Datepicker.d.ts",
-      "import": "./dist/components/Datepicker/Datepicker.js",
-      "require": "./dist/components/Datepicker/Datepicker.cjs",
-      "default": "./dist/components/Datepicker/Datepicker.js"
-    },
-    "./Dialog": {
-      "types": "./dist/design-system/components/Dialog/Dialog.d.ts",
-      "import": "./dist/components/Dialog/Dialog.js",
-      "require": "./dist/components/Dialog/Dialog.cjs",
-      "default": "./dist/components/Dialog/Dialog.js"
-    },
-    "./Divider": {
-      "types": "./dist/design-system/components/Divider/Divider.d.ts",
-      "import": "./dist/components/Divider/Divider.js",
-      "require": "./dist/components/Divider/Divider.cjs",
-      "default": "./dist/components/Divider/Divider.js"
-    },
-    "./DotStatus": {
-      "types": "./dist/design-system/components/DotStatus/DotStatus.d.ts",
-      "import": "./dist/components/DotStatus/DotStatus.js",
-      "require": "./dist/components/DotStatus/DotStatus.cjs",
-      "default": "./dist/components/DotStatus/DotStatus.js"
-    },
-    "./Dropdown": {
-      "types": "./dist/design-system/components/Dropdown/Dropdown.d.ts",
-      "import": "./dist/components/Dropdown/Dropdown.js",
-      "require": "./dist/components/Dropdown/Dropdown.cjs",
-      "default": "./dist/components/Dropdown/Dropdown.js"
-    },
-    "./EmptyState": {
-      "types": "./dist/design-system/components/EmptyState/EmptyState.d.ts",
-      "import": "./dist/components/EmptyState/EmptyState.js",
-      "require": "./dist/components/EmptyState/EmptyState.cjs",
-      "default": "./dist/components/EmptyState/EmptyState.js"
-    },
-    "./EventCard": {
-      "types": "./dist/design-system/components/EventCard/EventCard.d.ts",
-      "import": "./dist/components/EventCard/EventCard.js",
-      "require": "./dist/components/EventCard/EventCard.cjs",
-      "default": "./dist/components/EventCard/EventCard.js"
-    },
-    "./Field": {
-      "types": "./dist/design-system/components/Field/Field.d.ts",
-      "import": "./dist/components/Field/Field.js",
-      "require": "./dist/components/Field/Field.cjs",
-      "default": "./dist/components/Field/Field.js"
-    },
-    "./FileUpload": {
-      "types": "./dist/design-system/components/FileUpload/FileUpload.d.ts",
-      "import": "./dist/components/FileUpload/FileUpload.js",
-      "require": "./dist/components/FileUpload/FileUpload.cjs",
-      "default": "./dist/components/FileUpload/FileUpload.js"
-    },
-    "./Icon": {
-      "types": "./dist/design-system/components/Icon/Icon.d.ts",
-      "import": "./dist/components/Icon/Icon.js",
-      "require": "./dist/components/Icon/Icon.cjs",
-      "default": "./dist/components/Icon/Icon.js"
-    },
-    "./ImageAspect": {
-      "types": "./dist/design-system/components/ImageAspect/ImageAspect.d.ts",
-      "import": "./dist/components/ImageAspect/ImageAspect.js",
-      "require": "./dist/components/ImageAspect/ImageAspect.cjs",
-      "default": "./dist/components/ImageAspect/ImageAspect.js"
-    },
-    "./Key": {
-      "types": "./dist/design-system/components/Key/Key.d.ts",
-      "import": "./dist/components/Key/Key.js",
-      "require": "./dist/components/Key/Key.cjs",
-      "default": "./dist/components/Key/Key.js"
-    },
-    "./Menu": {
-      "types": "./dist/design-system/components/Menu/Menu.d.ts",
-      "import": "./dist/components/Menu/Menu.js",
-      "require": "./dist/components/Menu/Menu.cjs",
-      "default": "./dist/components/Menu/Menu.js"
-    },
-    "./MicroCalendar": {
-      "types": "./dist/design-system/components/MicroCalendar/MicroCalendar.d.ts",
-      "import": "./dist/components/MicroCalendar/MicroCalendar.js",
-      "require": "./dist/components/MicroCalendar/MicroCalendar.cjs",
-      "default": "./dist/components/MicroCalendar/MicroCalendar.js"
-    },
-    "./Modal": {
-      "types": "./dist/design-system/components/Modal/Modal.d.ts",
-      "import": "./dist/components/Modal/Modal.js",
-      "require": "./dist/components/Modal/Modal.cjs",
-      "default": "./dist/components/Modal/Modal.js"
-    },
-    "./Pagination": {
-      "types": "./dist/design-system/components/Pagination/Pagination.d.ts",
-      "import": "./dist/components/Pagination/Pagination.js",
-      "require": "./dist/components/Pagination/Pagination.cjs",
-      "default": "./dist/components/Pagination/Pagination.js"
-    },
-    "./ProgressCircle": {
-      "types": "./dist/design-system/components/ProgressCircle/ProgressCircle.d.ts",
-      "import": "./dist/components/ProgressCircle/ProgressCircle.js",
-      "require": "./dist/components/ProgressCircle/ProgressCircle.cjs",
-      "default": "./dist/components/ProgressCircle/ProgressCircle.js"
-    },
-    "./ProgressIndicator": {
-      "types": "./dist/design-system/components/ProgressIndicator/ProgressIndicator.d.ts",
-      "import": "./dist/components/ProgressIndicator/ProgressIndicator.js",
-      "require": "./dist/components/ProgressIndicator/ProgressIndicator.cjs",
-      "default": "./dist/components/ProgressIndicator/ProgressIndicator.js"
-    },
-    "./Radio": {
-      "types": "./dist/design-system/components/Radio/Radio.d.ts",
-      "import": "./dist/components/Radio/Radio.js",
-      "require": "./dist/components/Radio/Radio.cjs",
-      "default": "./dist/components/Radio/Radio.js"
-    },
-    "./RadioGroup": {
-      "types": "./dist/design-system/components/RadioGroup/RadioGroup.d.ts",
-      "import": "./dist/components/RadioGroup/RadioGroup.js",
-      "require": "./dist/components/RadioGroup/RadioGroup.cjs",
-      "default": "./dist/components/RadioGroup/RadioGroup.js"
-    },
-    "./Slider": {
-      "types": "./dist/design-system/components/Slider/Slider.d.ts",
-      "import": "./dist/components/Slider/Slider.js",
-      "require": "./dist/components/Slider/Slider.cjs",
-      "default": "./dist/components/Slider/Slider.js"
-    },
-    "./SelectableCard": {
-      "types": "./dist/design-system/components/SelectableCard/SelectableCard.d.ts",
-      "import": "./dist/components/SelectableCard/SelectableCard.js",
-      "require": "./dist/components/SelectableCard/SelectableCard.cjs",
-      "default": "./dist/components/SelectableCard/SelectableCard.js"
-    },
-    "./Status": {
-      "types": "./dist/design-system/components/Status/Status.d.ts",
-      "import": "./dist/components/Status/Status.js",
-      "require": "./dist/components/Status/Status.cjs",
-      "default": "./dist/components/Status/Status.js"
-    },
-    "./Statistics": {
-      "types": "./dist/design-system/components/Statistics/Statistics.d.ts",
-      "import": "./dist/components/Statistics/Statistics.js",
-      "require": "./dist/components/Statistics/Statistics.cjs",
-      "default": "./dist/components/Statistics/Statistics.js"
-    },
-    "./Steps": {
-      "types": "./dist/design-system/components/Steps/Steps.d.ts",
-      "import": "./dist/components/Steps/Steps.js",
-      "require": "./dist/components/Steps/Steps.cjs",
-      "default": "./dist/components/Steps/Steps.js"
-    },
-    "./Table": {
-      "types": "./dist/design-system/components/Table/Table.d.ts",
-      "import": "./dist/components/Table/Table.js",
-      "require": "./dist/components/Table/Table.cjs",
-      "default": "./dist/components/Table/Table.js"
-    },
-    "./Tabs": {
-      "types": "./dist/design-system/components/Tabs/Tabs.d.ts",
-      "import": "./dist/components/Tabs/Tabs.js",
-      "require": "./dist/components/Tabs/Tabs.cjs",
-      "default": "./dist/components/Tabs/Tabs.js"
-    },
-    "./Tag": {
-      "types": "./dist/design-system/components/Tag/Tag.d.ts",
-      "import": "./dist/components/Tag/Tag.js",
-      "require": "./dist/components/Tag/Tag.cjs",
-      "default": "./dist/components/Tag/Tag.js"
-    },
-    "./Text": {
-      "types": "./dist/design-system/components/Text/Text.d.ts",
-      "import": "./dist/components/Text/Text.js",
-      "require": "./dist/components/Text/Text.cjs",
-      "default": "./dist/components/Text/Text.js"
-    },
-    "./Textarea": {
-      "types": "./dist/design-system/components/Textarea/Textarea.d.ts",
-      "import": "./dist/components/Textarea/Textarea.js",
-      "require": "./dist/components/Textarea/Textarea.cjs",
-      "default": "./dist/components/Textarea/Textarea.js"
-    },
-    "./TextInput": {
-      "types": "./dist/design-system/components/TextInput/TextInput.d.ts",
-      "import": "./dist/components/TextInput/TextInput.js",
-      "require": "./dist/components/TextInput/TextInput.cjs",
-      "default": "./dist/components/TextInput/TextInput.js"
-    },
-    "./Toast": {
-      "types": "./dist/design-system/components/Toast/Toast.d.ts",
-      "import": "./dist/components/Toast/Toast.js",
-      "require": "./dist/components/Toast/Toast.cjs",
-      "default": "./dist/components/Toast/Toast.js"
-    },
-    "./Toggle": {
-      "types": "./dist/design-system/components/Toggle/Toggle.d.ts",
-      "import": "./dist/components/Toggle/Toggle.js",
-      "require": "./dist/components/Toggle/Toggle.cjs",
-      "default": "./dist/components/Toggle/Toggle.js"
-    },
-    "./Tooltip": {
-      "types": "./dist/design-system/components/Tooltip/Tooltip.d.ts",
-      "import": "./dist/components/Tooltip/Tooltip.js",
-      "require": "./dist/components/Tooltip/Tooltip.cjs",
-      "default": "./dist/components/Tooltip/Tooltip.js"
-    },
-    "./ai/manifest": {
-      "types": "./dist/design-system/ai/manifest/index.d.ts",
-      "import": "./dist/ai/manifest/index.js",
-      "require": "./dist/ai/manifest/index.cjs",
-      "default": "./dist/ai/manifest/index.js"
-    },
-    "./ai/validate": {
-      "types": "./dist/design-system/ai/validation/validateAIOutput.d.ts",
-      "import": "./dist/ai/validation/validateAIOutput.js",
-      "require": "./dist/ai/validation/validateAIOutput.cjs",
-      "default": "./dist/ai/validation/validateAIOutput.js"
-    },
-    "./ai/policy": {
-      "types": "./dist/design-system/ai/policies/policy.engine.d.ts",
-      "import": "./dist/ai/policies/policy.engine.js",
-      "require": "./dist/ai/policies/policy.engine.cjs",
-      "default": "./dist/ai/policies/policy.engine.js"
-    },
-    "./ai/audit": {
-      "types": "./dist/design-system/ai/audit/auditLogger.d.ts",
-      "import": "./dist/ai/audit/auditLogger.js",
-      "require": "./dist/ai/audit/auditLogger.cjs",
-      "default": "./dist/ai/audit/auditLogger.js"
-    },
-    "./ai/validation": {
-      "types": "./dist/design-system/ai/validation/index.d.ts",
-      "import": "./dist/ai/validation/index.js",
-      "require": "./dist/ai/validation/index.cjs",
-      "default": "./dist/ai/validation/index.js"
-    },
-    "./ai/sdk": {
-      "types": "./dist/design-system/ai/sdk/index.d.ts",
-      "import": "./dist/ai/sdk/index.js",
-      "require": "./dist/ai/sdk/index.cjs",
-      "default": "./dist/ai/sdk/index.js"
-    },
-    "./ai/examples": {
-      "types": "./dist/design-system/ai/examples/index.d.ts",
-      "import": "./dist/ai/examples/index.js",
-      "require": "./dist/ai/examples/index.cjs",
-      "default": "./dist/ai/examples/index.js"
-    },
-    "./ai/providers/claude": "./dist/ai/providers/claude.md",
-    "./ai/providers/openai": "./dist/ai/providers/openai.md",
-    "./ai/providers/cursor": "./dist/ai/providers/cursor.md",
-    "./ai/providers/figma-make": "./dist/ai/providers/figma-make.md",
-    "./ai/examples/layout-recipes": "./dist/ai/examples/layout-recipes.json",
-    "./ai/visual-fixtures": "./dist/ai/visual-fixtures/manifest.json",
-    "./ai/visual-fixtures/schema": "./dist/ai/visual-fixtures/schema.json",
-    "./ai/examples/dataset": "./dist/ai/examples/dataset.index.json",
-    "./ai/examples/visual-page-patterns-uds.jsonl": "./dist/ai/examples/visual-page-patterns-uds.jsonl",
-    "./ai/examples/signin-flow-uds.jsonl": "./dist/ai/examples/signin-flow-uds.jsonl",
-    "./ai/examples/dashboard-statistics-uds.jsonl": "./dist/ai/examples/dashboard-statistics-uds.jsonl",
-    "./ai/examples/settings-preferences-uds.jsonl": "./dist/ai/examples/settings-preferences-uds.jsonl",
-    "./ai/examples/calendar-events-layout-uds.jsonl": "./dist/ai/examples/calendar-events-layout-uds.jsonl",
-    "./ai/examples/admin-users-table-uds.jsonl": "./dist/ai/examples/admin-users-table-uds.jsonl",
-    "./ai/examples/kanban-board-uds.jsonl": "./dist/ai/examples/kanban-board-uds.jsonl",
-    "./ai/examples/uds-governed-training.jsonl": "./dist/ai/examples/uds-governed-training.jsonl",
-    "./ai/*": {
-      "types": "./dist/design-system/ai/*.d.ts",
-      "import": "./dist/ai/*.js",
-      "require": "./dist/ai/*.cjs",
-      "default": "./dist/ai/*.js"
-    },
-    "./dist/style.css": "./dist/style.css",
-    "./styles.css": "./dist/style.css",
-    "./tokens": {
-      "types": "./dist/tokens/index.d.ts",
-      "import": "./dist/tokens/index.js"
-    },
-    "./tokens/color": {
-      "types": "./dist/tokens/color.d.ts",
-      "import": "./dist/tokens/color.js"
-    },
-    "./tokens/spacing": {
-      "types": "./dist/tokens/spacing.d.ts",
-      "import": "./dist/tokens/spacing.js"
-    },
-    "./tokens/radius": {
-      "types": "./dist/tokens/radius.d.ts",
-      "import": "./dist/tokens/radius.js"
-    },
-    "./tokens/typography": {
-      "types": "./dist/tokens/typography.d.ts",
-      "import": "./dist/tokens/typography.js"
-    },
-    "./tokens/shadow": {
-      "types": "./dist/tokens/shadow.d.ts",
-      "import": "./dist/tokens/shadow.js"
-    },
-    "./tokens/motion": {
-      "types": "./dist/tokens/motion.d.ts",
-      "import": "./dist/tokens/motion.js"
-    },
-    "./tokens.css": "./dist/tokens/tokens.css"
-  },
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "README.md",
+    "AI_USAGE.md",
     "LICENSE"
   ],
   "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "volta": {
+    "node": "22.22.2"
+  },
+  "keywords": [
+    "react",
+    "tailwind",
+    "tailwindcss",
+    "design-system",
+    "components",
+    "ui",
+    "shadcn"
   ],
   "scripts": {
-    "clean": "node -e \"const { rmSync } = require('node:fs'); ['dist', 'node_modules/.vite', '.vite'].forEach((p) => rmSync(p, { recursive: true, force: true }));\"",
-    "dev": "vite --configLoader native",
-    "dev:preact": "UDS_USE_PREACT_COMPAT=1 vite --configLoader native",
-    "build": "vite build --configLoader native && npm run build:types && npm run build:tokens && npm run build:ai:schema && npm run build:ai:icons && npm run build:ai:token-catalog && npm run build:ai:templates && npm run build:ai:layout-architecture && npm run build:ai:examples && npm run build:ai:figma && npm run build:api && npm run build:ai:manifest && npm run build:ai:discovery",
-    "build:types": "tsc -p tsconfig.build.json",
-    "build:tokens": "tsc -p tsconfig.tokens.json && node --experimental-specifier-resolution=node scripts/generate-tokens-css.mjs",
-    "build:ai:schema": "node scripts/copy-ai-schema.mjs",
-    "build:ai:icons": "node scripts/copy-ai-icons.mjs",
-    "build:ai:token-catalog": "node scripts/copy-ai-token-catalog.mjs",
-    "build:ai:templates": "node scripts/copy-ai-templates.mjs",
-    "build:ai:layout-architecture": "node scripts/copy-ai-layout-architecture.mjs",
-    "build:ai:examples": "node scripts/copy-ai-examples.mjs",
-    "build:ai:figma": "node scripts/copy-ai-figma-assets.mjs",
-    "build:api": "node --experimental-strip-types scripts/generate-api-artifacts.ts",
-    "build:ai:manifest": "node --experimental-strip-types --experimental-specifier-resolution=node scripts/generate-ai-manifest.ts",
-    "build:ai:discovery": "node --experimental-strip-types --experimental-specifier-resolution=node scripts/generate-ai-discovery.ts",
-    "ai:validate": "node scripts/validate-ai-output.mjs",
-    "ai:validate:examples": "node --experimental-strip-types --experimental-specifier-resolution=node scripts/validate-ai-training-examples.ts",
-    "ai:gate:contracts": "node scripts/check-ai-contract-integrity.mjs",
-    "ai:enforce": "node scripts/enforce-ai-usage.mjs",
-    "ai:token-diff": "node scripts/diff-token-usage.mjs",
-    "ai:generate-ui": "node --experimental-strip-types scripts/ai/generate-ui.ts",
-    "ci:ai": "npm run ai:validate && npm run ai:validate:examples && npm run ai:gate:contracts && npm run ai:enforce && npm run ai:token-diff",
-    "size:check": "node scripts/check-bundle-size.mjs",
-    "perf:smoke": "node scripts/perf-smoke.mjs",
-    "ci:bundle": "npm run build && npm run size:check",
-    "ci:perf": "npm run build && npm run size:check && npm run perf:smoke",
-    "preview": "vite preview --configLoader native",
+    "generate:ai": "node ./scripts/generate-ai-artifacts.mjs",
+    "dev": "vite --config vite.config.docs.ts",
+    "build": "npm run build:lib && npm run build:docs",
+    "prepublishOnly": "npm run build:lib",
+    "build:lib": "vite build --config vite.config.lib.ts && tsc -p tsconfig.lib.json && node ./scripts/prepare-package.mjs",
+    "build:docs": "vite build --config vite.config.docs.ts",
     "lint": "eslint .",
-    "lint:styles": "stylelint \"src/**/*.scss\"",
-    "format": "prettier . --write",
-    "generate:component": "node scripts/create-component.js",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "sass:watch": "sass --watch src/design-system:src/design-system"
+    "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.lib.json --noEmit && tsc -p tsconfig.node.json --noEmit",
+    "pack:check": "npm_config_cache=/tmp/uds-tailwind-test-npm-cache npm pack --dry-run",
+    "preview": "vite preview --config vite.config.docs.ts"
   },
   "dependencies": {
-    "prismjs": "^1.30.0"
+    "@base-ui/react": "^1.3.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "date-fns": "^4.1.0",
+    "input-otp": "^1.4.2",
+    "next-themes": "^0.4.6",
+    "radix-ui": "^1.4.3",
+    "react-day-picker": "^9.14.0",
+    "react-resizable-panels": "^4.9.0",
+    "recharts": "^3.8.0",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.5.0",
+    "vaul": "^1.1.2"
   },
   "peerDependencies": {
-    "@phosphor-icons/react": "^2.1.10",
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "react-router-dom": "^6.26.2 || ^7.0.0"
-  },
-  "codeConnect": {
-    "parser": "react"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.9.0",
-    "@figma/code-connect": "^1.3.9",
-    "@phosphor-icons/react": "^2.1.10",
-    "@storybook/addon-a11y": "^8.6.17",
-    "@storybook/addon-docs": "^8.6.17",
-    "@storybook/addon-essentials": "^8.6.17",
-    "@storybook/addon-links": "^8.6.0",
-    "@storybook/react-vite": "^8.6.0",
-    "@types/react": "^18.3.4",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "dotenv": "^16.6.1",
-    "eslint": "^9.9.0",
-    "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "globals": "^17.3.0",
-    "prettier": "^3.3.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2",
-    "sass": "^1.78.0",
-    "storybook": "^8.6.0",
-    "stylelint": "^16.9.0",
-    "stylelint-config-standard-scss": "^13.1.0",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1",
-    "vite": "^6.4.1"
+    "@eslint/js": "^9.39.4",
+    "@fontsource-variable/geist": "^5.2.8",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^24.12.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.14.0",
+    "sass": "^1.99.0",
+    "shadcn": "^4.2.0",
+    "shiki": "^4.0.2",
+    "tailwindcss": "^4.2.2",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.58.2",
+    "vite": "^8.0.4"
   }
 }

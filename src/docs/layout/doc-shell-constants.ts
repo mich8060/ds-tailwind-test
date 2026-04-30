@@ -1,0 +1,2 @@
+export const SIDEBAR_EXPANDED_PX = 280
+export const SIDEBAR_MINIMIZED_PX = 72

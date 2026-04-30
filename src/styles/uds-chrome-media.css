@@ -1,0 +1,69 @@
+/**
+ * Theme-only chrome for small “medallion” tiles: `AlertDialogMedia` and `EmptyMedia`
+ * are unstyled wrappers (`data-slot`); size, radius, and palette live here so apps
+ * can override tokens without forking the React primitives.
+ */
+@layer components {
+  :root {
+    --uds-chrome-media-size: 4rem;
+    --uds-chrome-media-icon: 28px;
+    --uds-chrome-media-radius: 12px;
+  }
+
+  [data-slot="alert-dialog-media"] {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: var(--uds-chrome-media-size);
+    height: var(--uds-chrome-media-size);
+    min-width: var(--uds-chrome-media-size);
+    min-height: var(--uds-chrome-media-size);
+    border-radius: var(--uds-chrome-media-radius);
+    background: var(--uds-alert-dialog-media-bg, var(--uds-color-accent-red-100));
+    color: var(--uds-alert-dialog-media-fg, var(--uds-color-accent-red-700));
+    font-family: var(--font-sans);
+  }
+  [data-slot="alert-dialog-media"] svg {
+    width: var(--uds-chrome-media-icon);
+    height: var(--uds-chrome-media-icon);
+    flex-shrink: 0;
+  }
+
+  .dark [data-slot="alert-dialog-media"],
+  :is(.dark *) [data-slot="alert-dialog-media"] {
+    background: var(
+      --uds-alert-dialog-media-bg-dark,
+      color-mix(in srgb, var(--uds-color-accent-red-900) 45%, transparent)
+    );
+    color: var(--uds-alert-dialog-media-fg-dark, var(--uds-color-accent-red-200));
+  }
+
+  [data-slot="empty-icon"] {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: var(--uds-chrome-media-size);
+    height: var(--uds-chrome-media-size);
+    min-width: var(--uds-chrome-media-size);
+    min-height: var(--uds-chrome-media-size);
+    border-radius: var(--uds-chrome-media-radius);
+    background: var(--uds-empty-media-bg, var(--uds-color-neutrals-100));
+    color: var(--uds-empty-media-fg, var(--uds-color-neutrals-700));
+    font-family: var(--font-sans);
+  }
+  [data-slot="empty-icon"] svg {
+    width: var(--uds-chrome-media-icon);
+    height: var(--uds-chrome-media-icon);
+    flex-shrink: 0;
+  }
+
+  .dark [data-slot="empty-icon"],
+  :is(.dark *) [data-slot="empty-icon"] {
+    background: var(--uds-empty-media-bg-dark, var(--uds-color-neutrals-800));
+    color: var(--uds-empty-media-fg-dark, var(--uds-color-neutrals-200));
+  }
+}

@@ -1,0 +1,95 @@
+$menu-expanded: 280px;
+$menu-collapsed: 64px;
+$listview-width: 320px;
+
+.appshell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background: var(--background);
+    font-family: var(--font-sans);
+    color: var(--foreground);
+
+    &--body {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        margin-left: $menu-expanded;
+        transition: margin-left 200ms ease-out;
+        position: relative;
+    }
+
+    &:has([data-slot="uds-menu-root"][data-expanded="false"]) &--body {
+        margin-left: $menu-collapsed;
+    }
+
+    &--header {
+        /* Keep header fully in flow so main content never scrolls or paints underneath it. */
+        position: relative;
+        flex-shrink: 0;
+        width: 100%;
+    }
+
+    &--content {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+    }
+
+    &--listview {
+        width: 0;
+        min-width: 0;
+        overflow: hidden;
+        flex-shrink: 0;
+        border-right: 0 solid transparent;
+        transition:
+            width 250ms ease-out,
+            min-width 250ms ease-out,
+            border-color 250ms ease-out;
+
+        > * {
+            width: $listview-width;
+            min-width: $listview-width;
+            opacity: 0;
+            transition: opacity 250ms ease-out;
+        }
+
+        &-open {
+            width: $listview-width;
+            min-width: $listview-width;
+            overflow-y: auto;
+            border-right: var(--uds-border-width-1) solid var(--border);
+
+            > * {
+                opacity: 1;
+            }
+        }
+    }
+
+    &--main {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    &--footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: $menu-expanded;
+        z-index: 10;
+        transition: left 200ms ease-out;
+    }
+
+    &:has([data-slot="uds-menu-root"][data-expanded="false"]) &--footer {
+        left: $menu-collapsed;
+    }
+
+    &:has(&--footer) &--main {
+        padding-bottom: var(--appshell-footer-height, 48px);
+    }
+}

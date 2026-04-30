@@ -1,92 +1,179 @@
-# UDS Sample Application (Spec-driven + SCSS + Multi-brand + Governed App Shell)
+# @chg-ds/unified-design-system
 
-This repo is a working reference implementation showing:
+`@chg-ds/unified-design-system` is the publishable React UI package from this Tailwind v4 and shadcn-based design system workspace. Source repository: [chghealthcare/unified-design-system](https://github.com/chghealthcare/unified-design-system).
 
-- Token-driven SCSS architecture (primitives → semantics → brands)
-- Design-system components styled with SCSS (BEM, no raw values)
-- Spec-driven component contracts (spec objects in code)
-- Canonical component template + spec template
-- A governed, configurable application shell with routing (routing lives in the shell)
-- Brand + theme applied at the shell root
-- Slot-based shell regions + structured layout config
-- Linting “lockdown” (ESLint + Stylelint) and a CLI scaffold generator
+The package contract now has one canonical AI-readable source of truth:
+
+- [`ai/uds-contract.json`](./ai/uds-contract.json)
+
+Use that file for machine-readable guidance, then use the human-facing summaries here, in [`AI_USAGE.md`](./AI_USAGE.md), and in [`setup.md`](./setup.md).
+
+## Installation
+
+```bash
+npm install @chg-ds/unified-design-system react react-dom
+```
+
+Import the stylesheet once near the app root:
+
+```ts
+import "@chg-ds/unified-design-system/styles.css"
+```
+
+## Development (this repository)
+
+Use **Node.js 22 LTS** (or **24+**) for local installs so `npm` does not report `EBADENGINE` for `eslint-visitor-keys@5` (its `engines` field does not list Node 23). Run `nvm use` (or `fnm use`) in the repo root; the [`.nvmrc`](./.nvmrc) file pins `22`. If you use [Volta](https://volta.sh/), the repo’s `package.json` includes a matching `volta.node` pin.
+
+You may still see `npm warn deprecated node-domexception` while installing devDependencies: it is pulled in by the `shadcn` CLI via `node-fetch` / `fetch-blob`. It is safe to ignore for building this package; upstream would need to drop that chain to silence the warning.
 
 ## Quick start
 
+```tsx
+import {
+  AppShell,
+  Button,
+  Card,
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  TooltipProvider,
+} from "@chg-ds/unified-design-system"
+import "@chg-ds/unified-design-system/styles.css"
+
+export function Example() {
+  return (
+    <TooltipProvider>
+      <SidebarProvider>
+        <AppShell
+          className="min-h-dvh w-full min-w-0"
+          sidebarWidth={280}
+          showListview={false}
+          mainClassName="bg-[var(--uds-color-neutrals-50)]"
+          sidebar={
+            <Sidebar collapsible="none">
+              <SidebarHeader>Workspace</SidebarHeader>
+              <SidebarContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton isActive>Dashboard</SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarContent>
+              <SidebarFooter>
+                <Button className="w-full rounded-[4px]">New item</Button>
+              </SidebarFooter>
+            </Sidebar>
+          }
+        >
+          <Card className="m-6 rounded-[4px] p-6">AppShell is mounted at runtime.</Card>
+        </AppShell>
+      </SidebarProvider>
+    </TooltipProvider>
+  )
+}
+```
+
+## Public API model
+
+The root package entrypoint is [`src/index.ts`](./src/index.ts). That file is the canonical public API.
+
+Consumers and AI tools should import only from:
+
+- `@chg-ds/unified-design-system`
+- `@chg-ds/unified-design-system/styles.css`
+
+Do not infer public API from internal implementation files under `src/components/ui`.
+
+## AI contract
+
+The AI/tooling contract lives in [`ai/uds-contract.json`](./ai/uds-contract.json) and includes:
+
+- allowed and forbidden imports
+- layout defaults
+- public export catalog with recommendations
+- current styling and radius policy
+- screen recipes
+- anti-patterns
+- registry metadata
+
+Human-facing summaries:
+
+- [`AI_USAGE.md`](./AI_USAGE.md)
+- [`setup.md`](./setup.md)
+- [`AGENTS.md`](./AGENTS.md)
+- [`.cursor/rules/uds-design-system.mdc`](./.cursor/rules/uds-design-system.mdc)
+
+## Recipes and examples
+
+Recipe docs:
+
+- [`ai/recipes/auth-shell.md`](./ai/recipes/auth-shell.md)
+- [`ai/recipes/workspace-dashboard.md`](./ai/recipes/workspace-dashboard.md)
+- [`ai/recipes/detail-with-listview.md`](./ai/recipes/detail-with-listview.md)
+- [`ai/recipes/settings-form.md`](./ai/recipes/settings-form.md)
+
+Canonical example outputs:
+
+- [`ai/examples/auth-shell.tsx`](./ai/examples/auth-shell.tsx)
+- [`ai/examples/workspace-dashboard.tsx`](./ai/examples/workspace-dashboard.tsx)
+- [`ai/examples/detail-with-listview.tsx`](./ai/examples/detail-with-listview.tsx)
+- [`ai/examples/settings-form.tsx`](./ai/examples/settings-form.tsx)
+
+Consumer smoke fixture:
+
+- [`examples/consumer-react/src/App.tsx`](./examples/consumer-react/src/App.tsx)
+
+## shadcn registry
+
+This repo now ships a local-first custom registry surface:
+
+- source manifest: [`registry.json`](./registry.json)
+- generated items: [`public/r`](./public/r)
+- shadcn namespace in [`components.json`](./components.json): `@uds`
+- default local URL template: `http://localhost:5173/r/{name}.json`
+
+Regenerate the AI contract and registry artifacts with:
+
+```bash
+npm run generate:ai
+```
+
+## Local development
+
 ```bash
 npm install
+npm run generate:ai
 npm run dev
 ```
 
-## Scripts
-
-- `npm run dev` – start Vite dev server
-- `npm run build` – production build
-- `npm run preview` – preview build
-- `npm run lint` – eslint
-- `npm run lint:styles` – stylelint for scss
-- `npm run format` – prettier
-- `npm run generate:component -- Name` – scaffold a new component folder from the canonical template
-
-See `/docs` for the full methodology and governance model.
-
-- [Claude Rules](docs/claude-rules.md) – conventions and constraints for AI-assisted development in this repo
-- [AI Implementation Learnings](docs/08-ai-implementation-learnings.md) – validated integration guidance and corrected component API assumptions
-- [Project Learnings Log](docs/09-project-learnings-log.md) – living, prompt-by-prompt implementation constraints and guardrails
-- [Consumer Project Setup](docs/10-consumer-project-setup.md) – copy-paste setup guide for integrating UDS in a new app
-- [Runtime Tokens Migration](docs/11-runtime-tokens-migration.md) – typed token exports and generated token CSS usage
-- [Theming Engine API](docs/12-theming-engine.md) – createTheme/createBrand/ThemeProvider architecture and usage
-- [Theming Platform API](docs/13-theming-platform-api.md) – formal public theming layer, architecture, and usage
-- [AI-Native Architecture](docs/15-ai-native-architecture.md) – machine-readable metadata, patterns, and AI export strategy
-- [AI CI Enforcement](docs/16-ai-ci-enforcement.md) – governance pipeline and merge-blocking validation flow
-
-## NPM package quick start
-
-Install the package and required peer dependencies:
+Useful checks:
 
 ```bash
-npm i @chg-ds/unified-design-system react react-dom react-router-dom @phosphor-icons/react
+npm run lint
+npm run typecheck
+npm run build
+npm run pack:check
 ```
 
-Import components and styles:
+## Publishing (maintainers)
 
-```tsx
-import { AppShell, Button, Flex, Menu, Text, TextInput } from "@chg-ds/unified-design-system";
-import "@chg-ds/unified-design-system/styles.css";
-```
+**Git:** Push branches and tags to `https://github.com/chghealthcare/unified-design-system` (remote `origin`).
 
-Runtime token primitives are also available as typed exports:
+**npm:** The package name is `@chg-ds/unified-design-system`. Scoped packages use `publishConfig.access: "public"` in `package.json`.
 
-```ts
-import { spacingTokens } from "@chg-ds/unified-design-system/tokens/spacing";
-import { runtimeTokens } from "@chg-ds/unified-design-system/tokens";
-import "@chg-ds/unified-design-system/tokens.css";
-```
+1. Bump `version` in `package.json` and merge to `main`.
+2. Ensure `npm ci`, `npm run build:lib`, and `npm run pack:check` pass locally (CI runs `build:lib` and `lint` on push/PR).
+3. Create a GitHub **Release** (or git tag) for that version.
+4. Publish from a clean checkout with an npm account that has rights to the `@chg-ds` org:
 
-AI metadata is available from a dedicated subpath:
+   ```bash
+   npm whoami
+   npm publish
+   ```
 
-```ts
-import { UDS_AI_MANIFEST, UDS_FLOW_PATTERNS } from "@chg-ds/unified-design-system/ai";
-```
-
-## Common prop pitfalls
-
-- `Button` uses `appearance`, not `variant`
-  - valid values: `primary`, `soft`, `outline`, `text`, `ghost`, `disabled`, `destructive`
-- `Text` requires a `variant` value such as `heading-32` or `body-16`
-- `TextInput` icon placement uses `iconPosition` with `left` or `right`
-- `Menu` mode uses `light` or `dark`
-
-## Exported constants
-
-Use exported constants to avoid guessing valid values:
-
-```tsx
-import {
-  BUTTON_APPEARANCES,
-  TEXT_VARIANTS,
-  TEXT_WEIGHTS,
-  TEXT_INPUT_STATES,
-  ICON_APPEARANCES
-} from "@chg-ds/unified-design-system";
-```
+   `prepublishOnly` runs `build:lib` automatically. Alternatively, use the **Publish npm package** GitHub Action (workflow dispatch or release), after adding an **`NPM_TOKEN`** repository secret (granular token with publish access to `@chg-ds/unified-design-system`).

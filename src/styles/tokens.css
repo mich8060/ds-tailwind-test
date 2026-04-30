@@ -1,0 +1,14 @@
+@import "./uds-tokens.css";
+@import "./uds-semantic-colors-theme.css";
+@import "./uds-typography-theme.css";
+
+@theme {
+  --font-sans:
+    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* Preflight: `html` uses `var(--default-font-family, …)` — pin to the Inter stack above. */
+  --default-font-family: var(--font-sans);
+  --font-inter:
+    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}

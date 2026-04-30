@@ -1,0 +1,17 @@
+@reference "../../styles.css";
+
+.appshell-demo-frame {
+    @apply box-border w-full max-w-[1280px] overflow-hidden rounded-[8px] border border-neutral-200 dark:border-neutral-800;
+    position: relative;
+    height: 800px;
+}
+
+.appshell-demo-root.appshell {
+    min-height: 0;
+    height: 100%;
+}
+
+.appshell-demo-root [data-slot="uds-menu-root"] {
+    position: absolute;
+    height: 100%;
+}

@@ -1,0 +1,4722 @@
+{
+  "generatedAt": "2026-04-30T16:02:41.035Z",
+  "generatedFrom": [
+    "src/index.ts",
+    "package.json",
+    "scripts/generate-ai-artifacts.mjs"
+  ],
+  "package": {
+    "name": "@chg-ds/unified-design-system",
+    "version": "0.3.9",
+    "primaryEntry": "@chg-ds/unified-design-system",
+    "styleImport": "@chg-ds/unified-design-system/styles.css"
+  },
+  "imports": {
+    "allowed": [
+      "@chg-ds/unified-design-system",
+      "@chg-ds/unified-design-system/styles.css"
+    ],
+    "forbiddenPatterns": [
+      "src/components/ui/*",
+      "dist/*",
+      "@/*",
+      "*-base",
+      "*-core",
+      "*-theme",
+      "*-uds"
+    ]
+  },
+  "layoutDefaults": {
+    "authenticatedScreens": {
+      "defaultShell": "AppShell",
+      "sidebarRequirement": "Use SidebarProvider as needed and compose the AppShell sidebar slot only with exported UDS Sidebar primitives.",
+      "listview": "Optional. Use for queues, master-detail, inbox, or search results.",
+      "footer": "Optional. Use only when the screen needs persistent summary or status chrome."
+    },
+    "viewportFill": [
+      "Ensure html, body, and #root span the viewport.",
+      "Apply a shell class such as \"min-h-dvh w-full min-w-0\"."
+    ]
+  },
+  "componentCatalog": [
+    {
+      "name": "Accordion",
+      "exportKind": "component",
+      "module": "components/ui/accordion",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AccordionContent",
+      "exportKind": "component",
+      "module": "components/ui/accordion",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AccordionItem",
+      "exportKind": "component",
+      "module": "components/ui/accordion",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AccordionTrigger",
+      "exportKind": "component",
+      "module": "components/ui/accordion",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AccordionVariant",
+      "exportKind": "type",
+      "module": "components/ui/accordion",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AirplaneIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Alert",
+      "exportKind": "component",
+      "module": "components/ui/alert",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertAction",
+      "exportKind": "component",
+      "module": "components/ui/alert",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertContent",
+      "exportKind": "component",
+      "module": "components/ui/alert",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDescription",
+      "exportKind": "component",
+      "module": "components/ui/alert",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialog",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "AlertDialogAction",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogCancel",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogContent",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogDescription",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogFooter",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogHeader",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogMedia",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogOverlay",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogPortal",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogTitle",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertDialogTrigger",
+      "exportKind": "component",
+      "module": "components/ui/alert-dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AlertTitle",
+      "exportKind": "component",
+      "module": "components/ui/alert",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AppShell",
+      "exportKind": "component",
+      "module": "components/ui/app-shell",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "AppShellProps",
+      "exportKind": "type",
+      "module": "components/ui/app-shell",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ArrowClockwiseIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ArrowRightIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ArrowUpIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ArrowUpRightIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AspectRatio",
+      "exportKind": "component",
+      "module": "components/ui/aspect-ratio",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Avatar",
+      "exportKind": "component",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarBadge",
+      "exportKind": "component",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarCameraAction",
+      "exportKind": "component",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarCameraActionProps",
+      "exportKind": "type",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarFallback",
+      "exportKind": "component",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarGroup",
+      "exportKind": "component",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarGroupCount",
+      "exportKind": "component",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarImage",
+      "exportKind": "component",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarSize",
+      "exportKind": "type",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarStatus",
+      "exportKind": "component",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "AvatarStatusProps",
+      "exportKind": "type",
+      "module": "components/ui/avatar-uds",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Badge",
+      "exportKind": "component",
+      "module": "components/ui/badge",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "BADGE_ACCENTS",
+      "exportKind": "component",
+      "module": "components/ui/badge",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BADGE_SHAPES",
+      "exportKind": "component",
+      "module": "components/ui/badge",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BadgeAccent",
+      "exportKind": "type",
+      "module": "components/ui/badge",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BadgeAppearance",
+      "exportKind": "type",
+      "module": "components/ui/badge",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "badgeColorVariants",
+      "exportKind": "utility",
+      "module": "components/ui/badge",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "badgeLayoutVariants",
+      "exportKind": "utility",
+      "module": "components/ui/badge",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BadgeProps",
+      "exportKind": "type",
+      "module": "components/ui/badge",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BadgeShape",
+      "exportKind": "type",
+      "module": "components/ui/badge",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BaseButton",
+      "exportKind": "component",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "avoid-directly"
+    },
+    {
+      "name": "BaseButtonProps",
+      "exportKind": "type",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "avoid-directly"
+    },
+    {
+      "name": "baseButtonVariants",
+      "exportKind": "utility",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "avoid-directly"
+    },
+    {
+      "name": "BellIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BookmarkIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Branding",
+      "exportKind": "component",
+      "module": "components/ui/branding",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BrandingAppearance",
+      "exportKind": "type",
+      "module": "components/ui/branding",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BrandingProps",
+      "exportKind": "type",
+      "module": "components/ui/branding",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Breadcrumb",
+      "exportKind": "component",
+      "module": "components/ui/breadcrumb",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BreadcrumbEllipsis",
+      "exportKind": "component",
+      "module": "components/ui/breadcrumb",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BreadcrumbItem",
+      "exportKind": "component",
+      "module": "components/ui/breadcrumb",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BreadcrumbLink",
+      "exportKind": "component",
+      "module": "components/ui/breadcrumb",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BreadcrumbList",
+      "exportKind": "component",
+      "module": "components/ui/breadcrumb",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BreadcrumbPage",
+      "exportKind": "component",
+      "module": "components/ui/breadcrumb",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BreadcrumbSeparator",
+      "exportKind": "component",
+      "module": "components/ui/breadcrumb",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BriefcaseIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BuildingApartmentIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BuildingsIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Button",
+      "exportKind": "component",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "ButtonGroup",
+      "exportKind": "component",
+      "module": "components/ui/button-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ButtonGroupSeparator",
+      "exportKind": "component",
+      "module": "components/ui/button-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ButtonGroupText",
+      "exportKind": "component",
+      "module": "components/ui/button-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "buttonGroupVariants",
+      "exportKind": "utility",
+      "module": "components/ui/button-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ButtonSize",
+      "exportKind": "type",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "buttonSizeToBaseSize",
+      "exportKind": "utility",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "avoid-directly"
+    },
+    {
+      "name": "buttonThemeVariants",
+      "exportKind": "utility",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "avoid-directly"
+    },
+    {
+      "name": "ButtonVariant",
+      "exportKind": "type",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "buttonVariants",
+      "exportKind": "utility",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "avoid-directly"
+    },
+    {
+      "name": "Calendar",
+      "exportKind": "component",
+      "module": "components/ui/calendar",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CalendarBlankIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CalendarDayButton",
+      "exportKind": "component",
+      "module": "components/ui/calendar",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CalendarPlusIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CalendarYearSelection",
+      "exportKind": "type",
+      "module": "components/ui/calendar",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CameraIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Card",
+      "exportKind": "component",
+      "module": "components/ui/card",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "CardAction",
+      "exportKind": "component",
+      "module": "components/ui/card",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "CardContent",
+      "exportKind": "component",
+      "module": "components/ui/card",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "CardDescription",
+      "exportKind": "component",
+      "module": "components/ui/card",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "CardFooter",
+      "exportKind": "component",
+      "module": "components/ui/card",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "CardHeader",
+      "exportKind": "component",
+      "module": "components/ui/card",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "CardTitle",
+      "exportKind": "component",
+      "module": "components/ui/card",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "CaretDoubleLeftIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CaretDoubleRightIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CaretDownIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CaretLeftIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CaretRightIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CaretUpIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ChartBarIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ChatCircleDotsIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Checkbox",
+      "exportKind": "component",
+      "module": "components/ui/checkbox",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CheckboxLabel",
+      "exportKind": "component",
+      "module": "components/ui/checkbox",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CheckCircleIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CheckIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CheckList",
+      "exportKind": "component",
+      "module": "components/ui/check-list",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CheckListControl",
+      "exportKind": "component",
+      "module": "components/ui/check-list",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CheckListItem",
+      "exportKind": "component",
+      "module": "components/ui/check-list",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CircleIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CircleNotchIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CirclesThreeIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ClockIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "cn",
+      "exportKind": "component",
+      "module": "lib/utils",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Collapsible",
+      "exportKind": "component",
+      "module": "components/ui/collapsible",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CollapsibleContent",
+      "exportKind": "component",
+      "module": "components/ui/collapsible",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CollapsibleTrigger",
+      "exportKind": "component",
+      "module": "components/ui/collapsible",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CollapsibleVariant",
+      "exportKind": "type",
+      "module": "components/ui/collapsible",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenu",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuCheckboxItem",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuContent",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuGroup",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuItem",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuLabel",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuPortal",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuRadioGroup",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuRadioItem",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuSeparator",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuShortcut",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuSub",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuSubContent",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuSubTrigger",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ContextMenuTrigger",
+      "exportKind": "component",
+      "module": "components/ui/context-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CurrencyCircleDollarIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DateInput",
+      "exportKind": "component",
+      "module": "components/ui/date-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DateInputCaptionLayout",
+      "exportKind": "type",
+      "module": "components/ui/date-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DateInputProps",
+      "exportKind": "type",
+      "module": "components/ui/date-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DateInputYearSelection",
+      "exportKind": "type",
+      "module": "components/ui/date-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DateRangeInput",
+      "exportKind": "component",
+      "module": "components/ui/date-range-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DateRangeInputCaptionLayout",
+      "exportKind": "type",
+      "module": "components/ui/date-range-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DateRangeInputProps",
+      "exportKind": "type",
+      "module": "components/ui/date-range-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DateRangeInputYearSelection",
+      "exportKind": "type",
+      "module": "components/ui/date-range-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DescriptionDetail",
+      "exportKind": "component",
+      "module": "components/ui/description-list",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DescriptionList",
+      "exportKind": "component",
+      "module": "components/ui/description-list",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DescriptionRow",
+      "exportKind": "component",
+      "module": "components/ui/description-list",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DescriptionTerm",
+      "exportKind": "component",
+      "module": "components/ui/description-list",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Dialog",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "DialogClose",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DialogCloseButton",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DialogContent",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DialogDescription",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DialogFooter",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DialogHeader",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DialogOverlay",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DialogPortal",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DialogTitle",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DialogTrigger",
+      "exportKind": "component",
+      "module": "components/ui/dialog-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DiamondsFourIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DirectionProvider",
+      "exportKind": "component",
+      "module": "components/ui/direction",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "docsNavComponentLinkClassName",
+      "exportKind": "component",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DocsNavDisclosureCaret",
+      "exportKind": "component",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "docsNavParentChildActiveCls",
+      "exportKind": "utility",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "docsNavParentOpenBorderCls",
+      "exportKind": "utility",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "docsNavParentStickyCls",
+      "exportKind": "utility",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DocsNavRailTrigger",
+      "exportKind": "component",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DocsNavRailTriggerProps",
+      "exportKind": "type",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DocsNavSectionColumn",
+      "exportKind": "component",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DocsNavSectionHeader",
+      "exportKind": "component",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DocsNavSectionHeaderProps",
+      "exportKind": "type",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DocsNavSectionList",
+      "exportKind": "component",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "docsNavSubLinkClassName",
+      "exportKind": "component",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DocsNavSubList",
+      "exportKind": "component",
+      "module": "components/ui/docs-nav",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DOT_STATUS_SIZES",
+      "exportKind": "component",
+      "module": "components/ui/dot-status",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DOT_STATUS_VARIANTS",
+      "exportKind": "component",
+      "module": "components/ui/dot-status",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DotStatus",
+      "exportKind": "component",
+      "module": "components/ui/dot-status",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DotStatusProps",
+      "exportKind": "type",
+      "module": "components/ui/dot-status",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DotStatusSize",
+      "exportKind": "type",
+      "module": "components/ui/dot-status",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DotStatusVariant",
+      "exportKind": "type",
+      "module": "components/ui/dot-status",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DotsThreeIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DotsThreeVerticalIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DownloadSimpleIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenu",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuCheckboxItem",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuContent",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuGroup",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuItem",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuLabel",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuPortal",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuRadioGroup",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuRadioItem",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuSeparator",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuShortcut",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuSub",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuSubContent",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuSubTrigger",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DropdownMenuTrigger",
+      "exportKind": "component",
+      "module": "components/ui/dropdown-menu",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Empty",
+      "exportKind": "component",
+      "module": "components/ui/empty",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "EmptyContent",
+      "exportKind": "component",
+      "module": "components/ui/empty",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "EmptyDescription",
+      "exportKind": "component",
+      "module": "components/ui/empty",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "EmptyHeader",
+      "exportKind": "component",
+      "module": "components/ui/empty",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "EmptyMedia",
+      "exportKind": "component",
+      "module": "components/ui/empty",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "EmptyTitle",
+      "exportKind": "component",
+      "module": "components/ui/empty",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "EnvelopeIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "EyeIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "EyeSlashIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Field",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FieldContent",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FieldDescription",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FieldError",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FieldGroup",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FieldLabel",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FieldLegend",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FieldSeparator",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FieldSet",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FieldTitle",
+      "exportKind": "component",
+      "module": "components/ui/field",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileTextIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileUpload",
+      "exportKind": "component",
+      "module": "components/ui/file-upload",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileUploadCardItem",
+      "exportKind": "type",
+      "module": "components/ui/file-upload-cards",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileUploadCards",
+      "exportKind": "component",
+      "module": "components/ui/file-upload-cards",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileUploadCardsDensity",
+      "exportKind": "type",
+      "module": "components/ui/file-upload-cards",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileUploadCardsProps",
+      "exportKind": "type",
+      "module": "components/ui/file-upload-cards",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileUploadCardStatus",
+      "exportKind": "type",
+      "module": "components/ui/file-upload-cards",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileUploadProps",
+      "exportKind": "type",
+      "module": "components/ui/file-upload",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FileUploadSize",
+      "exportKind": "type",
+      "module": "components/ui/file-upload",
+      "roles": [
+        "input",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FolderOpenIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Footer",
+      "exportKind": "component",
+      "module": "components/ui/footer",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FooterLink",
+      "exportKind": "type",
+      "module": "components/ui/footer",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FooterProps",
+      "exportKind": "type",
+      "module": "components/ui/footer",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "GearSixIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "getDefaultNavigation",
+      "exportKind": "utility",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "GitBranchIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "GpsFixIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Header",
+      "exportKind": "component",
+      "module": "components/ui/header",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "HeaderProps",
+      "exportKind": "type",
+      "module": "components/ui/header",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "HouseIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "HoverCard",
+      "exportKind": "component",
+      "module": "components/ui/hover-card",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "HoverCardContent",
+      "exportKind": "component",
+      "module": "components/ui/hover-card",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "HoverCardTrigger",
+      "exportKind": "component",
+      "module": "components/ui/hover-card",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Icon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "IconContext",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "IconName",
+      "exportKind": "type",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "IconProps",
+      "exportKind": "type",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ImageIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InfoIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Input",
+      "exportKind": "component",
+      "module": "components/ui/input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "InputGroup",
+      "exportKind": "component",
+      "module": "components/ui/input-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputGroupAddon",
+      "exportKind": "component",
+      "module": "components/ui/input-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputGroupButton",
+      "exportKind": "component",
+      "module": "components/ui/input-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputGroupInput",
+      "exportKind": "component",
+      "module": "components/ui/input-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputGroupText",
+      "exportKind": "component",
+      "module": "components/ui/input-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputGroupTextarea",
+      "exportKind": "component",
+      "module": "components/ui/input-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputOTP",
+      "exportKind": "component",
+      "module": "components/ui/input-otp",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputOTPGroup",
+      "exportKind": "component",
+      "module": "components/ui/input-otp",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputOTPSeparator",
+      "exportKind": "component",
+      "module": "components/ui/input-otp",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputOTPSlot",
+      "exportKind": "component",
+      "module": "components/ui/input-otp",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "InputProps",
+      "exportKind": "type",
+      "module": "components/ui/input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "inputVariants",
+      "exportKind": "utility",
+      "module": "components/ui/input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Item",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "ItemActions",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ItemContent",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ItemDescription",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ItemFooter",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ItemGroup",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ItemHeader",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ItemMedia",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ItemSeparator",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ItemTitle",
+      "exportKind": "component",
+      "module": "components/ui/item",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Kbd",
+      "exportKind": "component",
+      "module": "components/ui/kbd",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "KbdGroup",
+      "exportKind": "component",
+      "module": "components/ui/kbd",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Label",
+      "exportKind": "component",
+      "module": "components/ui/label",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Layout",
+      "exportKind": "component",
+      "module": "components/ui/layout",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "LayoutAs",
+      "exportKind": "type",
+      "module": "components/ui/layout",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "LayoutDirection",
+      "exportKind": "type",
+      "module": "components/ui/layout",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "LayoutGap",
+      "exportKind": "type",
+      "module": "components/ui/layout",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "LayoutIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "LayoutProps",
+      "exportKind": "type",
+      "module": "components/ui/layout",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "LayoutWrap",
+      "exportKind": "type",
+      "module": "components/ui/layout",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "LightbulbIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Link",
+      "exportKind": "component",
+      "module": "components/ui/link",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ListIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MagnifyingGlassIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Medallion",
+      "exportKind": "component",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "MEDALLION_COLORS",
+      "exportKind": "component",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MEDALLION_PALETTE",
+      "exportKind": "component",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MEDALLION_PASTEL_PALETTE",
+      "exportKind": "component",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MEDALLION_SOLID_PALETTE",
+      "exportKind": "component",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MEDALLION_TONES",
+      "exportKind": "component",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MedallionColor",
+      "exportKind": "type",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MedallionProps",
+      "exportKind": "type",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MedallionShape",
+      "exportKind": "type",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MedallionSize",
+      "exportKind": "type",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MedallionTone",
+      "exportKind": "type",
+      "module": "components/ui/medallion",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Menu",
+      "exportKind": "component",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Menubar",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarCheckboxItem",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarContent",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarGroup",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarItem",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarLabel",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarMenu",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarPortal",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarRadioGroup",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarRadioItem",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarSeparator",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarShortcut",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarSub",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarSubContent",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarSubTrigger",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenubarTrigger",
+      "exportKind": "component",
+      "module": "components/ui/menubar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuBrandOption",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuCallable",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuCompound",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuDefaultHeader",
+      "exportKind": "component",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuDefaultProps",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuDefaultUtilities",
+      "exportKind": "component",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuHeaderProps",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuNavigationIcon",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuNavigationItem",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuNavigationProps",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuRailContextValue",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuRootProps",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuUtilitiesProps",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuUtilityItem",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuWorkspaceOption",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuWorkspaceProps",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuWorkspaceSelectProps",
+      "exportKind": "type",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MicroCalendar",
+      "exportKind": "component",
+      "module": "components/ui/micro-calendar",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MicroCalendarDateData",
+      "exportKind": "type",
+      "module": "components/ui/micro-calendar",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MicroCalendarProps",
+      "exportKind": "type",
+      "module": "components/ui/micro-calendar",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MicroCalendarTile",
+      "exportKind": "component",
+      "module": "components/ui/micro-calendar",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MinusIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MoonIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NativeSelect",
+      "exportKind": "component",
+      "module": "components/ui/native-select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NativeSelectOptGroup",
+      "exportKind": "component",
+      "module": "components/ui/native-select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NativeSelectOption",
+      "exportKind": "component",
+      "module": "components/ui/native-select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NavigationMenu",
+      "exportKind": "component",
+      "module": "components/ui/navigation-menu-uds",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NavigationMenuContent",
+      "exportKind": "component",
+      "module": "components/ui/navigation-menu-uds",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NavigationMenuIndicator",
+      "exportKind": "component",
+      "module": "components/ui/navigation-menu-uds",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NavigationMenuItem",
+      "exportKind": "component",
+      "module": "components/ui/navigation-menu-uds",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NavigationMenuLink",
+      "exportKind": "component",
+      "module": "components/ui/navigation-menu-uds",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NavigationMenuList",
+      "exportKind": "component",
+      "module": "components/ui/navigation-menu-uds",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NavigationMenuTrigger",
+      "exportKind": "component",
+      "module": "components/ui/navigation-menu-uds",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "navigationMenuTriggerStyle",
+      "exportKind": "utility",
+      "module": "components/ui/navigation-menu-uds",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NavigationMenuViewport",
+      "exportKind": "component",
+      "module": "components/ui/navigation-menu-uds",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NotePencilIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NumberInput",
+      "exportKind": "component",
+      "module": "components/ui/number-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NumberInputProps",
+      "exportKind": "type",
+      "module": "components/ui/number-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PaletteIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PasswordInput",
+      "exportKind": "component",
+      "module": "components/ui/password-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PasswordInputProps",
+      "exportKind": "type",
+      "module": "components/ui/password-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PenNibIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PhoneIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PhoneInput",
+      "exportKind": "component",
+      "module": "components/ui/phone-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PhoneInputProps",
+      "exportKind": "type",
+      "module": "components/ui/phone-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PlusCircleIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PlusIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Popover",
+      "exportKind": "component",
+      "module": "components/ui/popover",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PopoverAnchor",
+      "exportKind": "component",
+      "module": "components/ui/popover",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PopoverContent",
+      "exportKind": "component",
+      "module": "components/ui/popover",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PopoverDescription",
+      "exportKind": "component",
+      "module": "components/ui/popover",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PopoverHeader",
+      "exportKind": "component",
+      "module": "components/ui/popover",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PopoverTitle",
+      "exportKind": "component",
+      "module": "components/ui/popover",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PopoverTrigger",
+      "exportKind": "component",
+      "module": "components/ui/popover",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PresentationChartIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Progress",
+      "exportKind": "component",
+      "module": "components/ui/progress",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ProgressCircle",
+      "exportKind": "component",
+      "module": "components/ui/progress-circles",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ProgressCircleProps",
+      "exportKind": "type",
+      "module": "components/ui/progress-circles",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ProgressCircles",
+      "exportKind": "component",
+      "module": "components/ui/progress-circles",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "QuestionIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "RadioGroup",
+      "exportKind": "component",
+      "module": "components/ui/radio-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "RadioGroupItem",
+      "exportKind": "component",
+      "module": "components/ui/radio-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "RadioGroupLabel",
+      "exportKind": "component",
+      "module": "components/ui/label",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ResizableHandle",
+      "exportKind": "component",
+      "module": "components/ui/resizable",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ResizablePanel",
+      "exportKind": "component",
+      "module": "components/ui/resizable",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ResizablePanelGroup",
+      "exportKind": "component",
+      "module": "components/ui/resizable",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "resolveButtonClasses",
+      "exportKind": "utility",
+      "module": "components/ui/button",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "avoid-directly"
+    },
+    {
+      "name": "ScrollArea",
+      "exportKind": "component",
+      "module": "components/ui/scroll-area",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ScrollBar",
+      "exportKind": "component",
+      "module": "components/ui/scroll-area",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SearchInput",
+      "exportKind": "component",
+      "module": "components/ui/search-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SearchInputProps",
+      "exportKind": "type",
+      "module": "components/ui/search-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SearchInputVariant",
+      "exportKind": "type",
+      "module": "components/ui/search-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SectionHeader",
+      "exportKind": "component",
+      "module": "components/ui/section-header",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "SectionHeaderActions",
+      "exportKind": "component",
+      "module": "components/ui/section-header",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "SectionHeaderContent",
+      "exportKind": "component",
+      "module": "components/ui/section-header",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "SectionHeaderDescription",
+      "exportKind": "component",
+      "module": "components/ui/section-header",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "SectionHeaderTitle",
+      "exportKind": "component",
+      "module": "components/ui/section-header",
+      "roles": [
+        "layout",
+        "first-party"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "Select",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "SelectContent",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectContentProps",
+      "exportKind": "type",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectGroup",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectItem",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectLabel",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectScrollDownButton",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectScrollUpButton",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectSeparator",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectTrigger",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectValue",
+      "exportKind": "component",
+      "module": "components/ui/select",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Separator",
+      "exportKind": "component",
+      "module": "components/ui/separator",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SeparatorLabelAlign",
+      "exportKind": "type",
+      "module": "components/ui/separator",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SeparatorProps",
+      "exportKind": "type",
+      "module": "components/ui/separator",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Sheet",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "SheetClose",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SheetCloseButton",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SheetContent",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SheetDescription",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SheetFooter",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SheetHeader",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SheetOverlay",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SheetPortal",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SheetTitle",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SheetTrigger",
+      "exportKind": "component",
+      "module": "components/ui/sheet-uds",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SidebarSimpleIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Skeleton",
+      "exportKind": "component",
+      "module": "components/ui/skeleton",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Slider",
+      "exportKind": "component",
+      "module": "components/ui/slider",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SortDescendingIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SparkleIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Spinner",
+      "exportKind": "component",
+      "module": "components/ui/spinner",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SquaresFourIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StackIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StatisticCard",
+      "exportKind": "component",
+      "module": "components/ui/statistics",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StatisticHint",
+      "exportKind": "component",
+      "module": "components/ui/statistics",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StatisticLabel",
+      "exportKind": "component",
+      "module": "components/ui/statistics",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Statistics",
+      "exportKind": "component",
+      "module": "components/ui/statistics",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StatisticValue",
+      "exportKind": "component",
+      "module": "components/ui/statistics",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Status",
+      "exportKind": "component",
+      "module": "components/ui/status",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "statusVariants",
+      "exportKind": "utility",
+      "module": "components/ui/status",
+      "roles": [
+        "feedback",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Step",
+      "exportKind": "component",
+      "module": "components/ui/steps",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StepContent",
+      "exportKind": "component",
+      "module": "components/ui/steps",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StepDescription",
+      "exportKind": "component",
+      "module": "components/ui/steps",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StepMarker",
+      "exportKind": "component",
+      "module": "components/ui/steps",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Steps",
+      "exportKind": "component",
+      "module": "components/ui/steps",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StepState",
+      "exportKind": "type",
+      "module": "components/ui/steps",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "StepTitle",
+      "exportKind": "component",
+      "module": "components/ui/steps",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SunIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Switch",
+      "exportKind": "component",
+      "module": "components/ui/switch",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Table",
+      "exportKind": "component",
+      "module": "components/ui/table",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "TableBody",
+      "exportKind": "component",
+      "module": "components/ui/table",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TableCaption",
+      "exportKind": "component",
+      "module": "components/ui/table",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TableCell",
+      "exportKind": "component",
+      "module": "components/ui/table",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TableFooter",
+      "exportKind": "component",
+      "module": "components/ui/table",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TableHead",
+      "exportKind": "component",
+      "module": "components/ui/table",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TableHeader",
+      "exportKind": "component",
+      "module": "components/ui/table",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TableRow",
+      "exportKind": "component",
+      "module": "components/ui/table",
+      "roles": [
+        "data-display"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Tabs",
+      "exportKind": "component",
+      "module": "components/ui/tabs",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "TabsContent",
+      "exportKind": "component",
+      "module": "components/ui/tabs",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TabsList",
+      "exportKind": "component",
+      "module": "components/ui/tabs",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "tabsListVariants",
+      "exportKind": "utility",
+      "module": "components/ui/tabs",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TabsTrigger",
+      "exportKind": "component",
+      "module": "components/ui/tabs",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Text",
+      "exportKind": "component",
+      "module": "components/ui/text",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TEXT_APPEARANCES",
+      "exportKind": "component",
+      "module": "components/ui/text",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TextAppearance",
+      "exportKind": "type",
+      "module": "components/ui/text",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Textarea",
+      "exportKind": "component",
+      "module": "components/ui/textarea",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TextBIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TextItalicIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TextProps",
+      "exportKind": "type",
+      "module": "components/ui/text",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "textVariants",
+      "exportKind": "utility",
+      "module": "components/ui/text",
+      "roles": [
+        "data-display",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TimeInput",
+      "exportKind": "component",
+      "module": "components/ui/time-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TimeInputProps",
+      "exportKind": "type",
+      "module": "components/ui/time-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TimeStepInput",
+      "exportKind": "component",
+      "module": "components/ui/time-step-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TimeStepInputProps",
+      "exportKind": "type",
+      "module": "components/ui/time-step-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Toaster",
+      "exportKind": "component",
+      "module": "components/ui/sonner",
+      "roles": [
+        "feedback"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Toggle",
+      "exportKind": "component",
+      "module": "components/ui/toggle",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ToggleGroup",
+      "exportKind": "component",
+      "module": "components/ui/toggle-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ToggleGroupItem",
+      "exportKind": "component",
+      "module": "components/ui/toggle-group",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "toggleVariants",
+      "exportKind": "utility",
+      "module": "components/ui/toggle",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TokenInput",
+      "exportKind": "component",
+      "module": "components/ui/token-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TokenInputProps",
+      "exportKind": "type",
+      "module": "components/ui/token-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Toolbar",
+      "exportKind": "component",
+      "module": "components/ui/toolbar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ToolbarDivider",
+      "exportKind": "component",
+      "module": "components/ui/toolbar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "ToolbarGroup",
+      "exportKind": "component",
+      "module": "components/ui/toolbar",
+      "roles": [
+        "navigation"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Tooltip",
+      "exportKind": "component",
+      "module": "components/ui/tooltip",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TooltipContent",
+      "exportKind": "component",
+      "module": "components/ui/tooltip",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TooltipProvider",
+      "exportKind": "component",
+      "module": "components/ui/tooltip",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "preferred"
+    },
+    {
+      "name": "TooltipTrigger",
+      "exportKind": "component",
+      "module": "components/ui/tooltip",
+      "roles": [
+        "overlay"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UploadSimpleIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UrlInput",
+      "exportKind": "component",
+      "module": "components/ui/url-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UrlInputProps",
+      "exportKind": "type",
+      "module": "components/ui/url-input",
+      "roles": [
+        "input"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "useDirection",
+      "exportKind": "utility",
+      "module": "components/ui/direction",
+      "roles": [
+        "layout"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "useIsMobile",
+      "exportKind": "component",
+      "module": "hooks/use-mobile",
+      "roles": [
+        "utility"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "useMenuRail",
+      "exportKind": "utility",
+      "module": "components/ui/menu",
+      "roles": [
+        "navigation",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UserIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UserListIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UsersIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UsersThreeIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "WalletIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "WarningCircleIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "WarningIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "XCircleIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    },
+    {
+      "name": "XIcon",
+      "exportKind": "component",
+      "module": "components/ui/uds-icons",
+      "roles": [
+        "utility",
+        "first-party"
+      ],
+      "recommendation": "allowed"
+    }
+  ],
+  "stylingRules": {
+    "radiusPolicy": {
+      "summary": "Current shipped components are the source of truth. Prefer 4px for standard rectangular application chrome, while preserving existing 8px/12px radii for overlays and selected themed primitives. Circular and pill shapes remain allowed when intrinsic to the component.",
+      "rectangularChrome": "Prefer square or 4px corners for routine layout, form, and status surfaces.",
+      "allowedSemanticExceptions": [
+        "Overlay panels and menus that already ship with 8px radii.",
+        "Decorative or media surfaces that already ship with 12px radii.",
+        "Circle and pill semantics for avatars, indicators, toggles, and medallions."
+      ]
+    },
+    "colorPolicy": {
+      "summary": "Use shipped UDS tokens and component variants. Prefer brand-linked emphasis through Badge, Status, Medallion, tinted cards, and token-backed surfaces before inventing custom accents."
+    },
+    "darkMode": {
+      "convention": "Use the existing .dark class convention."
+    },
+    "cssVariables": {
+      "overrides": "Consumers may override published CSS variables. Do not bypass the package stylesheet contract."
+    }
+  },
+  "screenRecipes": [
+    {
+      "id": "auth-shell",
+      "title": "Authenticated Shell",
+      "file": "ai/recipes/auth-shell.md",
+      "description": "Base authenticated product shell with a mandatory UDS sidebar and branded summary content.",
+      "defaults": [
+        "AppShell",
+        "SidebarProvider",
+        "Sidebar primitives",
+        "Card",
+        "Button",
+        "Status"
+      ]
+    },
+    {
+      "id": "workspace-dashboard",
+      "title": "Workspace Dashboard",
+      "file": "ai/recipes/workspace-dashboard.md",
+      "description": "Operational dashboard with branded metrics, queue summaries, and first-party emphasis components.",
+      "defaults": [
+        "AppShell",
+        "Badge",
+        "Medallion",
+        "Status",
+        "Card",
+        "SectionHeader"
+      ]
+    },
+    {
+      "id": "detail-with-listview",
+      "title": "Detail With Listview",
+      "file": "ai/recipes/detail-with-listview.md",
+      "description": "Master-detail layout using the AppShell listview region instead of ad hoc split panes.",
+      "defaults": [
+        "AppShell",
+        "Sidebar primitives",
+        "Item",
+        "Table",
+        "Tabs"
+      ]
+    },
+    {
+      "id": "settings-form",
+      "title": "Settings Form",
+      "file": "ai/recipes/settings-form.md",
+      "description": "Preference or admin page that keeps UDS field chrome and uses AppShell for the surrounding layout.",
+      "defaults": [
+        "AppShell",
+        "Field",
+        "Input",
+        "Select",
+        "Switch",
+        "Button"
+      ]
+    }
+  ],
+  "antiPatterns": [
+    "Do not build a bespoke outer shell with raw div/aside markup when AppShell plus Sidebar primitives already fits the screen.",
+    "Do not import from src/components/ui/*, dist/*, or repo-local aliases in consumer code.",
+    "Do not invent a parallel component system for buttons, fields, badges, or status treatments when package exports exist.",
+    "Do not default to stock shadcn layout patterns when UDS-specific first-party components are available."
+  ],
+  "references": [
+    "src/index.ts",
+    "examples/consumer-react/src/App.tsx",
+    "ai/examples/auth-shell.tsx",
+    "ai/examples/workspace-dashboard.tsx",
+    "ai/examples/detail-with-listview.tsx",
+    "ai/examples/settings-form.tsx",
+    "AI_USAGE.md",
+    "setup.md"
+  ],
+  "registry": {
+    "namespace": "@uds",
+    "localUrlTemplate": "http://localhost:5173/r/{name}.json",
+    "items": [
+      "uds-style",
+      "app-shell",
+      "sidebar",
+      "button",
+      "card",
+      "badge",
+      "status",
+      "medallion",
+      "input",
+      "select",
+      "dialog",
+      "sheet",
+      "alert-dialog",
+      "tabs",
+      "table",
+      "tooltip"
+    ]
+  }
+}

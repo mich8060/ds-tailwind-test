@@ -1,0 +1,70 @@
+/*
+ * UDS typography utilities (Tailwind v4 @theme).
+ * Requires `./uds-tokens.css` imported earlier (same bundle).
+ *
+ * Tailwind `text-xs` / `text-sm` / … only set font-size + line-height; family inherits from `html` / `body`
+ *   (use `font-sans` on a subtree if something reset it). Preflight sets `code`, `kbd`, `samp`, `pre` to the mono stack.
+ *
+ * Classes:
+ *   text-uds-{10|12|14|15|16|20|24|28|32|36|48|60|72|96|128} — font-size + paired line-height
+ *   leading-uds-{…} — line-height only (matches --uds-line-*)
+ *   font-uds — font-family: var(--uds-font-family) (Inter stack; prefer font-sans when equivalent)
+ *   font-uds-regular | font-uds-medium | font-uds-semibold | font-uds-bold — weight tokens
+ */
+@theme {
+  /* Type scale */
+  --text-uds-128: var(--uds-font-size-128);
+  --text-uds-128--line-height: var(--uds-line-128);
+  --text-uds-96: var(--uds-font-size-96);
+  --text-uds-96--line-height: var(--uds-line-96);
+  --text-uds-72: var(--uds-font-size-72);
+  --text-uds-72--line-height: var(--uds-line-72);
+  --text-uds-60: var(--uds-font-size-60);
+  --text-uds-60--line-height: var(--uds-line-60);
+  --text-uds-48: var(--uds-font-size-48);
+  --text-uds-48--line-height: var(--uds-line-48);
+  --text-uds-36: var(--uds-font-size-36);
+  --text-uds-36--line-height: var(--uds-line-36);
+  --text-uds-32: var(--uds-font-size-32);
+  --text-uds-32--line-height: var(--uds-line-32);
+  --text-uds-28: var(--uds-font-size-28);
+  --text-uds-28--line-height: var(--uds-line-28);
+  --text-uds-24: var(--uds-font-size-24);
+  --text-uds-24--line-height: var(--uds-line-24);
+  --text-uds-20: var(--uds-font-size-20);
+  --text-uds-20--line-height: var(--uds-line-20);
+  --text-uds-16: var(--uds-font-size-16);
+  --text-uds-16--line-height: var(--uds-line-16);
+  --text-uds-15: var(--uds-font-size-15);
+  --text-uds-15--line-height: var(--uds-line-15);
+  --text-uds-14: var(--uds-font-size-14);
+  --text-uds-14--line-height: var(--uds-line-14);
+  --text-uds-12: var(--uds-font-size-12);
+  --text-uds-12--line-height: var(--uds-line-12);
+  --text-uds-10: var(--uds-font-size-10);
+  --text-uds-10--line-height: var(--uds-line-10);
+
+  /* Line-height only (override or pair with arbitrary font size) */
+  --leading-uds-128: var(--uds-line-128);
+  --leading-uds-96: var(--uds-line-96);
+  --leading-uds-72: var(--uds-line-72);
+  --leading-uds-60: var(--uds-line-60);
+  --leading-uds-48: var(--uds-line-48);
+  --leading-uds-36: var(--uds-line-36);
+  --leading-uds-32: var(--uds-line-32);
+  --leading-uds-28: var(--uds-line-28);
+  --leading-uds-24: var(--uds-line-24);
+  --leading-uds-20: var(--uds-line-20);
+  --leading-uds-16: var(--uds-line-16);
+  --leading-uds-15: var(--uds-line-15);
+  --leading-uds-14: var(--uds-line-14);
+  --leading-uds-12: var(--uds-line-12);
+  --leading-uds-10: var(--uds-line-10);
+
+  --font-uds: var(--uds-font-family);
+
+  --font-weight-uds-regular: var(--uds-font-weight);
+  --font-weight-uds-medium: var(--uds-font-weight-medium);
+  --font-weight-uds-semibold: var(--uds-font-weight-semibold);
+  --font-weight-uds-bold: var(--uds-font-weight-bold);
+}

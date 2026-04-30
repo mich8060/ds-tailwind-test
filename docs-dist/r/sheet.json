@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "type": "registry:item",
+  "title": "UDS Sheet",
+  "description": "Wrapper export for the published Sheet surface from uds-tailwind-test.",
+  "author": "Unified Design System",
+  "categories": [
+    "ui"
+  ],
+  "dependencies": [
+    "uds-tailwind-test@0.3.8"
+  ],
+  "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+  "meta": {
+    "package": "uds-tailwind-test",
+    "registryBaseUrl": "http://localhost:5173/r",
+    "localOnly": true
+  },
+  "files": [
+    {
+      "path": "registry/uds/sheet.tsx",
+      "type": "registry:file",
+      "target": "components/uds/sheet.tsx",
+      "content": "export { Sheet } from \"uds-tailwind-test\"\n"
+    }
+  ]
+}

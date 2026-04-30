@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:item",
+  "title": "UDS Input",
+  "description": "Wrapper export for the published Input surface from uds-tailwind-test.",
+  "author": "Unified Design System",
+  "categories": [
+    "ui"
+  ],
+  "dependencies": [
+    "uds-tailwind-test@0.3.8"
+  ],
+  "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+  "meta": {
+    "package": "uds-tailwind-test",
+    "registryBaseUrl": "http://localhost:5173/r",
+    "localOnly": true
+  },
+  "files": [
+    {
+      "path": "registry/uds/input.tsx",
+      "type": "registry:file",
+      "target": "components/uds/input.tsx",
+      "content": "export { Input } from \"uds-tailwind-test\"\n"
+    }
+  ]
+}

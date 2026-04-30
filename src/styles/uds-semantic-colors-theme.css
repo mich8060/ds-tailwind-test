@@ -1,0 +1,62 @@
+/*
+ * UDS semantic colors → Tailwind v4 @theme (surface, border, text).
+ * Maps `--uds-surface-*`, `--uds-border-*`, `--uds-text-*` to `--color-*`.
+ *
+ * Examples (any color utility works: bg-, text-, border-, ring-, outline-, fill-, stroke-, from-/to-, etc.):
+ *   bg-uds-surface-primary
+ *   border-uds-border-primary
+ *   text-uds-text-primary
+ *   ring-uds-focus-ring-border
+ *
+ * Requires `./uds-tokens.css` imported earlier.
+ */
+@theme {
+  /* Surfaces */
+  --color-uds-surface-primary: var(--uds-surface-primary);
+  --color-uds-surface-secondary: var(--uds-surface-secondary);
+  --color-uds-button-surface-secondary: var(--uds-button-surface-secondary);
+  --color-uds-surface-tertiary: var(--uds-surface-tertiary);
+  --color-uds-surface-quaternary: var(--uds-surface-quaternary);
+  --color-uds-surface-disabled: var(--uds-surface-disabled);
+  --color-uds-surface-inverse: var(--uds-surface-inverse);
+  --color-uds-surface-transparent: var(--uds-surface-transparent);
+  --color-uds-surface-brand-primary: var(--uds-surface-brand-primary);
+  --color-uds-surface-brand-secondary: var(--uds-surface-brand-secondary);
+  --color-uds-surface-brand-tertiary: var(--uds-surface-brand-tertiary);
+  --color-uds-surface-brand-quaternary: var(--uds-surface-brand-quaternary);
+
+  /* Borders */
+  --color-uds-border-primary: var(--uds-border-primary);
+  --color-uds-border-secondary: var(--uds-border-secondary);
+  --color-uds-border-tertiary: var(--uds-border-tertiary);
+  --color-uds-border-quaternary: var(--uds-border-quaternary);
+  --color-uds-border-disabled: var(--uds-border-disabled);
+  --color-uds-border-transparent: var(--uds-border-transparent);
+  --color-uds-border-inverse: var(--uds-border-inverse);
+  --color-uds-border-brand-primary: var(--uds-border-brand-primary);
+  --color-uds-border-brand-secondary: var(--uds-border-brand-secondary);
+  --color-uds-border-brand-tertiary: var(--uds-border-brand-tertiary);
+  --color-uds-border-brand-quaternary: var(--uds-border-brand-quaternary);
+  --color-uds-focus-ring-border: var(--uds-focus-ring-border);
+
+  /* Text */
+  --color-uds-text-primary: var(--uds-text-primary);
+  --color-uds-text-secondary: var(--uds-text-secondary);
+  --color-uds-text-tertiary: var(--uds-text-tertiary);
+  --color-uds-text-quaternary: var(--uds-text-quaternary);
+  --color-uds-text-disabled: var(--uds-text-disabled);
+  --color-uds-text-placeholder: var(--uds-text-placeholder);
+  --color-uds-text-inverse: var(--uds-text-inverse);
+  --color-uds-text-brand-primary: var(--uds-text-brand-primary);
+  --color-uds-text-brand-secondary: var(--uds-text-brand-secondary);
+  --color-uds-text-brand-tertiary: var(--uds-text-brand-tertiary);
+  --color-uds-text-brand-quaternary: var(--uds-text-brand-quaternary);
+  --color-uds-text-link-primary-default: var(--uds-text-link-primary-default);
+  --color-uds-text-link-primary-hover: var(--uds-text-link-primary-hover);
+  --color-uds-text-link-primary-active: var(--uds-text-link-primary-active);
+  --color-uds-text-link-primary-visited: var(--uds-text-link-primary-visited);
+  --color-uds-text-link-secondary-default: var(--uds-text-link-secondary-default);
+  --color-uds-text-link-secondary-hover: var(--uds-text-link-secondary-hover);
+  --color-uds-text-link-secondary-active: var(--uds-text-link-secondary-active);
+  --color-uds-text-link-secondary-visited: var(--uds-text-link-secondary-visited);
+}

@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Ensure every TS/TSX file under src/ is scanned when building dist/styles.css.
+   (Default detection can miss edge cases in library builds; consumers still need
+   their own @source when they run Tailwind locally — see project docs.) */
+@source "./**/*.{ts,tsx}";
+
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "./styles/tokens.css";
+@import "./styles/components.css";
+@import "./styles/uds-semantic-components.css";
+@import "./styles/uds-chrome-media.css";

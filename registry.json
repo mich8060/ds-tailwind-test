@@ -1,0 +1,458 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "uds",
+  "homepage": "http://localhost:5173",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "uds-style",
+      "type": "registry:style",
+      "title": "UDS Style Contract",
+      "description": "Imports the published UDS stylesheet contract and documents the required package dependency.",
+      "author": "Unified Design System",
+      "categories": [
+        "style",
+        "theme"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "Install `uds-tailwind-test`, import `styles/uds.css` from your app entrypoint, and keep your runtime component imports on the package root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/uds.css",
+          "type": "registry:file",
+          "target": "styles/uds.css",
+          "content": "@import \"uds-tailwind-test/styles.css\";\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "app-shell",
+      "type": "registry:item",
+      "title": "UDS AppShell",
+      "description": "Wrapper export for the published AppShell layout surface.",
+      "author": "Unified Design System",
+      "categories": [
+        "layout",
+        "shell"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/app-shell.tsx",
+          "type": "registry:file",
+          "target": "components/uds/app-shell.tsx",
+          "content": "export { AppShell } from \"uds-tailwind-test\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "sidebar",
+      "type": "registry:item",
+      "title": "UDS Sidebar",
+      "description": "Wrapper exports for the published UDS sidebar system used inside AppShell.",
+      "author": "Unified Design System",
+      "categories": [
+        "layout",
+        "navigation"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/sidebar.tsx",
+          "type": "registry:file",
+          "target": "components/uds/sidebar.tsx",
+          "content": "export {\n  Sidebar,\n  SidebarContent,\n  SidebarFooter,\n  SidebarGroup,\n  SidebarGroupAction,\n  SidebarGroupContent,\n  SidebarGroupLabel,\n  SidebarHeader,\n  SidebarInput,\n  SidebarInset,\n  SidebarMenu,\n  SidebarMenuAction,\n  SidebarMenuBadge,\n  SidebarMenuButton,\n  SidebarMenuItem,\n  SidebarMenuSkeleton,\n  SidebarMenuSub,\n  SidebarMenuSubButton,\n  SidebarMenuSubItem,\n  SidebarProvider,\n  SidebarRail,\n  SidebarSeparator,\n  SidebarTrigger,\n} from \"uds-tailwind-test\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "button",
+      "type": "registry:item",
+      "title": "UDS Button",
+      "description": "Wrapper export for the published Button surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/button.tsx",
+          "type": "registry:file",
+          "target": "components/uds/button.tsx",
+          "content": "export { Button } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "card",
+      "type": "registry:item",
+      "title": "UDS Card",
+      "description": "Wrapper export for the published Card surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/card.tsx",
+          "type": "registry:file",
+          "target": "components/uds/card.tsx",
+          "content": "export { Card } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "badge",
+      "type": "registry:item",
+      "title": "UDS Badge",
+      "description": "Wrapper export for the published Badge surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/badge.tsx",
+          "type": "registry:file",
+          "target": "components/uds/badge.tsx",
+          "content": "export { Badge } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "status",
+      "type": "registry:item",
+      "title": "UDS Status",
+      "description": "Wrapper export for the published Status surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/status.tsx",
+          "type": "registry:file",
+          "target": "components/uds/status.tsx",
+          "content": "export { Status } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "medallion",
+      "type": "registry:item",
+      "title": "UDS Medallion",
+      "description": "Wrapper export for the published Medallion surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/medallion.tsx",
+          "type": "registry:file",
+          "target": "components/uds/medallion.tsx",
+          "content": "export { Medallion } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input",
+      "type": "registry:item",
+      "title": "UDS Input",
+      "description": "Wrapper export for the published Input surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/input.tsx",
+          "type": "registry:file",
+          "target": "components/uds/input.tsx",
+          "content": "export { Input } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "select",
+      "type": "registry:item",
+      "title": "UDS Select",
+      "description": "Wrapper export for the published Select surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/select.tsx",
+          "type": "registry:file",
+          "target": "components/uds/select.tsx",
+          "content": "export { Select } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dialog",
+      "type": "registry:item",
+      "title": "UDS Dialog",
+      "description": "Wrapper export for the published Dialog surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/dialog.tsx",
+          "type": "registry:file",
+          "target": "components/uds/dialog.tsx",
+          "content": "export { Dialog } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "sheet",
+      "type": "registry:item",
+      "title": "UDS Sheet",
+      "description": "Wrapper export for the published Sheet surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/sheet.tsx",
+          "type": "registry:file",
+          "target": "components/uds/sheet.tsx",
+          "content": "export { Sheet } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "alert-dialog",
+      "type": "registry:item",
+      "title": "UDS AlertDialog",
+      "description": "Wrapper export for the published AlertDialog surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/alert-dialog.tsx",
+          "type": "registry:file",
+          "target": "components/uds/alert-dialog.tsx",
+          "content": "export { AlertDialog } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tabs",
+      "type": "registry:item",
+      "title": "UDS Tabs",
+      "description": "Wrapper export for the published Tabs surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/tabs.tsx",
+          "type": "registry:file",
+          "target": "components/uds/tabs.tsx",
+          "content": "export { Tabs } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "table",
+      "type": "registry:item",
+      "title": "UDS Table",
+      "description": "Wrapper export for the published Table surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/table.tsx",
+          "type": "registry:file",
+          "target": "components/uds/table.tsx",
+          "content": "export { Table } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tooltip",
+      "type": "registry:item",
+      "title": "UDS Tooltip",
+      "description": "Wrapper export for the published Tooltip surface from @chg-ds/unified-design-system.",
+      "author": "Unified Design System",
+      "categories": [
+        "ui"
+      ],
+      "dependencies": [
+        "@chg-ds/unified-design-system@0.3.9"
+      ],
+      "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
+      "meta": {
+        "package": "@chg-ds/unified-design-system",
+        "registryBaseUrl": "http://localhost:5173/r",
+        "localOnly": true
+      },
+      "files": [
+        {
+          "path": "registry/uds/tooltip.tsx",
+          "type": "registry:file",
+          "target": "components/uds/tooltip.tsx",
+          "content": "export { Tooltip } from \"@chg-ds/unified-design-system\"\n"
+        }
+      ]
+    }
+  ]
+}
