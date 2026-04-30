@@ -7,14 +7,13 @@
     "build": "vite build --sourcemap"
   },
   "dependencies": {
-    "@chg-ds/unified-design-system": "file:../chg-ds-unified-design-system-0.2.12.tgz",
-    "@phosphor-icons/react": "^2.1.10",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.30.3"
+    "@chg-ds/unified-design-system": "file:..",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.14.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.1",
-    "vite": "^6.4.1"
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.4"
   }
 }

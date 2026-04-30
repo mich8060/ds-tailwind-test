@@ -3,17 +3,17 @@
   "name": "medallion",
   "type": "registry:item",
   "title": "UDS Medallion",
-  "description": "Wrapper export for the published Medallion surface from uds-tailwind-test.",
+  "description": "Wrapper export for the published Medallion surface from @chg-ds/unified-design-system.",
   "author": "Unified Design System",
   "categories": [
     "ui"
   ],
   "dependencies": [
-    "uds-tailwind-test@0.3.8"
+    "@chg-ds/unified-design-system@0.3.9"
   ],
   "docs": "These registry items are thin wrappers around the published package surface. Import styles from `uds-tailwind-test/styles.css` at the app root.",
   "meta": {
-    "package": "uds-tailwind-test",
+    "package": "@chg-ds/unified-design-system",
     "registryBaseUrl": "http://localhost:5173/r",
     "localOnly": true
   },
@@ -22,7 +22,7 @@
       "path": "registry/uds/medallion.tsx",
       "type": "registry:file",
       "target": "components/uds/medallion.tsx",
-      "content": "export { Medallion } from \"uds-tailwind-test\"\n"
+      "content": "export { Medallion } from \"@chg-ds/unified-design-system\"\n"
     }
   ]
 }

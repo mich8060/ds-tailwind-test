@@ -89,6 +89,10 @@ Consumers and AI tools should import only from:
 
 Do not infer public API from internal implementation files under `src/components/ui`.
 
+## Consumer typography (Tailwind v4 + Vite)
+
+`Text` uses **precompiled** `text-uds-*` / `leading-uds-*` classes from the published stylesheet. Apps **must** import `@chg-ds/unified-design-system/styles.css`; scanning `node_modules` with `@source` alone is not enough. See **[docs/consumers-text-typography-tailwind-v4.md](./docs/consumers-text-typography-tailwind-v4.md)** for the full contract (token chain, layer conflicts, variant table, debugging).
+
 ## AI contract
 
 The AI/tooling contract lives in [`ai/uds-contract.json`](./ai/uds-contract.json) and includes:

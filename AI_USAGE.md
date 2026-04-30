@@ -19,8 +19,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-} from "uds-tailwind-test"
-import "uds-tailwind-test/styles.css"
+} from "@chg-ds/unified-design-system"
+import "@chg-ds/unified-design-system/styles.css"
 ```
 
 ## Disallowed imports
@@ -41,7 +41,8 @@ Do not import from:
 
 ## Styling rules
 
-- Import `uds-tailwind-test/styles.css` once near the app root.
+- Import `@chg-ds/unified-design-system/styles.css` once near the app root.
+- **`Text` typography:** utilities such as `text-uds-10` ship in that stylesheet; consumer Tailwind JIT does **not** scan `node_modules` to create them. Read **[docs/consumers-text-typography-tailwind-v4.md](./docs/consumers-text-typography-tailwind-v4.md)** (token chain, import order, variant → class → token table).
 - Use shipped UDS tokens, variants, and first-party components before inventing custom accents.
 - Current shipped components are the radius source of truth:
   - prefer 4px or square corners for routine rectangular application chrome

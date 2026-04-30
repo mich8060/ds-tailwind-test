@@ -10,11 +10,11 @@
     "theme"
   ],
   "dependencies": [
-    "uds-tailwind-test@0.3.8"
+    "@chg-ds/unified-design-system@0.3.9"
   ],
   "docs": "Install `uds-tailwind-test`, import `styles/uds.css` from your app entrypoint, and keep your runtime component imports on the package root.",
   "meta": {
-    "package": "uds-tailwind-test",
+    "package": "@chg-ds/unified-design-system",
     "registryBaseUrl": "http://localhost:5173/r",
     "localOnly": true
   },
